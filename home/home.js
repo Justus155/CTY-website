@@ -22,18 +22,18 @@ document.getElementById("year").textContent = new Date().getFullYear();
 // Replace/remove once real posts exist.
 // -----------------------------------------------------------------
 const DUMMY_VIDEO = {
-  title: "Sunday Praise & Worship Highlights",
-  note: "The worship team leading us into a powerful time of praise this past Sunday — a reminder of why we gather every week.",
-  video_url: null, // e.g. a YouTube embed URL or direct .mp4 from Supabase Storage
+  title: "Mataifa Yote — CTY Ministries",
+  note: "A featured community worship moment from CTY Ministries.",
+  video_url: "images/mataifa%20yote.mp4",
 };
 
 const DUMMY_PHOTOS = [
-  { caption: "Youth choir leading Sunday worship", created_at: "2025-06-01", image_url: null },
-  { caption: "Kids enjoying cake at the CTY family day", created_at: "2025-06-01", image_url: null },
-  { caption: "Sweet 16 celebration on the church stage", created_at: "2025-05-24", image_url: null },
-  { caption: "Sharing testimonies with the little ones", created_at: "2025-05-24", image_url: null },
-  { caption: "Fellowship after the youth service", created_at: "2025-05-17", image_url: null },
-  { caption: "Celebrating a birthday within the CTY family", created_at: "2025-05-10", image_url: null },
+  { caption: "CTY community moment", created_at: "2025-06-01", image_url: "images/IMG_7732.jpg" },
+  { caption: "Sunday fellowship snapshot", created_at: "2025-06-01", image_url: "images/IMG_8030.jpg" },
+  { caption: "Youth gathering highlight", created_at: "2025-05-24", image_url: "images/IMG_8234.jpg" },
+  { caption: "Worship team in action", created_at: "2025-05-24", image_url: "images/IMG_8248.jpg" },
+  { caption: "Friends of CTY celebration", created_at: "2025-05-17", image_url: "images/IMG_8565.jpg" },
+  { caption: "A joyful CTY memory", created_at: "2025-05-10", image_url: "images/IMG_8797.jpg" },
 ];
 
 // -----------------------------------------------------------------

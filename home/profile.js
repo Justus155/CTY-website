@@ -17,6 +17,39 @@ let selectedFile = null;
 let currentAvatarUrl = null;
 const isEmbedded = new URLSearchParams(window.location.search).get("embed") === "1";
 
+function getSupabaseErrorMessage(error, fallbackMessage) {
+  return error?.message || fallbackMessage;
+}
+
+async function saveProfileFields(fields) {
+  const userId = currentSession?.user?.id;
+  if (!userId) {
+    return { error: new Error("Missing user session.") };
+  }
+
+  // Prefer UPDATE first because many RLS setups allow update on own row
+  // but block INSERT (which upsert may require).
+  const { data: updatedRow, error: updateError } = await supabase
+    .from("profiles")
+    .update(fields)
+    .eq("id", userId)
+    .select("id")
+    .maybeSingle();
+
+  if (!updateError && updatedRow) {
+    return { error: null };
+  }
+
+  const { error: upsertError } = await supabase
+    .from("profiles")
+    .upsert({
+      id: userId,
+      ...fields,
+    });
+
+  return { error: upsertError || updateError || null };
+}
+
 if (isEmbedded) {
   document.body.classList.add("is-embedded");
   if (panelCloseBtn) panelCloseBtn.hidden = false;
@@ -113,7 +146,10 @@ form.addEventListener("submit", async (event) => {
     .upload(filePath, selectedFile, { upsert: true, cacheControl: "3600" });
 
   if (uploadError) {
-    setError(errorEl, "Could not upload image. Ensure an 'avatars' storage bucket exists and allows uploads.");
+    setError(
+      errorEl,
+      `Upload failed: ${getSupabaseErrorMessage(uploadError, "Ensure an 'avatars' bucket exists and storage policies allow authenticated uploads.")}`
+    );
     return;
   }
 
@@ -123,16 +159,16 @@ form.addEventListener("submit", async (event) => {
 
   const avatarUrl = publicUrlData.publicUrl;
 
-  const { error: profileError } = await supabase
-    .from("profiles")
-    .upsert({
-      id: currentSession.user.id,
-      full_name: nameInput.value,
-      avatar_url: avatarUrl,
-    });
+  const { error: profileError } = await saveProfileFields({
+    full_name: nameInput.value,
+    avatar_url: avatarUrl,
+  });
 
   if (profileError) {
-    setError(errorEl, "Image uploaded but profile update failed. Check your profiles table RLS policy.");
+    setError(
+      errorEl,
+      `Image uploaded, but profile save failed: ${getSupabaseErrorMessage(profileError, "Check your profiles table RLS policy for update/insert on own row.")}`
+    );
     return;
   }
 
@@ -154,16 +190,16 @@ removeAvatarBtn?.addEventListener("click", async () => {
     return;
   }
 
-  const { error: profileError } = await supabase
-    .from("profiles")
-    .upsert({
-      id: currentSession.user.id,
-      full_name: nameInput.value,
-      avatar_url: null,
-    });
+  const { error: profileError } = await saveProfileFields({
+    full_name: nameInput.value,
+    avatar_url: null,
+  });
 
   if (profileError) {
-    setError(errorEl, "Could not remove profile picture. Please try again.");
+    setError(
+      errorEl,
+      `Could not remove profile picture: ${getSupabaseErrorMessage(profileError, "Check profiles update policy.")}`
+    );
     return;
   }
 

@@ -29,7 +29,7 @@ body{
 
 .profile-topbar{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
@@ -50,13 +50,6 @@ body{
   font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
-}
-
-.back-link{
-  text-decoration: none;
-  color: var(--ink-soft);
-  font-weight: 600;
-  font-size: 0.9rem;
 }
 
 .signout-btn{
