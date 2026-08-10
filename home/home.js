@@ -208,6 +208,9 @@ function setupProfileDrawer() {
     if (event.data.type === "profile-updated") {
       checkHeaderSession();
     }
+    if (event.data.type === "signed-out") {
+      window.location.href = "../login/signin.html";
+    }
   });
 }
 

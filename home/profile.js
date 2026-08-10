@@ -203,6 +203,12 @@ panelCloseBtn?.addEventListener("click", () => {
 
 signoutBtn.addEventListener("click", async () => {
   await supabase.auth.signOut();
+
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: "signed-out" }, "*");
+    return;
+  }
+
   window.location.href = "../login/signin.html";
 });
 
