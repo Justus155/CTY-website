@@ -1,5 +1,31 @@
 import { supabase, showToast, setError, setLoading, friendlyError } from "./supabaseclient.js";
 
+function setupFloatingSwitch() {
+  const links = document.querySelectorAll('a[href="signin.html"]');
+  links.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+
+      event.preventDefault();
+      document.body.classList.add("is-leaving-right");
+      window.setTimeout(() => {
+        window.location.href = link.getAttribute("href") || "signin.html";
+      }, 240);
+    });
+  });
+}
+
+setupFloatingSwitch();
+
 function getAgeFromBirthday(birthdayValue) {
   const birthday = new Date(birthdayValue);
   if (Number.isNaN(birthday.getTime())) return null;
