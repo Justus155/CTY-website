@@ -1,0 +1,233 @@
+:root{
+  --ink:        #14110F;
+  --ink-soft:   #201B17;
+  --ivory:      #F7F1E4;
+  --paper:      #FCFAF4;
+  --gold:       #C9971E;
+  --gold-soft:  #E7D2A0;
+  --muted:      #7A7566;
+  --error:      #B3401F;
+  --serif: "Fraunces", Georgia, serif;
+  --sans:  "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*{ box-sizing: border-box; }
+html, body{ margin: 0; min-height: 100%; }
+body{
+  font-family: var(--sans);
+  color: var(--ink);
+  background:
+    radial-gradient(950px 420px at 12% 10%, rgba(201,151,30,0.18) 0%, rgba(201,151,30,0) 60%),
+    linear-gradient(130deg, #faf4e9 0%, #f3e8d5 55%, #efe1c9 100%);
+}
+
+.profile-shell{
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 1rem 1rem 2.2rem;
+}
+
+.profile-topbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.topbar-actions{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.panel-close-btn{
+  border: 1px solid rgba(20,17,15,0.2);
+  background: rgba(255,255,255,0.8);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.back-link{
+  text-decoration: none;
+  color: var(--ink-soft);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.signout-btn{
+  border: 1px solid rgba(20,17,15,0.2);
+  background: rgba(255,255,255,0.8);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.profile-card{
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(20,17,15,0.12);
+  border-radius: 20px;
+  box-shadow: 0 24px 65px rgba(20,17,15,0.16);
+  padding: 1.4rem;
+}
+
+.profile-card h1{
+  font-family: var(--serif);
+  font-size: 1.9rem;
+  margin: 0;
+}
+
+.sub{
+  color: var(--muted);
+  margin: 0.4rem 0 1.3rem;
+  font-size: 0.92rem;
+}
+
+.avatar-block{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.3rem;
+}
+
+.avatar-preview{
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  overflow: hidden;
+}
+
+.avatar-preview img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-label{
+  display: inline-block;
+  background: var(--ink);
+  color: var(--ivory);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#avatar-file{ display: none; }
+.hint{ margin: 0.55rem 0 0; color: var(--muted); font-size: 0.78rem; }
+
+.field{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.95rem;
+}
+
+.field span{
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.field input{
+  border: 1px solid rgba(20,17,15,0.16);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 0.74rem 0.86rem;
+  font-size: 0.92rem;
+}
+
+.field input[readonly]{
+  background: rgba(247,241,228,0.6);
+  color: #474236;
+}
+
+.error{
+  color: var(--error);
+  font-size: 0.84rem;
+  min-height: 1.1rem;
+  margin: 0.2rem 0 0.65rem;
+}
+
+.btn-primary{
+  background: var(--ink);
+  color: var(--ivory);
+  border: none;
+  border-radius: 10px;
+  padding: 0.78rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.profile-actions{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+}
+
+.btn-secondary{
+  border: 1px solid rgba(20,17,15,0.18);
+  background: rgba(255,255,255,0.86);
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 0.74rem 1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+body.is-embedded{
+  background: transparent;
+}
+
+body.is-embedded .profile-shell{
+  max-width: 100%;
+  padding: 0.7rem;
+}
+
+body.is-embedded .profile-card{
+  border-radius: 14px;
+  box-shadow: none;
+  border-color: rgba(20,17,15,0.08);
+}
+
+.toast{
+  position: fixed;
+  left: 50%;
+  bottom: 1.2rem;
+  transform: translate(-50%, 12px);
+  background: var(--ink);
+  color: var(--ivory);
+  border-radius: 10px;
+  padding: 0.68rem 1rem;
+  font-size: 0.84rem;
+  opacity: 0;
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.toast.is-visible{
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 720px){
+  .profile-shell{ padding: 0.8rem 0.8rem 1.8rem; }
+  .profile-card{ padding: 1rem; }
+  .avatar-block{ align-items: flex-start; flex-direction: column; }
+}

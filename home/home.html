@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CTY Ministries — Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css" />
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <a href="home.html" class="brand-lockup">
+      <svg viewBox="0 0 200 200" width="34" height="34" aria-hidden="true">
+        <g stroke="#F7F1E4" stroke-width="4" stroke-linecap="round">
+          <line x1="100" y1="34" x2="100" y2="4"/>
+          <line x1="151" y1="64" x2="176" y2="47"/>
+          <line x1="159" y1="93" x2="188" y2="93"/>
+          <line x1="151" y1="122" x2="176" y2="139"/>
+          <line x1="49" y1="122" x2="24" y2="139"/>
+          <line x1="41" y1="93" x2="12" y2="93"/>
+          <line x1="49" y1="64" x2="24" y2="47"/>
+        </g>
+        <rect x="91" y="55" width="18" height="84" fill="#F7F1E4"/>
+        <rect x="69" y="83" width="62" height="18" fill="#F7F1E4"/>
+      </svg>
+      <span>CTY <em>Ministries</em></span>
+    </a>
+
+    <nav class="main-nav" id="main-nav">
+      <a href="home.html" class="is-active">Home</a>
+      <a href="about.html">About</a>
+      <a href="posts.html">Posts</a>
+      <a href="community-events.html">Community Events</a>
+      <a href="contacts.html">Contacts</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="profile.html" class="profile-pill" id="profile-link" hidden aria-label="Profile">
+        <span class="profile-avatar" id="profile-avatar">U</span>
+        <span id="profile-name">Profile</span>
+      </a>
+      <a href="../login/signin.html" class="btn-ghost" id="signin-link">Sign in</a>
+    </div>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ============ HERO : LATEST VIDEO ============ -->
+  <section class="hero">
+    <div class="hero-media">
+      <div class="video-frame" id="video-frame">
+        <!-- home.js swaps this for an <iframe>/<video> once the latest video is loaded -->
+        <div class="video-placeholder">
+          <svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="#F7F1E4" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M10 8.5v7l6-3.5-6-3.5z" fill="#F7F1E4" stroke="none"/>
+          </svg>
+          <p id="video-caption">Loading the latest video…</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-side">
+      <p class="eyebrow">This week at CTY</p>
+      <h1 id="hero-title">A moment worth sharing</h1>
+      <p class="hero-note" id="hero-note">
+        A quick note from whoever was there — what happened, who it was for, and why it mattered. This updates automatically with the latest video.
+      </p>
+      <a href="posts.html" class="btn-primary-line">See all posts →</a>
+    </div>
+  </section>
+
+  <!-- ============ LATEST PHOTOS ============ -->
+  <section class="gallery-section">
+    <div class="gallery-heading">
+      <div>
+        <p class="eyebrow">Fresh from the community</p>
+        <h2>Latest Photos</h2>
+      </div>
+      <a href="posts.html" class="see-all">View all photos →</a>
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid">
+      <!-- home.js fills this with the latest photos from Supabase.
+           Skeleton cards shown below as a loading state / fallback. -->
+      <div class="photo-card skeleton"><images></images></div>
+      <div class="photo-card skeleton"></div>
+      <div class="photo-card skeleton"></div>
+      <div class="photo-card skeleton"></div>
+      <div class="photo-card skeleton"></div>
+      <div class="photo-card skeleton"></div>
+    </div>
+  </section>
+
+  <!-- ============ CTA STRIP ============ -->
+  <section class="cta-strip">
+    <p class="cta-quote">“One community, facing every season together, and shining a little brighter for it.”</p>
+    <div class="cta-buttons">
+      <a href="../login/signup.html" class="btn-primary">Join CTY</a>
+      <a href="community-events.html" class="btn-ghost btn-ghost--dark">See upcoming events</a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <span class="footer-watermark" aria-hidden="true">FRIENDS OF CTY</span>
+
+    <div class="footer-top">
+      <a href="home.html" class="brand-lockup brand-lockup--footer">
+        <svg viewBox="0 0 200 200" width="30" height="30" aria-hidden="true">
+          <g stroke="#F7F1E4" stroke-width="4" stroke-linecap="round">
+            <line x1="100" y1="34" x2="100" y2="4"/>
+            <line x1="151" y1="64" x2="176" y2="47"/>
+            <line x1="159" y1="93" x2="188" y2="93"/>
+            <line x1="151" y1="122" x2="176" y2="139"/>
+            <line x1="49" y1="122" x2="24" y2="139"/>
+            <line x1="41" y1="93" x2="12" y2="93"/>
+            <line x1="49" y1="64" x2="24" y2="47"/>
+          </g>
+          <rect x="91" y="55" width="18" height="84" fill="#F7F1E4"/>
+          <rect x="69" y="83" width="62" height="18" fill="#F7F1E4"/>
+        </svg>
+        <span>CTY <em>Ministries</em></span>
+      </a>
+      <p class="footer-tagline">Children · Teens · Youth — Shine for Jesus</p>
+    </div>
+
+    <div class="footer-columns">
+      <div class="footer-col">
+        <p class="col-label">( Quick Links )</p>
+        <a href="about.html">About CTY</a>
+        <a href="give.html">Give</a>
+        <a href="join-a-team.html">Join a Team</a>
+        <a href="live-stream.html">Live Stream</a>
+        <a href="messages.html">Messages</a>
+        <a href="pastors.html">Our Leaders</a>
+        <a href="store.html">Store</a>
+      </div>
+
+      <div class="footer-col">
+        <p class="col-label">( Connect )</p>
+        <a href="volunteer.html">Volunteer</a>
+        <a href="contacts.html">Contact CTY</a>
+        <a href="growth-track.html">Growth Track</a>
+        <a href="community.html">Join the Digital Community</a>
+        <a href="plan-your-visit.html">Plan Your Visit</a>
+        <a href="community-events.html">Community Events</a>
+      </div>
+
+      <div class="footer-col">
+        <p class="col-label">( Socials )</p>
+        <a href="#" target="_blank" rel="noopener">Instagram</a>
+        <a href="#" target="_blank" rel="noopener">Facebook</a>
+        <a href="#" target="_blank" rel="noopener">TikTok</a>
+        <a href="#" target="_blank" rel="noopener">YouTube</a>
+        <a href="#" target="_blank" rel="noopener">X</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> CTY Ministries. All rights reserved.</p>
+      <p class="footer-bottom-links">
+        <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a>
+      </p>
+    </div>
+  </footer>
+
+  <div class="profile-drawer-backdrop" id="profile-drawer-backdrop" hidden></div>
+  <aside class="profile-drawer" id="profile-drawer" aria-hidden="true" aria-label="Profile panel">
+    <div class="profile-drawer-head">
+      <h2>My Profile</h2>
+      <button type="button" class="drawer-close" id="profile-drawer-close" aria-label="Close profile">×</button>
+    </div>
+    <iframe
+      id="profile-drawer-frame"
+      class="profile-drawer-frame"
+      src="profile.html?embed=1"
+      title="Profile panel"
+      loading="lazy"
+    ></iframe>
+  </aside>
+
+  <script type="module" src="home.js"></script>
+</body>
+</html>

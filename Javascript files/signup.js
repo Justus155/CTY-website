@@ -1,75 +1,70 @@
 import { supabase, showToast, setError, setLoading, friendlyError } from "./supabaseclient.js";
 
-function setupFloatingSwitch() {
-  const links = document.querySelectorAll('a[href="signin.html"]');
-  links.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      if (
-        event.defaultPrevented ||
-        event.button !== 0 ||
-        event.metaKey ||
-        event.ctrlKey ||
-        event.shiftKey ||
-        event.altKey
-      ) {
-        return;
-      }
-
-      event.preventDefault();
-      document.body.classList.add("is-leaving-right");
-      window.setTimeout(() => {
-        window.location.href = link.getAttribute("href") || "signin.html";
-      }, 240);
-    });
-  });
-}
-
-setupFloatingSwitch();
-
-function getAgeFromBirthday(birthdayValue) {
-  const birthday = new Date(birthdayValue);
-  if (Number.isNaN(birthday.getTime())) return null;
-
-  const today = new Date();
-  let age = today.getFullYear() - birthday.getFullYear();
-  const hasHadBirthdayThisYear =
-    today.getMonth() > birthday.getMonth() ||
-    (today.getMonth() === birthday.getMonth() && today.getDate() >= birthday.getDate());
-
-  if (!hasHadBirthdayThisYear) age -= 1;
-  return age;
-}
-
-function getMinistryGroupFromAge(age) {
-  if (age >= 4 && age <= 12) return "children";
-  if (age >= 13 && age <= 18) return "teens";
-  if (age >= 19 && age <= 30) return "youth";
-  return null;
-}
-
 const form = document.getElementById("form-signup");
 const errorEl = document.getElementById("signup-error");
+const passwordInput = document.getElementById("signup-password");
+const dobInput = document.getElementById("dob-input");
+
+if (!form || !errorEl || !passwordInput || !dobInput) {
+  throw new Error("Signup page is missing required form elements.");
+}
+
+// Stop people from picking a birthday in the future.
+dobInput.max = new Date().toISOString().split("T")[0];
+
+const PASSWORD_RULE = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
+
+function validate(form) {
+  const fullName = form.fullName.value.trim();
+  const email = form.email.value.trim();
+  const password = form.password.value;
+  const confirmPassword = form.confirmPassword.value;
+  const dob = form.dateOfBirth.value;
+  const ministryGroup = form.ministryGroup.value;
+  const agreed = form.terms.checked;
+
+  if (fullName.length < 2) {
+    return "Please enter your full name.";
+  }
+  if (!/^\S+@\S+\.\S+$/.test(email)) {
+    return "Please enter a valid email address.";
+  }
+  if (!PASSWORD_RULE.test(password)) {
+    passwordInput.classList.add("is-invalid");
+    return "Password must be 8+ characters and include uppercase, lowercase, a number, and a special character.";
+  }
+  passwordInput.classList.remove("is-invalid");
+  if (password !== confirmPassword) {
+    return "Passwords don't match — please re-enter them.";
+  }
+  if (!dob) {
+    return "Please enter your birthday.";
+  }
+  if (!ministryGroup) {
+    return "Please choose a ministry group.";
+  }
+  if (!agreed) {
+    return "Please agree to the community guidelines and privacy policy to continue.";
+  }
+  return null;
+}
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   setError(errorEl, "");
+
+  const validationError = validate(form);
+  if (validationError) {
+    setError(errorEl, validationError);
+    return;
+  }
+
   const fullName = form.fullName.value.trim();
   const email = form.email.value.trim();
   const password = form.password.value;
-  const birthday = form.birthday.value;
-  const age = getAgeFromBirthday(birthday);
-  const ministryGroup = age === null ? null : getMinistryGroupFromAge(age);
+  const dateOfBirth = form.dateOfBirth.value;
+  const ministryGroup = form.ministryGroup.value;
   const btn = form.querySelector(".btn-primary");
-
-  if (age === null) {
-    setError(errorEl, "Please enter a valid birthday.");
-    return;
-  }
-
-  if (!ministryGroup) {
-    setError(errorEl, "Signup is only available for ages 4 to 30.");
-    return;
-  }
 
   setLoading(btn, true);
   try {
@@ -77,30 +72,42 @@ form.addEventListener("submit", async (e) => {
       email,
       password,
       options: {
+        // Read by the `handle_new_user` database trigger, which creates
+        // the matching row in `profiles` automatically — no manual
+        // insert needed here, so there's no risk of an orphaned auth
+        // user if this tab closes right after signup.
         data: {
           full_name: fullName,
-          birthday,
-          age,
+          date_of_birth: dateOfBirth,
           ministry_group: ministryGroup,
         },
       },
     });
     if (error) throw error;
 
-    // Create the matching profile row (requires a `profiles` table + RLS
-    // policy allowing a user to insert their own row).
     if (data.user) {
-      await supabase.from("profiles").upsert({
+      const { error: profileError } = await supabase.from("profiles").upsert({
         id: data.user.id,
         full_name: fullName,
-        birthday,
-        age,
+        date_of_birth: dateOfBirth,
         ministry_group: ministryGroup,
       });
+
+      // If email confirmation is enabled, session can be null here and RLS
+      // may block direct client upsert. In that case, rely on your DB trigger.
+      if (profileError && data.session) {
+        throw new Error(`Account created, but profile save failed: ${profileError.message}`);
+      }
     }
 
-    showToast("Account created! Check your email to confirm.");
-    setTimeout(() => { window.location.href = "signin.html"; }, 900);
+    if (data.user && !data.session) {
+      // Email confirmation is required before the account is active.
+      showToast(`Almost there — confirm your email at ${email}`);
+    } else {
+      showToast("Account created! Redirecting…");
+    }
+    form.reset();
+    setTimeout(() => { window.location.href = "signin.html"; }, 1100);
   } catch (err) {
     setError(errorEl, friendlyError(err));
   } finally {

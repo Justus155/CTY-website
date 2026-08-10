@@ -43,7 +43,7 @@
         <p class="tagline">Children · Teens · Youth</p>
 
         <div class="brand-quote">
-          <p>“The Bridge Between Generations”</p>
+          <p>“One community, facing every season together, and shining a little brighter for it.”</p>
         </div>
       </div>
 
@@ -75,13 +75,38 @@
 
           <label class="field">
             <span>Password</span>
-            <input type="password" name="password" autocomplete="new-password" required minlength="8" placeholder="At least 8 characters" />
+            <input type="password" name="password" id="signup-password" autocomplete="new-password" required minlength="8" placeholder="At least 8 characters" />
+            <span class="field-hint">Must be 8+ characters with an uppercase letter, lowercase letter, number, and special character.</span>
+          </label>
+
+          <label class="field">
+            <span>Confirm password</span>
+            <input type="password" name="confirmPassword" autocomplete="new-password" required placeholder="Re-enter your password" />
           </label>
 
           <label class="field">
             <span>Birthday</span>
-            <input type="date" name="birthday" required />
+            <input type="date" name="dateOfBirth" required max="" id="dob-input" />
           </label>
+
+          <fieldset class="field group-select">
+            <legend>Which group are you joining?</legend>
+            <div class="group-options">
+              <label class="group-pill" data-group="children">
+                <input type="radio" name="ministryGroup" value="children" required />
+                <span>Children</span>
+              </label>
+              <label class="group-pill" data-group="teens">
+                <input type="radio" name="ministryGroup" value="teens" />
+                <span>Teens</span>
+              </label>
+              <label class="group-pill" data-group="youth">
+                <input type="radio" name="ministryGroup" value="youth" />
+                <span>Youth</span>
+              </label>
+            </div>
+            <p class="hint">Signing up for a child? Choose Children, you'll manage their profile.</p>
+          </fieldset>
 
           <label class="checkbox-field">
             <input type="checkbox" name="terms" required />

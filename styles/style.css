@@ -30,7 +30,8 @@ body.auth-screen{
   align-items: center;
   justify-content: center;
   padding: clamp(0.9rem, 2vw, 2rem);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -419,9 +420,23 @@ fieldset.field{ border: none; padding: 0; margin: 0.2rem 0 1.1rem; }
 }
 
 body.auth-screen--signup .auth-panel{
+  align-items: center;
+  padding-top: 1.4rem;
+  padding-bottom: 1.4rem;
+}
+
+body.auth-screen--signup{
   align-items: flex-start;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+}
+
+body.auth-screen--signup .screen{
+  max-height: none;
+}
+
+body.auth-screen--signup .auth-box{
+  max-height: none;
+  overflow: visible;
+  padding-right: 0;
 }
 
 body.auth-screen--signup .auth-form h2{
@@ -438,6 +453,12 @@ body.auth-screen--signup .field{
 
 body.auth-screen--signup .checkbox-field{
   margin-bottom: 0.9rem;
+}
+
+body.auth-screen--signup .auth-form .btn-primary{
+  position: relative;
+  margin-top: 0.5rem;
+  box-shadow: none;
 }
 
 body.auth-screen--signup .switch-line{
