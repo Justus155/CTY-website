@@ -57,6 +57,10 @@ export function friendlyError(err) {
     return "Couldn't reach the server — check your connection and try again.";
   if (/user not found/i.test(msg))
     return "We couldn't find an account with that email.";
+  if (/signups not allowed|otp.*disabled|unable to validate/i.test(msg))
+    return "We couldn't find an account with that email — try signing up instead.";
+  if (/token has expired|invalid.*otp|invalid.*token/i.test(msg))
+    return "That code is incorrect or has expired — check your email or request a new one.";
 
   return msg;
 }

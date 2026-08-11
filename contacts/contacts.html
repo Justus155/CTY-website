@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Community Events — CTY Ministries</title>
+<title>Contacts — CTY Ministries</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -34,13 +34,17 @@
       <a href="../home/home.html" class="">Home</a>
       <a href="../About/about.html" class="">About</a>
       <a href="../post/post.html" class="">Posts</a>
-      <a href="../communityevents/community.html" class="is-active">Community Events</a>
-      <a href="../contacts/contacts.html" class="">Contacts</a>
+      <a href="../communityevents/community.html" class="">Community Events</a>
+      <a href="../contacts/contacts.html" class="is-active">Contacts</a>
     </nav>
 
     <div class="header-actions">
       <a href="#" id="admin-link" class="admin-pill" hidden>
         <span class="dot"></span> Admin
+      </a>
+      <a href="../home/profile.html" class="profile-pill" id="profile-link" hidden aria-label="Profile">
+        <span class="profile-avatar" id="profile-avatar">U</span>
+        <span id="profile-name" class="sr-only">Profile</span>
       </a>
       <a href="../login/signin.html" class="btn-ghost" id="signin-link">Sign in</a>
     </div>
@@ -51,15 +55,55 @@
   </header>
 
   <section class="page-hero">
-    <p class="eyebrow">What's Happening</p>
-    <h1>Community Events</h1>
-    <p>Fellowship nights, teaching series, outreach, and everything in between — see what's coming up and where to be.</p>
+    <p class="eyebrow">Get In Touch</p>
+    <h1>Contacts</h1>
+    <p>Questions, prayer requests, or just want to say hello — we'd love to hear from you.</p>
   </section>
 
-  <div class="events-list" id="events-list">
-    <div class="event-card skeleton" style="height:96px;"></div>
-    <div class="event-card skeleton" style="height:96px;"></div>
-    <div class="event-card skeleton" style="height:96px;"></div>
+  <div class="contact-wrap" id="visit">
+    <div class="contact-info">
+      <div class="contact-info-item">
+        <h4>Email</h4>
+        <a href="mailto:hello@ctyministries.org">hello@ctyministries.org</a>
+      </div>
+      <div class="contact-info-item">
+        <h4>Phone</h4>
+        <p>+254 700 000 000</p>
+      </div>
+      <div class="contact-info-item">
+        <h4>Location</h4>
+        <p>CTY Ministries<br />Nairobi, Kenya</p>
+      </div>
+      <div class="contact-info-item">
+        <h4>Service Times</h4>
+        <p>Sundays · 9:00 AM &amp; 11:00 AM<br />Youth Night · Fridays, 6:00 PM</p>
+      </div>
+    </div>
+
+    <div>
+      <form class="contact-form" id="contact-form" novalidate>
+        <label class="field">
+          <span>Full name</span>
+          <input type="text" name="name" required placeholder="Your name" />
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input type="email" name="email" required placeholder="you@example.com" />
+        </label>
+        <label class="field">
+          <span>Message</span>
+          <textarea name="message" rows="5" required placeholder="How can we help?"></textarea>
+        </label>
+        <p class="error" id="contact-error" role="alert"></p>
+        <button type="submit" class="btn-primary" style="align-self:flex-start;border:none;cursor:pointer;">
+          <span class="btn-label">Send message</span>
+          <span class="btn-spinner" aria-hidden="true"></span>
+        </button>
+      </form>
+      <div class="contact-success" id="contact-success">
+        Thanks for reaching out — someone from the CTY team will get back to you soon.
+      </div>
+    </div>
   </div>
 
 <footer class="site-footer">
@@ -125,6 +169,7 @@
     </div>
   </footer>
 
-  <script type="module" src="community-events.js"></script>
+  <script type="module" src="../Javascript files/header-auth.js"></script>
+  <script type="module" src="../Javascript files/contacts.js"></script>
 </body>
 </html>

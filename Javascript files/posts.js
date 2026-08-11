@@ -1,5 +1,5 @@
 import "./site.js";
-import { supabase } from "./supabase-client.js";
+import { supabase } from "./supabaseclient.js";
 
 const grid = document.getElementById("posts-grid");
 const filterTabs = document.getElementById("filter-tabs");

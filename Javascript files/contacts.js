@@ -1,5 +1,5 @@
 import "./site.js";
-import { supabase, setError, setLoading, friendlyError } from "./supabase-client.js";
+import { supabase, setError, setLoading, friendlyError } from "./supabaseclient.js";
 
 const form = document.getElementById("contact-form");
 const errorEl = document.getElementById("contact-error");

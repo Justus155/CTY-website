@@ -1,4 +1,5 @@
 import { supabase } from "../Javascript files/supabaseclient.js";
+import { applyHeaderAuthState } from "../Javascript files/header-auth.js";
 
 // -----------------------------------------------------------------
 // Mobile nav toggle
@@ -120,54 +121,6 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
-// -----------------------------------------------------------------
-// Signed-in users see a profile chip; guests see the Sign in button.
-// -----------------------------------------------------------------
-async function checkHeaderSession() {
-  const { data: { session } } = await supabase.auth.getSession();
-  const signInLink = document.getElementById("signin-link");
-  const profileLink = document.getElementById("profile-link");
-  const profileName = document.getElementById("profile-name");
-  const profileAvatar = document.getElementById("profile-avatar");
-
-  if (!session) {
-    if (profileLink) profileLink.hidden = true;
-    if (signInLink) signInLink.hidden = false;
-    return;
-  }
-
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("full_name, avatar_url")
-    .eq("id", session.user.id)
-    .maybeSingle();
-
-  const fullName =
-    profile?.full_name ||
-    session.user.user_metadata?.full_name ||
-    session.user.email?.split("@")[0] ||
-    "Profile";
-  const firstName = fullName.split(" ")[0];
-
-  if (profileName) profileName.textContent = firstName;
-  if (profileAvatar) {
-    if (profile?.avatar_url) {
-      profileAvatar.innerHTML = `<img src="${profile.avatar_url}" alt="${escapeHtml(firstName)}" />`;
-    } else {
-      profileAvatar.textContent = firstName.charAt(0).toUpperCase();
-    }
-  }
-  if (profileLink) {
-    profileLink.hidden = false;
-    profileLink.href = "profile.html";
-    profileLink.title = fullName;
-  }
-
-  if (signInLink) {
-    signInLink.hidden = true;
-  }
-}
-
 function openProfileDrawer() {
   if (!profileDrawer || !profileDrawerBackdrop) return;
   profileDrawer.setAttribute("aria-hidden", "false");
@@ -206,7 +159,7 @@ function setupProfileDrawer() {
       closeProfileDrawer();
     }
     if (event.data.type === "profile-updated") {
-      checkHeaderSession();
+      applyHeaderAuthState();
     }
     if (event.data.type === "signed-out") {
       window.location.href = "../login/signin.html";
@@ -216,5 +169,4 @@ function setupProfileDrawer() {
 
 loadLatestVideo();
 loadLatestPhotos();
-checkHeaderSession();
 setupProfileDrawer();

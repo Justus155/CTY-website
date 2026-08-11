@@ -1,4 +1,4 @@
-    import { supabase } from "./supabase-client.js";
+  import { supabase } from "./supabaseclient.js";
 
 export function initSiteChrome() {
   const navToggle = document.getElementById("nav-toggle");
