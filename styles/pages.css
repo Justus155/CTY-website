@@ -1,0 +1,194 @@
+/* Extends home.css — load home.css first, then this file. */
+
+/* ================= PAGE HERO (shared) ================= */
+.page-hero{
+  padding: 3.5rem 2.4rem 2.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.page-hero .eyebrow{ justify-content: center; display: flex; }
+.page-hero h1{
+  font-family: var(--serif); font-weight: 600; font-size: 2.4rem;
+  margin: 0 0 1rem;
+}
+.page-hero p{
+  color: var(--muted); font-size: 1rem; line-height: 1.65;
+  max-width: 640px; margin: 0 auto;
+}
+
+/* ================= ABOUT PAGE ================= */
+.about-story{
+  max-width: 780px; margin: 0 auto; padding: 1rem 2.4rem 3rem;
+}
+.about-story p{
+  font-size: 1.02rem; line-height: 1.75; color: #3a362f; margin: 0 0 1.2rem;
+}
+
+.pillars-section{ padding: 1rem 2.4rem 3.5rem; max-width: 1100px; margin: 0 auto; }
+.pillars-grid{
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
+}
+.pillar-card{
+  background: var(--ivory); border-radius: 14px; padding: 1.8rem 1.5rem;
+  border: 1px solid var(--line);
+}
+.pillar-card h3{
+  font-family: var(--serif); font-size: 1.2rem; margin: 0 0 0.6rem; font-weight: 600;
+}
+.pillar-card p{ color: var(--muted); font-size: 0.92rem; line-height: 1.55; margin: 0; }
+
+.symbol-section{ background: var(--ink); color: var(--ivory); padding: 3.5rem 2.4rem; }
+.symbol-grid{
+  max-width: 1000px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1.3fr; gap: 3rem; align-items: center;
+}
+.symbol-list{ display: flex; flex-direction: column; gap: 1.3rem; }
+.symbol-item h4{ font-family: var(--serif); color: var(--gold-soft); margin: 0 0 0.3rem; font-size: 1.05rem; }
+.symbol-item p{ color: rgba(247,241,228,0.75); font-size: 0.9rem; line-height: 1.55; margin: 0; }
+
+.leaders-section{ padding: 3.5rem 2.4rem; max-width: 1100px; margin: 0 auto; }
+.leaders-grid{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
+.leader-card{ text-align: center; }
+.leader-photo{
+  aspect-ratio: 1; border-radius: 50%; background: var(--ivory-dim);
+  margin: 0 auto 0.9rem; max-width: 130px;
+}
+.leader-card h4{ font-size: 0.95rem; margin: 0 0 0.15rem; }
+.leader-card p{ font-size: 0.8rem; color: var(--muted); margin: 0; }
+
+/* ================= POSTS PAGE ================= */
+.posts-toolbar{
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+  max-width: 1280px; margin: 0 auto; padding: 0 2.4rem 1.6rem;
+}
+.filter-tabs{ display: flex; gap: 0.5rem; }
+.filter-tab{
+  border: 1px solid var(--line); background: var(--ivory);
+  padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+  cursor: pointer; color: var(--muted); transition: all 150ms ease;
+}
+.filter-tab.is-active{ background: var(--ink); color: var(--ivory); border-color: var(--ink); }
+
+.posts-grid{
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem;
+  max-width: 1280px; margin: 0 auto; padding: 0 2.4rem 3.5rem;
+}
+.post-card{
+  border-radius: 14px; overflow: hidden; background: var(--ivory);
+  border: 1px solid var(--line);
+}
+.post-media{ aspect-ratio: 4/3; background: var(--ivory-dim); position: relative; overflow: hidden; }
+.post-media img, .post-media video{ width: 100%; height: 100%; object-fit: cover; }
+.post-type-badge{
+  position: absolute; top: 0.7rem; left: 0.7rem;
+  background: rgba(20,17,15,0.75); color: var(--ivory);
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 0.25rem 0.55rem; border-radius: 999px;
+}
+.post-body{ padding: 1rem 1.1rem 1.2rem; }
+.post-body .post-date{
+  font-size: 0.72rem; color: var(--gold-deep); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.35rem;
+}
+.post-body p{ margin: 0; font-size: 0.9rem; line-height: 1.5; color: #3a362f; }
+.post-card.skeleton{ aspect-ratio: 4/3; }
+
+.load-more-wrap{ text-align: center; padding-bottom: 3rem; }
+.btn-outline{
+  border: 1px solid var(--ink); background: none; color: var(--ink);
+  padding: 0.65rem 1.6rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; transition: background 150ms ease, color 150ms ease;
+}
+.btn-outline:hover{ background: var(--ink); color: var(--ivory); }
+.empty-state{
+  text-align: center; color: var(--muted); font-size: 0.92rem;
+  padding: 3rem 1rem; grid-column: 1 / -1;
+}
+
+/* ================= COMMUNITY EVENTS PAGE ================= */
+.events-list{
+  max-width: 860px; margin: 0 auto; padding: 0 2.4rem 3.5rem;
+  display: flex; flex-direction: column; gap: 1.1rem;
+}
+.event-card{
+  display: grid; grid-template-columns: 90px 1fr auto;
+  gap: 1.4rem; align-items: center;
+  background: var(--ivory); border: 1px solid var(--line); border-radius: 14px;
+  padding: 1.1rem 1.3rem;
+}
+.event-date-badge{
+  background: var(--ink); color: var(--ivory); border-radius: 10px;
+  text-align: center; padding: 0.6rem 0.4rem;
+}
+.event-date-badge .day{ font-family: var(--serif); font-size: 1.5rem; font-weight: 600; display: block; line-height: 1; }
+.event-date-badge .mon{ font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-soft); }
+.event-info h3{ margin: 0 0 0.3rem; font-size: 1.05rem; font-family: var(--serif); font-weight: 600; }
+.event-info p{ margin: 0; font-size: 0.85rem; color: var(--muted); }
+.event-info .event-meta{ font-size: 0.78rem; color: var(--gold-deep); font-weight: 600; margin-bottom: 0.25rem; }
+.event-rsvp{
+  text-decoration: none; font-size: 0.82rem; font-weight: 700;
+  color: var(--ink); border-bottom: 2px solid var(--gold); white-space: nowrap;
+}
+.events-empty{ text-align: center; color: var(--muted); padding: 3rem 1rem; }
+
+/* ================= CONTACTS PAGE ================= */
+.contact-wrap{
+  max-width: 1100px; margin: 0 auto; padding: 1rem 2.4rem 4rem;
+  display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem;
+}
+.contact-info{ display: flex; flex-direction: column; gap: 1.6rem; }
+.contact-info-item h4{
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--gold-deep); margin: 0 0 0.4rem;
+}
+.contact-info-item p, .contact-info-item a{
+  margin: 0; font-size: 0.95rem; color: #3a362f; text-decoration: none; line-height: 1.5;
+}
+.contact-info-item a:hover{ color: var(--gold-deep); }
+
+.contact-form{ display: flex; flex-direction: column; }
+.contact-form .field{ display: flex; flex-direction: column; margin-bottom: 1.1rem; }
+.contact-form .field span{ font-size: 0.78rem; font-weight: 600; margin-bottom: 0.4rem; }
+.contact-form input, .contact-form textarea{
+  font-family: var(--sans); font-size: 0.95rem; padding: 0.75rem 0.9rem;
+  border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink);
+  outline: none; resize: vertical;
+}
+.contact-form input:focus-visible, .contact-form textarea:focus-visible{
+  border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,151,30,0.18);
+}
+.contact-success{
+  display: none; background: var(--ivory); border: 1px solid var(--line);
+  border-radius: 12px; padding: 1.4rem; text-align: center; color: var(--muted); font-size: 0.9rem;
+}
+.contact-success.is-visible{ display: block; }
+
+.contact-form .btn-primary{
+  position: relative; font-family: var(--sans);
+}
+.contact-form .btn-spinner{
+  display: none; position: absolute; right: 1rem; top: 50%;
+  width: 16px; height: 16px; margin-top: -8px;
+  border: 2px solid rgba(20,17,15,0.25); border-top-color: var(--ink);
+  border-radius: 50%; animation: contact-spin 700ms linear infinite;
+}
+.contact-form .btn-primary.is-loading{ opacity: 0.85; cursor: default; pointer-events: none; }
+.contact-form .btn-primary.is-loading .btn-spinner{ display: block; }
+.contact-form .btn-primary.is-loading .btn-label{ opacity: 0.6; }
+@keyframes contact-spin{ to{ transform: rotate(360deg); } }
+
+@media (max-width: 900px){
+  .pillars-grid{ grid-template-columns: 1fr; }
+  .symbol-grid{ grid-template-columns: 1fr; }
+  .leaders-grid{ grid-template-columns: repeat(2, 1fr); }
+  .posts-grid{ grid-template-columns: repeat(2, 1fr); }
+  .contact-wrap{ grid-template-columns: 1fr; }
+  .event-card{ grid-template-columns: 70px 1fr; }
+  .event-rsvp{ grid-column: 1 / -1; }
+}
+@media (max-width: 600px){
+  .posts-grid{ grid-template-columns: 1fr; }
+  .leaders-grid{ grid-template-columns: 1fr 1fr; }
+}
