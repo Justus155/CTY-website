@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Inn Keepers Ministry — Logo Animation</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  .stage {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+  }
+  .logo-wrap {
+    width: min(70vh, 90vw);
+    max-width: 640px;
+  }
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+
+  /* ---------- ROOTS ---------- */
+  #roots path {
+    stroke: #0E7C40;
+    stroke-width: 6;
+    fill: none;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    opacity: 0;
+    animation: drawRoot 0.9s ease-out forwards;
+    animation-delay: 0.05s;
+  }
+  #ground-fill {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+    animation-delay: 0.65s;
+  }
+
+  /* ---------- TRUNK ---------- */
+  #trunk {
+    transform-origin: 50% 100%;
+    transform-box: fill-box;
+    transform: scaleY(0);
+    opacity: 0;
+    animation: growTrunk 0.55s cubic-bezier(.34,1.2,.4,1) forwards;
+    animation-delay: 0.65s;
+  }
+  #trunk-vein {
+    opacity: 0;
+    animation: fadeIn 0.4s ease-out forwards;
+    animation-delay: 1.25s;
+  }
+
+  /* ---------- CROSS ---------- */
+  #cross-group {
+    opacity: 0;
+    transform: scale(0.92);
+    transform-origin: 50% 45%;
+    transform-box: fill-box;
+    animation: crossIn 0.9s cubic-bezier(.22,.9,.3,1.1) forwards;
+    animation-delay: 1.05s;
+  }
+
+  /* ---------- FRONDS ---------- */
+  .frond {
+    transform-origin: var(--ox) var(--oy);
+    transform-box: view-box;
+    opacity: 0;
+    transform: rotate(var(--rstart)) scale(0.3);
+    animation: unfurl 0.65s cubic-bezier(.2,1.4,.4,1) forwards;
+  }
+  #frond-1 { --ox:357px; --oy:430px; --rstart:-35deg; animation-delay: 1.35s; }
+  #frond-2 { --ox:357px; --oy:430px; --rstart:-22deg; animation-delay: 1.42s; }
+  #frond-3 { --ox:357px; --oy:430px; --rstart:25deg;  animation-delay: 1.42s; }
+  #frond-4 { --ox:357px; --oy:430px; --rstart:38deg;  animation-delay: 1.49s; }
+  #frond-5 { --ox:357px; --oy:430px; --rstart:-15deg; animation-delay: 1.56s; }
+  #frond-6 { --ox:357px; --oy:430px; --rstart:18deg;  animation-delay: 1.56s; }
+
+  /* ---------- FLOWER ---------- */
+  #flower-group {
+    opacity: 0;
+    animation: fadeIn 0.3s ease-out forwards;
+    animation-delay: 1.95s;
+  }
+  .petal {
+    transform-origin: 357px 388px;
+    transform-box: view-box;
+    transform: rotate(var(--pr)) scale(0.15);
+    opacity: 0;
+    animation: bloom 0.55s cubic-bezier(.25,1.5,.4,1) forwards;
+  }
+  .petal:nth-child(1){ --pr: 0deg;   animation-delay: 1.95s; }
+  .petal:nth-child(2){ --pr: 51deg;  animation-delay: 2.00s; }
+  .petal:nth-child(3){ --pr: 103deg; animation-delay: 2.05s; }
+  .petal:nth-child(4){ --pr: 154deg; animation-delay: 2.10s; }
+  .petal:nth-child(5){ --pr: 206deg; animation-delay: 2.15s; }
+  .petal:nth-child(6){ --pr: 257deg; animation-delay: 2.20s; }
+  .petal:nth-child(7){ --pr: 309deg; animation-delay: 2.25s; }
+  #flower-center {
+    opacity: 0;
+    transform: scale(0.2);
+    transform-origin: 357px 388px;
+    transform-box: view-box;
+    animation: popIn 0.4s cubic-bezier(.3,1.6,.4,1) forwards;
+    animation-delay: 2.35s;
+  }
+
+  /* ---------- TEXT ---------- */
+  #wordmark {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: riseIn 0.6s ease-out forwards;
+    animation-delay: 2.7s;
+  }
+
+  /* ---------- glow pulse (final settle) ---------- */
+  #glow-pulse {
+    opacity: 0;
+    animation: glowPulse 1.4s ease-out forwards;
+    animation-delay: 3.0s;
+  }
+
+  @keyframes drawRoot {
+    0%   { opacity: 0; stroke-dashoffset: 1; }
+    8%   { opacity: 1; }
+    100% { opacity: 1; stroke-dashoffset: 0; }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes growTrunk {
+    from { opacity: 0; transform: scaleY(0); }
+    15%  { opacity: 1; }
+    to   { opacity: 1; transform: scaleY(1); }
+  }
+  @keyframes crossIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes unfurl {
+    from { opacity: 0; transform: rotate(var(--rstart)) scale(0.3); }
+    60%  { opacity: 1; }
+    to   { opacity: 1; transform: rotate(0deg) scale(1); }
+  }
+  @keyframes bloom {
+    from { opacity: 0; transform: rotate(var(--pr)) scale(0.15); }
+    50%  { opacity: 1; }
+    to   { opacity: 1; transform: rotate(var(--pr)) scale(1); }
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.2); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes glowPulse {
+    0%   { opacity: 0; }
+    40%  { opacity: 0.55; }
+    100% { opacity: 0; }
+  }
+
+  /* path lengths set via stroke-dasharray inline per path for accurate draw-on */
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="logo-wrap">
+    <svg id="logo-svg" viewBox="0 0 714 1000" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="crossFade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="#3F8F5C"/>
+          <stop offset="42%" stop-color="#6FAE85"/>
+          <stop offset="75%" stop-color="#BFDCC8"/>
+          <stop offset="100%" stop-color="#FFFFFF"/>
+        </linearGradient>
+        <radialGradient id="glowGrad" cx="50%" cy="38%" r="55%">
+          <stop offset="0%" stop-color="#FFE9B8" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#FFE9B8" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- soft celebratory glow behind everything, fires once near the end -->
+      <circle id="glow-pulse" cx="357" cy="380" r="260" fill="url(#glowGrad)"/>
+
+      <!-- CROSS -->
+      <g id="cross-group">
+        <rect x="297" y="10" width="120" height="610" fill="url(#crossFade)"/>
+        <rect x="187" y="240" width="340" height="120" fill="url(#crossFade)"/>
+      </g>
+
+      <!-- ROOTS + GROUND -->
+      <g id="roots">
+        <path id="ground-fill" d="M70,860 Q140,840 200,855 Q260,838 320,856 Q360,842 400,857 Q450,840 510,856 Q570,838 640,858 L645,872 L65,872 Z" fill="#0E7C40" opacity="0.9"/>
+        <path d="M357,640 C340,700 300,740 240,768" pathLength="1"/>
+        <path d="M357,640 C375,705 410,742 470,770" pathLength="1"/>
+        <path d="M357,650 C330,712 270,742 195,762" pathLength="1"/>
+        <path d="M357,650 C385,715 440,745 500,758" pathLength="1"/>
+        <path d="M357,660 C347,715 320,750 280,778" pathLength="1"/>
+        <path d="M357,660 C368,718 392,752 425,780" pathLength="1"/>
+        <path d="M300,772 C270,790 220,800 170,805" pathLength="1"/>
+        <path d="M415,775 C448,792 495,800 545,803" pathLength="1"/>
+        <path d="M170,805 C140,812 110,808 80,815" pathLength="1"/>
+        <path d="M545,803 C575,808 605,805 635,812" pathLength="1"/>
+      </g>
+
+      <!-- TRUNK -->
+      <g id="trunk">
+        <path d="M357,640 C352,560 358,470 357,420 C356,470 348,545 320,610 C338,612 350,628 357,640 Z" fill="#0E7C40"/>
+        <path d="M357,420 C358,470 352,560 357,640 C364,628 376,612 394,610 C368,545 358,470 357,420 Z" fill="#0E7C40"/>
+        <path id="trunk-vein" d="M348,470 C344,520 344,565 340,600 M366,475 C370,522 372,562 376,595" stroke="#0A5E30" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </g>
+
+      <!-- PALM FRONDS (6, layered, fanning from crown point ~357,430) -->
+      <g id="fronds">
+        <path id="frond-1" class="frond" d="M357,430 C300,400 230,330 195,235 C260,265 300,300 330,345 C320,290 305,235 290,180 C340,220 365,290 372,355 C375,300 385,245 405,195 C430,250 432,320 415,375 C440,335 480,295 525,275 C515,330 480,375 430,400 C390,415 370,420 357,430 Z" fill="#118A48"/>
+
+        <path id="frond-2" class="frond" d="M357,430 C310,395 270,345 250,290 C290,310 320,335 340,365 C328,320 322,275 325,230 C355,260 372,310 376,360 C385,320 400,280 425,250 C435,290 430,335 408,370 C385,400 365,418 357,430 Z" fill="#0E7C40"/>
+
+        <path id="frond-3" class="frond" d="M357,430 C405,395 445,345 465,290 C425,310 395,335 375,365 C387,320 393,275 390,230 C360,260 343,310 339,360 C330,320 315,280 290,250 C280,290 285,335 307,370 C330,400 350,418 357,430 Z" fill="#0E7C40"/>
+
+        <path id="frond-4" class="frond" d="M357,430 C414,400 484,330 519,235 C454,265 414,300 384,345 C394,290 409,235 424,180 C374,220 349,290 342,355 C339,300 329,245 309,195 C284,250 282,320 299,375 C274,335 234,295 189,275 C199,330 234,375 284,400 C324,415 344,420 357,430 Z" fill="#118A48"/>
+
+        <path id="frond-5" class="frond" d="M357,400 C330,460 300,540 280,610 C270,555 268,500 278,450 C255,495 240,545 235,600 C225,545 232,490 255,440 C235,470 215,510 205,555 C202,505 218,455 250,415 C290,385 330,390 357,400 Z" fill="#0B6B38"/>
+
+        <path id="frond-6" class="frond" d="M357,400 C384,460 414,540 434,610 C444,555 446,500 436,450 C459,495 474,545 479,600 C489,545 482,490 459,440 C479,470 499,510 509,555 C512,505 496,455 464,415 C424,385 384,390 357,400 Z" fill="#0B6B38"/>
+      </g>
+
+      <!-- FLOWER -->
+      <g id="flower-group">
+        <g id="petals">
+          <ellipse class="petal" cx="357" cy="330" rx="42" ry="56" fill="#6B4329" stroke="#4A2E1B" stroke-width="2"/>
+          <ellipse class="petal" cx="357" cy="330" rx="42" ry="56" fill="#74492C" stroke="#4A2E1B" stroke-width="2"/>
+          <ellipse class="petal" cx="357" cy="330" rx="42" ry="56" fill="#6B4329" stroke="#4A2E1B" stroke-width="2"/>
+          <ellipse class="petal" cx="357" cy="330" rx="42" ry="56" fill="#74492C" stroke="#4A2E1B" stroke-width="2"/>
+          <ellipse class="petal" cx="357" cy="330" rx="42" ry="56" fill="#6B4329" stroke="#4A2E1B" stroke-width="2"/>
+          <ellipse class="petal" cx="357" cy="330" rx="42" ry="56" fill="#74492C" stroke="#4A2E1B" stroke-width="2"/>
+          <ellipse class="petal" cx="357" cy="332" rx="36" ry="48" fill="#7C5233" stroke="#4A2E1B" stroke-width="2"/>
+        </g>
+        <circle id="flower-center" cx="357" cy="388" r="22" fill="#3E2716" stroke="#2A1A0E" stroke-width="2"/>
+      </g>
+
+      <!-- WORDMARK -->
+      <text id="wordmark" x="357" y="935" text-anchor="middle"
+            font-family="Arial, Helvetica, sans-serif" font-weight="700"
+            font-size="56" letter-spacing="1" fill="#0E7C40">INN KEEPERS MINISTRY</text>
+    </svg>
+  </div>
+</div>
+<script>
+  // Convert root paths to true draw-on strokes using actual measured length
+  document.querySelectorAll('#roots path[pathLength]').forEach(function(p){
+    var len = p.getTotalLength();
+    p.style.strokeDasharray = len;
+    p.style.strokeDashoffset = len;
+  });
+  // restart animation timeline (loop) every 6.5s by toggling a class
+  var svgRoot = document.getElementById('logo-svg');
+  function restart(el) {
+    el.style.animation = 'none';
+    el.offsetHeight;
+    el.style.animation = null;
+  }
+  function loopAll() {
+    document.querySelectorAll('#logo-svg [style*="animation"], #logo-svg [id]').forEach(function(){});
+    // simplest robust loop: clone svg innerHTML back in to retrigger all CSS animations
+    var wrap = document.querySelector('.logo-wrap');
+    var html = wrap.innerHTML;
+    wrap.innerHTML = '';
+    void wrap.offsetWidth;
+    wrap.innerHTML = html;
+    document.querySelectorAll('#roots path[pathLength]').forEach(function(p){
+      var len = p.getTotalLength();
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = len;
+    });
+  }
+  setInterval(loopAll, 6800);
+</script>
+</body>
+</html>
