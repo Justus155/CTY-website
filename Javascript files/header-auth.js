@@ -11,21 +11,23 @@ export async function applyHeaderAuthState() {
   const profileLink = document.getElementById("profile-link");
   const profileName = document.getElementById("profile-name");
   const profileAvatar = document.getElementById("profile-avatar");
+  const adminLink = document.getElementById("admin-link");
 
-  if (!signInLink || !profileLink || !profileAvatar) return;
+  if (!signInLink) return;
 
   try {
     const { data: { session } } = await supabase.auth.getSession();
 
     if (!session) {
-      profileLink.hidden = true;
+      if (profileLink) profileLink.hidden = true;
+      if (adminLink) adminLink.hidden = true;
       signInLink.hidden = false;
       return;
     }
 
     const { data: profile } = await supabase
       .from("profiles")
-      .select("full_name, avatar_url")
+      .select("full_name, avatar_url, role")
       .eq("id", session.user.id)
       .maybeSingle();
 
@@ -36,21 +38,32 @@ export async function applyHeaderAuthState() {
       "Profile";
     const firstName = fullName.split(" ")[0] || "Profile";
 
-    if (profile?.avatar_url) {
-      profileAvatar.innerHTML = `<img src="${profile.avatar_url}" alt="${escapeHtml(firstName)}" />`;
-    } else {
-      profileAvatar.textContent = firstName.charAt(0).toUpperCase();
+    if (profileAvatar) {
+      if (profile?.avatar_url) {
+        profileAvatar.innerHTML = `<img src="${profile.avatar_url}" alt="${escapeHtml(firstName)}" />`;
+      } else {
+        profileAvatar.textContent = firstName.charAt(0).toUpperCase();
+      }
     }
 
     if (profileName) profileName.textContent = firstName;
 
-    profileLink.hidden = false;
-    profileLink.href = "../home/profile.html";
-    profileLink.title = fullName;
-    profileLink.setAttribute("aria-label", `${fullName} profile`);
+    if (profileLink) {
+      profileLink.hidden = false;
+      profileLink.href = "../home/profile.html";
+      profileLink.title = fullName;
+      profileLink.setAttribute("aria-label", `${fullName} profile`);
+    }
+
+    if (adminLink) {
+      adminLink.hidden = profile?.role !== "admin";
+      adminLink.href = "../admin/admin.html";
+    }
+
     signInLink.hidden = true;
   } catch {
-    profileLink.hidden = true;
+    if (profileLink) profileLink.hidden = true;
+    if (adminLink) adminLink.hidden = true;
     signInLink.hidden = false;
   }
 }

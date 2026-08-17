@@ -1,0 +1,35 @@
+/* ---------- Inline admin controls (Posts + Community Events) ---------- */
+.admin-bar{
+  display: flex; gap: 0.5rem; margin-top: 0.7rem;
+}
+.admin-btn{
+  border: 1px solid var(--line); background: var(--ivory); color: var(--ink);
+  padding: 0.35rem 0.75rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600;
+  cursor: pointer; transition: background 140ms ease;
+}
+.admin-btn:hover{ background: var(--ivory-dim); }
+.admin-btn--danger{ color: #B3401F; border-color: rgba(179,64,31,0.3); }
+.admin-btn--danger:hover{ background: rgba(179,64,31,0.08); }
+
+.admin-add-form{
+  background: var(--ink); color: var(--ivory);
+  border-radius: 14px; padding: 1.4rem; margin-bottom: 1.2rem;
+}
+.admin-add-form h3{
+  font-family: var(--serif); font-weight: 600; font-size: 1.05rem; margin: 0 0 0.9rem;
+}
+.admin-add-grid{
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-bottom: 0.9rem;
+}
+.admin-add-grid input{
+  font-family: var(--sans); font-size: 0.88rem; padding: 0.6rem 0.75rem;
+  border: 1px solid rgba(247,241,228,0.25); border-radius: 8px;
+  background: rgba(247,241,228,0.06); color: var(--ivory); outline: none;
+}
+.admin-add-grid input::placeholder{ color: rgba(247,241,228,0.45); }
+.admin-add-grid input:focus-visible{ border-color: var(--gold); }
+.admin-add-form .error{ color: #ff8a65; font-size: 0.8rem; margin: 0.6rem 0 0; }
+
+@media (max-width: 560px){
+  .admin-add-grid{ grid-template-columns: 1fr; }
+}

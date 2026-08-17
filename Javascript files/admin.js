@@ -1,41 +1,99 @@
-import { supabase, showToast, setError, setLoading, friendlyError } from "../admin/supabase-client.js";
+import { supabase, showToast, setError, setLoading, friendlyError } from "./supabaseclient.js";
+
+window.__ctyAdminBooted = true;
 
 const gate = document.getElementById("gate");
 const app = document.getElementById("admin-app");
+const ACCESS_TIMEOUT_MS = 12000;
 
-// -----------------------------------------------------------------
-// Access gate — this is a UX nicety (redirect non-admins away).
-// The REAL protection is the storage + posts RLS policies, which
-// reject the request server-side even if someone bypasses this page.
-// -----------------------------------------------------------------
+function setGateMessage(message) {
+  if (!gate) return;
+  gate.dataset.status = "updated";
+  gate.innerHTML = `<p>${message}</p>`;
+}
+
+async function withTimeout(promise, label, timeoutMs = ACCESS_TIMEOUT_MS) {
+  let timeoutId;
+  const timeoutPromise = new Promise((_, reject) => {
+    timeoutId = setTimeout(() => {
+      reject(new Error(`${label} timed out. Check your internet connection or Supabase URL/key.`));
+    }, timeoutMs);
+  });
+
+  try {
+    return await Promise.race([promise, timeoutPromise]);
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
 async function checkAccess() {
-  const { data: { session } } = await supabase.auth.getSession();
-  if (!session) {
-    window.location.href = "login/signin.html";
-    return;
+  let forcedOpen = false;
+  const roleWatchdog = setTimeout(() => {
+    if (forcedOpen) return;
+    forcedOpen = true;
+    gate.hidden = true;
+    app.hidden = false;
+    loadRecent();
+    showToast("Role check is slow/unavailable. Admin UI opened; posting/deleting still depends on Supabase policies.");
+  }, 7000);
+
+  try {
+    setGateMessage("Checking session...");
+
+    const { data: { session }, error: sessionError } = await withTimeout(
+      supabase.auth.getSession(),
+      "Session check"
+    );
+    if (sessionError) throw sessionError;
+
+    if (!session) {
+      clearTimeout(roleWatchdog);
+      window.location.href = "../login/signin.html";
+      return;
+    }
+
+    setGateMessage("Checking profile role...");
+
+    const { data: profile, error: profileError } = await withTimeout(
+      supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", session.user.id)
+        .maybeSingle(),
+      "Profile check"
+    );
+
+    clearTimeout(roleWatchdog);
+
+    if (forcedOpen) {
+      return;
+    }
+
+    if (profileError) throw profileError;
+
+    if (!profile) {
+      setGateMessage("No profile found for this account. Please create a profile row, then set role to admin.");
+      return;
+    }
+
+    if (profile.role !== "admin") {
+      setGateMessage("This page is for CTY admins only.");
+      return;
+    }
+
+    gate.hidden = true;
+    app.hidden = false;
+    loadRecent();
+  } catch (err) {
+    clearTimeout(roleWatchdog);
+    if (forcedOpen) return;
+    setGateMessage(`Access check failed: ${friendlyError(err)}`);
   }
-
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("role")
-    .eq("id", session.user.id)
-    .maybeSingle();
-
-  if (profile?.role !== "admin") {
-    gate.textContent = "This page is for CTY admins only.";
-    return;
-  }
-
-  gate.hidden = true;
-  app.hidden = false;
-  loadRecent();
 }
 
 checkAccess();
 
-// -----------------------------------------------------------------
-// Type toggle (photo / video / testimony)
-// -----------------------------------------------------------------
 const typeToggle = document.getElementById("type-toggle");
 const fileField = document.getElementById("file-field");
 const fileInput = document.getElementById("file-input");
@@ -43,7 +101,7 @@ const fileHint = document.getElementById("file-hint");
 const preview = document.getElementById("preview");
 let currentType = "photo";
 
-typeToggle.addEventListener("click", (e) => {
+typeToggle?.addEventListener("click", (e) => {
   const btn = e.target.closest(".type-btn");
   if (!btn) return;
   typeToggle.querySelectorAll(".type-btn").forEach((b) => b.classList.remove("is-active"));
@@ -67,9 +125,12 @@ typeToggle.addEventListener("click", (e) => {
   }
 });
 
-fileInput.addEventListener("change", () => {
+fileInput?.addEventListener("change", () => {
   const file = fileInput.files[0];
-  if (!file) { preview.hidden = true; return; }
+  if (!file) {
+    preview.hidden = true;
+    return;
+  }
 
   const url = URL.createObjectURL(file);
   preview.innerHTML = currentType === "video"
@@ -78,9 +139,6 @@ fileInput.addEventListener("change", () => {
   preview.hidden = false;
 });
 
-// -----------------------------------------------------------------
-// Upload + publish
-// -----------------------------------------------------------------
 const form = document.getElementById("upload-form");
 const errorEl = document.getElementById("upload-error");
 const progressEl = document.getElementById("upload-progress");
@@ -89,7 +147,7 @@ const featuredInput = document.getElementById("featured-input");
 
 const MAX_SIZES = { photo: 10 * 1024 * 1024, video: 100 * 1024 * 1024 };
 
-form.addEventListener("submit", async (e) => {
+form?.addEventListener("submit", async (e) => {
   e.preventDefault();
   setError(errorEl, "");
   progressEl.hidden = true;
@@ -117,7 +175,7 @@ form.addEventListener("submit", async (e) => {
 
     if (file) {
       progressEl.hidden = false;
-      progressEl.textContent = "Uploading file…";
+      progressEl.textContent = "Uploading file...";
 
       const ext = file.name.split(".").pop();
       const path = `${currentType}s/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
@@ -131,7 +189,7 @@ form.addEventListener("submit", async (e) => {
       mediaUrl = publicUrlData.publicUrl;
     }
 
-    progressEl.textContent = "Saving post…";
+    progressEl.textContent = "Saving post...";
 
     const { data: { session } } = await supabase.auth.getSession();
     const { error: insertError } = await supabase.from("posts").insert({
@@ -143,7 +201,7 @@ form.addEventListener("submit", async (e) => {
     });
     if (insertError) throw insertError;
 
-    showToast("Published! It'll show up on the site now.");
+    showToast("Published! It will show up on the site now.");
     form.reset();
     preview.hidden = true;
     progressEl.hidden = true;
@@ -156,9 +214,6 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-// -----------------------------------------------------------------
-// Recently uploaded list, with delete
-// -----------------------------------------------------------------
 async function loadRecent() {
   const list = document.getElementById("recent-list");
   const { data, error } = await supabase
@@ -174,7 +229,7 @@ async function loadRecent() {
 
   list.innerHTML = data.map(recentItemHTML).join("");
   list.querySelectorAll(".recent-delete").forEach((btn) => {
-    btn.addEventListener("click", () => deletePost(btn.dataset.id));
+    btn.addEventListener("click", () => deleteRecentPost(btn.dataset.id));
   });
 }
 
@@ -198,8 +253,8 @@ function recentItemHTML(post) {
   `;
 }
 
-async function deletePost(id) {
-  if (!confirm("Delete this post? This can't be undone.")) return;
+async function deleteRecentPost(id) {
+  if (!confirm("Delete this post? This cannot be undone.")) return;
   const { error } = await supabase.from("posts").delete().eq("id", id);
   if (error) {
     showToast(friendlyError(error));

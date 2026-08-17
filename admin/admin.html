@@ -91,6 +91,21 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script type="module" src="../Javascript files/admin.js"></script>
+  <script
+    type="module"
+    src="../Javascript files/admin.js?v=20260817"
+    onerror="document.getElementById('gate').innerHTML='<p>Could not load admin script. Try hard refresh (Ctrl+F5) and ensure URL is http://127.0.0.1:5500/admin/admin.html</p>'"
+  ></script>
+  <script>
+    window.setTimeout(() => {
+      const gate = document.getElementById("gate");
+      if (!gate) return;
+      const scriptBooted = Boolean(window.__ctyAdminBooted);
+      const gateStillInitial = gate.textContent && gate.textContent.includes("Checking access");
+      if (!scriptBooted && gateStillInitial) {
+        gate.innerHTML = "<p>Admin script did not start. Open this page through a local web server URL (for example http://127.0.0.1:5500/admin/admin.html), then sign in on the same URL origin and hard-refresh.</p>";
+      }
+    }, 4000);
+  </script>
 </body>
 </html>

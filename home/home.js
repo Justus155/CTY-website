@@ -14,6 +14,7 @@ navToggle?.addEventListener("click", () => {
 const profileDrawer = document.getElementById("profile-drawer");
 const profileDrawerClose = document.getElementById("profile-drawer-close");
 const profileDrawerBackdrop = document.getElementById("profile-drawer-backdrop");
+let isAdmin = false;
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -45,18 +46,26 @@ async function loadLatestVideo() {
   const titleEl = document.getElementById("hero-title");
   const noteEl = document.getElementById("hero-note");
 
-  let video = DUMMY_VIDEO;
+  let video = { ...DUMMY_VIDEO, id: null };
 
   try {
     const { data, error } = await supabase
       .from("posts")
-      .select("title, note, video_url, created_at")
+      .select("id, caption, media_url, created_at, is_featured")
       .eq("type", "video")
+      .order("is_featured", { ascending: false })
       .order("created_at", { ascending: false })
       .limit(1)
       .maybeSingle();
 
-    if (!error && data) video = data;
+    if (!error && data) {
+      video = {
+        id: data.id,
+        title: data.caption || "CTY Ministries",
+        note: data.caption || "A featured community worship moment from CTY Ministries.",
+        video_url: data.media_url,
+      };
+    }
   } catch {
     // Supabase not configured yet — dummy content stays in place.
   }
@@ -64,12 +73,23 @@ async function loadLatestVideo() {
   titleEl.textContent = video.title;
   noteEl.textContent = video.note;
 
+  const existingDeleteBtn = document.getElementById("hero-delete-btn");
+  if (existingDeleteBtn) existingDeleteBtn.remove();
+
+  if (isAdmin && video.id) {
+    const deleteBtn = document.createElement("button");
+    deleteBtn.type = "button";
+    deleteBtn.id = "hero-delete-btn";
+    deleteBtn.className = "btn-ghost";
+    deleteBtn.textContent = "Delete this video";
+    deleteBtn.addEventListener("click", () => deletePost(video.id));
+    noteEl.insertAdjacentElement("afterend", deleteBtn);
+  }
+
   if (video.video_url) {
     frame.innerHTML = video.video_url.includes("youtube") || video.video_url.includes("youtu.be")
       ? `<iframe src="${video.video_url}" allowfullscreen loading="lazy"></iframe>`
       : `<video src="${video.video_url}" controls playsinline></video>`;
-  } else {
-    document.getElementById("video-caption").textContent = "No video uploaded yet — check back soon.";
   }
 }
 
@@ -78,12 +98,12 @@ async function loadLatestVideo() {
 // -----------------------------------------------------------------
 async function loadLatestPhotos() {
   const grid = document.getElementById("gallery-grid");
-  let photos = DUMMY_PHOTOS;
+  let photos = DUMMY_PHOTOS.map((photo) => ({ ...photo, id: null, media_url: photo.image_url }));
 
   try {
     const { data, error } = await supabase
       .from("posts")
-      .select("caption, image_url, created_at")
+      .select("id, caption, media_url, created_at")
       .eq("type", "photo")
       .order("created_at", { ascending: false })
       .limit(6);
@@ -100,19 +120,53 @@ function photoCardHTML(photo) {
   const date = photo.created_at
     ? new Date(photo.created_at).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })
     : "";
-  const bg = photo.image_url
-    ? `<img src="${photo.image_url}" alt="${escapeHtml(photo.caption || "")}" loading="lazy" />`
+  const bg = photo.media_url
+    ? `<img src="${photo.media_url}" alt="${escapeHtml(photo.caption || "")}" loading="lazy" />`
     : `<div class="photo-card skeleton" style="position:absolute;inset:0;"></div>`;
 
   return `
-    <div class="photo-card">
+    <div class="photo-card" data-post-id="${photo.id || ""}">
       ${bg}
       <div class="caption">
         ${date ? `<span class="cap-date">${date}</span>` : ""}
         <p>${escapeHtml(photo.caption || "")}</p>
+        ${isAdmin && photo.id ? `<button type="button" class="btn-ghost photo-delete-btn" data-post-id="${photo.id}">Delete</button>` : ""}
       </div>
     </div>
   `;
+}
+
+async function resolveAdminState() {
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      isAdmin = false;
+      return;
+    }
+
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", session.user.id)
+      .maybeSingle();
+
+    isAdmin = profile?.role === "admin";
+  } catch {
+    isAdmin = false;
+  }
+}
+
+async function deletePost(postId) {
+  if (!postId || !isAdmin) return;
+  if (!window.confirm("Delete this post? This cannot be undone.")) return;
+
+  const { error } = await supabase.from("posts").delete().eq("id", postId);
+  if (error) {
+    window.alert(error.message || "Could not delete post.");
+    return;
+  }
+
+  await Promise.all([loadLatestVideo(), loadLatestPhotos()]);
 }
 
 function escapeHtml(str) {
@@ -167,6 +221,16 @@ function setupProfileDrawer() {
   });
 }
 
-loadLatestVideo();
-loadLatestPhotos();
+document.getElementById("gallery-grid")?.addEventListener("click", (event) => {
+  const btn = event.target.closest(".photo-delete-btn");
+  if (!btn) return;
+  deletePost(btn.dataset.postId);
+});
+
+async function initHomeContent() {
+  await resolveAdminState();
+  await Promise.all([loadLatestVideo(), loadLatestPhotos()]);
+}
+
+initHomeContent();
 setupProfileDrawer();
