@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CTY Ministries — a Christ-centered community where children, teens and youth belong, grow, serve and shine for Jesus." />
+  <meta name="theme-color" content="#11100e" />
+  <title>CTY Ministries | Belong. Grow. Serve. Shine.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink: #11100e;
+      --ink-2: #1b1916;
+      --paper: #fbf8f0;
+      --paper-2: #f3ecdd;
+      --white: #fff;
+      --gold: #d2a238;
+      --gold-dark: #9a741e;
+      --gold-soft: #ead8a9;
+      --sage: #71845c;
+      --muted: #716c61;
+      --line: rgba(17, 16, 14, .11);
+      --shadow: 0 24px 70px rgba(17, 16, 14, .13);
+      --shadow-sm: 0 10px 28px rgba(17, 16, 14, .08);
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", system-ui, sans-serif;
+      --radius: 24px;
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    body.menu-open { overflow: hidden; }
+
+    img, video { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    /* ---------- HEADER ---------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(17,16,14,.94);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .header-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: #fffaf0;
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .brand em { color: var(--gold-soft); font-style: normal; font-weight: 500; }
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--gold), #8c6618);
+      box-shadow: 0 12px 28px rgba(210,162,56,.28);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      color: rgba(255,250,240,.72);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+    .nav a {
+      padding: 7px 0;
+      border-bottom: 2px solid transparent;
+      transition: .2s ease;
+    }
+    .nav a:hover, .nav a.active {
+      color: #fff;
+      border-color: var(--gold);
+    }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+
+    .button {
+      min-height: 46px;
+      padding: 0 19px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: .88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary {
+      color: var(--ink);
+      background: linear-gradient(135deg, #e2b957, var(--gold));
+      box-shadow: 0 13px 30px rgba(210,162,56,.22);
+    }
+    .button-primary:hover { box-shadow: 0 17px 34px rgba(210,162,56,.30); }
+    .button-dark {
+      color: #fff;
+      background: var(--ink);
+    }
+    .button-ghost {
+      color: #fffaf0;
+      border-color: rgba(255,255,255,.24);
+      background: rgba(255,255,255,.05);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 12px;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+    }
+    .mobile-nav {
+      display: none;
+      padding: 0 20px 20px;
+    }
+    .mobile-nav a {
+      display: block;
+      padding: 13px 0;
+      color: #fffaf0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      font-weight: 600;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 90px 0 82px;
+      color: #fffaf0;
+      background:
+        radial-gradient(circle at 78% 12%, rgba(210,162,56,.22), transparent 27%),
+        radial-gradient(circle at 5% 85%, rgba(113,132,92,.15), transparent 30%),
+        var(--ink);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(210,162,56,.7), transparent);
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--gold-soft);
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 1px;
+      background: var(--gold);
+    }
+    h1, h2, h3 {
+      font-family: var(--serif);
+      line-height: 1.1;
+    }
+    h1 {
+      max-width: 720px;
+      margin: 20px 0 20px;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      letter-spacing: -.045em;
+      font-weight: 600;
+    }
+    .gold-text {
+      color: var(--gold-soft);
+    }
+    .hero-copy > p {
+      max-width: 610px;
+      margin: 0;
+      color: rgba(255,250,240,.70);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+    .hero-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-top: 34px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+    .proof-item strong {
+      display: block;
+      color: #fff;
+      font-family: var(--serif);
+      font-size: 1.2rem;
+    }
+    .proof-item span {
+      color: rgba(255,250,240,.52);
+      font-size: .78rem;
+    }
+
+    .hero-media {
+      position: relative;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 30px;
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow);
+    }
+    .hero-media::before {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      top: -42px;
+      right: -36px;
+      border-radius: 50%;
+      background: rgba(210,162,56,.16);
+      filter: blur(2px);
+    }
+    .video-frame {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border-radius: 21px;
+      background: #26231f;
+    }
+    .video-frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .video-label {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(17,16,14,.72);
+      backdrop-filter: blur(12px);
+      font-size: .76rem;
+      font-weight: 700;
+    }
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #d7a93f;
+      box-shadow: 0 0 0 5px rgba(210,162,56,.13);
+    }
+
+    /* ---------- SECTIONS ---------- */
+    .section { padding: 92px 0; }
+    .section.alt { background: var(--paper-2); }
+    .section-head {
+      max-width: 730px;
+      margin-bottom: 38px;
+    }
+    .section-kicker {
+      margin: 0 0 10px;
+      color: var(--gold-dark);
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .section h2 {
+      margin: 0 0 14px;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      letter-spacing: -.035em;
+    }
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    /* ---------- PATHS ---------- */
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .path-card {
+      position: relative;
+      min-height: 300px;
+      overflow: hidden;
+      padding: 30px;
+      border-radius: var(--radius);
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .path-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+    .path-number {
+      color: var(--gold);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+    .path-icon {
+      width: 52px;
+      height: 52px;
+      margin: 35px 0 20px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: var(--paper-2);
+      font-size: 1.35rem;
+    }
+    .path-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.55rem;
+    }
+    .path-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    /* ---------- EVENTS ---------- */
+    .events-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr .85fr;
+      gap: 18px;
+    }
+    .event-card {
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+    .event-image {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #ddd4c3;
+    }
+    .event-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .event-card:hover img { transform: scale(1.045); }
+    .event-body { padding: 22px; }
+    .event-date {
+      color: var(--gold-dark);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .event-body h3 {
+      margin: 8px 0 8px;
+      font-size: 1.45rem;
+    }
+    .event-body p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+    .text-link {
+      color: var(--gold-dark);
+      font-size: .84rem;
+      font-weight: 800;
+    }
+
+    /* ---------- STATEMENT ---------- */
+    .statement {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+    .statement h2 { margin-bottom: 18px; }
+    .statement-copy p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+    .statement-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 25px;
+    }
+    .statement-list div {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .check {
+      flex: 0 0 auto;
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      margin-top: 2px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--gold-soft);
+      font-size: .75rem;
+    }
+    .statement-list strong { display: block; margin-bottom: 2px; }
+    .statement-list span { color: var(--muted); font-size: .85rem; }
+
+    .verse-panel {
+      position: relative;
+      padding: 48px;
+      overflow: hidden;
+      border-radius: 30px;
+      color: #fffaf0;
+      background:
+        radial-gradient(circle at 100% 0, rgba(210,162,56,.23), transparent 35%),
+        var(--ink);
+      box-shadow: var(--shadow);
+    }
+    .verse-panel::before {
+      content: "“";
+      position: absolute;
+      top: -28px;
+      right: 22px;
+      color: rgba(210,162,56,.16);
+      font-family: Georgia, serif;
+      font-size: 12rem;
+      line-height: 1;
+    }
+    .verse-panel .label {
+      color: var(--gold-soft);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .verse-panel blockquote {
+      position: relative;
+      margin: 30px 0 22px;
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      line-height: 1.35;
+    }
+    .verse-panel cite {
+      color: rgba(255,250,240,.58);
+      font-size: .82rem;
+      font-style: normal;
+    }
+
+    /* ---------- GALLERY ---------- */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr .75fr;
+      grid-auto-rows: 220px;
+      gap: 14px;
+    }
+    .gallery figure {
+      position: relative;
+      margin: 0;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #ddd4c3;
+    }
+    .gallery figure:first-child { grid-row: span 2; }
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .45s ease;
+    }
+    .gallery figure:hover img { transform: scale(1.05); }
+    .gallery figcaption {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      left: 12px;
+      padding: 10px 12px;
+      color: #fff;
+      border-radius: 12px;
+      background: rgba(17,16,14,.68);
+      backdrop-filter: blur(10px);
+      font-size: .76rem;
+      font-weight: 700;
+    }
+
+    /* ---------- TESTIMONIALS ---------- */
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .story-card {
+      padding: 28px;
+      border-radius: var(--radius);
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+    .quote-mark {
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 2.8rem;
+      line-height: .7;
+    }
+    .story-card blockquote {
+      margin: 18px 0 25px;
+      color: #39352f;
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .person {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .avatar {
+      width: 42px;
+      height: 42px;
+      overflow: hidden;
+      border-radius: 50%;
+      background: var(--paper-2);
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .person strong { display: block; font-size: .86rem; }
+    .person span { color: var(--muted); font-size: .74rem; }
+
+    /* ---------- CTA ---------- */
+    .cta {
+      padding: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      border-radius: 30px;
+      color: #fffaf0;
+      background:
+        radial-gradient(circle at 85% 10%, rgba(210,162,56,.24), transparent 28%),
+        var(--ink);
+      box-shadow: var(--shadow);
+    }
+    .cta .section-kicker { color: var(--gold-soft); }
+    .cta h2 { margin: 0 0 10px; }
+    .cta p { max-width: 600px; margin: 0; color: rgba(255,250,240,.62); }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      margin-top: 92px;
+      padding: 65px 0 25px;
+      color: rgba(255,250,240,.72);
+      background: var(--ink-2);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 42px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+    }
+    .footer-about p {
+      max-width: 330px;
+      color: rgba(255,250,240,.48);
+      font-size: .85rem;
+    }
+    .footer-title {
+      margin: 0 0 15px;
+      color: var(--gold-soft);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .footer-col { display: grid; align-content: start; gap: 9px; }
+    .footer-col a { font-size: .84rem; transition: color .2s ease; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 22px;
+      color: rgba(255,250,240,.38);
+      font-size: .74rem;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 980px) {
+      .nav, .header-actions .button-ghost { display: none; }
+      .menu-toggle { display: block; }
+      .mobile-nav.is-open { display: block; }
+      .hero-grid, .statement { grid-template-columns: 1fr; }
+      .hero { padding-top: 65px; }
+      .hero-media { max-width: 720px; }
+      .events-grid { grid-template-columns: repeat(2, 1fr); }
+      .events-grid .event-card:first-child { grid-column: 1 / -1; }
+      .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+      .footer-about { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 700px) {
+      .container { width: min(var(--container), calc(100% - 28px)); }
+      .header-inner { min-height: 68px; }
+      .hero { padding: 58px 0 65px; }
+      h1 { font-size: clamp(2.65rem, 14vw, 4rem); }
+      .hero-proof { gap: 16px; }
+      .path-grid, .story-grid, .events-grid { grid-template-columns: 1fr; }
+      .events-grid .event-card:first-child { grid-column: auto; }
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 170px;
+      }
+      .gallery figure:first-child { grid-row: span 2; }
+      .verse-panel, .cta { padding: 32px 25px; }
+      .cta { align-items: flex-start; flex-direction: column; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-about { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; }
+    }
+
+    @media (max-width: 440px) {
+      .gallery { grid-template-columns: 1fr; grid-auto-rows: 230px; }
+      .gallery figure:first-child { grid-row: auto; }
+      .hero-actions .button { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="home.html" aria-label="CTY Ministries home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 200 200" width="21" height="21">
+            <g stroke="#FBF8F0" stroke-width="7" stroke-linecap="round">
+              <line x1="100" y1="34" x2="100" y2="4"/>
+              <line x1="151" y1="64" x2="176" y2="47"/>
+              <line x1="159" y1="93" x2="188" y2="93"/>
+              <line x1="151" y1="122" x2="176" y2="139"/>
+              <line x1="49" y1="122" x2="24" y2="139"/>
+              <line x1="41" y1="93" x2="12" y2="93"/>
+              <line x1="49" y1="64" x2="24" y2="47"/>
+            </g>
+            <rect x="91" y="55" width="18" height="84" fill="#FBF8F0"/>
+            <rect x="69" y="83" width="62" height="18" fill="#FBF8F0"/>
+          </svg>
+        </span>
+        <span>CTY <em>Ministries</em></span>
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a class="active" href="home.html">Home</a>
+        <a href="../About/about.html">About</a>
+        <a href="../post/post.html">Messages</a>
+        <a href="../communityevents/community.html">Events</a>
+        <a href="../contacts/contacts.html">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="button button-ghost" href="../About/about.html">Our Story</a>
+        <a class="button button-primary" href="../communityevents/community.html">Join Us</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+          ☰
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+      <a href="home.html">Home</a>
+      <a href="../About/about.html">About</a>
+      <a href="../post/post.html">Messages</a>
+      <a href="../communityevents/community.html">Events</a>
+      <a href="../contacts/contacts.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Children · Teens · Youth</span>
+          <h1>A place to <span class="gold-text">belong, grow</span> and shine for Jesus.</h1>
+          <p>
+            CTY Ministries is a Christ-centered community where the next generation can know Jesus,
+            build genuine friendships, discover their purpose and serve with courage.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="../communityevents/community.html">Find Your Community →</a>
+            <a class="button button-ghost" href="#about">Discover CTY</a>
+          </div>
+
+          <div class="hero-proof" aria-label="Ministry highlights">
+            <div class="proof-item">
+              <strong>Weekly</strong>
+              <span>Gatherings & small groups</span>
+            </div>
+            <div class="proof-item">
+              <strong>3 stages</strong>
+              <span>Children · Teens · Youth</span>
+            </div>
+            <div class="proof-item">
+              <strong>One family</strong>
+              <span>Growing together in Christ</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <div class="video-frame">
+            <video src="images/mataifa yote.mp4" controls playsinline preload="metadata">
+              Your browser does not support the video element.
+            </video>
+            <div class="video-label"><span class="live-dot"></span> Life at CTY</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="community">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">Find your place</p>
+          <h2>There is a place for you here.</h2>
+          <p>Different ages. Different stories. One family centered on Jesus.</p>
+        </div>
+
+        <div class="path-grid">
+          <article class="path-card">
+            <span class="path-number">01 / CHILDREN</span>
+            <div class="path-icon">🌱</div>
+            <h3>Kids Club</h3>
+            <p>A safe, joyful environment where children discover God's Word through teaching, worship, creativity and friendship.</p>
+          </article>
+
+          <article class="path-card">
+            <span class="path-number">02 / TEENS</span>
+            <div class="path-icon">🔥</div>
+            <h3>Teen Ministry</h3>
+            <p>Real conversations, mentorship and biblical community that help teenagers navigate faith, identity and everyday life.</p>
+          </article>
+
+          <article class="path-card">
+            <span class="path-number">03 / YOUTH</span>
+            <div class="path-icon">✦</div>
+            <h3>Youth Community</h3>
+            <p>A place for young adults to worship, grow, serve, lead and live out their faith beyond Sunday.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="events">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">Don't do church alone</p>
+          <h2>What's happening at CTY.</h2>
+          <p>From worship nights to small groups and outreach, there is always a next step.</p>
+        </div>
+
+        <div class="events-grid">
+          <article class="event-card">
+            <div class="event-image">
+              <img src="photos/IMG_7618.jpg" alt="Young people gathered together during a youth service" loading="lazy" />
+            </div>
+            <div class="event-body">
+              <span class="event-date">Every week · Worship</span>
+              <h3>Sunday Youth Service</h3>
+              <p>Worship, biblical teaching, prayer and time to connect with the CTY family.</p>
+              <a class="text-link" href="../communityevents/community.html">View gathering details →</a>
+            </div>
+          </article>
+
+          <article class="event-card">
+            <div class="event-image">
+              <img src="photos/IMG_7672.jpg" alt="Young person receiving mentorship in a small group" loading="lazy" />
+            </div>
+            <div class="event-body">
+              <span class="event-date">Weekly · Discipleship</span>
+              <h3>Small Groups</h3>
+              <p>Go deeper, ask honest questions and grow alongside people who know your name.</p>
+              <a class="text-link" href="../communityevents/community.html">Find a group →</a>
+            </div>
+          </article>
+
+          <article class="event-card">
+            <div class="event-image">
+              <img src="photos/IMG_7685.jpg" alt="Youth participating in a community event" loading="lazy" />
+            </div>
+            <div class="event-body">
+              <span class="event-date">Coming up · Community</span>
+              <h3>Community Nights</h3>
+              <p>Shared meals, testimonies, friendship and moments we will remember.</p>
+              <a class="text-link" href="../communityevents/community.html">See events →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container statement">
+        <div class="statement-copy">
+          <p class="section-kicker">More than a programme</p>
+          <h2>We are building disciples, not just audiences.</h2>
+          <p>
+            CTY exists to help the next generation move from simply attending church to actually
+            following Jesus — in their friendships, families, schools, campuses, workplaces and communities.
+          </p>
+
+          <div class="statement-list">
+            <div>
+              <span class="check">✓</span>
+              <div><strong>Know Jesus</strong><span>Encounter Christ through Scripture, worship and prayer.</span></div>
+            </div>
+            <div>
+              <span class="check">✓</span>
+              <div><strong>Find community</strong><span>Build relationships where you are seen, known and encouraged.</span></div>
+            </div>
+            <div>
+              <span class="check">✓</span>
+              <div><strong>Live on mission</strong><span>Serve others and carry the love of Jesus beyond the church.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="verse-panel" aria-label="Scripture">
+          <span class="label">Our heartbeat</span>
+          <blockquote>“Let no one despise your youth, but set the believers an example...”</blockquote>
+          <cite>1 Timothy 4:12</cite>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section alt" id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">Life together</p>
+          <h2>Real people. Real moments.</h2>
+          <p>Catch a glimpse of what God is doing in and through the CTY family.</p>
+        </div>
+
+        <div class="gallery">
+          <figure>
+            <img src="photos/IMG_7618.jpg" alt="Youth worship gathering" loading="lazy" />
+            <figcaption>Sunday Youth Service</figcaption>
+          </figure>
+          <figure>
+            <img src="photos/IMG_7672.jpg" alt="Small group mentorship" loading="lazy" />
+            <figcaption>Small Groups</figcaption>
+          </figure>
+          <figure>
+            <img src="photos/IMG_7685.jpg" alt="Community event" loading="lazy" />
+            <figcaption>Community Night</figcaption>
+          </figure>
+          <figure>
+            <img src="photos/IMG_7724.jpg" alt="Children participating in a church activity" loading="lazy" />
+            <figcaption>Kids Club</figcaption>
+          </figure>
+          <figure>
+            <img src="photos/IMG_7735.jpg" alt="Young people serving during outreach" loading="lazy" />
+            <figcaption>Serving Together</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="stories">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">Stories</p>
+          <h2>What our community says.</h2>
+          <p>The goal is not to create fans of CTY. It is to help people become followers of Jesus.</p>
+        </div>
+
+        <div class="story-grid">
+          <article class="story-card">
+            <span class="quote-mark">“</span>
+            <blockquote>CTY gave me a place to belong when I needed it most. It felt like family, not just another group.</blockquote>
+            <div class="person">
+              <div class="avatar"><img src="photos/IMG_7745.jpg" alt="" loading="lazy" /></div>
+              <div><strong>Alicia M.</strong><span>Youth member</span></div>
+            </div>
+          </article>
+
+          <article class="story-card">
+            <span class="quote-mark">“</span>
+            <blockquote>The mentorship here changed how I see my faith and my future. I went from unsure to rooted.</blockquote>
+            <div class="person">
+              <div class="avatar"><img src="photos/IMG_7746.jpg" alt="" loading="lazy" /></div>
+              <div><strong>Jordan T.</strong><span>Small group leader</span></div>
+            </div>
+          </article>
+
+          <article class="story-card">
+            <span class="quote-mark">“</span>
+            <blockquote>CTY is full of encouragement, prayer and momentum. It pushed me forward in ways I never expected.</blockquote>
+            <div class="person">
+              <div class="avatar"><img src="photos/IMG_7747.jpg" alt="" loading="lazy" /></div>
+              <div><strong>Renee K.</strong><span>Teen ministry volunteer</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" aria-label="Call to action">
+      <div class="cta">
+        <div>
+          <p class="section-kicker">Your next step</p>
+          <h2>Come as you are. Grow from here.</h2>
+          <p>You do not have to figure out your faith journey alone. Find a gathering, meet the family and take your next step.</p>
+        </div>
+        <a class="button button-primary" href="../communityevents/community.html">Plan Your Visit →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="brand" href="home.html">
+            <span class="brand-mark" aria-hidden="true">✝</span>
+            <span>CTY <em>Ministries</em></span>
+          </a>
+          <p>Children · Teens · Youth — a Christ-centered community growing together and shining for Jesus.</p>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-title">Explore</p>
+          <a href="../About/about.html">About CTY</a>
+          <a href="../post/post.html">Messages</a>
+          <a href="../communityevents/community.html">Events</a>
+          <a href="../contacts/contacts.html">Contact</a>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-title">Get involved</p>
+          <a href="../communityevents/community.html">Join a Group</a>
+          <a href="../communityevents/community.html">Volunteer</a>
+          <a href="../communityevents/community.html">Serve</a>
+          <a href="../contacts/contacts.html">Plan Your Visit</a>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-title">Connect</p>
+          <a href="#" aria-label="CTY on Instagram">Instagram</a>
+          <a href="#" aria-label="CTY on Facebook">Facebook</a>
+          <a href="#" aria-label="CTY on TikTok">TikTok</a>
+          <a href="#" aria-label="CTY on YouTube">YouTube</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> CTY Ministries. All rights reserved.</span>
+        <span>Built to serve the next generation.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileNav = document.getElementById("mobileNav");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = mobileNav.classList.toggle("is-open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+      document.body.classList.toggle("menu-open", isOpen);
+    });
+
+    mobileNav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileNav.classList.remove("is-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open menu");
+        document.body.classList.remove("menu-open");
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
