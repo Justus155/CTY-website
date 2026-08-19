@@ -446,6 +446,43 @@
       background: #c82333;
     }
 
+    .post-logo {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 10px 6px 8px;
+      border-radius: 999px;
+      background: rgba(17,16,14,.64);
+      border: 1px solid rgba(255,255,255,.32);
+      color: #fff;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .post-logo-mark {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #e7d4a8, #c8961f);
+      color: #2e2413;
+      display: grid;
+      place-items: center;
+      font-size: .72rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .post-logo-text {
+      font-size: .67rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
     .ig-body { padding: 14px 16px 16px; }
     .ig-actions {
       display: flex;
@@ -839,10 +876,153 @@
         </div>
 
         <div class="ig-feed" id="ig-feed">
+<<<<<<< HEAD
           <!-- Posts loaded from Supabase -->
           <div class="skeleton-card skeleton"></div>
           <div class="skeleton-card skeleton"></div>
           <div class="skeleton-card skeleton"></div>
+=======
+          <article class="ig-card" data-post-id="p1">
+            <div class="ig-head">
+              <div class="ig-user">
+                <span class="avatar">CTY</span>
+                <div>
+                  <strong>cty.community</strong>
+                  <span>Youth Service</span>
+                </div>
+              </div>
+              <span class="ig-time">2h ago</span>
+            </div>
+            <div class="ig-photo">
+              <img src="../photos/IMG_7618.jpg" alt="Youth gathered during service" loading="lazy" />
+              <span class="post-logo" aria-hidden="true">
+                <span class="post-logo-mark">✝</span>
+                <span class="post-logo-text">CTY</span>
+              </span>
+            </div>
+            <div class="ig-body">
+              <div class="ig-actions">
+                <button type="button" class="ig-btn like-btn" data-likes="182">Like</button>
+                <button type="button" class="ig-btn comment-jump">Comment</button>
+              </div>
+              <p class="ig-stats"><span class="likes-count">182</span> likes • <span class="comments-count">2</span> comments</p>
+              <p class="ig-caption">Sunday Youth Service: worship, prayer, and honest conversations that bring us closer to Jesus.</p>
+              <ul class="ig-comments">
+                <li><strong>kevo.t</strong> This was powerful.</li>
+                <li><strong>mercy.a</strong> Loved the worship set tonight.</li>
+              </ul>
+              <form class="comment-form">
+                <input type="text" name="comment" maxlength="180" placeholder="Add a comment..." required />
+                <button type="submit">Post</button>
+              </form>
+            </div>
+          </article>
+
+          <article class="ig-card" data-post-id="p2">
+            <div class="ig-head">
+              <div class="ig-user">
+                <span class="avatar">CTY</span>
+                <div>
+                  <strong>cty.community</strong>
+                  <span>Small Group</span>
+                </div>
+              </div>
+              <span class="ig-time">6h ago</span>
+            </div>
+            <div class="ig-photo">
+              <img src="../photos/IMG_7672.jpg" alt="Small group discussion" loading="lazy" />
+              <span class="post-logo" aria-hidden="true">
+                <span class="post-logo-mark">✝</span>
+                <span class="post-logo-text">CTY</span>
+              </span>
+            </div>
+            <div class="ig-body">
+              <div class="ig-actions">
+                <button type="button" class="ig-btn like-btn" data-likes="143">Like</button>
+                <button type="button" class="ig-btn comment-jump">Comment</button>
+              </div>
+              <p class="ig-stats"><span class="likes-count">143</span> likes • <span class="comments-count">1</span> comments</p>
+              <p class="ig-caption">Small groups where everyone is seen, known, and encouraged. Bring your questions next week.</p>
+              <ul class="ig-comments">
+                <li><strong>amina.w</strong> Exactly what I needed this week.</li>
+              </ul>
+              <form class="comment-form">
+                <input type="text" name="comment" maxlength="180" placeholder="Add a comment..." required />
+                <button type="submit">Post</button>
+              </form>
+            </div>
+          </article>
+
+          <article class="ig-card" data-post-id="p3">
+            <div class="ig-head">
+              <div class="ig-user">
+                <span class="avatar">CTY</span>
+                <div>
+                  <strong>cty.community</strong>
+                  <span>Community Night</span>
+                </div>
+              </div>
+              <span class="ig-time">1d ago</span>
+            </div>
+            <div class="ig-photo">
+              <img src="../photos/IMG_7685.jpg" alt="Community night moment" loading="lazy" />
+              <span class="post-logo" aria-hidden="true">
+                <span class="post-logo-mark">✝</span>
+                <span class="post-logo-text">CTY</span>
+              </span>
+            </div>
+            <div class="ig-body">
+              <div class="ig-actions">
+                <button type="button" class="ig-btn like-btn" data-likes="227">Like</button>
+                <button type="button" class="ig-btn comment-jump">Comment</button>
+              </div>
+              <p class="ig-stats"><span class="likes-count">227</span> likes • <span class="comments-count">3</span> comments</p>
+              <p class="ig-caption">Community Night memories. Shared meals, testimonies, and joy across every generation.</p>
+              <ul class="ig-comments">
+                <li><strong>jay.n</strong> This felt like family.</li>
+                <li><strong>beth.k</strong> The testimonies were amazing.</li>
+                <li><strong>dani.m</strong> See you all next Friday.</li>
+              </ul>
+              <form class="comment-form">
+                <input type="text" name="comment" maxlength="180" placeholder="Add a comment..." required />
+                <button type="submit">Post</button>
+              </form>
+            </div>
+          </article>
+
+          <article class="ig-card" data-post-id="p4">
+            <div class="ig-head">
+              <div class="ig-user">
+                <span class="avatar">CTY</span>
+                <div>
+                  <strong>cty.community</strong>
+                  <span>Serving Together</span>
+                </div>
+              </div>
+              <span class="ig-time">2d ago</span>
+            </div>
+            <div class="ig-photo">
+              <img src="../photos/IMG_7735.jpg" alt="Youth serving moment" loading="lazy" />
+              <span class="post-logo" aria-hidden="true">
+                <span class="post-logo-mark">✝</span>
+                <span class="post-logo-text">CTY</span>
+              </span>
+            </div>
+            <div class="ig-body">
+              <div class="ig-actions">
+                <button type="button" class="ig-btn like-btn" data-likes="96">Like</button>
+                <button type="button" class="ig-btn comment-jump">Comment</button>
+              </div>
+              <p class="ig-stats"><span class="likes-count">96</span> likes • <span class="comments-count">0</span> comments</p>
+              <p class="ig-caption">Serving with joy. Every act of love points someone to Christ.</p>
+              <ul class="ig-comments"></ul>
+              <form class="comment-form">
+                <input type="text" name="comment" maxlength="180" placeholder="Add a comment..." required />
+                <button type="submit">Post</button>
+              </form>
+            </div>
+          </article>
+>>>>>>> 6af702c (updates to homepage)
         </div>
 
         <div class="cta" aria-label="Call to action">
