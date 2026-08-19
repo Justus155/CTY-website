@@ -52,17 +52,6 @@ body{
   cursor: pointer;
 }
 
-.signout-btn{
-  border: 1px solid rgba(20,17,15,0.2);
-  background: rgba(255,255,255,0.8);
-  color: var(--ink);
-  border-radius: 999px;
-  padding: 0.45rem 0.95rem;
-  font-size: 0.82rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
 .profile-card{
   background: rgba(255,255,255,0.9);
   border: 1px solid rgba(20,17,15,0.12);
@@ -187,17 +176,29 @@ body{
 
 body.is-embedded{
   background: transparent;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
 }
 
 body.is-embedded .profile-shell{
-  max-width: 100%;
-  padding: 0.7rem;
+  width: min(880px, calc(100vw - 20px));
+  margin: 0;
+  padding: 0.85rem;
 }
 
 body.is-embedded .profile-card{
-  border-radius: 14px;
-  box-shadow: none;
-  border-color: rgba(20,17,15,0.08);
+  border-radius: 18px;
+  box-shadow: 0 24px 65px rgba(20,17,15,0.18);
+  border-color: rgba(20,17,15,0.14);
+}
+
+body.is-embedded .profile-topbar{
+  margin-bottom: 0.7rem;
+}
+
+body.is-embedded .panel-close-btn{
+  background: rgba(255,255,255,0.92);
 }
 
 .toast{

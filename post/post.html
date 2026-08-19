@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="CTY community feed in an Instagram-style format with photo moments, likes, and comments." />
   <meta name="theme-color" content="#11100e" />
-  <title>Messages | CTY Ministries</title>
+  <title>Posts | CTY Ministries</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -310,6 +310,7 @@
     }
 
     .ig-photo {
+      position: relative;
       aspect-ratio: 1 / 1;
       overflow: hidden;
       background: var(--paper-2);
@@ -318,6 +319,43 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .post-logo {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 10px 6px 8px;
+      border-radius: 999px;
+      background: rgba(17,16,14,.64);
+      border: 1px solid rgba(255,255,255,.32);
+      color: #fff;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .post-logo-mark {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #e7d4a8, #c8961f);
+      color: #2e2413;
+      display: grid;
+      place-items: center;
+      font-size: .72rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .post-logo-text {
+      font-size: .67rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      white-space: nowrap;
     }
 
     .ig-body { padding: 14px 16px 16px; }
@@ -507,7 +545,8 @@
       <nav class="nav" aria-label="Main navigation">
         <a href="../home/homepage.html">Home</a>
         <a href="../About/about2.html">About</a>
-        <a class="active" href="post.html">Messages</a>
+        <a class="active" href="post.html">Posts</a>
+        <a href="post.html#testimonies">Testimonies</a>
         <a href="../communityevents/community.html">Events</a>
         <a href="../contacts/contacts.html">Contact</a>
       </nav>
@@ -522,7 +561,8 @@
     <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
       <a href="../home/homepage.html">Home</a>
       <a href="../About/about2.html">About</a>
-      <a href="post.html">Messages</a>
+      <a href="post.html">Posts</a>
+      <a href="post.html#testimonies">Testimonies</a>
       <a href="../communityevents/community.html">Events</a>
       <a href="../contacts/contacts.html">Contact</a>
     </nav>
@@ -570,6 +610,10 @@
             </div>
             <div class="ig-photo">
               <img src="../photos/IMG_7618.jpg" alt="Youth gathered during service" loading="lazy" />
+              <span class="post-logo" aria-hidden="true">
+                <span class="post-logo-mark">✝</span>
+                <span class="post-logo-text">CTY</span>
+              </span>
             </div>
             <div class="ig-body">
               <div class="ig-actions">
@@ -602,6 +646,10 @@
             </div>
             <div class="ig-photo">
               <img src="../photos/IMG_7672.jpg" alt="Small group discussion" loading="lazy" />
+              <span class="post-logo" aria-hidden="true">
+                <span class="post-logo-mark">✝</span>
+                <span class="post-logo-text">CTY</span>
+              </span>
             </div>
             <div class="ig-body">
               <div class="ig-actions">
@@ -633,6 +681,10 @@
             </div>
             <div class="ig-photo">
               <img src="../photos/IMG_7685.jpg" alt="Community night moment" loading="lazy" />
+              <span class="post-logo" aria-hidden="true">
+                <span class="post-logo-mark">✝</span>
+                <span class="post-logo-text">CTY</span>
+              </span>
             </div>
             <div class="ig-body">
               <div class="ig-actions">
@@ -666,6 +718,10 @@
             </div>
             <div class="ig-photo">
               <img src="../photos/IMG_7735.jpg" alt="Youth serving moment" loading="lazy" />
+              <span class="post-logo" aria-hidden="true">
+                <span class="post-logo-mark">✝</span>
+                <span class="post-logo-text">CTY</span>
+              </span>
             </div>
             <div class="ig-body">
               <div class="ig-actions">

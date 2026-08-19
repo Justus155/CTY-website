@@ -392,8 +392,238 @@
 			font-size: .74rem;
 		}
 
+		/* Homepage-aligned header/auth UI */
+		main { padding-top: 88px; }
+
+		.site-header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 1100;
+			background: transparent;
+			border-bottom: 0;
+			transition: .3s ease;
+		}
+
+		.site-header.scrolled {
+			background: rgba(17,17,17,.96);
+			backdrop-filter: blur(12px);
+			border-bottom: 1px solid rgba(255,255,255,.08);
+		}
+
+		.header-inner {
+			min-height: 88px;
+			gap: 20px;
+		}
+
+		.brand {
+			gap: 12px;
+			font-size: 21px;
+			font-weight: 600;
+		}
+
+		.brand em {
+			color: var(--gold-soft);
+			font-weight: 400;
+		}
+
+		.brand-mark {
+			width: 42px;
+			height: 42px;
+			border-radius: 0;
+			background: var(--gold);
+			box-shadow: none;
+		}
+
+		.nav {
+			gap: 34px;
+			font-size: 13px;
+			font-weight: 600;
+			letter-spacing: .06em;
+			text-transform: uppercase;
+			color: rgba(255,255,255,.8);
+		}
+
+		.nav a {
+			padding: 0;
+			border: 0;
+			opacity: .85;
+		}
+
+		.nav a.active,
+		.nav a:hover {
+			opacity: 1;
+			color: var(--gold-soft);
+		}
+
+		.header-actions {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.nav-button {
+			min-height: 44px;
+			padding: 12px 18px;
+			border-radius: 999px;
+			border: 1px solid rgba(255,255,255,.45);
+			background: rgba(255,255,255,.06);
+			color: #fff;
+			font-size: .86rem;
+			font-weight: 700;
+			letter-spacing: .03em;
+			text-transform: uppercase;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			transition: .25s ease;
+		}
+
+		.nav-button:hover {
+			background: white;
+			color: var(--ink);
+		}
+
+		#signout-btn {
+			background: linear-gradient(135deg, rgba(201,151,30,.95), rgba(231,210,160,.9));
+			color: #201611;
+			border-color: rgba(255,255,255,.35);
+			box-shadow: 0 10px 24px rgba(0,0,0,.2);
+		}
+
+		#signout-btn:hover {
+			background: linear-gradient(135deg, rgba(231,210,160,1), rgba(201,151,30,.95));
+			color: #130f0d;
+		}
+
+		.profile-pill {
+			width: 44px;
+			height: 44px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			border: 1px solid rgba(255,255,255,.45);
+			background: rgba(255,255,255,.06);
+			border-radius: 999px;
+			overflow: hidden;
+		}
+
+		.profile-avatar {
+			width: 100%;
+			height: 100%;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 14px;
+			font-weight: 700;
+			color: white;
+			text-transform: uppercase;
+		}
+
+		.profile-avatar img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		.profile-modal-backdrop {
+			position: fixed;
+			inset: 0;
+			background: rgba(0,0,0,.55);
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity .22s ease;
+			z-index: 1200;
+		}
+
+		.profile-modal {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			width: min(860px, calc(100vw - 24px));
+			height: min(88vh, 760px);
+			max-height: calc(100vh - 24px);
+			transform: translate(-50%, -50%) scale(.98);
+			opacity: 0;
+			pointer-events: none;
+			border-radius: 18px;
+			overflow: hidden;
+			border: 1px solid rgba(255,255,255,.2);
+			background: #f5f1e8;
+			box-shadow: 0 36px 90px rgba(0,0,0,.35);
+			z-index: 1201;
+			transition: opacity .22s ease, transform .22s ease;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.profile-modal-head {
+			min-height: 56px;
+			padding: 0 14px;
+			background: rgba(17,17,17,.94);
+			color: #fff;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			border-bottom: 1px solid rgba(255,255,255,.14);
+		}
+
+		.profile-modal-head h2 {
+			font-size: 15px;
+			letter-spacing: .04em;
+			text-transform: uppercase;
+			margin: 0;
+			font-family: var(--sans);
+			font-weight: 700;
+		}
+
+		.profile-modal-close {
+			width: 36px;
+			height: 36px;
+			border: 1px solid rgba(255,255,255,.28);
+			border-radius: 10px;
+			background: rgba(255,255,255,.08);
+			color: #fff;
+			font-size: 22px;
+			line-height: 1;
+			cursor: pointer;
+		}
+
+		.profile-modal-frame {
+			width: 100%;
+			height: calc(100% - 56px);
+			border: 0;
+			background: transparent;
+		}
+
+		body.profile-modal-open {
+			overflow: hidden;
+		}
+
+		body.profile-modal-open > header,
+		body.profile-modal-open > main,
+		body.profile-modal-open > footer {
+			filter: blur(5px);
+			transition: filter .22s ease;
+		}
+
+		body.profile-modal-open .profile-modal-backdrop {
+			opacity: 1;
+			pointer-events: auto;
+		}
+
+		body.profile-modal-open .profile-modal {
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1);
+			pointer-events: auto;
+		}
+
 		@media (max-width: 980px) {
-			.nav, .header-actions .button-ghost { display: none; }
+			.nav { display: none; }
 			.menu-toggle { display: block; }
 			.mobile-nav.is-open { display: block; }
 			.hero-grid, .symbol-wrap { grid-template-columns: 1fr; }
@@ -406,6 +636,7 @@
 		@media (max-width: 700px) {
 			.container { width: min(var(--container), calc(100% - 28px)); }
 			.header-inner { min-height: 68px; }
+			main { padding-top: 68px; }
 			h1 { font-size: clamp(2.5rem, 13vw, 3.8rem); }
 			.pillar-grid, .leaders-grid { grid-template-columns: 1fr; }
 			.cta { align-items: flex-start; flex-direction: column; padding: 34px 24px; }
@@ -441,14 +672,17 @@
 			<nav class="nav" aria-label="Main navigation">
 				<a href="../home/homepage.html">Home</a>
 				<a class="active" href="about2.html">About</a>
-				<a href="../post/post.html">Messages</a>
+				<a href="../post/post.html">Posts</a>
+				<a href="../post/post.html#testimonies">Testimonies</a>
 				<a href="../communityevents/community.html">Events</a>
 				<a href="../contacts/contacts.html">Contact</a>
 			</nav>
 
 			<div class="header-actions">
-				<span class="member-chip" id="member-chip" hidden>Signed in</span>
-				<button class="button button-primary" id="signout-btn" type="button" hidden>Sign out</button>
+				<a href="../home/profile.html" class="profile-pill" id="profile-link" hidden aria-label="Profile">
+					<span class="profile-avatar" id="profile-avatar">U</span>
+				</a>
+				<button class="nav-button" id="signout-btn" type="button" hidden>Sign out</button>
 				<button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
 			</div>
 		</div>
@@ -456,7 +690,8 @@
 		<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
 			<a href="../home/homepage.html">Home</a>
 			<a href="about2.html">About</a>
-			<a href="../post/post.html">Messages</a>
+			<a href="../post/post.html">Posts</a>
+			<a href="../post/post.html#testimonies">Testimonies</a>
 			<a href="../communityevents/community.html">Events</a>
 			<a href="../contacts/contacts.html">Contact</a>
 		</nav>
@@ -638,6 +873,21 @@
 		</section>
 	</main>
 
+	<div class="profile-modal-backdrop" id="profile-modal-backdrop" hidden></div>
+	<aside class="profile-modal" id="profile-modal" aria-hidden="true" aria-label="Profile panel">
+		<div class="profile-modal-head">
+			<h2>My Profile</h2>
+			<button type="button" class="profile-modal-close" id="profile-modal-close" aria-label="Close profile">×</button>
+		</div>
+		<iframe
+			id="profile-modal-frame"
+			class="profile-modal-frame"
+			src="../home/profile.html?embed=1"
+			title="Profile panel"
+			loading="lazy"
+		></iframe>
+	</aside>
+
 	<footer>
 		<div class="container">
 			<div class="footer-grid">
@@ -684,21 +934,52 @@
 	<script type="module">
 		import { supabase } from "../Javascript files/supabaseclient.js";
 
-		const memberChip = document.getElementById("member-chip");
+		const profileLink = document.getElementById("profile-link");
+		const profileAvatar = document.getElementById("profile-avatar");
 		const signOutBtn = document.getElementById("signout-btn");
+		const profileModal = document.getElementById("profile-modal");
+		const profileModalBackdrop = document.getElementById("profile-modal-backdrop");
+		const profileModalClose = document.getElementById("profile-modal-close");
+
+		function escapeHtml(str) {
+			return String(str)
+				.replace(/&/g, "&amp;")
+				.replace(/</g, "&lt;")
+				.replace(/>/g, "&gt;")
+				.replace(/\"/g, "&quot;")
+				.replace(/'/g, "&#39;");
+		}
+
+		function openProfileModal() {
+			if (!profileModal || !profileModalBackdrop) return;
+			profileModal.setAttribute("aria-hidden", "false");
+			profileModalBackdrop.hidden = false;
+			document.body.classList.add("profile-modal-open");
+		}
+
+		function closeProfileModal() {
+			if (!profileModal || !profileModalBackdrop) return;
+			profileModal.setAttribute("aria-hidden", "true");
+			document.body.classList.remove("profile-modal-open");
+			window.setTimeout(() => {
+				if (!document.body.classList.contains("profile-modal-open")) {
+					profileModalBackdrop.hidden = true;
+				}
+			}, 220);
+		}
 
 		async function syncHeaderAuth() {
 			const { data: { session } } = await supabase.auth.getSession();
 
 			if (!session) {
-				memberChip.hidden = true;
-				signOutBtn.hidden = true;
+				if (profileLink) profileLink.hidden = true;
+				if (signOutBtn) signOutBtn.hidden = true;
 				return;
 			}
 
 			const { data: profile } = await supabase
 				.from("profiles")
-				.select("full_name")
+				.select("full_name, avatar_url")
 				.eq("id", session.user.id)
 				.maybeSingle();
 
@@ -706,18 +987,62 @@
 				profile?.full_name ||
 				session.user.user_metadata?.full_name ||
 				session.user.email?.split("@")[0] ||
-				"Member";
+				"User";
 
-			memberChip.textContent = `Hi, ${fullName.split(" ")[0]}`;
-			memberChip.hidden = false;
-			signOutBtn.hidden = false;
+			if (profileAvatar) {
+				if (profile?.avatar_url) {
+					profileAvatar.innerHTML = `<img src="${escapeHtml(profile.avatar_url)}" alt="${escapeHtml(fullName)}" />`;
+				} else {
+					profileAvatar.textContent = fullName.trim().charAt(0).toUpperCase() || "U";
+				}
+			}
+
+			if (profileLink) {
+				profileLink.hidden = false;
+				profileLink.href = "../home/profile.html";
+				profileLink.title = fullName;
+				profileLink.setAttribute("aria-label", `${fullName} profile`);
+			}
+
+			if (signOutBtn) signOutBtn.hidden = false;
 		}
 
-		signOutBtn.addEventListener("click", async () => {
-			signOutBtn.disabled = true;
-			await supabase.auth.signOut();
-			await syncHeaderAuth();
-			signOutBtn.disabled = false;
+		if (signOutBtn) {
+			signOutBtn.addEventListener("click", async () => {
+				signOutBtn.disabled = true;
+
+				const redirectToSignIn = () => window.location.replace("../login/signin.html");
+				const redirectFallback = window.setTimeout(redirectToSignIn, 120);
+
+				try {
+					await supabase.auth.signOut({ scope: "local" });
+				} finally {
+					window.clearTimeout(redirectFallback);
+					redirectToSignIn();
+				}
+			});
+		}
+
+		profileLink?.addEventListener("click", (event) => {
+			event.preventDefault();
+			openProfileModal();
+		});
+
+		profileModalClose?.addEventListener("click", closeProfileModal);
+		profileModalBackdrop?.addEventListener("click", closeProfileModal);
+
+		window.addEventListener("keydown", (event) => {
+			if (event.key === "Escape") closeProfileModal();
+		});
+
+		window.addEventListener("message", (event) => {
+			if (!event.data || typeof event.data !== "object") return;
+			if (event.data.type === "close-profile-drawer" || event.data.type === "close-profile-modal") {
+				closeProfileModal();
+			}
+			if (event.data.type === "profile-updated") {
+				syncHeaderAuth();
+			}
 		});
 
 		supabase.auth.onAuthStateChange(() => {
@@ -728,6 +1053,17 @@
 	</script>
 
 	<script>
+		const siteHeader = document.querySelector(".site-header");
+
+		window.addEventListener("scroll", () => {
+			if (!siteHeader) return;
+			if (window.scrollY > 50) {
+				siteHeader.classList.add("scrolled");
+			} else {
+				siteHeader.classList.remove("scrolled");
+			}
+		});
+
 		const menuToggle = document.getElementById("menuToggle");
 		const mobileNav = document.getElementById("mobileNav");
 

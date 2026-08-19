@@ -7,9 +7,7 @@ const nameInput = document.getElementById("profile-name");
 const emailInput = document.getElementById("profile-email");
 const groupInput = document.getElementById("profile-group");
 const errorEl = document.getElementById("profile-error");
-const signoutBtn = document.getElementById("signout-btn");
 const removeAvatarBtn = document.getElementById("remove-avatar-btn");
-const resetPasswordBtn = document.getElementById("reset-password-btn");
 const panelCloseBtn = document.getElementById("panel-close-btn");
 
 let currentSession = null;
@@ -213,39 +211,11 @@ removeAvatarBtn?.addEventListener("click", async () => {
   }
 });
 
-resetPasswordBtn?.addEventListener("click", async () => {
-  setError(errorEl, "");
-
-  const email = emailInput.value.trim();
-  if (!email) {
-    setError(errorEl, "No email found for this account.");
-    return;
-  }
-
-  const { error } = await supabase.auth.resetPasswordForEmail(email);
-  if (error) {
-    setError(errorEl, error.message || "Could not send password reset email.");
-    return;
-  }
-
-  showToast("Password reset email sent.");
-});
-
 panelCloseBtn?.addEventListener("click", () => {
   if (window.parent && window.parent !== window) {
     window.parent.postMessage({ type: "close-profile-drawer" }, "*");
+    window.parent.postMessage({ type: "close-profile-modal" }, "*");
   }
-});
-
-signoutBtn.addEventListener("click", async () => {
-  await supabase.auth.signOut();
-
-  if (window.parent && window.parent !== window) {
-    window.parent.postMessage({ type: "signed-out" }, "*");
-    return;
-  }
-
-  window.location.href = "../login/signin.html";
 });
 
 loadProfile();
