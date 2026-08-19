@@ -581,6 +581,139 @@
     .person strong { display: block; font-size: .86rem; }
     .person span { color: var(--muted); font-size: .74rem; }
 
+    /* ---------- MEMBER FEED ---------- */
+    .member-chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: #fffaf0;
+      border: 1px solid rgba(255,255,255,.20);
+      background: rgba(255,255,255,.08);
+      font-size: .8rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .engage-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .engage-card {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+    .engage-media {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #ddd4c3;
+    }
+    .engage-media img,
+    .engage-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .engage-body { padding: 18px; }
+    .engage-meta {
+      margin: 0;
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .engage-caption {
+      margin: 10px 0 14px;
+      color: #2f2b25;
+      font-size: .92rem;
+    }
+    .engage-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .like-btn {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-2);
+      padding: 8px 13px;
+      font-size: .82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+    .like-btn:hover { border-color: var(--gold-dark); }
+    .like-btn.is-liked {
+      color: #fff;
+      border-color: var(--ink);
+      background: var(--ink);
+    }
+    .comment-list {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .comment {
+      padding: 10px;
+      border-radius: 12px;
+      background: var(--paper-2);
+      border: 1px solid rgba(17,16,14,.06);
+      font-size: .83rem;
+    }
+    .comment small {
+      display: block;
+      color: var(--muted);
+      margin-top: 4px;
+      font-size: .72rem;
+    }
+    .comment-form {
+      display: grid;
+      gap: 8px;
+    }
+    .comment-form textarea {
+      resize: vertical;
+      min-height: 72px;
+      max-height: 180px;
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      font: inherit;
+      font-size: .85rem;
+      background: #fff;
+    }
+    .comment-form button {
+      justify-self: start;
+      min-height: 38px;
+      padding: 0 14px;
+      border: none;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--ink);
+      font-size: .8rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .comment-form button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+    .feed-status {
+      margin: 0;
+      padding: 14px 16px;
+      border-radius: 14px;
+      color: #5f5547;
+      background: var(--paper-2);
+      border: 1px dashed rgba(17,16,14,.15);
+      font-size: .9rem;
+    }
+
     /* ---------- CTA ---------- */
     .cta {
       padding: 55px;
@@ -650,6 +783,7 @@
       .events-grid .event-card:first-child { grid-column: 1 / -1; }
       .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
       .footer-about { grid-column: 1 / -1; }
+      .engage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 700px) {
@@ -659,6 +793,7 @@
       h1 { font-size: clamp(2.65rem, 14vw, 4rem); }
       .hero-proof { gap: 16px; }
       .path-grid, .story-grid, .events-grid { grid-template-columns: 1fr; }
+      .engage-grid { grid-template-columns: 1fr; }
       .events-grid .event-card:first-child { grid-column: auto; }
       .gallery {
         grid-template-columns: 1fr 1fr;
@@ -692,7 +827,7 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="home.html" aria-label="CTY Ministries home">
+      <a class="brand" href="homepage.html" aria-label="CTY Ministries home">
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 200 200" width="21" height="21">
             <g stroke="#FBF8F0" stroke-width="7" stroke-linecap="round">
@@ -712,16 +847,17 @@
       </a>
 
       <nav class="nav" aria-label="Main navigation">
-        <a class="active" href="home.html">Home</a>
-        <a href="../About/about.html">About</a>
+        <a class="active" href="homepage.html">Home</a>
+        <a href="../About/about2.html">About</a>
         <a href="../post/post.html">Messages</a>
         <a href="../communityevents/community.html">Events</a>
         <a href="../contacts/contacts.html">Contact</a>
       </nav>
 
       <div class="header-actions">
-        <a class="button button-ghost" href="../About/about.html">Our Story</a>
-        <a class="button button-primary" href="../communityevents/community.html">Join Us</a>
+        <span class="member-chip" id="member-chip">Signed in</span>
+        <a class="button button-ghost" href="../About/about2.html">Our Story</a>
+        <button class="button button-primary" id="signout-btn" type="button">Sign out</button>
         <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
           ☰
         </button>
@@ -729,8 +865,8 @@
     </div>
 
     <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-      <a href="home.html">Home</a>
-      <a href="../About/about.html">About</a>
+      <a href="homepage.html">Home</a>
+      <a href="../About/about2.html">About</a>
       <a href="../post/post.html">Messages</a>
       <a href="../communityevents/community.html">Events</a>
       <a href="../contacts/contacts.html">Contact</a>
@@ -967,6 +1103,20 @@
       </div>
     </section>
 
+    <section class="section alt" id="member-feed">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">Members interaction</p>
+          <h2>Like and comment on what God is doing.</h2>
+          <p>Signed-in members can encourage one another by liking posts and leaving comments.</p>
+        </div>
+
+        <div class="engage-grid" id="member-feed-grid">
+          <p class="feed-status">Loading posts for interaction...</p>
+        </div>
+      </div>
+    </section>
+
     <section class="container" aria-label="Call to action">
       <div class="cta">
         <div>
@@ -983,7 +1133,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-about">
-          <a class="brand" href="home.html">
+          <a class="brand" href="homepage.html">
             <span class="brand-mark" aria-hidden="true">✝</span>
             <span>CTY <em>Ministries</em></span>
           </a>
@@ -992,7 +1142,7 @@
 
         <div class="footer-col">
           <p class="footer-title">Explore</p>
-          <a href="../About/about.html">About CTY</a>
+          <a href="../About/about2.html">About CTY</a>
           <a href="../post/post.html">Messages</a>
           <a href="../communityevents/community.html">Events</a>
           <a href="../contacts/contacts.html">Contact</a>
@@ -1022,6 +1172,7 @@
     </div>
   </footer>
 
+  <script type="module" src="homepage.js"></script>
   <script>
     const menuToggle = document.getElementById("menuToggle");
     const mobileNav = document.getElementById("mobileNav");

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="About CTY Ministries — one Christ-centered family for children, teens and youth." />
+	<meta name="theme-color" content="#11100e" />
+	<title>About CTY Ministries | Belong. Grow. Serve. Shine.</title>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+
+	<style>
+		:root {
+			--ink: #11100e;
+			--ink-2: #1b1916;
+			--paper: #fbf8f0;
+			--paper-2: #f3ecdd;
+			--white: #fff;
+			--gold: #d2a238;
+			--gold-dark: #9a741e;
+			--gold-soft: #ead8a9;
+			--muted: #716c61;
+			--line: rgba(17, 16, 14, .11);
+			--shadow: 0 24px 70px rgba(17, 16, 14, .13);
+			--shadow-sm: 0 10px 28px rgba(17, 16, 14, .08);
+			--serif: "Playfair Display", Georgia, serif;
+			--sans: "DM Sans", system-ui, sans-serif;
+			--radius: 24px;
+			--container: 1180px;
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body {
+			margin: 0;
+			color: var(--ink);
+			background: var(--paper);
+			font-family: var(--sans);
+			line-height: 1.6;
+			-webkit-font-smoothing: antialiased;
+		}
+		body.menu-open { overflow: hidden; }
+
+		a { color: inherit; text-decoration: none; }
+		img { max-width: 100%; display: block; }
+		:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+
+		.container {
+			width: min(var(--container), calc(100% - 40px));
+			margin-inline: auto;
+		}
+
+		.site-header {
+			position: sticky;
+			top: 0;
+			z-index: 1000;
+			background: rgba(17,16,14,.94);
+			backdrop-filter: blur(18px);
+			border-bottom: 1px solid rgba(255,255,255,.08);
+		}
+		.header-inner {
+			min-height: 76px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 24px;
+		}
+		.brand {
+			display: inline-flex;
+			align-items: center;
+			gap: 11px;
+			color: #fffaf0;
+			font-family: var(--serif);
+			font-size: 1.15rem;
+			font-weight: 700;
+			white-space: nowrap;
+		}
+		.brand em { color: var(--gold-soft); font-style: normal; font-weight: 500; }
+		.brand-mark {
+			width: 40px;
+			height: 40px;
+			display: grid;
+			place-items: center;
+			border-radius: 13px;
+			background: linear-gradient(135deg, var(--gold), #8c6618);
+			box-shadow: 0 12px 28px rgba(210,162,56,.28);
+		}
+
+		.nav {
+			display: flex;
+			align-items: center;
+			gap: 27px;
+			color: rgba(255,250,240,.72);
+			font-size: .9rem;
+			font-weight: 600;
+		}
+		.nav a {
+			padding: 7px 0;
+			border-bottom: 2px solid transparent;
+			transition: .2s ease;
+		}
+		.nav a:hover,
+		.nav a.active {
+			color: #fff;
+			border-color: var(--gold);
+		}
+
+		.header-actions { display: flex; align-items: center; gap: 10px; }
+		.member-chip {
+			padding: 10px 14px;
+			border-radius: 999px;
+			color: #fffaf0;
+			border: 1px solid rgba(255,255,255,.20);
+			background: rgba(255,255,255,.08);
+			font-size: .8rem;
+			font-weight: 700;
+			white-space: nowrap;
+		}
+		.button {
+			min-height: 46px;
+			padding: 0 19px;
+			border-radius: 999px;
+			border: 1px solid transparent;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			font-size: .88rem;
+			font-weight: 700;
+			cursor: pointer;
+			transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+		}
+		.button:hover { transform: translateY(-2px); }
+		.button-primary {
+			color: var(--ink);
+			background: linear-gradient(135deg, #e2b957, var(--gold));
+			box-shadow: 0 13px 30px rgba(210,162,56,.22);
+		}
+		.button-ghost {
+			color: #fffaf0;
+			border-color: rgba(255,255,255,.24);
+			background: rgba(255,255,255,.05);
+		}
+
+		.menu-toggle {
+			display: none;
+			width: 44px;
+			height: 44px;
+			border: 1px solid rgba(255,255,255,.16);
+			border-radius: 12px;
+			background: transparent;
+			color: #fff;
+			cursor: pointer;
+		}
+		.mobile-nav {
+			display: none;
+			padding: 0 20px 20px;
+		}
+		.mobile-nav a {
+			display: block;
+			padding: 13px 0;
+			color: #fffaf0;
+			border-bottom: 1px solid rgba(255,255,255,.08);
+			font-weight: 600;
+		}
+
+		.hero {
+			position: relative;
+			overflow: hidden;
+			padding: 88px 0 80px;
+			color: #fffaf0;
+			background:
+				radial-gradient(circle at 78% 12%, rgba(210,162,56,.22), transparent 27%),
+				radial-gradient(circle at 5% 85%, rgba(113,132,92,.15), transparent 30%),
+				var(--ink);
+		}
+		.hero::after {
+			content: "";
+			position: absolute;
+			inset: auto 0 0;
+			height: 1px;
+			background: linear-gradient(90deg, transparent, rgba(210,162,56,.7), transparent);
+		}
+		.hero-grid {
+			position: relative;
+			z-index: 1;
+			display: grid;
+			grid-template-columns: 1.1fr .9fr;
+			gap: 58px;
+			align-items: center;
+		}
+		.eyebrow {
+			display: inline-flex;
+			align-items: center;
+			gap: 9px;
+			color: var(--gold-soft);
+			font-size: .74rem;
+			font-weight: 800;
+			letter-spacing: .14em;
+			text-transform: uppercase;
+		}
+		.eyebrow::before {
+			content: "";
+			width: 26px;
+			height: 1px;
+			background: var(--gold);
+		}
+		h1, h2, h3, h4 {
+			font-family: var(--serif);
+			line-height: 1.1;
+		}
+		h1 {
+			margin: 20px 0 18px;
+			font-size: clamp(2.8rem, 6vw, 5.1rem);
+			letter-spacing: -.045em;
+			font-weight: 600;
+		}
+		.hero-copy p {
+			margin: 0;
+			color: rgba(255,250,240,.72);
+			font-size: 1.03rem;
+			line-height: 1.8;
+		}
+		.hero-card {
+			padding: 28px;
+			border: 1px solid rgba(255,255,255,.14);
+			border-radius: 26px;
+			background: rgba(255,255,255,.05);
+			box-shadow: var(--shadow);
+		}
+		.hero-card p {
+			margin: 0;
+			color: rgba(255,250,240,.74);
+			font-size: .95rem;
+			line-height: 1.8;
+		}
+
+		.section { padding: 88px 0; }
+		.section.alt { background: var(--paper-2); }
+		.section-head { max-width: 760px; margin-bottom: 34px; }
+		.section-kicker {
+			margin: 0 0 10px;
+			color: var(--gold-dark);
+			font-size: .74rem;
+			font-weight: 800;
+			letter-spacing: .14em;
+			text-transform: uppercase;
+		}
+		.section h2 {
+			margin: 0 0 14px;
+			font-size: clamp(2.1rem, 3.8vw, 3.25rem);
+			letter-spacing: -.035em;
+		}
+		.section-head p { margin: 0; color: var(--muted); }
+
+		.story-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 18px;
+		}
+		.story-card {
+			padding: 28px;
+			border-radius: var(--radius);
+			background: var(--white);
+			border: 1px solid var(--line);
+			box-shadow: var(--shadow-sm);
+		}
+		.story-card p { margin: 0; color: #39352f; line-height: 1.8; }
+
+		.pillar-grid {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 18px;
+		}
+		.pillar-card {
+			position: relative;
+			overflow: hidden;
+			padding: 28px;
+			border-radius: var(--radius);
+			background: var(--white);
+			border: 1px solid var(--line);
+			box-shadow: var(--shadow-sm);
+		}
+		.pillar-card h3 { margin: 0 0 10px; font-size: 1.5rem; }
+		.pillar-card p { margin: 0; color: var(--muted); font-size: .93rem; }
+
+		.symbol-wrap {
+			display: grid;
+			grid-template-columns: .9fr 1.1fr;
+			gap: 28px;
+			align-items: start;
+		}
+		.symbol-panel {
+			padding: 34px;
+			border-radius: 30px;
+			background: var(--ink);
+			box-shadow: var(--shadow);
+			display: grid;
+			place-items: center;
+		}
+		.symbol-list {
+			display: grid;
+			gap: 12px;
+		}
+		.symbol-item {
+			padding: 18px 20px;
+			border-radius: 16px;
+			background: #fff;
+			border: 1px solid var(--line);
+		}
+		.symbol-item h4 { margin: 0 0 6px; font-size: 1.18rem; }
+		.symbol-item p { margin: 0; color: var(--muted); font-size: .9rem; }
+
+		.leaders-grid {
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			gap: 16px;
+		}
+		.leader-card {
+			padding: 22px;
+			border-radius: 20px;
+			border: 1px solid var(--line);
+			background: var(--white);
+			box-shadow: var(--shadow-sm);
+			text-align: center;
+		}
+		.leader-photo {
+			width: 84px;
+			height: 84px;
+			margin: 0 auto 14px;
+			border-radius: 50%;
+			background: linear-gradient(145deg, var(--paper-2), #e0d3b8);
+			border: 2px solid #fff;
+			box-shadow: 0 8px 18px rgba(17,16,14,.12);
+		}
+		.leader-card h4 { margin: 0 0 4px; font-size: 1.1rem; }
+		.leader-card p { margin: 0; color: var(--muted); font-size: .85rem; }
+
+		.cta {
+			padding: 55px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 30px;
+			border-radius: 30px;
+			color: #fffaf0;
+			background:
+				radial-gradient(circle at 85% 10%, rgba(210,162,56,.24), transparent 28%),
+				var(--ink);
+			box-shadow: var(--shadow);
+		}
+		.cta .section-kicker { color: var(--gold-soft); }
+		.cta h2 { margin: 0 0 10px; }
+		.cta p { max-width: 620px; margin: 0; color: rgba(255,250,240,.62); }
+
+		footer {
+			margin-top: 92px;
+			padding: 65px 0 25px;
+			color: rgba(255,250,240,.72);
+			background: var(--ink-2);
+		}
+		.footer-grid {
+			display: grid;
+			grid-template-columns: 1.5fr 1fr 1fr 1fr;
+			gap: 40px;
+			padding-bottom: 42px;
+			border-bottom: 1px solid rgba(255,255,255,.09);
+		}
+		.footer-about p {
+			max-width: 330px;
+			color: rgba(255,250,240,.48);
+			font-size: .85rem;
+		}
+		.footer-title {
+			margin: 0 0 15px;
+			color: var(--gold-soft);
+			font-size: .72rem;
+			font-weight: 800;
+			letter-spacing: .12em;
+			text-transform: uppercase;
+		}
+		.footer-col { display: grid; align-content: start; gap: 9px; }
+		.footer-col a { font-size: .84rem; transition: color .2s ease; }
+		.footer-col a:hover { color: #fff; }
+		.footer-bottom {
+			display: flex;
+			justify-content: space-between;
+			gap: 20px;
+			padding-top: 22px;
+			color: rgba(255,250,240,.38);
+			font-size: .74rem;
+		}
+
+		@media (max-width: 980px) {
+			.nav, .header-actions .button-ghost { display: none; }
+			.menu-toggle { display: block; }
+			.mobile-nav.is-open { display: block; }
+			.hero-grid, .symbol-wrap { grid-template-columns: 1fr; }
+			.story-grid { grid-template-columns: 1fr; }
+			.pillar-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+			.leaders-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+			.footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+			.footer-about { grid-column: 1 / -1; }
+		}
+		@media (max-width: 700px) {
+			.container { width: min(var(--container), calc(100% - 28px)); }
+			.header-inner { min-height: 68px; }
+			h1 { font-size: clamp(2.5rem, 13vw, 3.8rem); }
+			.pillar-grid, .leaders-grid { grid-template-columns: 1fr; }
+			.cta { align-items: flex-start; flex-direction: column; padding: 34px 24px; }
+			.footer-grid { grid-template-columns: 1fr 1fr; }
+			.footer-about { grid-column: 1 / -1; }
+			.footer-bottom { flex-direction: column; }
+		}
+	</style>
+</head>
+
+<body>
+	<header class="site-header">
+		<div class="container header-inner">
+			<a class="brand" href="../home/homepage.html" aria-label="CTY Ministries home">
+				<span class="brand-mark" aria-hidden="true">
+					<svg viewBox="0 0 200 200" width="21" height="21">
+						<g stroke="#FBF8F0" stroke-width="7" stroke-linecap="round">
+							<line x1="100" y1="34" x2="100" y2="4"/>
+							<line x1="151" y1="64" x2="176" y2="47"/>
+							<line x1="159" y1="93" x2="188" y2="93"/>
+							<line x1="151" y1="122" x2="176" y2="139"/>
+							<line x1="49" y1="122" x2="24" y2="139"/>
+							<line x1="41" y1="93" x2="12" y2="93"/>
+							<line x1="49" y1="64" x2="24" y2="47"/>
+						</g>
+						<rect x="91" y="55" width="18" height="84" fill="#FBF8F0"/>
+						<rect x="69" y="83" width="62" height="18" fill="#FBF8F0"/>
+					</svg>
+				</span>
+				<span>CTY <em>Ministries</em></span>
+			</a>
+
+			<nav class="nav" aria-label="Main navigation">
+				<a href="../home/homepage.html">Home</a>
+				<a class="active" href="about2.html">About</a>
+				<a href="../post/post.html">Messages</a>
+				<a href="../communityevents/community.html">Events</a>
+				<a href="../contacts/contacts.html">Contact</a>
+			</nav>
+
+			<div class="header-actions">
+				<span class="member-chip" id="member-chip" hidden>Signed in</span>
+				<button class="button button-primary" id="signout-btn" type="button" hidden>Sign out</button>
+				<button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
+			</div>
+		</div>
+
+		<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+			<a href="../home/homepage.html">Home</a>
+			<a href="about2.html">About</a>
+			<a href="../post/post.html">Messages</a>
+			<a href="../communityevents/community.html">Events</a>
+			<a href="../contacts/contacts.html">Contact</a>
+		</nav>
+	</header>
+
+	<main>
+		<section class="hero">
+			<div class="container hero-grid">
+				<div class="hero-copy">
+					<span class="eyebrow">Our Story</span>
+					<h1>About CTY Ministries</h1>
+					<p>
+						CTY stands for Children, Teens, and Youth — a ministry built to give every generation,
+						from the youngest child to the young adult stepping into leadership, a place to belong.
+						Through fellowship, shared testimonies, and honest conversation, we exist to build one
+						community that faces life's challenges together and motivates each generation to carry the faith forward.
+					</p>
+				</div>
+				<aside class="hero-card" aria-label="Our heartbeat">
+					<p>
+						What started as a simple idea — bringing children, teens, and youth together under one roof
+						instead of three separate, disconnected programs — has grown into a movement built on a single conviction:
+						no generation should walk their faith journey alone.
+					</p>
+				</aside>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<div class="section-head">
+					<p class="section-kicker">Why We Exist</p>
+					<h2>One Family, One Journey</h2>
+					<p>
+						We believe community is formed in the ordinary moments as much as the big ones — in shared meals,
+						late-night conversations, cake after service, and showing up for each other through both celebration and hardship.
+						CTY exists to hold space for all of it.
+					</p>
+				</div>
+
+				<div class="story-grid">
+					<article class="story-card">
+						<p>
+							What started as a simple idea — bringing children, teens, and youth together under one roof instead of three
+							separate, disconnected programs — has grown into a movement built on a single conviction: no generation
+							should walk their faith journey alone.
+						</p>
+					</article>
+					<article class="story-card">
+						<p>
+							Community is not a side activity at CTY; it is the method and message. Every generation is invited to grow,
+							be known, and move forward in faith with people who will walk the journey together.
+						</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="section alt">
+			<div class="container">
+				<div class="section-head">
+					<p class="section-kicker">Our Pillars</p>
+					<h2>Community. Testimony. Motivation.</h2>
+					<p>The values that shape how we gather, lead, and serve across every age group.</p>
+				</div>
+
+				<div class="pillar-grid">
+					<article class="pillar-card">
+						<h3>Community</h3>
+						<p>One family across Children, Teens, and Youth — no one ministry stands apart from the others.</p>
+					</article>
+					<article class="pillar-card">
+						<h3>Testimony</h3>
+						<p>Real stories that build real faith. We believe in the power of a life changed, spoken out loud.</p>
+					</article>
+					<article class="pillar-card">
+						<h3>Motivation</h3>
+						<p>Each generation lifting the next — mentorship is not a program here, it is the culture.</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<div class="section-head">
+					<p class="section-kicker">Symbol Meaning</p>
+					<h2>What The CTY Mark Represents</h2>
+				</div>
+
+				<div class="symbol-wrap">
+					<div class="symbol-panel">
+						<svg viewBox="0 0 200 200" width="190" height="190" aria-hidden="true">
+							<g stroke="#F7F1E4" stroke-width="2.4" stroke-linecap="round">
+								<line x1="100" y1="34" x2="100" y2="4"/>
+								<line x1="129" y1="42" x2="146" y2="17"/>
+								<line x1="151" y1="64" x2="176" y2="47"/>
+								<line x1="159" y1="93" x2="188" y2="93"/>
+								<line x1="151" y1="122" x2="176" y2="139"/>
+								<line x1="129" y1="144" x2="146" y2="169"/>
+								<line x1="71" y1="144" x2="54" y2="169"/>
+								<line x1="49" y1="122" x2="24" y2="139"/>
+								<line x1="41" y1="93" x2="12" y2="93"/>
+								<line x1="49" y1="64" x2="24" y2="47"/>
+								<line x1="71" y1="42" x2="54" y2="17"/>
+							</g>
+							<rect x="91" y="55" width="18" height="84" fill="#F7F1E4"/>
+							<rect x="69" y="83" width="62" height="18" fill="#F7F1E4"/>
+							<g fill="#C9971E">
+								<path d="M139 44l3.4 8.6 9.2.6-7 6 2.2 9-7.8-5-7.8 5 2.2-9-7-6 9.2-.6z" transform="scale(0.55) translate(115,10)"/>
+								<path d="M139 44l3.4 8.6 9.2.6-7 6 2.2 9-7.8-5-7.8 5 2.2-9-7-6 9.2-.6z" transform="scale(0.42) translate(190,60)"/>
+								<path d="M139 44l3.4 8.6 9.2.6-7 6 2.2 9-7.8-5-7.8 5 2.2-9-7-6 9.2-.6z" transform="scale(0.65) translate(90,-6)"/>
+							</g>
+						</svg>
+					</div>
+
+					<div class="symbol-list">
+						<article class="symbol-item">
+							<h4>The Cross</h4>
+							<p>The center of everything CTY does — faith is the foundation, not an accessory.</p>
+						</article>
+						<article class="symbol-item">
+							<h4>The Radiating Light</h4>
+							<p>Light shining outward in every direction — the Gospel reaching every generation, wherever they are.</p>
+						</article>
+						<article class="symbol-item">
+							<h4>The Stars</h4>
+							<p>A small constellation guiding the way — leaders and mentors lighting the path for those coming behind them.</p>
+						</article>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section alt" id="leaders">
+			<div class="container">
+				<div class="section-head">
+					<p class="section-kicker">Who Leads Us</p>
+					<h2>Our Leaders</h2>
+				</div>
+
+				<div class="leaders-grid">
+					<article class="leader-card">
+						<div class="leader-photo" aria-hidden="true"></div>
+						<h4>Leader Name</h4>
+						<p>Children's Ministry</p>
+					</article>
+					<article class="leader-card">
+						<div class="leader-photo" aria-hidden="true"></div>
+						<h4>Leader Name</h4>
+						<p>Teens Ministry</p>
+					</article>
+					<article class="leader-card">
+						<div class="leader-photo" aria-hidden="true"></div>
+						<h4>Leader Name</h4>
+						<p>Youth Ministry</p>
+					</article>
+					<article class="leader-card">
+						<div class="leader-photo" aria-hidden="true"></div>
+						<h4>Leader Name</h4>
+						<p>CTY Overseer</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="container" aria-label="Call to action">
+			<div class="cta">
+				<div>
+					<p class="section-kicker">Your next step</p>
+					<h2>Come as you are. Grow from here.</h2>
+					<p>
+						You do not have to figure out your faith journey alone. Find a gathering,
+						meet the family and take your next step.
+					</p>
+				</div>
+				<a class="button button-primary" href="../communityevents/community.html">Plan Your Visit</a>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="container">
+			<div class="footer-grid">
+				<div class="footer-about">
+					<a class="brand" href="../home/homepage.html">
+						<span class="brand-mark" aria-hidden="true">✝</span>
+						<span>CTY <em>Ministries</em></span>
+					</a>
+					<p>Children · Teens · Youth — a Christ-centered community growing together and shining for Jesus.</p>
+				</div>
+
+				<div class="footer-col">
+					<p class="footer-title">Explore</p>
+					<a href="about2.html">About CTY</a>
+					<a href="../post/post.html">Messages</a>
+					<a href="../communityevents/community.html">Events</a>
+					<a href="../contacts/contacts.html">Contact</a>
+				</div>
+
+				<div class="footer-col">
+					<p class="footer-title">Get involved</p>
+					<a href="../communityevents/community.html">Join a Group</a>
+					<a href="../communityevents/community.html">Volunteer</a>
+					<a href="../communityevents/community.html">Serve</a>
+					<a href="../contacts/contacts.html">Plan Your Visit</a>
+				</div>
+
+				<div class="footer-col">
+					<p class="footer-title">Connect</p>
+					<a href="#" aria-label="CTY on Instagram">Instagram</a>
+					<a href="#" aria-label="CTY on Facebook">Facebook</a>
+					<a href="#" aria-label="CTY on TikTok">TikTok</a>
+					<a href="#" aria-label="CTY on YouTube">YouTube</a>
+				</div>
+			</div>
+
+			<div class="footer-bottom">
+				<span>© <span id="year"></span> CTY Ministries. All rights reserved.</span>
+				<span>Built to serve the next generation.</span>
+			</div>
+		</div>
+	</footer>
+
+	<script type="module">
+		import { supabase } from "../Javascript files/supabaseclient.js";
+
+		const memberChip = document.getElementById("member-chip");
+		const signOutBtn = document.getElementById("signout-btn");
+
+		async function syncHeaderAuth() {
+			const { data: { session } } = await supabase.auth.getSession();
+
+			if (!session) {
+				memberChip.hidden = true;
+				signOutBtn.hidden = true;
+				return;
+			}
+
+			const { data: profile } = await supabase
+				.from("profiles")
+				.select("full_name")
+				.eq("id", session.user.id)
+				.maybeSingle();
+
+			const fullName =
+				profile?.full_name ||
+				session.user.user_metadata?.full_name ||
+				session.user.email?.split("@")[0] ||
+				"Member";
+
+			memberChip.textContent = `Hi, ${fullName.split(" ")[0]}`;
+			memberChip.hidden = false;
+			signOutBtn.hidden = false;
+		}
+
+		signOutBtn.addEventListener("click", async () => {
+			signOutBtn.disabled = true;
+			await supabase.auth.signOut();
+			await syncHeaderAuth();
+			signOutBtn.disabled = false;
+		});
+
+		supabase.auth.onAuthStateChange(() => {
+			syncHeaderAuth();
+		});
+
+		syncHeaderAuth();
+	</script>
+
+	<script>
+		const menuToggle = document.getElementById("menuToggle");
+		const mobileNav = document.getElementById("mobileNav");
+
+		menuToggle.addEventListener("click", () => {
+			const isOpen = mobileNav.classList.toggle("is-open");
+			menuToggle.setAttribute("aria-expanded", String(isOpen));
+			menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+			document.body.classList.toggle("menu-open", isOpen);
+		});
+
+		mobileNav.querySelectorAll("a").forEach((link) => {
+			link.addEventListener("click", () => {
+				mobileNav.classList.remove("is-open");
+				menuToggle.setAttribute("aria-expanded", "false");
+				menuToggle.setAttribute("aria-label", "Open menu");
+				document.body.classList.remove("menu-open");
+			});
+		});
+
+		document.getElementById("year").textContent = new Date().getFullYear();
+	</script>
+</body>
+</html>

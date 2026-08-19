@@ -6,7 +6,7 @@ const errorEl = document.getElementById("signin-error");
 // If they're already signed in, don't make them log in again.
 (async () => {
   const { data: { session } } = await supabase.auth.getSession();
-  if (session) window.location.href = "../home/home.html";
+  if (session) window.location.href = "../home/homepage.html";
 })();
 
 form.addEventListener("submit", async (e) => {
@@ -31,7 +31,7 @@ form.addEventListener("submit", async (e) => {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) throw error;
     showToast("Welcome back! Redirecting…");
-    setTimeout(() => { window.location.href = "../home/home.html"; }, 700);
+    setTimeout(() => { window.location.href = "../home/homepage.html"; }, 700);
   } catch (err) {
     setError(errorEl, friendlyError(err));
   } finally {

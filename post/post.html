@@ -1,152 +1,846 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Posts — CTY Ministries</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../home/home.css" />
-<link rel="stylesheet" href="../styles/admincontrols.css"/>
-<link rel="stylesheet" href="../styles/pages.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CTY community feed in an Instagram-style format with photo moments, likes, and comments." />
+  <meta name="theme-color" content="#11100e" />
+  <title>Messages | CTY Ministries</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink: #11100e;
+      --ink-2: #1b1916;
+      --paper: #fbf8f0;
+      --paper-2: #f3ecdd;
+      --white: #fff;
+      --gold: #d2a238;
+      --gold-dark: #9a741e;
+      --gold-soft: #ead8a9;
+      --muted: #716c61;
+      --line: rgba(17, 16, 14, .11);
+      --shadow: 0 24px 70px rgba(17, 16, 14, .13);
+      --shadow-sm: 0 10px 28px rgba(17, 16, 14, .08);
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", system-ui, sans-serif;
+      --radius: 24px;
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    body.menu-open { overflow: hidden; }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(17,16,14,.94);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .header-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: #fffaf0;
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .brand em { color: var(--gold-soft); font-style: normal; font-weight: 500; }
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--gold), #8c6618);
+      box-shadow: 0 12px 28px rgba(210,162,56,.28);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      color: rgba(255,250,240,.72);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+    .nav a {
+      padding: 7px 0;
+      border-bottom: 2px solid transparent;
+      transition: .2s ease;
+    }
+    .nav a:hover,
+    .nav a.active {
+      color: #fff;
+      border-color: var(--gold);
+    }
+
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .member-chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: #fffaf0;
+      border: 1px solid rgba(255,255,255,.20);
+      background: rgba(255,255,255,.08);
+      font-size: .8rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .button {
+      min-height: 46px;
+      padding: 0 19px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary {
+      color: var(--ink);
+      background: linear-gradient(135deg, #e2b957, var(--gold));
+      box-shadow: 0 13px 30px rgba(210,162,56,.22);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 12px;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+    }
+    .mobile-nav {
+      display: none;
+      padding: 0 20px 20px;
+    }
+    .mobile-nav a {
+      display: block;
+      padding: 13px 0;
+      color: #fffaf0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      font-weight: 600;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 86px 0 72px;
+      color: #fffaf0;
+      background:
+        radial-gradient(circle at 78% 12%, rgba(210,162,56,.22), transparent 27%),
+        radial-gradient(circle at 5% 85%, rgba(113,132,92,.15), transparent 30%),
+        var(--ink);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(210,162,56,.7), transparent);
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 58px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--gold-soft);
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 1px;
+      background: var(--gold);
+    }
+    h1, h2, h3 {
+      font-family: var(--serif);
+      line-height: 1.1;
+    }
+    h1 {
+      margin: 20px 0 18px;
+      font-size: clamp(2.8rem, 6vw, 5.1rem);
+      letter-spacing: -.045em;
+      font-weight: 600;
+    }
+    .hero-copy p {
+      margin: 0;
+      color: rgba(255,250,240,.72);
+      font-size: 1.03rem;
+      line-height: 1.8;
+    }
+    .hero-card {
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 26px;
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow);
+    }
+    .hero-card p {
+      margin: 0;
+      color: rgba(255,250,240,.74);
+      font-size: .95rem;
+      line-height: 1.8;
+    }
+
+    .section { padding: 80px 0; }
+    .section-head {
+      max-width: 760px;
+      margin: 0 auto 26px;
+      text-align: center;
+    }
+    .section-kicker {
+      margin: 0 0 10px;
+      color: var(--gold-dark);
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 3.6vw, 3rem);
+      letter-spacing: -.035em;
+    }
+    .section-head p { margin: 0; color: var(--muted); }
+
+    .ig-feed {
+      display: grid;
+      gap: 20px;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+    .ig-card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .ig-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(17,16,14,.08);
+    }
+    .ig-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #e7d4a8, #c8961f);
+      color: #2e2413;
+      display: grid;
+      place-items: center;
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .ig-user strong {
+      display: block;
+      font-size: .9rem;
+      line-height: 1.2;
+    }
+    .ig-user span {
+      display: block;
+      color: var(--muted);
+      font-size: .75rem;
+      line-height: 1.2;
+    }
+    .ig-time {
+      color: var(--muted);
+      font-size: .74rem;
+      font-weight: 700;
+    }
+
+    .ig-photo {
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: var(--paper-2);
+    }
+    .ig-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .ig-body { padding: 14px 16px 16px; }
+    .ig-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .ig-btn {
+      min-height: 34px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink-2);
+      background: var(--paper);
+      font-size: .8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+    .ig-btn:hover { border-color: var(--gold-dark); }
+    .ig-btn.liked {
+      color: #fff;
+      background: var(--ink);
+      border-color: var(--ink);
+    }
+    .ig-stats {
+      margin: 0 0 8px;
+      font-size: .84rem;
+      font-weight: 700;
+      color: #2f2b25;
+    }
+    .ig-caption {
+      margin: 0 0 10px;
+      color: #3a352e;
+      font-size: .88rem;
+      line-height: 1.65;
+    }
+
+    .ig-comments {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .ig-comments li {
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: var(--paper-2);
+      font-size: .8rem;
+      line-height: 1.45;
+      color: #3f372f;
+    }
+    .ig-comments li strong { color: #1f1b17; }
+
+    .comment-form {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: center;
+    }
+    .comment-form input {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0 12px;
+      font: inherit;
+      font-size: .84rem;
+      color: var(--ink);
+      background: #fff;
+    }
+    .comment-form button {
+      min-height: 38px;
+      border: none;
+      border-radius: 999px;
+      padding: 0 13px;
+      color: #fff;
+      background: var(--ink);
+      font-size: .78rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .cta {
+      margin-top: 80px;
+      padding: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      border-radius: 30px;
+      color: #fffaf0;
+      background:
+        radial-gradient(circle at 85% 10%, rgba(210,162,56,.24), transparent 28%),
+        var(--ink);
+      box-shadow: var(--shadow);
+    }
+    .cta .section-kicker { color: var(--gold-soft); }
+    .cta h2 { margin: 0 0 10px; }
+    .cta p { max-width: 600px; margin: 0; color: rgba(255,250,240,.62); }
+
+    footer {
+      margin-top: 92px;
+      padding: 65px 0 25px;
+      color: rgba(255,250,240,.72);
+      background: var(--ink-2);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 42px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+    }
+    .footer-about p {
+      max-width: 330px;
+      color: rgba(255,250,240,.48);
+      font-size: .85rem;
+    }
+    .footer-title {
+      margin: 0 0 15px;
+      color: var(--gold-soft);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .footer-col { display: grid; align-content: start; gap: 9px; }
+    .footer-col a { font-size: .84rem; transition: color .2s ease; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 22px;
+      color: rgba(255,250,240,.38);
+      font-size: .74rem;
+    }
+
+    @media (max-width: 980px) {
+      .nav { display: none; }
+      .menu-toggle { display: block; }
+      .mobile-nav.is-open { display: block; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+      .footer-about { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 700px) {
+      .container { width: min(var(--container), calc(100% - 28px)); }
+      .header-inner { min-height: 68px; }
+      h1 { font-size: clamp(2.45rem, 13vw, 3.75rem); }
+      .ig-card { border-radius: 16px; }
+      .cta { align-items: flex-start; flex-direction: column; padding: 32px 24px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-about { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; }
+    }
+  </style>
 </head>
+
 <body>
-
-<header class="site-header">
-    <a href="../home/home.html" class="brand-lockup">
-      <svg viewBox="0 0 200 200" width="34" height="34" aria-hidden="true">
-        <g stroke="#F7F1E4" stroke-width="4" stroke-linecap="round">
-          <line x1="100" y1="34" x2="100" y2="4"/>
-          <line x1="151" y1="64" x2="176" y2="47"/>
-          <line x1="159" y1="93" x2="188" y2="93"/>
-          <line x1="151" y1="122" x2="176" y2="139"/>
-          <line x1="49" y1="122" x2="24" y2="139"/>
-          <line x1="41" y1="93" x2="12" y2="93"/>
-          <line x1="49" y1="64" x2="24" y2="47"/>
-        </g>
-        <rect x="91" y="55" width="18" height="84" fill="#F7F1E4"/>
-        <rect x="69" y="83" width="62" height="18" fill="#F7F1E4"/>
-      </svg>
-      <span>CTY <em>Ministries</em></span>
-    </a>
-
-    <nav class="main-nav" id="main-nav">
-      <a href="../home/home.html" class="">Home</a>
-      <a href="../About/about.html" class="">About</a>
-      <a href="../post/post.html" class="is-active">Posts</a>
-      <a href="../communityevents/community.html" class="">Community Events</a>
-      <a href="../contacts/contacts.html" class="">Contacts</a>
-    </nav>
-
-    <div class="header-actions">
-      <a href="#" id="admin-link" class="admin-pill" hidden>
-        <span class="dot"></span> Admin
-      </a>
-      <a href="../home/profile.html" class="profile-pill" id="profile-link" hidden aria-label="Profile">
-        <span class="profile-avatar" id="profile-avatar">U</span>
-        <span id="profile-name" class="sr-only">Profile</span>
-      </a>
-      <a href="../login/signin.html" class="btn-ghost" id="signin-link">Sign in</a>
-    </div>
-
-    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </header>
-
-  <section class="page-hero">
-    <p class="eyebrow">The Feed</p>
-    <h1>Posts</h1>
-    <p>Photos, videos, and testimonies shared by the CTY community — every moment worth remembering, in one place.</p>
-  </section>
-
-  <div class="posts-toolbar">
-    <div class="filter-tabs" id="filter-tabs">
-      <button class="filter-tab is-active" data-filter="all">All</button>
-      <button class="filter-tab" data-filter="photo">Photos</button>
-      <button class="filter-tab" data-filter="video">Videos</button>
-      <button class="filter-tab" data-filter="testimony">Testimonies</button>
-    </div>
-  </div>
-
-  <div class="posts-grid" id="posts-grid">
-    <div class="post-card skeleton"></div>
-    <div class="post-card skeleton"></div>
-    <div class="post-card skeleton"></div>
-    <div class="post-card skeleton"></div>
-    <div class="post-card skeleton"></div>
-    <div class="post-card skeleton"></div>
-  </div>
-
-  <div class="load-more-wrap">
-    <button class="btn-outline" id="load-more-btn">Load more</button>
-  </div>
-
-<footer class="site-footer">
-    <span class="footer-watermark" aria-hidden="true">FRIENDS OF CTY</span>
-
-    <div class="footer-top">
-      <a href="../home/home.html" class="brand-lockup brand-lockup--footer">
-        <svg viewBox="0 0 200 200" width="30" height="30" aria-hidden="true">
-          <g stroke="#F7F1E4" stroke-width="4" stroke-linecap="round">
-            <line x1="100" y1="34" x2="100" y2="4"/>
-            <line x1="151" y1="64" x2="176" y2="47"/>
-            <line x1="159" y1="93" x2="188" y2="93"/>
-            <line x1="151" y1="122" x2="176" y2="139"/>
-            <line x1="49" y1="122" x2="24" y2="139"/>
-            <line x1="41" y1="93" x2="12" y2="93"/>
-            <line x1="49" y1="64" x2="24" y2="47"/>
-          </g>
-          <rect x="91" y="55" width="18" height="84" fill="#F7F1E4"/>
-          <rect x="69" y="83" width="62" height="18" fill="#F7F1E4"/>
-        </svg>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../home/homepage.html" aria-label="CTY Ministries home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 200 200" width="21" height="21">
+            <g stroke="#FBF8F0" stroke-width="7" stroke-linecap="round">
+              <line x1="100" y1="34" x2="100" y2="4"/>
+              <line x1="151" y1="64" x2="176" y2="47"/>
+              <line x1="159" y1="93" x2="188" y2="93"/>
+              <line x1="151" y1="122" x2="176" y2="139"/>
+              <line x1="49" y1="122" x2="24" y2="139"/>
+              <line x1="41" y1="93" x2="12" y2="93"/>
+              <line x1="49" y1="64" x2="24" y2="47"/>
+            </g>
+            <rect x="91" y="55" width="18" height="84" fill="#FBF8F0"/>
+            <rect x="69" y="83" width="62" height="18" fill="#FBF8F0"/>
+          </svg>
+        </span>
         <span>CTY <em>Ministries</em></span>
       </a>
-      <p class="footer-tagline">Children · Teens · Youth — Shine for Jesus</p>
-    </div>
 
-    <div class="footer-columns">
-      <div class="footer-col">
-        <p class="col-label">( Quick Links )</p>
-        <a href="../About/about.html">About CTY</a>
-        <a href="#">Give</a>
-        <a href="#">Join a Team</a>
-        <a href="#">Live Stream</a>
-        <a href="../post/post.html">Messages</a>
-        <a href="../About/about.html#leaders">Our Leaders</a>
-        <a href="#">Store</a>
-      </div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="../home/homepage.html">Home</a>
+        <a href="../About/about2.html">About</a>
+        <a class="active" href="post.html">Messages</a>
+        <a href="../communityevents/community.html">Events</a>
+        <a href="../contacts/contacts.html">Contact</a>
+      </nav>
 
-      <div class="footer-col">
-        <p class="col-label">( Connect )</p>
-        <a href="#">Volunteer</a>
-        <a href="../contacts/contacts.html">Contact CTY</a>
-        <a href="#">Growth Track</a>
-        <a href="../communityevents/community.html">Join the Digital Community</a>
-        <a href="../contacts/contacts.html#visit">Plan Your Visit</a>
-        <a href="../communityevents/community.html">Community Events</a>
-      </div>
-
-      <div class="footer-col">
-        <p class="col-label">( Socials )</p>
-        <a href="#" target="_blank" rel="noopener">Instagram</a>
-        <a href="#" target="_blank" rel="noopener">Facebook</a>
-        <a href="#" target="_blank" rel="noopener">TikTok</a>
-        <a href="#" target="_blank" rel="noopener">YouTube</a>
-        <a href="#" target="_blank" rel="noopener">X</a>
+      <div class="header-actions">
+        <span class="member-chip" id="member-chip" hidden>Signed in</span>
+        <button class="button button-primary" id="signout-btn" type="button" hidden>Sign out</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
       </div>
     </div>
 
-    <div class="footer-bottom">
-      <p>© <span id="year"></span> CTY Ministries. All rights reserved.</p>
-      <p class="footer-bottom-links">
-        <a href="#">Privacy</a> · <a href="#">Terms</a>
-      </p>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+      <a href="../home/homepage.html">Home</a>
+      <a href="../About/about2.html">About</a>
+      <a href="post.html">Messages</a>
+      <a href="../communityevents/community.html">Events</a>
+      <a href="../contacts/contacts.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Community Feed</span>
+          <h1>Moments, Stories, and Faith in Motion</h1>
+          <p>
+            A simple Instagram-style feed for CTY moments. Like posts and leave comments to encourage others.
+            Nothing else, just connection.
+          </p>
+        </div>
+        <aside class="hero-card" aria-label="Feed info">
+          <p>
+            This format is focused on photos, likes, and comments only. Scroll, react, and share encouragement
+            through the conversation on each post.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">Instagram format</p>
+          <h2>Like and comment only</h2>
+          <p>Example posts below use real images from your photos folder.</p>
+        </div>
+
+        <div class="ig-feed" id="ig-feed">
+          <article class="ig-card" data-post-id="p1">
+            <div class="ig-head">
+              <div class="ig-user">
+                <span class="avatar">CTY</span>
+                <div>
+                  <strong>cty.community</strong>
+                  <span>Youth Service</span>
+                </div>
+              </div>
+              <span class="ig-time">2h ago</span>
+            </div>
+            <div class="ig-photo">
+              <img src="../photos/IMG_7618.jpg" alt="Youth gathered during service" loading="lazy" />
+            </div>
+            <div class="ig-body">
+              <div class="ig-actions">
+                <button type="button" class="ig-btn like-btn" data-likes="182">Like</button>
+                <button type="button" class="ig-btn comment-jump">Comment</button>
+              </div>
+              <p class="ig-stats"><span class="likes-count">182</span> likes • <span class="comments-count">2</span> comments</p>
+              <p class="ig-caption">Sunday Youth Service: worship, prayer, and honest conversations that bring us closer to Jesus.</p>
+              <ul class="ig-comments">
+                <li><strong>kevo.t</strong> This was powerful.</li>
+                <li><strong>mercy.a</strong> Loved the worship set tonight.</li>
+              </ul>
+              <form class="comment-form">
+                <input type="text" name="comment" maxlength="180" placeholder="Add a comment..." required />
+                <button type="submit">Post</button>
+              </form>
+            </div>
+          </article>
+
+          <article class="ig-card" data-post-id="p2">
+            <div class="ig-head">
+              <div class="ig-user">
+                <span class="avatar">CTY</span>
+                <div>
+                  <strong>cty.community</strong>
+                  <span>Small Group</span>
+                </div>
+              </div>
+              <span class="ig-time">6h ago</span>
+            </div>
+            <div class="ig-photo">
+              <img src="../photos/IMG_7672.jpg" alt="Small group discussion" loading="lazy" />
+            </div>
+            <div class="ig-body">
+              <div class="ig-actions">
+                <button type="button" class="ig-btn like-btn" data-likes="143">Like</button>
+                <button type="button" class="ig-btn comment-jump">Comment</button>
+              </div>
+              <p class="ig-stats"><span class="likes-count">143</span> likes • <span class="comments-count">1</span> comments</p>
+              <p class="ig-caption">Small groups where everyone is seen, known, and encouraged. Bring your questions next week.</p>
+              <ul class="ig-comments">
+                <li><strong>amina.w</strong> Exactly what I needed this week.</li>
+              </ul>
+              <form class="comment-form">
+                <input type="text" name="comment" maxlength="180" placeholder="Add a comment..." required />
+                <button type="submit">Post</button>
+              </form>
+            </div>
+          </article>
+
+          <article class="ig-card" data-post-id="p3">
+            <div class="ig-head">
+              <div class="ig-user">
+                <span class="avatar">CTY</span>
+                <div>
+                  <strong>cty.community</strong>
+                  <span>Community Night</span>
+                </div>
+              </div>
+              <span class="ig-time">1d ago</span>
+            </div>
+            <div class="ig-photo">
+              <img src="../photos/IMG_7685.jpg" alt="Community night moment" loading="lazy" />
+            </div>
+            <div class="ig-body">
+              <div class="ig-actions">
+                <button type="button" class="ig-btn like-btn" data-likes="227">Like</button>
+                <button type="button" class="ig-btn comment-jump">Comment</button>
+              </div>
+              <p class="ig-stats"><span class="likes-count">227</span> likes • <span class="comments-count">3</span> comments</p>
+              <p class="ig-caption">Community Night memories. Shared meals, testimonies, and joy across every generation.</p>
+              <ul class="ig-comments">
+                <li><strong>jay.n</strong> This felt like family.</li>
+                <li><strong>beth.k</strong> The testimonies were amazing.</li>
+                <li><strong>dani.m</strong> See you all next Friday.</li>
+              </ul>
+              <form class="comment-form">
+                <input type="text" name="comment" maxlength="180" placeholder="Add a comment..." required />
+                <button type="submit">Post</button>
+              </form>
+            </div>
+          </article>
+
+          <article class="ig-card" data-post-id="p4">
+            <div class="ig-head">
+              <div class="ig-user">
+                <span class="avatar">CTY</span>
+                <div>
+                  <strong>cty.community</strong>
+                  <span>Serving Together</span>
+                </div>
+              </div>
+              <span class="ig-time">2d ago</span>
+            </div>
+            <div class="ig-photo">
+              <img src="../photos/IMG_7735.jpg" alt="Youth serving moment" loading="lazy" />
+            </div>
+            <div class="ig-body">
+              <div class="ig-actions">
+                <button type="button" class="ig-btn like-btn" data-likes="96">Like</button>
+                <button type="button" class="ig-btn comment-jump">Comment</button>
+              </div>
+              <p class="ig-stats"><span class="likes-count">96</span> likes • <span class="comments-count">0</span> comments</p>
+              <p class="ig-caption">Serving with joy. Every act of love points someone to Christ.</p>
+              <ul class="ig-comments"></ul>
+              <form class="comment-form">
+                <input type="text" name="comment" maxlength="180" placeholder="Add a comment..." required />
+                <button type="submit">Post</button>
+              </form>
+            </div>
+          </article>
+        </div>
+
+        <div class="cta" aria-label="Call to action">
+          <div>
+            <p class="section-kicker">Your next step</p>
+            <h2>Join the story in person.</h2>
+            <p>Move from watching moments to living them with the CTY family.</p>
+          </div>
+          <a class="button button-primary" href="../communityevents/community.html">See Upcoming Events</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="brand" href="../home/homepage.html">
+            <span class="brand-mark" aria-hidden="true">✝</span>
+            <span>CTY <em>Ministries</em></span>
+          </a>
+          <p>Children · Teens · Youth — a Christ-centered community growing together and shining for Jesus.</p>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-title">Explore</p>
+          <a href="../About/about2.html">About CTY</a>
+          <a href="post.html">Messages</a>
+          <a href="../communityevents/community.html">Events</a>
+          <a href="../contacts/contacts.html">Contact</a>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-title">Get involved</p>
+          <a href="../communityevents/community.html">Join a Group</a>
+          <a href="../communityevents/community.html">Volunteer</a>
+          <a href="../communityevents/community.html">Serve</a>
+          <a href="../contacts/contacts.html">Plan Your Visit</a>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-title">Connect</p>
+          <a href="#" aria-label="CTY on Instagram">Instagram</a>
+          <a href="#" aria-label="CTY on Facebook">Facebook</a>
+          <a href="#" aria-label="CTY on TikTok">TikTok</a>
+          <a href="#" aria-label="CTY on YouTube">YouTube</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> CTY Ministries. All rights reserved.</span>
+        <span>Built to serve the next generation.</span>
+      </div>
     </div>
   </footer>
 
-  <script type="module" src="../Javascript files/header-auth.js"></script>
-  <script type="module" src="../Javascript files/posts.js"></script>
+  <script type="module">
+    import { supabase } from "../Javascript files/supabaseclient.js";
+
+    const memberChip = document.getElementById("member-chip");
+    const signOutBtn = document.getElementById("signout-btn");
+
+    async function syncHeaderAuth() {
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!session) {
+        memberChip.hidden = true;
+        signOutBtn.hidden = true;
+        return;
+      }
+
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("full_name")
+        .eq("id", session.user.id)
+        .maybeSingle();
+
+      const fullName =
+        profile?.full_name ||
+        session.user.user_metadata?.full_name ||
+        session.user.email?.split("@")[0] ||
+        "Member";
+
+      memberChip.textContent = `Hi, ${fullName.split(" ")[0]}`;
+      memberChip.hidden = false;
+      signOutBtn.hidden = false;
+    }
+
+    signOutBtn.addEventListener("click", async () => {
+      signOutBtn.disabled = true;
+      await supabase.auth.signOut();
+      await syncHeaderAuth();
+      signOutBtn.disabled = false;
+    });
+
+    supabase.auth.onAuthStateChange(() => {
+      syncHeaderAuth();
+    });
+
+    syncHeaderAuth();
+  </script>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileNav = document.getElementById("mobileNav");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = mobileNav.classList.toggle("is-open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+      document.body.classList.toggle("menu-open", isOpen);
+    });
+
+    mobileNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileNav.classList.remove("is-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open menu");
+        document.body.classList.remove("menu-open");
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.querySelectorAll(".ig-card").forEach((card) => {
+      const likeBtn = card.querySelector(".like-btn");
+      const commentJumpBtn = card.querySelector(".comment-jump");
+      const likesCountEl = card.querySelector(".likes-count");
+      const commentsCountEl = card.querySelector(".comments-count");
+      const commentsList = card.querySelector(".ig-comments");
+      const form = card.querySelector(".comment-form");
+      const input = form.querySelector("input[name='comment']");
+
+      likeBtn.addEventListener("click", () => {
+        const liked = likeBtn.classList.toggle("liked");
+        const currentLikes = Number(likesCountEl.textContent || "0");
+        likesCountEl.textContent = String(liked ? currentLikes + 1 : Math.max(0, currentLikes - 1));
+        likeBtn.textContent = liked ? "Liked" : "Like";
+      });
+
+      commentJumpBtn.addEventListener("click", () => {
+        input.focus();
+      });
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const text = input.value.trim();
+        if (!text) return;
+
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>you</strong> ${text}`;
+        commentsList.appendChild(li);
+
+        const currentComments = Number(commentsCountEl.textContent || "0");
+        commentsCountEl.textContent = String(currentComments + 1);
+
+        input.value = "";
+      });
+    });
+  </script>
 </body>
 </html>

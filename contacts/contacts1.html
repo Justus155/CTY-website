@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CTY Ministries — Home</title>
+<title>Contacts — CTY Ministries</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="home.css" />
+<link rel="stylesheet" href="../home/home.css" />
+<link rel="stylesheet" href="../styles/pages.css" />
 </head>
 <body>
 
-  <!-- ============ HEADER ============ -->
-  <header class="site-header">
-    <a href="home.html" class="brand-lockup">
+<header class="site-header">
+    <a href="../home/home.html" class="brand-lockup">
       <svg viewBox="0 0 200 200" width="34" height="34" aria-hidden="true">
         <g stroke="#F7F1E4" stroke-width="4" stroke-linecap="round">
           <line x1="100" y1="34" x2="100" y2="4"/>
@@ -31,9 +31,9 @@
     </a>
 
     <nav class="main-nav" id="main-nav">
-      <a href="home.html" class="is-active">Home</a>
+      <a href="../home/home.html">Home</a>
       <a href="../About/about.html">About</a>
-      <a href="../contacts/contacts.html">Contacts</a>
+      <a href="contacts1.html" class="is-active">Contacts</a>
     </nav>
 
     <div class="header-actions">
@@ -46,61 +46,63 @@
     </button>
   </header>
 
-  <!-- ============ HERO : LATEST VIDEO ============ -->
-  <section class="hero">
-    <div class="hero-media">
-      <div class="video-frame" id="video-frame">
-        <video src="images/mataifa%20yote.mp4" controls playsinline></video>
+  <section class="page-hero">
+    <p class="eyebrow">Get In Touch</p>
+    <h1>Contacts</h1>
+    <p>Questions, prayer requests, or just want to say hello — we'd love to hear from you.</p>
+  </section>
+
+  <div class="contact-wrap" id="visit">
+    <div class="contact-info">
+      <div class="contact-info-item">
+        <h4>Email</h4>
+        <a href="mailto:hello@ctyministries.org">hello@ctyministries.org</a>
+      </div>
+      <div class="contact-info-item">
+        <h4>Phone</h4>
+        <p>+254 700 000 000</p>
+      </div>
+      <div class="contact-info-item">
+        <h4>Location</h4>
+        <p>CTY Ministries<br />Nairobi, Kenya</p>
+      </div>
+      <div class="contact-info-item">
+        <h4>Service Times</h4>
+        <p>Sundays · 9:00 AM &amp; 11:00 AM<br />Youth Night · Fridays, 6:00 PM</p>
       </div>
     </div>
 
-    <div class="hero-side">
-      <p class="eyebrow">This week at CTY</p>
-      <h1 id="hero-title">A moment worth sharing</h1>
-      <p class="hero-note" id="hero-note">
-        A quick note from whoever was there — what happened, who it was for, and why it mattered. This updates automatically with the latest video.
-      </p>
-      <a href="../post/post.html" class="btn-primary-line">See all posts →</a>
-    </div>
-  </section>
-
-  <!-- ============ LATEST PHOTOS ============ -->
-  <section class="gallery-section">
-    <div class="gallery-heading">
-      <div>
-        <p class="eyebrow">Fresh from the community</p>
-        <h2>Latest Photos</h2>
+    <div>
+      <form class="contact-form" id="contact-form" novalidate>
+        <label class="field">
+          <span>Full name</span>
+          <input type="text" name="name" required placeholder="Your name" />
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input type="email" name="email" required placeholder="you@example.com" />
+        </label>
+        <label class="field">
+          <span>Message</span>
+          <textarea name="message" rows="5" required placeholder="How can we help?"></textarea>
+        </label>
+        <p class="error" id="contact-error" role="alert"></p>
+        <button type="submit" class="btn-primary" style="align-self:flex-start;border:none;cursor:pointer;">
+          <span class="btn-label">Send message</span>
+          <span class="btn-spinner" aria-hidden="true"></span>
+        </button>
+      </form>
+      <div class="contact-success" id="contact-success">
+        Thanks for reaching out — someone from the CTY team will get back to you soon.
       </div>
-      <a href="../post/post.html" class="see-all">View all photos →</a>
     </div>
+  </div>
 
-    <div class="gallery-grid" id="gallery-grid">
-      <!-- home.js fills this with the latest photos from Supabase.
-           Skeleton cards shown below as a loading state / fallback. -->
-      <div class="photo-card skeleton"><images></images></div>
-      <div class="photo-card skeleton"></div>
-      <div class="photo-card skeleton"></div>
-      <div class="photo-card skeleton"></div>
-      <div class="photo-card skeleton"></div>
-      <div class="photo-card skeleton"></div>
-    </div>
-  </section>
-
-  <!-- ============ CTA STRIP ============ -->
-  <section class="cta-strip">
-    <p class="cta-quote">“One community, facing every season together, and shining a little brighter for it.”</p>
-    <div class="cta-buttons">
-      <a href="../login/signup.html" class="btn-primary">Join CTY</a>
-      <a href="../communityevents/community.html" class="btn-ghost btn-ghost--dark">See upcoming events</a>
-    </div>
-  </section>
-
-  <!-- ============ FOOTER ============ -->
-  <footer class="site-footer">
+<footer class="site-footer">
     <span class="footer-watermark" aria-hidden="true">FRIENDS OF CTY</span>
 
     <div class="footer-top">
-      <a href="home.html" class="brand-lockup brand-lockup--footer">
+      <a href="../home/home.html" class="brand-lockup brand-lockup--footer">
         <svg viewBox="0 0 200 200" width="30" height="30" aria-hidden="true">
           <g stroke="#F7F1E4" stroke-width="4" stroke-linecap="round">
             <line x1="100" y1="34" x2="100" y2="4"/>
@@ -134,10 +136,10 @@
       <div class="footer-col">
         <p class="col-label">( Connect )</p>
         <a href="#">Volunteer</a>
-        <a href="../contacts/contacts.html">Contact CTY</a>
+        <a href="contacts1.html">Contact CTY</a>
         <a href="#">Growth Track</a>
         <a href="../communityevents/community.html">Join the Digital Community</a>
-        <a href="../contacts/contacts.html#visit">Plan Your Visit</a>
+        <a href="contacts1.html#visit">Plan Your Visit</a>
         <a href="../communityevents/community.html">Community Events</a>
       </div>
 
@@ -159,6 +161,6 @@
     </div>
   </footer>
 
-  <script type="module" src="home.js"></script>
+  <script type="module" src="../Javascript files/contacts.js"></script>
 </body>
 </html>
