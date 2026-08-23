@@ -65,6 +65,7 @@
 .recent-panel h2{
   font-family: var(--serif); font-weight: 600; font-size: 1.2rem; margin: 0 0 1rem;
 }
+
 .recent-list{ display: flex; flex-direction: column; gap: 0.8rem; }
 .empty-hint{ color: var(--muted); font-size: 0.85rem; }
 .recent-item{

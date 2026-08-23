@@ -136,6 +136,24 @@
       background: linear-gradient(135deg, #e2b957, var(--gold));
       box-shadow: 0 13px 30px rgba(210,162,56,.22);
     }
+    .button-danger {
+      color: #fff;
+      background: #dc3545;
+      border: 1px solid #dc3545;
+    }
+    .button-danger:hover {
+      background: #c82333;
+      border-color: #c82333;
+    }
+    .button-success {
+      color: #fff;
+      background: #28a745;
+      border: 1px solid #28a745;
+    }
+    .button-success:hover {
+      background: #218838;
+      border-color: #218838;
+    }
 
     .menu-toggle {
       display: none;
@@ -265,6 +283,11 @@
       border: 1px solid var(--line);
       background: var(--white);
       box-shadow: var(--shadow-sm);
+      transition: opacity 0.3s ease;
+    }
+    .event-card.deleting {
+      opacity: 0.5;
+      pointer-events: none;
     }
     .event-date-badge {
       width: 68px;
@@ -345,6 +368,11 @@
       font-weight: 700;
       cursor: pointer;
     }
+    .admin-btn:hover {
+      background: #dc3545;
+      color: #fff;
+      border-color: #dc3545;
+    }
     .admin-add-form {
       margin-bottom: 12px;
       padding: 20px;
@@ -388,6 +416,56 @@
     }
     @keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
 
+    /* Admin Panel Styles */
+    #admin-controls {
+      margin-bottom: 30px;
+      padding: 20px;
+      background: #fff;
+      border: 2px solid var(--gold);
+      border-radius: 18px;
+    }
+    #admin-controls h3 {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      margin: 0 0 12px;
+    }
+    .admin-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+    #admin-message {
+      padding: 10px;
+      background: var(--paper-2);
+      border-radius: 12px;
+      font-size: 0.9rem;
+      min-height: 40px;
+    }
+    #admin-message.success { color: #28a745; background: #d4edda; }
+    #admin-message.error { color: #dc3545; background: #f8d7da; }
+    #admin-message.info { color: #17a2b8; background: #d1ecf1; }
+
+    .admin-event-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .delete-event-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .delete-event-btn:hover {
+      background: #c82333;
+    }
+
     .cta {
       padding: 55px;
       display: flex;
@@ -404,6 +482,61 @@
     .cta .section-kicker { color: var(--gold-soft); }
     .cta h2 { margin: 0 0 10px; }
     .cta p { max-width: 600px; margin: 0; color: rgba(255,250,240,.62); }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-content {
+      background: #fff;
+      border-radius: 24px;
+      padding: 30px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+    }
+    .modal-content h2 {
+      font-family: var(--serif);
+      margin: 0 0 20px;
+    }
+    .modal-content .form-group {
+      margin-bottom: 15px;
+    }
+    .modal-content .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+    }
+    .modal-content .form-group input,
+    .modal-content .form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font: inherit;
+    }
+    .modal-content .form-group textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
 
     footer {
       margin-top: 92px;
@@ -465,6 +598,21 @@
       .container { width: min(var(--container), calc(100% - 28px)); }
       .header-inner { min-height: 68px; }
       h1 { font-size: clamp(2.45rem, 13vw, 3.75rem); }
+      .event-card {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .event-date-badge {
+        width: 100%;
+        min-height: 50px;
+        flex-direction: row;
+        gap: 10px;
+        padding: 8px 12px;
+      }
+      .event-date-badge .day { font-size: 1.2rem; }
+      .event-date-badge .mon { font-size: 0.65rem; }
+      .admin-toolbar { flex-direction: column; }
+      .modal-content { padding: 20px; }
       .cta { align-items: flex-start; flex-direction: column; padding: 32px 24px; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .footer-about { grid-column: 1 / -1; }
@@ -543,6 +691,16 @@
 
     <section class="section alt">
       <div class="container">
+        <!-- Admin Panel - Hidden by default -->
+        <div id="admin-controls" style="display: none;">
+          <h3>🔑 Admin Dashboard</h3>
+          <div class="admin-toolbar">
+            <button id="add-event-btn" class="button button-success">+ Add Event</button>
+            <button id="refresh-events-btn" class="button" style="border: 1px solid var(--line);">🔄 Refresh</button>
+          </div>
+          <div id="admin-message"></div>
+        </div>
+
         <div class="section-head">
           <p class="section-kicker">Upcoming gatherings</p>
           <h2>Find where to be next.</h2>
@@ -550,12 +708,42 @@
         </div>
 
         <div class="events-list" id="events-list">
+          <!-- Events loaded from Supabase -->
           <div class="event-card skeleton" style="height:96px;"></div>
           <div class="event-card skeleton" style="height:96px;"></div>
           <div class="event-card skeleton" style="height:96px;"></div>
         </div>
       </div>
     </section>
+
+    <!-- Add Event Modal -->
+    <div class="modal-overlay" id="add-event-modal">
+      <div class="modal-content">
+        <h2>Add New Event</h2>
+        <form id="add-event-form">
+          <div class="form-group">
+            <label for="event-title">Event Title *</label>
+            <input type="text" id="event-title" required placeholder="e.g., Sunday Youth Service">
+          </div>
+          <div class="form-group">
+            <label for="event-description">Description</label>
+            <textarea id="event-description" placeholder="Describe what this event is about..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="event-date">Date *</label>
+            <input type="date" id="event-date" required>
+          </div>
+          <div class="form-group">
+            <label for="event-category">Category</label>
+            <input type="text" id="event-category" placeholder="e.g., Youth, Worship, Community">
+          </div>
+          <div class="modal-actions">
+            <button type="submit" class="button button-success">Create Event</button>
+            <button type="button" class="button" id="close-modal-btn" style="border: 1px solid var(--line);">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <section class="container" aria-label="Call to action">
       <div class="cta">
@@ -612,53 +800,8 @@
     </div>
   </footer>
 
-  <script type="module">
-    import { supabase } from "../Javascript files/supabaseclient.js";
-
-    const memberChip = document.getElementById("member-chip");
-    const signOutBtn = document.getElementById("signout-btn");
-
-    async function syncHeaderAuth() {
-      const { data: { session } } = await supabase.auth.getSession();
-
-      if (!session) {
-        memberChip.hidden = true;
-        signOutBtn.hidden = true;
-        return;
-      }
-
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("full_name")
-        .eq("id", session.user.id)
-        .maybeSingle();
-
-      const fullName =
-        profile?.full_name ||
-        session.user.user_metadata?.full_name ||
-        session.user.email?.split("@")[0] ||
-        "Member";
-
-      memberChip.textContent = `Hi, ${fullName.split(" ")[0]}`;
-      memberChip.hidden = false;
-      signOutBtn.hidden = false;
-    }
-
-    signOutBtn.addEventListener("click", async () => {
-      signOutBtn.disabled = true;
-      await supabase.auth.signOut();
-      await syncHeaderAuth();
-      signOutBtn.disabled = false;
-    });
-
-    supabase.auth.onAuthStateChange(() => {
-      syncHeaderAuth();
-    });
-
-    syncHeaderAuth();
-  </script>
-
   <script>
+    // Mobile menu toggle
     const menuToggle = document.getElementById("menuToggle");
     const mobileNav = document.getElementById("mobileNav");
 
@@ -681,6 +824,307 @@
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 
-  <script type="module" src="../Javascript files/communityevents.js"></script>
+  <script type="module">
+    import { supabase } from "../Javascript files/supabaseclient.js";
+
+    // DOM Elements
+    const eventsList = document.getElementById('events-list');
+    const adminControls = document.getElementById('admin-controls');
+    const adminMessage = document.getElementById('admin-message');
+    const addEventBtn = document.getElementById('add-event-btn');
+    const refreshBtn = document.getElementById('refresh-events-btn');
+    const modal = document.getElementById('add-event-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const addEventForm = document.getElementById('add-event-form');
+    const memberChip = document.getElementById("member-chip");
+    const signOutBtn = document.getElementById("signout-btn");
+
+    let currentUser = null;
+    let isAdmin = false;
+
+    // ============================================
+    // AUTH FUNCTIONS
+    // ============================================
+
+    async function syncHeaderAuth() {
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!session) {
+        memberChip.hidden = true;
+        signOutBtn.hidden = true;
+        return;
+      }
+
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("full_name, is_admin")
+        .eq("id", session.user.id)
+        .maybeSingle();
+
+      const fullName = profile?.full_name ||
+        session.user.user_metadata?.full_name ||
+        session.user.email?.split("@")[0] ||
+        "Member";
+
+      memberChip.textContent = `Hi, ${fullName.split(" ")[0]}`;
+      memberChip.hidden = false;
+      signOutBtn.hidden = false;
+
+      // Check if user is admin
+      isAdmin = profile?.is_admin === true;
+      currentUser = session.user;
+
+      // Show/hide admin controls
+      if (adminControls) {
+        adminControls.style.display = isAdmin ? 'block' : 'none';
+      }
+
+      return { session, profile };
+    }
+
+    signOutBtn.addEventListener("click", async () => {
+      signOutBtn.disabled = true;
+      await supabase.auth.signOut();
+      await syncHeaderAuth();
+      signOutBtn.disabled = false;
+    });
+
+    supabase.auth.onAuthStateChange(() => {
+      syncHeaderAuth();
+    });
+
+    // ============================================
+    // EVENT FUNCTIONS
+    // ============================================
+
+    function showAdminMessage(message, type = 'info') {
+      if (adminMessage) {
+        adminMessage.textContent = message;
+        adminMessage.className = type;
+        setTimeout(() => {
+          adminMessage.textContent = '';
+          adminMessage.className = '';
+        }, 5000);
+      }
+    }
+
+    async function loadEvents() {
+      try {
+        // Show loading state
+        eventsList.innerHTML = `
+          <div class="event-card skeleton" style="height:96px;"></div>
+          <div class="event-card skeleton" style="height:96px;"></div>
+          <div class="event-card skeleton" style="height:96px;"></div>
+        `;
+
+        // Fetch events from Supabase
+        const { data: events, error } = await supabase
+          .from('events')
+          .select('*')
+          .eq('status', 'published')
+          .eq('is_deleted', false)
+          .order('event_date', { ascending: true });
+
+        if (error) throw error;
+
+        if (!events || events.length === 0) {
+          eventsList.innerHTML = `
+            <div class="events-empty">
+              <p>No upcoming events at the moment. Check back soon!</p>
+              ${isAdmin ? '<p style="margin-top: 10px; color: var(--gold-dark);">🔑 Admin: Click "Add Event" to create your first event.</p>' : ''}
+            </div>
+          `;
+          return;
+        }
+
+        // Render events
+        eventsList.innerHTML = events.map(event => `
+          <div class="event-card" data-event-id="${event.id}">
+            <div class="event-date-badge">
+              <span class="day">${new Date(event.event_date).getDate()}</span>
+              <span class="mon">${new Date(event.event_date).toLocaleString('default', { month: 'short' })}</span>
+            </div>
+            <div class="event-info">
+              <span class="event-meta">${event.category || 'General'}</span>
+              <h3>${escapeHtml(event.title)}</h3>
+              <p>${escapeHtml(event.description || '')}</p>
+            </div>
+            <div class="admin-event-actions">
+              <span class="event-rsvp">${event.rsvp_count || 0} going</span>
+              ${isAdmin ? `
+                <button class="delete-event-btn" data-id="${event.id}">🗑️ Delete</button>
+              ` : ''}
+            </div>
+          </div>
+        `).join('');
+
+        // Add delete event listeners
+        if (isAdmin) {
+          document.querySelectorAll('.delete-event-btn').forEach(btn => {
+            btn.addEventListener('click', async () => {
+              const eventId = btn.dataset.id;
+              if (confirm('Are you sure you want to delete this event?')) {
+                await deleteEvent(eventId);
+              }
+            });
+          });
+        }
+
+      } catch (error) {
+        console.error('Error loading events:', error);
+        eventsList.innerHTML = `
+          <div class="events-empty">
+            <p>Unable to load events. Please refresh the page.</p>
+            <p style="font-size: 0.8rem; color: #999;">Error: ${escapeHtml(error.message)}</p>
+          </div>
+        `;
+      }
+    }
+
+    async function deleteEvent(eventId) {
+      try {
+        const { error } = await supabase
+          .from('events')
+          .update({
+            is_deleted: true,
+            status: 'deleted',
+            deleted_at: new Date().toISOString()
+          })
+          .eq('id', eventId);
+
+        if (error) throw error;
+
+        showAdminMessage('Event deleted successfully!', 'success');
+        await loadEvents();
+      } catch (error) {
+        console.error('Error deleting event:', error);
+        showAdminMessage('Error deleting event: ' + error.message, 'error');
+      }
+    }
+
+    async function addEvent(eventData) {
+      try {
+        const { data, error } = await supabase
+          .from('events')
+          .insert({
+            title: eventData.title,
+            description: eventData.description || '',
+            event_date: eventData.date,
+            category: eventData.category || 'General',
+            status: 'published',
+            is_deleted: false,
+            rsvp_count: 0
+          })
+          .select();
+
+        if (error) throw error;
+
+        showAdminMessage('Event added successfully!', 'success');
+        await loadEvents();
+        return data[0];
+      } catch (error) {
+        console.error('Error adding event:', error);
+        showAdminMessage('Error adding event: ' + error.message, 'error');
+        throw error;
+      }
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str || '';
+      return div.innerHTML;
+    }
+
+    // ============================================
+    // MODAL FUNCTIONS
+    // ============================================
+
+    function openModal() {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      // Set default date to today
+      const dateInput = document.getElementById('event-date');
+      if (dateInput) {
+        dateInput.value = new Date().toISOString().split('T')[0];
+      }
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+      addEventForm.reset();
+    }
+
+    // ============================================
+    // EVENT LISTENERS
+    // ============================================
+
+    // Add Event button
+    if (addEventBtn) {
+      addEventBtn.addEventListener('click', openModal);
+    }
+
+    // Close modal button
+    if (closeModalBtn) {
+      closeModalBtn.addEventListener('click', closeModal);
+    }
+
+    // Close modal on overlay click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Add Event Form
+    if (addEventForm) {
+      addEventForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const title = document.getElementById('event-title').value.trim();
+        const description = document.getElementById('event-description').value.trim();
+        const date = document.getElementById('event-date').value;
+        const category = document.getElementById('event-category').value.trim();
+
+        if (!title || !date) {
+          showAdminMessage('Please fill in all required fields.', 'error');
+          return;
+        }
+
+        const submitBtn = addEventForm.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Creating...';
+
+        try {
+          await addEvent({ title, description, date, category });
+          closeModal();
+        } catch (error) {
+          // Error handled in addEvent function
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Create Event';
+        }
+      });
+    }
+
+    // Refresh button
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', () => {
+        loadEvents();
+        showAdminMessage('Refreshed!', 'info');
+      });
+    }
+
+    // ============================================
+    // INITIALIZATION
+    // ============================================
+
+    async function init() {
+      await syncHeaderAuth();
+      await loadEvents();
+    }
+
+    init();
+  </script>
 </body>
 </html>

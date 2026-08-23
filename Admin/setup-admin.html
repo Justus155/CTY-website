@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Setup Admin</title>
+</head>
+<body>
+  <h1>Admin Setup</h1>
+  <p>This will set the first user as admin. Only run once.</p>
+  <button id="setup-admin">Set as Admin</button>
+  <div id="result"></div>
+  
+  <script type="module">
+    import { supabase } from '../Javascript files/supabaseclient.js';
+    
+    document.getElementById('setup-admin').addEventListener('click', async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      if (!user) {
+        document.getElementById('result').textContent = 'Please sign in first';
+        return;
+      }
+      
+      // Check if any admin exists
+      const { data: admins } = await supabase
+        .from('profiles')
+        .select('id')
+        .eq('is_admin', true)
+        .limit(1);
+      
+      if (admins && admins.length > 0) {
+        document.getElementById('result').textContent = 'An admin already exists. Only the first user becomes admin.';
+        return;
+      }
+      
+      const { error } = await supabase
+        .from('profiles')
+        .update({ is_admin: true, role: 'admin' })
+        .eq('id', user.id);
+      
+      if (error) {
+        document.getElementById('result').textContent = 'Error: ' + error.message;
+      } else {
+        document.getElementById('result').textContent = '✅ Admin setup successful!';
+      }
+    });
+  </script>
+</body>
+</html>
