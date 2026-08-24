@@ -977,9 +977,16 @@
 
     signOutBtn.addEventListener("click", async () => {
       signOutBtn.disabled = true;
-      await supabase.auth.signOut();
-      await syncHeaderAuth();
-      signOutBtn.disabled = false;
+
+      const redirectToSignIn = () => window.location.replace("../login/signin.html");
+      const redirectFallback = window.setTimeout(redirectToSignIn, 120);
+
+      try {
+        await supabase.auth.signOut({ scope: "local" });
+      } finally {
+        window.clearTimeout(redirectFallback);
+        redirectToSignIn();
+      }
     });
 
     supabase.auth.onAuthStateChange(() => {
@@ -1120,6 +1127,11 @@
         const likes = likesCache[post.id] || [];
         const isLiked = userLikes.has(post.id);
         const mediaType = post.type || 'photo';
+        const postOwnerName =
+          (post.user_name && String(post.user_name).trim()) ||
+          (post.author_name && String(post.author_name).trim()) ||
+          'Community member';
+        const avatarLabel = postOwnerName.charAt(0).toUpperCase();
         const mediaHtml = post.media_url ? 
           (mediaType === 'video' ? 
             `<video src="${post.media_url}" controls playsinline preload="metadata"></video>` :
@@ -1134,9 +1146,9 @@
             ` : ''}
             <div class="ig-head">
               <div class="ig-user">
-                <span class="avatar">CTY</span>
+                <span class="avatar">${escapeHtml(avatarLabel)}</span>
                 <div>
-                  <strong>cty.community</strong>
+                  <strong>${escapeHtml(postOwnerName)}</strong>
                   <span>${mediaType === 'video' ? 'Video' : 'Photo'}</span>
                 </div>
               </div>
@@ -1417,7 +1429,7 @@
     }
 
     // ============================================
-    // ADD POST HANDLER (Admin Only)
+    // ADD POST HANDLER (Admin Only) - FIXED
     // ============================================
 
     async function handleAddPost(event) {
@@ -1473,7 +1485,7 @@
 
         const mediaUrl = publicUrlData.publicUrl;
 
-        // Create post in database
+        // Create post in database - REMOVED created_by to fix foreign key error
         const { data: postData, error: postError } = await supabase
           .from('posts')
           .insert({
@@ -1481,8 +1493,8 @@
             caption: caption || null,
             media_url: mediaUrl,
             status: 'published',
-            is_deleted: false,
-            created_by: currentUser.id
+            is_deleted: false
+            // created_by REMOVED - this was causing the foreign key error
           })
           .select();
 
