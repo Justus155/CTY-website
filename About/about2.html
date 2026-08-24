@@ -1,1089 +1,1824 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description" content="About CTY Ministries — one Christ-centered family for children, teens and youth." />
-	<meta name="theme-color" content="#11100e" />
-	<title>About CTY Ministries | Belong. Grow. Serve. Shine.</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="About CTY Ministries — one Christ-centered family for children, teens and youth." />
+    <meta name="theme-color" content="#11100e" />
+    <title>About CTY Ministries | Belong. Grow. Serve. Shine.</title>
 
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
 
-	<style>
-		:root {
-			--ink: #11100e;
-			--ink-2: #1b1916;
-			--paper: #fbf8f0;
-			--paper-2: #f3ecdd;
-			--white: #fff;
-			--gold: #d2a238;
-			--gold-dark: #9a741e;
-			--gold-soft: #ead8a9;
-			--muted: #716c61;
-			--line: rgba(17, 16, 14, .11);
-			--shadow: 0 24px 70px rgba(17, 16, 14, .13);
-			--shadow-sm: 0 10px 28px rgba(17, 16, 14, .08);
-			--serif: "Playfair Display", Georgia, serif;
-			--sans: "DM Sans", system-ui, sans-serif;
-			--radius: 24px;
-			--container: 1180px;
-		}
+    <style>
+        :root {
+            --ink: #11100e;
+            --ink-2: #1b1916;
+            --paper: #fbf8f0;
+            --paper-2: #f3ecdd;
+            --white: #fff;
+            --gold: #d2a238;
+            --gold-dark: #9a741e;
+            --gold-soft: #ead8a9;
+            --muted: #716c61;
+            --line: rgba(17, 16, 14, .11);
+            --shadow: 0 24px 70px rgba(17, 16, 14, .13);
+            --shadow-sm: 0 10px 28px rgba(17, 16, 14, .08);
+            --serif: "Playfair Display", Georgia, serif;
+            --sans: "DM Sans", system-ui, sans-serif;
+            --radius: 24px;
+            --container: 1180px;
+        }
 
-		* { box-sizing: border-box; }
-		html { scroll-behavior: smooth; }
-		body {
-			margin: 0;
-			color: var(--ink);
-			background: var(--paper);
-			font-family: var(--sans);
-			line-height: 1.6;
-			-webkit-font-smoothing: antialiased;
-		}
-		body.menu-open { overflow: hidden; }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--paper);
+            font-family: var(--sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        body.menu-open { overflow: hidden; }
 
-		a { color: inherit; text-decoration: none; }
-		img { max-width: 100%; display: block; }
-		:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+        :focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
 
-		.container {
-			width: min(var(--container), calc(100% - 40px));
-			margin-inline: auto;
-		}
+        .container {
+            width: min(var(--container), calc(100% - 40px));
+            margin-inline: auto;
+        }
 
-		.site-header {
-			position: sticky;
-			top: 0;
-			z-index: 1000;
-			background: rgba(17,16,14,.94);
-			backdrop-filter: blur(18px);
-			border-bottom: 1px solid rgba(255,255,255,.08);
-		}
-		.header-inner {
-			min-height: 76px;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			gap: 24px;
-		}
-		.brand {
-			display: inline-flex;
-			align-items: center;
-			gap: 11px;
-			color: #fffaf0;
-			font-family: var(--serif);
-			font-size: 1.15rem;
-			font-weight: 700;
-			white-space: nowrap;
-		}
-		.brand em { color: var(--gold-soft); font-style: normal; font-weight: 500; }
-		.brand-mark {
-			width: 40px;
-			height: 40px;
-			display: grid;
-			place-items: center;
-			border-radius: 13px;
-			background: linear-gradient(135deg, var(--gold), #8c6618);
-			box-shadow: 0 12px 28px rgba(210,162,56,.28);
-		}
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(17,16,14,.94);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+        .header-inner {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            color: #fffaf0;
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .brand em { color: var(--gold-soft); font-style: normal; font-weight: 500; }
+        .brand-mark {
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: linear-gradient(135deg, var(--gold), #8c6618);
+            box-shadow: 0 12px 28px rgba(210,162,56,.28);
+        }
 
-		.nav {
-			display: flex;
-			align-items: center;
-			gap: 27px;
-			color: rgba(255,250,240,.72);
-			font-size: .9rem;
-			font-weight: 600;
-		}
-		.nav a {
-			padding: 7px 0;
-			border-bottom: 2px solid transparent;
-			transition: .2s ease;
-		}
-		.nav a:hover,
-		.nav a.active {
-			color: #fff;
-			border-color: var(--gold);
-		}
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 27px;
+            color: rgba(255,250,240,.72);
+            font-size: .9rem;
+            font-weight: 600;
+        }
+        .nav a {
+            padding: 7px 0;
+            border-bottom: 2px solid transparent;
+            transition: .2s ease;
+        }
+        .nav a:hover,
+        .nav a.active {
+            color: #fff;
+            border-color: var(--gold);
+        }
 
-		.header-actions { display: flex; align-items: center; gap: 10px; }
-		.member-chip {
-			padding: 10px 14px;
-			border-radius: 999px;
-			color: #fffaf0;
-			border: 1px solid rgba(255,255,255,.20);
-			background: rgba(255,255,255,.08);
-			font-size: .8rem;
-			font-weight: 700;
-			white-space: nowrap;
-		}
-		.button {
-			min-height: 46px;
-			padding: 0 19px;
-			border-radius: 999px;
-			border: 1px solid transparent;
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			font-size: .88rem;
-			font-weight: 700;
-			cursor: pointer;
-			transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
-		}
-		.button:hover { transform: translateY(-2px); }
-		.button-primary {
-			color: var(--ink);
-			background: linear-gradient(135deg, #e2b957, var(--gold));
-			box-shadow: 0 13px 30px rgba(210,162,56,.22);
-		}
-		.button-ghost {
-			color: #fffaf0;
-			border-color: rgba(255,255,255,.24);
-			background: rgba(255,255,255,.05);
-		}
+        .header-actions { display: flex; align-items: center; gap: 10px; }
+        .member-chip {
+            padding: 10px 14px;
+            border-radius: 999px;
+            color: #fffaf0;
+            border: 1px solid rgba(255,255,255,.20);
+            background: rgba(255,255,255,.08);
+            font-size: .8rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .button {
+            min-height: 46px;
+            padding: 0 19px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .88rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+        }
+        .button:hover { transform: translateY(-2px); }
+        .button-primary {
+            color: var(--ink);
+            background: linear-gradient(135deg, #e2b957, var(--gold));
+            box-shadow: 0 13px 30px rgba(210,162,56,.22);
+        }
+        .button-success {
+            color: #fff;
+            background: #28a745;
+            border: 1px solid #28a745;
+        }
+        .button-success:hover {
+            background: #218838;
+            border-color: #218838;
+        }
+        .button-danger {
+            color: #fff;
+            background: #dc3545;
+            border: 1px solid #dc3545;
+        }
+        .button-danger:hover {
+            background: #c82333;
+            border-color: #c82333;
+        }
+        .button-ghost {
+            color: #fffaf0;
+            border-color: rgba(255,255,255,.24);
+            background: rgba(255,255,255,.05);
+        }
 
-		.menu-toggle {
-			display: none;
-			width: 44px;
-			height: 44px;
-			border: 1px solid rgba(255,255,255,.16);
-			border-radius: 12px;
-			background: transparent;
-			color: #fff;
-			cursor: pointer;
-		}
-		.mobile-nav {
-			display: none;
-			padding: 0 20px 20px;
-		}
-		.mobile-nav a {
-			display: block;
-			padding: 13px 0;
-			color: #fffaf0;
-			border-bottom: 1px solid rgba(255,255,255,.08);
-			font-weight: 600;
-		}
+        .menu-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255,255,255,.16);
+            border-radius: 12px;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+        }
+        .mobile-nav {
+            display: none;
+            padding: 0 20px 20px;
+        }
+        .mobile-nav a {
+            display: block;
+            padding: 13px 0;
+            color: #fffaf0;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            font-weight: 600;
+        }
 
-		.hero {
-			position: relative;
-			overflow: hidden;
-			padding: 88px 0 80px;
-			color: #fffaf0;
-			background:
-				radial-gradient(circle at 78% 12%, rgba(210,162,56,.22), transparent 27%),
-				radial-gradient(circle at 5% 85%, rgba(113,132,92,.15), transparent 30%),
-				var(--ink);
-		}
-		.hero::after {
-			content: "";
-			position: absolute;
-			inset: auto 0 0;
-			height: 1px;
-			background: linear-gradient(90deg, transparent, rgba(210,162,56,.7), transparent);
-		}
-		.hero-grid {
-			position: relative;
-			z-index: 1;
-			display: grid;
-			grid-template-columns: 1.1fr .9fr;
-			gap: 58px;
-			align-items: center;
-		}
-		.eyebrow {
-			display: inline-flex;
-			align-items: center;
-			gap: 9px;
-			color: var(--gold-soft);
-			font-size: .74rem;
-			font-weight: 800;
-			letter-spacing: .14em;
-			text-transform: uppercase;
-		}
-		.eyebrow::before {
-			content: "";
-			width: 26px;
-			height: 1px;
-			background: var(--gold);
-		}
-		h1, h2, h3, h4 {
-			font-family: var(--serif);
-			line-height: 1.1;
-		}
-		h1 {
-			margin: 20px 0 18px;
-			font-size: clamp(2.8rem, 6vw, 5.1rem);
-			letter-spacing: -.045em;
-			font-weight: 600;
-		}
-		.hero-copy p {
-			margin: 0;
-			color: rgba(255,250,240,.72);
-			font-size: 1.03rem;
-			line-height: 1.8;
-		}
-		.hero-card {
-			padding: 28px;
-			border: 1px solid rgba(255,255,255,.14);
-			border-radius: 26px;
-			background: rgba(255,255,255,.05);
-			box-shadow: var(--shadow);
-		}
-		.hero-card p {
-			margin: 0;
-			color: rgba(255,250,240,.74);
-			font-size: .95rem;
-			line-height: 1.8;
-		}
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 88px 0 80px;
+            color: #fffaf0;
+            background:
+                radial-gradient(circle at 78% 12%, rgba(210,162,56,.22), transparent 27%),
+                radial-gradient(circle at 5% 85%, rgba(113,132,92,.15), transparent 30%),
+                var(--ink);
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(210,162,56,.7), transparent);
+        }
+        .hero-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 58px;
+            align-items: center;
+        }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--gold-soft);
+            font-size: .74rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+        .eyebrow::before {
+            content: "";
+            width: 26px;
+            height: 1px;
+            background: var(--gold);
+        }
+        h1, h2, h3, h4 {
+            font-family: var(--serif);
+            line-height: 1.1;
+        }
+        h1 {
+            margin: 20px 0 18px;
+            font-size: clamp(2.8rem, 6vw, 5.1rem);
+            letter-spacing: -.045em;
+            font-weight: 600;
+        }
+        .hero-copy p {
+            margin: 0;
+            color: rgba(255,250,240,.72);
+            font-size: 1.03rem;
+            line-height: 1.8;
+        }
+        .hero-card {
+            padding: 28px;
+            border: 1px solid rgba(255,255,255,.14);
+            border-radius: 26px;
+            background: rgba(255,255,255,.05);
+            box-shadow: var(--shadow);
+        }
+        .hero-card p {
+            margin: 0;
+            color: rgba(255,250,240,.74);
+            font-size: .95rem;
+            line-height: 1.8;
+        }
 
-		.section { padding: 88px 0; }
-		.section.alt { background: var(--paper-2); }
-		.section-head { max-width: 760px; margin-bottom: 34px; }
-		.section-kicker {
-			margin: 0 0 10px;
-			color: var(--gold-dark);
-			font-size: .74rem;
-			font-weight: 800;
-			letter-spacing: .14em;
-			text-transform: uppercase;
-		}
-		.section h2 {
-			margin: 0 0 14px;
-			font-size: clamp(2.1rem, 3.8vw, 3.25rem);
-			letter-spacing: -.035em;
-		}
-		.section-head p { margin: 0; color: var(--muted); }
+        .section { padding: 88px 0; }
+        .section.alt { background: var(--paper-2); }
+        .section-head { max-width: 760px; margin-bottom: 34px; }
+        .section-kicker {
+            margin: 0 0 10px;
+            color: var(--gold-dark);
+            font-size: .74rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+        .section h2 {
+            margin: 0 0 14px;
+            font-size: clamp(2.1rem, 3.8vw, 3.25rem);
+            letter-spacing: -.035em;
+        }
+        .section-head p { margin: 0; color: var(--muted); }
 
-		.story-grid {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 18px;
-		}
-		.story-card {
-			padding: 28px;
-			border-radius: var(--radius);
-			background: var(--white);
-			border: 1px solid var(--line);
-			box-shadow: var(--shadow-sm);
-		}
-		.story-card p { margin: 0; color: #39352f; line-height: 1.8; }
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+        .story-card {
+            padding: 28px;
+            border-radius: var(--radius);
+            background: var(--white);
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow-sm);
+        }
+        .story-card p { margin: 0; color: #39352f; line-height: 1.8; }
 
-		.pillar-grid {
-			display: grid;
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-			gap: 18px;
-		}
-		.pillar-card {
-			position: relative;
-			overflow: hidden;
-			padding: 28px;
-			border-radius: var(--radius);
-			background: var(--white);
-			border: 1px solid var(--line);
-			box-shadow: var(--shadow-sm);
-		}
-		.pillar-card h3 { margin: 0 0 10px; font-size: 1.5rem; }
-		.pillar-card p { margin: 0; color: var(--muted); font-size: .93rem; }
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+        .pillar-card {
+            position: relative;
+            overflow: hidden;
+            padding: 28px;
+            border-radius: var(--radius);
+            background: var(--white);
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow-sm);
+        }
+        .pillar-card h3 { margin: 0 0 10px; font-size: 1.5rem; }
+        .pillar-card p { margin: 0; color: var(--muted); font-size: .93rem; }
 
-		.symbol-wrap {
-			display: grid;
-			grid-template-columns: .9fr 1.1fr;
-			gap: 28px;
-			align-items: start;
-		}
-		.symbol-panel {
-			padding: 34px;
-			border-radius: 30px;
-			background: var(--ink);
-			box-shadow: var(--shadow);
-			display: grid;
-			place-items: center;
-		}
-		.symbol-list {
-			display: grid;
-			gap: 12px;
-		}
-		.symbol-item {
-			padding: 18px 20px;
-			border-radius: 16px;
-			background: #fff;
-			border: 1px solid var(--line);
-		}
-		.symbol-item h4 { margin: 0 0 6px; font-size: 1.18rem; }
-		.symbol-item p { margin: 0; color: var(--muted); font-size: .9rem; }
+        .symbol-wrap {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 28px;
+            align-items: start;
+        }
+        .symbol-panel {
+            padding: 34px;
+            border-radius: 30px;
+            background: var(--ink);
+            box-shadow: var(--shadow);
+            display: grid;
+            place-items: center;
+        }
+        .symbol-list {
+            display: grid;
+            gap: 12px;
+        }
+        .symbol-item {
+            padding: 18px 20px;
+            border-radius: 16px;
+            background: #fff;
+            border: 1px solid var(--line);
+        }
+        .symbol-item h4 { margin: 0 0 6px; font-size: 1.18rem; }
+        .symbol-item p { margin: 0; color: var(--muted); font-size: .9rem; }
 
-		.leaders-grid {
-			display: grid;
-			grid-template-columns: repeat(4, minmax(0, 1fr));
-			gap: 16px;
-		}
-		.leader-card {
-			padding: 22px;
-			border-radius: 20px;
-			border: 1px solid var(--line);
-			background: var(--white);
-			box-shadow: var(--shadow-sm);
-			text-align: center;
-		}
-		.leader-photo {
-			width: 84px;
-			height: 84px;
-			margin: 0 auto 14px;
-			border-radius: 50%;
-			background: linear-gradient(145deg, var(--paper-2), #e0d3b8);
-			border: 2px solid #fff;
-			box-shadow: 0 8px 18px rgba(17,16,14,.12);
-		}
-		.leader-card h4 { margin: 0 0 4px; font-size: 1.1rem; }
-		.leader-card p { margin: 0; color: var(--muted); font-size: .85rem; }
+        /* ============================================
+           LEADERS SECTION WITH ADMIN CONTROLS
+           ============================================ */
 
-		.cta {
-			padding: 55px;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			gap: 30px;
-			border-radius: 30px;
-			color: #fffaf0;
-			background:
-				radial-gradient(circle at 85% 10%, rgba(210,162,56,.24), transparent 28%),
-				var(--ink);
-			box-shadow: var(--shadow);
-		}
-		.cta .section-kicker { color: var(--gold-soft); }
-		.cta h2 { margin: 0 0 10px; }
-		.cta p { max-width: 620px; margin: 0; color: rgba(255,250,240,.62); }
+        /* Admin Panel */
+        #admin-panel {
+            margin-bottom: 40px;
+            padding: 24px;
+            background: #fff;
+            border: 2px solid var(--gold);
+            border-radius: 18px;
+            display: none;
+        }
+        #admin-panel h3 {
+            font-family: var(--serif);
+            margin: 0 0 12px;
+            font-size: 1.3rem;
+        }
+        .admin-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        #admin-status {
+            font-size: 0.8rem;
+            color: var(--muted);
+            align-self: center;
+        }
+        #admin-message {
+            margin-top: 10px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            display: none;
+        }
+        #admin-message.success { display: block; color: #155724; background: #d4edda; }
+        #admin-message.error { display: block; color: #721c24; background: #f8d7da; }
+        #admin-message.info { display: block; color: #0c5460; background: #d1ecf1; }
 
-		footer {
-			margin-top: 92px;
-			padding: 65px 0 25px;
-			color: rgba(255,250,240,.72);
-			background: var(--ink-2);
-		}
-		.footer-grid {
-			display: grid;
-			grid-template-columns: 1.5fr 1fr 1fr 1fr;
-			gap: 40px;
-			padding-bottom: 42px;
-			border-bottom: 1px solid rgba(255,255,255,.09);
-		}
-		.footer-about p {
-			max-width: 330px;
-			color: rgba(255,250,240,.48);
-			font-size: .85rem;
-		}
-		.footer-title {
-			margin: 0 0 15px;
-			color: var(--gold-soft);
-			font-size: .72rem;
-			font-weight: 800;
-			letter-spacing: .12em;
-			text-transform: uppercase;
-		}
-		.footer-col { display: grid; align-content: start; gap: 9px; }
-		.footer-col a { font-size: .84rem; transition: color .2s ease; }
-		.footer-col a:hover { color: #fff; }
-		.footer-bottom {
-			display: flex;
-			justify-content: space-between;
-			gap: 20px;
-			padding-top: 22px;
-			color: rgba(255,250,240,.38);
-			font-size: .74rem;
-		}
+        .leaders-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            position: relative;
+        }
+        .leader-card {
+            padding: 22px;
+            border-radius: 20px;
+            border: 1px solid var(--line);
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+        }
+        .leader-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+        .leader-card.deleting {
+            opacity: 0.4;
+            pointer-events: none;
+            transform: scale(0.95);
+        }
 
-		/* Homepage-aligned header/auth UI */
-		main { padding-top: 88px; }
+        .leader-photo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 14px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, var(--paper-2), #e0d3b8);
+            border: 3px solid #fff;
+            box-shadow: 0 8px 18px rgba(17,16,14,.12);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .leader-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .leader-photo .placeholder {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--muted);
+            font-family: var(--serif);
+        }
 
-		.site-header {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			z-index: 1100;
-			background: transparent;
-			border-bottom: 0;
-			transition: .3s ease;
-		}
+        .leader-card h4 { margin: 0 0 4px; font-size: 1.1rem; }
+        .leader-card .role {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 999px;
+            background: var(--gold-soft);
+            color: var(--gold-dark);
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            margin: 4px 0 0;
+        }
+        .leader-card .bio {
+            margin: 8px 0 0;
+            color: var(--muted);
+            font-size: .82rem;
+            line-height: 1.5;
+        }
 
-		.site-header.scrolled {
-			background: rgba(17,17,17,.96);
-			backdrop-filter: blur(12px);
-			border-bottom: 1px solid rgba(255,255,255,.08);
-		}
+        /* Admin buttons on leader cards */
+        .leader-admin-actions {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            display: flex;
+            gap: 5px;
+            z-index: 5;
+        }
+        .leader-admin-actions button {
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, background 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            background: rgba(255,255,255,0.95);
+        }
+        .leader-admin-actions button:hover {
+            transform: scale(1.1);
+        }
+        .edit-leader-btn {
+            color: var(--gold-dark);
+        }
+        .edit-leader-btn:hover {
+            background: var(--gold-soft);
+        }
+        .delete-leader-btn {
+            color: #dc3545;
+        }
+        .delete-leader-btn:hover {
+            background: #dc3545;
+            color: #fff;
+        }
 
-		.header-inner {
-			min-height: 88px;
-			gap: 20px;
-		}
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-content {
+            background: #fff;
+            border-radius: 24px;
+            padding: 30px;
+            max-width: 520px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+        }
+        .modal-content h2 {
+            font-family: var(--serif);
+            margin: 0 0 20px;
+        }
+        .modal-content .form-group {
+            margin-bottom: 16px;
+        }
+        .modal-content .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        .modal-content .form-group input,
+        .modal-content .form-group textarea,
+        .modal-content .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            font: inherit;
+        }
+        .modal-content .form-group textarea {
+            min-height: 70px;
+            resize: vertical;
+        }
+        .modal-content .form-group input[type="file"] {
+            padding: 8px;
+        }
+        .modal-content .form-group .current-photo {
+            margin-top: 8px;
+            padding: 10px;
+            background: var(--paper-2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .modal-content .form-group .current-photo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .modal-content .form-group .current-photo span {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
 
-		.brand {
-			gap: 12px;
-			font-size: 21px;
-			font-weight: 600;
-		}
+        .cta {
+            padding: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            border-radius: 30px;
+            color: #fffaf0;
+            background:
+                radial-gradient(circle at 85% 10%, rgba(210,162,56,.24), transparent 28%),
+                var(--ink);
+            box-shadow: var(--shadow);
+        }
+        .cta .section-kicker { color: var(--gold-soft); }
+        .cta h2 { margin: 0 0 10px; }
+        .cta p { max-width: 620px; margin: 0; color: rgba(255,250,240,.62); }
 
-		.brand em {
-			color: var(--gold-soft);
-			font-weight: 400;
-		}
+        footer {
+            margin-top: 92px;
+            padding: 65px 0 25px;
+            color: rgba(255,250,240,.72);
+            background: var(--ink-2);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 42px;
+            border-bottom: 1px solid rgba(255,255,255,.09);
+        }
+        .footer-about p {
+            max-width: 330px;
+            color: rgba(255,250,240,.48);
+            font-size: .85rem;
+        }
+        .footer-title {
+            margin: 0 0 15px;
+            color: var(--gold-soft);
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+        .footer-col { display: grid; align-content: start; gap: 9px; }
+        .footer-col a { font-size: .84rem; transition: color .2s ease; }
+        .footer-col a:hover { color: #fff; }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding-top: 22px;
+            color: rgba(255,250,240,.38);
+            font-size: .74rem;
+        }
 
-		.brand-mark {
-			width: 42px;
-			height: 42px;
-			border-radius: 0;
-			background: var(--gold);
-			box-shadow: none;
-		}
+        /* Homepage-aligned header/auth UI */
+        main { padding-top: 88px; }
 
-		.nav {
-			gap: 34px;
-			font-size: 13px;
-			font-weight: 600;
-			letter-spacing: .06em;
-			text-transform: uppercase;
-			color: rgba(255,255,255,.8);
-		}
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1100;
+            background: transparent;
+            border-bottom: 0;
+            transition: .3s ease;
+        }
 
-		.nav a {
-			padding: 0;
-			border: 0;
-			opacity: .85;
-		}
+        .site-header.scrolled {
+            background: rgba(17,17,17,.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
 
-		.nav a.active,
-		.nav a:hover {
-			opacity: 1;
-			color: var(--gold-soft);
-		}
+        .header-inner {
+            min-height: 88px;
+            gap: 20px;
+        }
 
-		.header-actions {
-			display: flex;
-			align-items: center;
-			gap: 10px;
-		}
+        .brand {
+            gap: 12px;
+            font-size: 21px;
+            font-weight: 600;
+        }
 
-		.nav-button {
-			min-height: 44px;
-			padding: 12px 18px;
-			border-radius: 999px;
-			border: 1px solid rgba(255,255,255,.45);
-			background: rgba(255,255,255,.06);
-			color: #fff;
-			font-size: .86rem;
-			font-weight: 700;
-			letter-spacing: .03em;
-			text-transform: uppercase;
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			cursor: pointer;
-			transition: .25s ease;
-		}
+        .brand em {
+            color: var(--gold-soft);
+            font-weight: 400;
+        }
 
-		.nav-button:hover {
-			background: white;
-			color: var(--ink);
-		}
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 0;
+            background: var(--gold);
+            box-shadow: none;
+        }
 
-		#signout-btn {
-			background: linear-gradient(135deg, rgba(201,151,30,.95), rgba(231,210,160,.9));
-			color: #201611;
-			border-color: rgba(255,255,255,.35);
-			box-shadow: 0 10px 24px rgba(0,0,0,.2);
-		}
+        .nav {
+            gap: 34px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.8);
+        }
 
-		#signout-btn:hover {
-			background: linear-gradient(135deg, rgba(231,210,160,1), rgba(201,151,30,.95));
-			color: #130f0d;
-		}
+        .nav a {
+            padding: 0;
+            border: 0;
+            opacity: .85;
+        }
 
-		.profile-pill {
-			width: 44px;
-			height: 44px;
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			border: 1px solid rgba(255,255,255,.45);
-			background: rgba(255,255,255,.06);
-			border-radius: 999px;
-			overflow: hidden;
-		}
+        .nav a.active,
+        .nav a:hover {
+            opacity: 1;
+            color: var(--gold-soft);
+        }
 
-		.profile-avatar {
-			width: 100%;
-			height: 100%;
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			font-size: 14px;
-			font-weight: 700;
-			color: white;
-			text-transform: uppercase;
-		}
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-		.profile-avatar img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
+        .nav-button {
+            min-height: 44px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,.45);
+            background: rgba(255,255,255,.06);
+            color: #fff;
+            font-size: .86rem;
+            font-weight: 700;
+            letter-spacing: .03em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: .25s ease;
+        }
 
-		.profile-modal-backdrop {
-			position: fixed;
-			inset: 0;
-			background: rgba(0,0,0,.55);
-			backdrop-filter: blur(8px);
-			-webkit-backdrop-filter: blur(8px);
-			opacity: 0;
-			pointer-events: none;
-			transition: opacity .22s ease;
-			z-index: 1200;
-		}
+        .nav-button:hover {
+            background: white;
+            color: var(--ink);
+        }
 
-		.profile-modal {
-			position: fixed;
-			top: 50%;
-			left: 50%;
-			width: min(860px, calc(100vw - 24px));
-			height: min(88vh, 760px);
-			max-height: calc(100vh - 24px);
-			transform: translate(-50%, -50%) scale(.98);
-			opacity: 0;
-			pointer-events: none;
-			border-radius: 18px;
-			overflow: hidden;
-			border: 1px solid rgba(255,255,255,.2);
-			background: #f5f1e8;
-			box-shadow: 0 36px 90px rgba(0,0,0,.35);
-			z-index: 1201;
-			transition: opacity .22s ease, transform .22s ease;
-			display: flex;
-			flex-direction: column;
-		}
+        #signout-btn {
+            background: linear-gradient(135deg, rgba(201,151,30,.95), rgba(231,210,160,.9));
+            color: #201611;
+            border-color: rgba(255,255,255,.35);
+            box-shadow: 0 10px 24px rgba(0,0,0,.2);
+        }
 
-		.profile-modal-head {
-			min-height: 56px;
-			padding: 0 14px;
-			background: rgba(17,17,17,.94);
-			color: #fff;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			border-bottom: 1px solid rgba(255,255,255,.14);
-		}
+        #signout-btn:hover {
+            background: linear-gradient(135deg, rgba(231,210,160,1), rgba(201,151,30,.95));
+            color: #130f0d;
+        }
 
-		.profile-modal-head h2 {
-			font-size: 15px;
-			letter-spacing: .04em;
-			text-transform: uppercase;
-			margin: 0;
-			font-family: var(--sans);
-			font-weight: 700;
-		}
+        .profile-pill {
+            width: 44px;
+            height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,.45);
+            background: rgba(255,255,255,.06);
+            border-radius: 999px;
+            overflow: hidden;
+        }
 
-		.profile-modal-close {
-			width: 36px;
-			height: 36px;
-			border: 1px solid rgba(255,255,255,.28);
-			border-radius: 10px;
-			background: rgba(255,255,255,.08);
-			color: #fff;
-			font-size: 22px;
-			line-height: 1;
-			cursor: pointer;
-		}
+        .profile-avatar {
+            width: 100%;
+            height: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+        }
 
-		.profile-modal-frame {
-			width: 100%;
-			height: calc(100% - 56px);
-			border: 0;
-			background: transparent;
-		}
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-		body.profile-modal-open {
-			overflow: hidden;
-		}
+        .profile-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.55);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .22s ease;
+            z-index: 1200;
+        }
 
-		body.profile-modal-open > header,
-		body.profile-modal-open > main,
-		body.profile-modal-open > footer {
-			filter: blur(5px);
-			transition: filter .22s ease;
-		}
+        .profile-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: min(860px, calc(100vw - 24px));
+            height: min(88vh, 760px);
+            max-height: calc(100vh - 24px);
+            transform: translate(-50%, -50%) scale(.98);
+            opacity: 0;
+            pointer-events: none;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.2);
+            background: #f5f1e8;
+            box-shadow: 0 36px 90px rgba(0,0,0,.35);
+            z-index: 1201;
+            transition: opacity .22s ease, transform .22s ease;
+            display: flex;
+            flex-direction: column;
+        }
 
-		body.profile-modal-open .profile-modal-backdrop {
-			opacity: 1;
-			pointer-events: auto;
-		}
+        .profile-modal-head {
+            min-height: 56px;
+            padding: 0 14px;
+            background: rgba(17,17,17,.94);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,.14);
+        }
 
-		body.profile-modal-open .profile-modal {
-			opacity: 1;
-			transform: translate(-50%, -50%) scale(1);
-			pointer-events: auto;
-		}
+        .profile-modal-head h2 {
+            font-size: 15px;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            margin: 0;
+            font-family: var(--sans);
+            font-weight: 700;
+        }
 
-		@media (max-width: 980px) {
-			.nav { display: none; }
-			.menu-toggle { display: block; }
-			.mobile-nav.is-open { display: block; }
-			.hero-grid, .symbol-wrap { grid-template-columns: 1fr; }
-			.story-grid { grid-template-columns: 1fr; }
-			.pillar-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-			.leaders-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-			.footer-grid { grid-template-columns: 2fr 1fr 1fr; }
-			.footer-about { grid-column: 1 / -1; }
-		}
-		@media (max-width: 700px) {
-			.container { width: min(var(--container), calc(100% - 28px)); }
-			.header-inner { min-height: 68px; }
-			main { padding-top: 68px; }
-			h1 { font-size: clamp(2.5rem, 13vw, 3.8rem); }
-			.pillar-grid, .leaders-grid { grid-template-columns: 1fr; }
-			.cta { align-items: flex-start; flex-direction: column; padding: 34px 24px; }
-			.footer-grid { grid-template-columns: 1fr 1fr; }
-			.footer-about { grid-column: 1 / -1; }
-			.footer-bottom { flex-direction: column; }
-		}
-	</style>
+        .profile-modal-close {
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(255,255,255,.28);
+            border-radius: 10px;
+            background: rgba(255,255,255,.08);
+            color: #fff;
+            font-size: 22px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .profile-modal-frame {
+            width: 100%;
+            height: calc(100% - 56px);
+            border: 0;
+            background: transparent;
+        }
+
+        body.profile-modal-open {
+            overflow: hidden;
+        }
+
+        body.profile-modal-open > header,
+        body.profile-modal-open > main,
+        body.profile-modal-open > footer {
+            filter: blur(5px);
+            transition: filter .22s ease;
+        }
+
+        body.profile-modal-open .profile-modal-backdrop {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        body.profile-modal-open .profile-modal {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            pointer-events: auto;
+        }
+
+        /* Skeleton loading */
+        .skeleton-card {
+            min-height: 280px;
+            border-radius: 20px;
+            background: linear-gradient(100deg, var(--paper-2) 30%, #fff 50%, var(--paper-2) 70%);
+            background-size: 200% 100%;
+            animation: shimmer 1.4s infinite;
+        }
+        @keyframes shimmer {
+            from { background-position: 200% 0; }
+            to { background-position: -200% 0; }
+        }
+
+        @media (max-width: 980px) {
+            .nav { display: none; }
+            .menu-toggle { display: block; }
+            .mobile-nav.is-open { display: block; }
+            .hero-grid, .symbol-wrap { grid-template-columns: 1fr; }
+            .story-grid { grid-template-columns: 1fr; }
+            .pillar-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .leaders-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+            .footer-about { grid-column: 1 / -1; }
+        }
+        @media (max-width: 700px) {
+            .container { width: min(var(--container), calc(100% - 28px)); }
+            .header-inner { min-height: 68px; }
+            main { padding-top: 68px; }
+            h1 { font-size: clamp(2.5rem, 13vw, 3.8rem); }
+            .pillar-grid, .leaders-grid { grid-template-columns: 1fr; }
+            .admin-toolbar { flex-direction: column; align-items: stretch; }
+            .modal-content { padding: 20px; }
+            .cta { align-items: flex-start; flex-direction: column; padding: 34px 24px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-about { grid-column: 1 / -1; }
+            .footer-bottom { flex-direction: column; }
+        }
+    </style>
 </head>
 
 <body>
-	<header class="site-header">
-		<div class="container header-inner">
-			<a class="brand" href="../home/homepage.html" aria-label="CTY Ministries home">
-				<span class="brand-mark" aria-hidden="true">
-					<svg viewBox="0 0 200 200" width="21" height="21">
-						<g stroke="#FBF8F0" stroke-width="7" stroke-linecap="round">
-							<line x1="100" y1="34" x2="100" y2="4"/>
-							<line x1="151" y1="64" x2="176" y2="47"/>
-							<line x1="159" y1="93" x2="188" y2="93"/>
-							<line x1="151" y1="122" x2="176" y2="139"/>
-							<line x1="49" y1="122" x2="24" y2="139"/>
-							<line x1="41" y1="93" x2="12" y2="93"/>
-							<line x1="49" y1="64" x2="24" y2="47"/>
-						</g>
-						<rect x="91" y="55" width="18" height="84" fill="#FBF8F0"/>
-						<rect x="69" y="83" width="62" height="18" fill="#FBF8F0"/>
-					</svg>
-				</span>
-				<span>CTY <em>Ministries</em></span>
-			</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="../home/homepage.html" aria-label="CTY Ministries home">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 200 200" width="21" height="21">
+                        <g stroke="#FBF8F0" stroke-width="7" stroke-linecap="round">
+                            <line x1="100" y1="34" x2="100" y2="4"/>
+                            <line x1="151" y1="64" x2="176" y2="47"/>
+                            <line x1="159" y1="93" x2="188" y2="93"/>
+                            <line x1="151" y1="122" x2="176" y2="139"/>
+                            <line x1="49" y1="122" x2="24" y2="139"/>
+                            <line x1="41" y1="93" x2="12" y2="93"/>
+                            <line x1="49" y1="64" x2="24" y2="47"/>
+                        </g>
+                        <rect x="91" y="55" width="18" height="84" fill="#FBF8F0"/>
+                        <rect x="69" y="83" width="62" height="18" fill="#FBF8F0"/>
+                    </svg>
+                </span>
+                <span>CTY <em>Ministries</em></span>
+            </a>
 
-			<nav class="nav" aria-label="Main navigation">
-				<a href="../home/homepage.html">Home</a>
-				<a class="active" href="about2.html">About</a>
-				<a href="../post/post.html">Posts</a>
-				<a href="../post/post.html#testimonies">Testimonies</a>
-				<a href="../communityevents/community.html">Events</a>
-				<a href="../contacts/contacts.html">Contact</a>
-			</nav>
+            <nav class="nav" aria-label="Main navigation">
+                <a href="../home/homepage.html">Home</a>
+                <a class="active" href="about2.html">About</a>
+                <a href="../post/post.html">Posts</a>
+                <a href="../post/post.html#testimonies">Testimonies</a>
+                <a href="../communityevents/community.html">Events</a>
+                <a href="../contacts/contacts.html">Contact</a>
+            </nav>
 
-			<div class="header-actions">
-				<a href="../home/profile.html" class="profile-pill" id="profile-link" hidden aria-label="Profile">
-					<span class="profile-avatar" id="profile-avatar">U</span>
-				</a>
-				<button class="nav-button" id="signout-btn" type="button" hidden>Sign out</button>
-				<button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
-			</div>
-		</div>
+            <div class="header-actions">
+                <a href="../home/profile.html" class="profile-pill" id="profile-link" hidden aria-label="Profile">
+                    <span class="profile-avatar" id="profile-avatar">U</span>
+                </a>
+                <button class="nav-button" id="signout-btn" type="button" hidden>Sign out</button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
+            </div>
+        </div>
 
-		<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-			<a href="../home/homepage.html">Home</a>
-			<a href="about2.html">About</a>
-			<a href="../post/post.html">Posts</a>
-			<a href="../post/post.html#testimonies">Testimonies</a>
-			<a href="../communityevents/community.html">Events</a>
-			<a href="../contacts/contacts.html">Contact</a>
-		</nav>
-	</header>
+        <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+            <a href="../home/homepage.html">Home</a>
+            <a href="about2.html">About</a>
+            <a href="../post/post.html">Posts</a>
+            <a href="../post/post.html#testimonies">Testimonies</a>
+            <a href="../communityevents/community.html">Events</a>
+            <a href="../contacts/contacts.html">Contact</a>
+        </nav>
+    </header>
 
-	<main>
-		<section class="hero">
-			<div class="container hero-grid">
-				<div class="hero-copy">
-					<span class="eyebrow">Our Story</span>
-					<h1>About CTY Ministries</h1>
-					<p>
-						CTY stands for Children, Teens, and Youth — a ministry built to give every generation,
-						from the youngest child to the young adult stepping into leadership, a place to belong.
-						Through fellowship, shared testimonies, and honest conversation, we exist to build one
-						community that faces life's challenges together and motivates each generation to carry the faith forward.
-					</p>
-				</div>
-				<aside class="hero-card" aria-label="Our heartbeat">
-					<p>
-						What started as a simple idea — bringing children, teens, and youth together under one roof
-						instead of three separate, disconnected programs — has grown into a movement built on a single conviction:
-						no generation should walk their faith journey alone.
-					</p>
-				</aside>
-			</div>
-		</section>
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <span class="eyebrow">Our Story</span>
+                    <h1>About CTY Ministries</h1>
+                    <p>
+                        CTY stands for Children, Teens, and Youth — a ministry built to give every generation,
+                        from the youngest child to the young adult stepping into leadership, a place to belong.
+                        Through fellowship, shared testimonies, and honest conversation, we exist to build one
+                        community that faces life's challenges together and motivates each generation to carry the faith forward.
+                    </p>
+                </div>
+                <aside class="hero-card" aria-label="Our heartbeat">
+                    <p>
+                        What started as a simple idea — bringing children, teens, and youth together under one roof
+                        instead of three separate, disconnected programs — has grown into a movement built on a single conviction:
+                        no generation should walk their faith journey alone.
+                    </p>
+                </aside>
+            </div>
+        </section>
 
-		<section class="section">
-			<div class="container">
-				<div class="section-head">
-					<p class="section-kicker">Why We Exist</p>
-					<h2>One Family, One Journey</h2>
-					<p>
-						We believe community is formed in the ordinary moments as much as the big ones — in shared meals,
-						late-night conversations, cake after service, and showing up for each other through both celebration and hardship.
-						CTY exists to hold space for all of it.
-					</p>
-				</div>
+        <section class="section">
+            <div class="container">
+                <div class="section-head">
+                    <p class="section-kicker">Why We Exist</p>
+                    <h2>One Family, One Journey</h2>
+                    <p>
+                        We believe community is formed in the ordinary moments as much as the big ones — in shared meals,
+                        late-night conversations, cake after service, and showing up for each other through both celebration and hardship.
+                        CTY exists to hold space for all of it.
+                    </p>
+                </div>
 
-				<div class="story-grid">
-					<article class="story-card">
-						<p>
-							What started as a simple idea — bringing children, teens, and youth together under one roof instead of three
-							separate, disconnected programs — has grown into a movement built on a single conviction: no generation
-							should walk their faith journey alone.
-						</p>
-					</article>
-					<article class="story-card">
-						<p>
-							Community is not a side activity at CTY; it is the method and message. Every generation is invited to grow,
-							be known, and move forward in faith with people who will walk the journey together.
-						</p>
-					</article>
-				</div>
-			</div>
-		</section>
+                <div class="story-grid">
+                    <article class="story-card">
+                        <p>
+                            What started as a simple idea — bringing children, teens, and youth together under one roof instead of three
+                            separate, disconnected programs — has grown into a movement built on a single conviction: no generation
+                            should walk their faith journey alone.
+                        </p>
+                    </article>
+                    <article class="story-card">
+                        <p>
+                            Community is not a side activity at CTY; it is the method and message. Every generation is invited to grow,
+                            be known, and move forward in faith with people who will walk the journey together.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-		<section class="section alt">
-			<div class="container">
-				<div class="section-head">
-					<p class="section-kicker">Our Pillars</p>
-					<h2>Community. Testimony. Motivation.</h2>
-					<p>The values that shape how we gather, lead, and serve across every age group.</p>
-				</div>
+        <section class="section alt">
+            <div class="container">
+                <div class="section-head">
+                    <p class="section-kicker">Our Pillars</p>
+                    <h2>Community. Testimony. Motivation.</h2>
+                    <p>The values that shape how we gather, lead, and serve across every age group.</p>
+                </div>
 
-				<div class="pillar-grid">
-					<article class="pillar-card">
-						<h3>Community</h3>
-						<p>One family across Children, Teens, and Youth — no one ministry stands apart from the others.</p>
-					</article>
-					<article class="pillar-card">
-						<h3>Testimony</h3>
-						<p>Real stories that build real faith. We believe in the power of a life changed, spoken out loud.</p>
-					</article>
-					<article class="pillar-card">
-						<h3>Motivation</h3>
-						<p>Each generation lifting the next — mentorship is not a program here, it is the culture.</p>
-					</article>
-				</div>
-			</div>
-		</section>
+                <div class="pillar-grid">
+                    <article class="pillar-card">
+                        <h3>Community</h3>
+                        <p>One family across Children, Teens, and Youth — no one ministry stands apart from the others.</p>
+                    </article>
+                    <article class="pillar-card">
+                        <h3>Testimony</h3>
+                        <p>Real stories that build real faith. We believe in the power of a life changed, spoken out loud.</p>
+                    </article>
+                    <article class="pillar-card">
+                        <h3>Motivation</h3>
+                        <p>Each generation lifting the next — mentorship is not a program here, it is the culture.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-		<section class="section">
-			<div class="container">
-				<div class="section-head">
-					<p class="section-kicker">Symbol Meaning</p>
-					<h2>What The CTY Mark Represents</h2>
-				</div>
+        <section class="section">
+            <div class="container">
+                <div class="section-head">
+                    <p class="section-kicker">Symbol Meaning</p>
+                    <h2>What The CTY Mark Represents</h2>
+                </div>
 
-				<div class="symbol-wrap">
-					<div class="symbol-panel">
-						<svg viewBox="0 0 200 200" width="190" height="190" aria-hidden="true">
-							<g stroke="#F7F1E4" stroke-width="2.4" stroke-linecap="round">
-								<line x1="100" y1="34" x2="100" y2="4"/>
-								<line x1="129" y1="42" x2="146" y2="17"/>
-								<line x1="151" y1="64" x2="176" y2="47"/>
-								<line x1="159" y1="93" x2="188" y2="93"/>
-								<line x1="151" y1="122" x2="176" y2="139"/>
-								<line x1="129" y1="144" x2="146" y2="169"/>
-								<line x1="71" y1="144" x2="54" y2="169"/>
-								<line x1="49" y1="122" x2="24" y2="139"/>
-								<line x1="41" y1="93" x2="12" y2="93"/>
-								<line x1="49" y1="64" x2="24" y2="47"/>
-								<line x1="71" y1="42" x2="54" y2="17"/>
-							</g>
-							<rect x="91" y="55" width="18" height="84" fill="#F7F1E4"/>
-							<rect x="69" y="83" width="62" height="18" fill="#F7F1E4"/>
-							<g fill="#C9971E">
-								<path d="M139 44l3.4 8.6 9.2.6-7 6 2.2 9-7.8-5-7.8 5 2.2-9-7-6 9.2-.6z" transform="scale(0.55) translate(115,10)"/>
-								<path d="M139 44l3.4 8.6 9.2.6-7 6 2.2 9-7.8-5-7.8 5 2.2-9-7-6 9.2-.6z" transform="scale(0.42) translate(190,60)"/>
-								<path d="M139 44l3.4 8.6 9.2.6-7 6 2.2 9-7.8-5-7.8 5 2.2-9-7-6 9.2-.6z" transform="scale(0.65) translate(90,-6)"/>
-							</g>
-						</svg>
-					</div>
+                <div class="symbol-wrap">
+                    <div class="symbol-panel">
+                        <svg viewBox="0 0 200 200" width="190" height="190" aria-hidden="true">
+                            <g stroke="#F7F1E4" stroke-width="2.4" stroke-linecap="round">
+                                <line x1="100" y1="34" x2="100" y2="4"/>
+                                <line x1="129" y1="42" x2="146" y2="17"/>
+                                <line x1="151" y1="64" x2="176" y2="47"/>
+                                <line x1="159" y1="93" x2="188" y2="93"/>
+                                <line x1="151" y1="122" x2="176" y2="139"/>
+                                <line x1="129" y1="144" x2="146" y2="169"/>
+                                <line x1="71" y1="144" x2="54" y2="169"/>
+                                <line x1="49" y1="122" x2="24" y2="139"/>
+                                <line x1="41" y1="93" x2="12" y2="93"/>
+                                <line x1="49" y1="64" x2="24" y2="47"/>
+                                <line x1="71" y1="42" x2="54" y2="17"/>
+                            </g>
+                            <rect x="91" y="55" width="18" height="84" fill="#F7F1E4"/>
+                            <rect x="69" y="83" width="62" height="18" fill="#F7F1E4"/>
+                            <g fill="#C9971E">
+                                <path d="M139 44l3.4 8.6 9.2.6-7 6 2.2 9-7.8-5-7.8 5 2.2-9-7-6 9.2-.6z" transform="scale(0.55) translate(115,10)"/>
+                                <path d="M139 44l3.4 8.6 9.2.6-7 6 2.2 9-7.8-5-7.8 5 2.2-9-7-6 9.2-.6z" transform="scale(0.42) translate(190,60)"/>
+                                <path d="M139 44l3.4 8.6 9.2.6-7 6 2.2 9-7.8-5-7.8 5 2.2-9-7-6 9.2-.6z" transform="scale(0.65) translate(90,-6)"/>
+                            </g>
+                        </svg>
+                    </div>
 
-					<div class="symbol-list">
-						<article class="symbol-item">
-							<h4>The Cross</h4>
-							<p>The center of everything CTY does — faith is the foundation, not an accessory.</p>
-						</article>
-						<article class="symbol-item">
-							<h4>The Radiating Light</h4>
-							<p>Light shining outward in every direction — the Gospel reaching every generation, wherever they are.</p>
-						</article>
-						<article class="symbol-item">
-							<h4>The Stars</h4>
-							<p>A small constellation guiding the way — leaders and mentors lighting the path for those coming behind them.</p>
-						</article>
-					</div>
-				</div>
-			</div>
-		</section>
+                    <div class="symbol-list">
+                        <article class="symbol-item">
+                            <h4>The Cross</h4>
+                            <p>The center of everything CTY does — faith is the foundation, not an accessory.</p>
+                        </article>
+                        <article class="symbol-item">
+                            <h4>The Radiating Light</h4>
+                            <p>Light shining outward in every direction — the Gospel reaching every generation, wherever they are.</p>
+                        </article>
+                        <article class="symbol-item">
+                            <h4>The Stars</h4>
+                            <p>A small constellation guiding the way — leaders and mentors lighting the path for those coming behind them.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-		<section class="section alt" id="leaders">
-			<div class="container">
-				<div class="section-head">
-					<p class="section-kicker">Who Leads Us</p>
-					<h2>Our Leaders</h2>
-				</div>
+        <!-- ============================================
+             LEADERS SECTION WITH ADMIN CONTROLS
+             ============================================ -->
+        <section class="section alt" id="leaders">
+            <div class="container">
+                <!-- Admin Panel -->
+                <div id="admin-panel">
+                    <h3>🔑 Admin - Manage Leaders</h3>
+                    <div class="admin-toolbar">
+                        <button id="add-leader-btn" class="button button-success">+ Add Leader</button>
+                        <button id="refresh-leaders-btn" class="button" style="border: 1px solid var(--line);">🔄 Refresh</button>
+                        <span id="admin-status">✓ Admin access enabled</span>
+                    </div>
+                    <div id="admin-message"></div>
+                </div>
 
-				<div class="leaders-grid">
-					<article class="leader-card">
-						<div class="leader-photo" aria-hidden="true"></div>
-						<h4>Leader Name</h4>
-						<p>Children's Ministry</p>
-					</article>
-					<article class="leader-card">
-						<div class="leader-photo" aria-hidden="true"></div>
-						<h4>Leader Name</h4>
-						<p>Teens Ministry</p>
-					</article>
-					<article class="leader-card">
-						<div class="leader-photo" aria-hidden="true"></div>
-						<h4>Leader Name</h4>
-						<p>Youth Ministry</p>
-					</article>
-					<article class="leader-card">
-						<div class="leader-photo" aria-hidden="true"></div>
-						<h4>Leader Name</h4>
-						<p>CTY Overseer</p>
-					</article>
-				</div>
-			</div>
-		</section>
+                <div class="section-head">
+                    <p class="section-kicker">Who Leads Us</p>
+                    <h2>Our Leaders</h2>
+                </div>
 
-		<section class="container" aria-label="Call to action">
-			<div class="cta">
-				<div>
-					<p class="section-kicker">Your next step</p>
-					<h2>Come as you are. Grow from here.</h2>
-					<p>
-						You do not have to figure out your faith journey alone. Find a gathering,
-						meet the family and take your next step.
-					</p>
-				</div>
-				<a class="button button-primary" href="../communityevents/community.html">Plan Your Visit</a>
-			</div>
-		</section>
-	</main>
+                <div class="leaders-grid" id="leaders-grid">
+                    <!-- Leaders loaded from Supabase -->
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                </div>
+            </div>
+        </section>
 
-	<div class="profile-modal-backdrop" id="profile-modal-backdrop" hidden></div>
-	<aside class="profile-modal" id="profile-modal" aria-hidden="true" aria-label="Profile panel">
-		<div class="profile-modal-head">
-			<h2>My Profile</h2>
-			<button type="button" class="profile-modal-close" id="profile-modal-close" aria-label="Close profile">×</button>
-		</div>
-		<iframe
-			id="profile-modal-frame"
-			class="profile-modal-frame"
-			src="../home/profile.html?embed=1"
-			title="Profile panel"
-			loading="lazy"
-		></iframe>
-	</aside>
+        <!-- Add/Edit Leader Modal -->
+        <div class="modal-overlay" id="leader-modal">
+            <div class="modal-content">
+                <h2 id="modal-title">Add New Leader</h2>
+                <form id="leader-form">
+                    <input type="hidden" id="leader-id" value="">
+                    <div class="form-group">
+                        <label for="leader-name">Full Name *</label>
+                        <input type="text" id="leader-name" required placeholder="e.g., Pastor John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="leader-role">Role *</label>
+                        <select id="leader-role" required>
+                            <option value="">Select a role...</option>
+                            <option value="Children's Ministry">Children's Ministry</option>
+                            <option value="Teens Ministry">Teens Ministry</option>
+                            <option value="Youth Ministry">Youth Ministry</option>
+                            <option value="CTY Overseer">CTY Overseer</option>
+                            <option value="Worship Leader">Worship Leader</option>
+                            <option value="Administrator">Administrator</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="leader-bio">Bio</label>
+                        <textarea id="leader-bio" placeholder="Tell us about this leader..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="leader-photo">Profile Photo</label>
+                        <input type="file" id="leader-photo" accept="image/*">
+                        <small style="color: var(--muted);">JPG, PNG, WEBP up to 5MB. Leave empty to keep current photo.</small>
+                        <div id="current-photo-display" class="current-photo" style="display:none;">
+                            <img id="current-photo-img" src="" alt="Current photo">
+                            <span>Current photo</span>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="submit" class="button button-success" id="modal-submit-btn">Save Leader</button>
+                        <button type="button" class="button" id="close-modal-btn" style="border: 1px solid var(--line);">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-	<footer>
-		<div class="container">
-			<div class="footer-grid">
-				<div class="footer-about">
-					<a class="brand" href="../home/homepage.html">
-						<span class="brand-mark" aria-hidden="true">✝</span>
-						<span>CTY <em>Ministries</em></span>
-					</a>
-					<p>Children · Teens · Youth — a Christ-centered community growing together and shining for Jesus.</p>
-				</div>
+        <section class="container" aria-label="Call to action">
+            <div class="cta">
+                <div>
+                    <p class="section-kicker">Your next step</p>
+                    <h2>Come as you are. Grow from here.</h2>
+                    <p>
+                        You do not have to figure out your faith journey alone. Find a gathering,
+                        meet the family and take your next step.
+                    </p>
+                </div>
+                <a class="button button-primary" href="../communityevents/community.html">Plan Your Visit</a>
+            </div>
+        </section>
+    </main>
 
-				<div class="footer-col">
-					<p class="footer-title">Explore</p>
-					<a href="about2.html">About CTY</a>
-					<a href="../post/post.html">Messages</a>
-					<a href="../communityevents/community.html">Events</a>
-					<a href="../contacts/contacts.html">Contact</a>
-				</div>
+    <div class="profile-modal-backdrop" id="profile-modal-backdrop" hidden></div>
+    <aside class="profile-modal" id="profile-modal" aria-hidden="true" aria-label="Profile panel">
+        <div class="profile-modal-head">
+            <h2>My Profile</h2>
+            <button type="button" class="profile-modal-close" id="profile-modal-close" aria-label="Close profile">×</button>
+        </div>
+        <iframe
+            id="profile-modal-frame"
+            class="profile-modal-frame"
+            src="../home/profile.html?embed=1"
+            title="Profile panel"
+            loading="lazy"
+        ></iframe>
+    </aside>
 
-				<div class="footer-col">
-					<p class="footer-title">Get involved</p>
-					<a href="../communityevents/community.html">Join a Group</a>
-					<a href="../communityevents/community.html">Volunteer</a>
-					<a href="../communityevents/community.html">Serve</a>
-					<a href="../contacts/contacts.html">Plan Your Visit</a>
-				</div>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a class="brand" href="../home/homepage.html">
+                        <span class="brand-mark" aria-hidden="true">✝</span>
+                        <span>CTY <em>Ministries</em></span>
+                    </a>
+                    <p>Children · Teens · Youth — a Christ-centered community growing together and shining for Jesus.</p>
+                </div>
 
-				<div class="footer-col">
-					<p class="footer-title">Connect</p>
-					<a href="#" aria-label="CTY on Instagram">Instagram</a>
-					<a href="#" aria-label="CTY on Facebook">Facebook</a>
-					<a href="#" aria-label="CTY on TikTok">TikTok</a>
-					<a href="#" aria-label="CTY on YouTube">YouTube</a>
-				</div>
-			</div>
+                <div class="footer-col">
+                    <p class="footer-title">Explore</p>
+                    <a href="about2.html">About CTY</a>
+                    <a href="../post/post.html">Messages</a>
+                    <a href="../communityevents/community.html">Events</a>
+                    <a href="../contacts/contacts.html">Contact</a>
+                </div>
 
-			<div class="footer-bottom">
-				<span>© <span id="year"></span> CTY Ministries. All rights reserved.</span>
-				<span>Built to serve the next generation.</span>
-			</div>
-		</div>
-	</footer>
+                <div class="footer-col">
+                    <p class="footer-title">Get involved</p>
+                    <a href="../communityevents/community.html">Join a Group</a>
+                    <a href="../communityevents/community.html">Volunteer</a>
+                    <a href="../communityevents/community.html">Serve</a>
+                    <a href="../contacts/contacts.html">Plan Your Visit</a>
+                </div>
 
-	<script type="module">
-		import { supabase } from "../Javascript files/supabaseclient.js";
+                <div class="footer-col">
+                    <p class="footer-title">Connect</p>
+                    <a href="#" aria-label="CTY on Instagram">Instagram</a>
+                    <a href="#" aria-label="CTY on Facebook">Facebook</a>
+                    <a href="#" aria-label="CTY on TikTok">TikTok</a>
+                    <a href="#" aria-label="CTY on YouTube">YouTube</a>
+                </div>
+            </div>
 
-		const profileLink = document.getElementById("profile-link");
-		const profileAvatar = document.getElementById("profile-avatar");
-		const signOutBtn = document.getElementById("signout-btn");
-		const profileModal = document.getElementById("profile-modal");
-		const profileModalBackdrop = document.getElementById("profile-modal-backdrop");
-		const profileModalClose = document.getElementById("profile-modal-close");
+            <div class="footer-bottom">
+                <span>© <span id="year"></span> CTY Ministries. All rights reserved.</span>
+                <span>Built to serve the next generation.</span>
+            </div>
+        </div>
+    </footer>
 
-		function escapeHtml(str) {
-			return String(str)
-				.replace(/&/g, "&amp;")
-				.replace(/</g, "&lt;")
-				.replace(/>/g, "&gt;")
-				.replace(/\"/g, "&quot;")
-				.replace(/'/g, "&#39;");
-		}
+    <script type="module">
+        import { supabase } from "../Javascript files/supabaseclient.js";
 
-		function openProfileModal() {
-			if (!profileModal || !profileModalBackdrop) return;
-			profileModal.setAttribute("aria-hidden", "false");
-			profileModalBackdrop.hidden = false;
-			document.body.classList.add("profile-modal-open");
-		}
+        // DOM Elements
+        const leadersGrid = document.getElementById('leaders-grid');
+        const adminPanel = document.getElementById('admin-panel');
+        const adminStatus = document.getElementById('admin-status');
+        const adminMessage = document.getElementById('admin-message');
+        const addLeaderBtn = document.getElementById('add-leader-btn');
+        const refreshBtn = document.getElementById('refresh-leaders-btn');
+        const modal = document.getElementById('leader-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const leaderForm = document.getElementById('leader-form');
+        const modalTitle = document.getElementById('modal-title');
+        const modalSubmitBtn = document.getElementById('modal-submit-btn');
+        const leaderIdInput = document.getElementById('leader-id');
+        const nameInput = document.getElementById('leader-name');
+        const roleInput = document.getElementById('leader-role');
+        const bioInput = document.getElementById('leader-bio');
+        const photoInput = document.getElementById('leader-photo');
+        const currentPhotoDisplay = document.getElementById('current-photo-display');
+        const currentPhotoImg = document.getElementById('current-photo-img');
+        const profileLink = document.getElementById("profile-link");
+        const profileAvatar = document.getElementById("profile-avatar");
+        const signOutBtn = document.getElementById("signout-btn");
+        const profileModal = document.getElementById("profile-modal");
+        const profileModalBackdrop = document.getElementById("profile-modal-backdrop");
+        const profileModalClose = document.getElementById("profile-modal-close");
 
-		function closeProfileModal() {
-			if (!profileModal || !profileModalBackdrop) return;
-			profileModal.setAttribute("aria-hidden", "true");
-			document.body.classList.remove("profile-modal-open");
-			window.setTimeout(() => {
-				if (!document.body.classList.contains("profile-modal-open")) {
-					profileModalBackdrop.hidden = true;
-				}
-			}, 220);
-		}
+        let currentUser = null;
+        let isAdmin = false;
+        let leaders = [];
+        let editingLeaderId = null;
 
-		async function syncHeaderAuth() {
-			const { data: { session } } = await supabase.auth.getSession();
+        // ============================================
+        // AUTH FUNCTIONS
+        // ============================================
 
-			if (!session) {
-				if (profileLink) profileLink.hidden = true;
-				if (signOutBtn) signOutBtn.hidden = true;
-				return;
-			}
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str || '';
+            return div.innerHTML;
+        }
 
-			const { data: profile } = await supabase
-				.from("profiles")
-				.select("full_name, avatar_url")
-				.eq("id", session.user.id)
-				.maybeSingle();
+        function openProfileModal() {
+            if (!profileModal || !profileModalBackdrop) return;
+            profileModal.setAttribute("aria-hidden", "false");
+            profileModalBackdrop.hidden = false;
+            document.body.classList.add("profile-modal-open");
+        }
 
-			const fullName =
-				profile?.full_name ||
-				session.user.user_metadata?.full_name ||
-				session.user.email?.split("@")[0] ||
-				"User";
+        function closeProfileModal() {
+            if (!profileModal || !profileModalBackdrop) return;
+            profileModal.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("profile-modal-open");
+            window.setTimeout(() => {
+                if (!document.body.classList.contains("profile-modal-open")) {
+                    profileModalBackdrop.hidden = true;
+                }
+            }, 220);
+        }
 
-			if (profileAvatar) {
-				if (profile?.avatar_url) {
-					profileAvatar.innerHTML = `<img src="${escapeHtml(profile.avatar_url)}" alt="${escapeHtml(fullName)}" />`;
-				} else {
-					profileAvatar.textContent = fullName.trim().charAt(0).toUpperCase() || "U";
-				}
-			}
+        async function syncHeaderAuth() {
+            const { data: { session } } = await supabase.auth.getSession();
 
-			if (profileLink) {
-				profileLink.hidden = false;
-				profileLink.href = "../home/profile.html";
-				profileLink.title = fullName;
-				profileLink.setAttribute("aria-label", `${fullName} profile`);
-			}
+            if (!session) {
+                if (profileLink) profileLink.hidden = true;
+                if (signOutBtn) signOutBtn.hidden = true;
+                return;
+            }
 
-			if (signOutBtn) signOutBtn.hidden = false;
-		}
+            const { data: profile } = await supabase
+                .from("profiles")
+                .select("full_name, avatar_url, is_admin")
+                .eq("id", session.user.id)
+                .maybeSingle();
 
-		if (signOutBtn) {
-			signOutBtn.addEventListener("click", async () => {
-				signOutBtn.disabled = true;
+            const fullName = profile?.full_name ||
+                session.user.user_metadata?.full_name ||
+                session.user.email?.split("@")[0] ||
+                "User";
 
-				const redirectToSignIn = () => window.location.replace("../login/signin.html");
-				const redirectFallback = window.setTimeout(redirectToSignIn, 120);
+            if (profileAvatar) {
+                if (profile?.avatar_url) {
+                    profileAvatar.innerHTML = `<img src="${escapeHtml(profile.avatar_url)}" alt="${escapeHtml(fullName)}" />`;
+                } else {
+                    profileAvatar.textContent = fullName.trim().charAt(0).toUpperCase() || "U";
+                }
+            }
 
-				try {
-					await supabase.auth.signOut({ scope: "local" });
-				} finally {
-					window.clearTimeout(redirectFallback);
-					redirectToSignIn();
-				}
-			});
-		}
+            if (profileLink) {
+                profileLink.hidden = false;
+                profileLink.href = "../home/profile.html";
+                profileLink.title = fullName;
+                profileLink.setAttribute("aria-label", `${fullName} profile`);
+            }
 
-		profileLink?.addEventListener("click", (event) => {
-			event.preventDefault();
-			openProfileModal();
-		});
+            if (signOutBtn) signOutBtn.hidden = false;
 
-		profileModalClose?.addEventListener("click", closeProfileModal);
-		profileModalBackdrop?.addEventListener("click", closeProfileModal);
+            isAdmin = profile?.is_admin === true;
+            currentUser = session.user;
 
-		window.addEventListener("keydown", (event) => {
-			if (event.key === "Escape") closeProfileModal();
-		});
+            if (adminPanel) {
+                adminPanel.style.display = isAdmin ? 'block' : 'none';
+            }
 
-		window.addEventListener("message", (event) => {
-			if (!event.data || typeof event.data !== "object") return;
-			if (event.data.type === "close-profile-drawer" || event.data.type === "close-profile-modal") {
-				closeProfileModal();
-			}
-			if (event.data.type === "profile-updated") {
-				syncHeaderAuth();
-			}
-		});
+            return { session, profile };
+        }
 
-		supabase.auth.onAuthStateChange(() => {
-			syncHeaderAuth();
-		});
+        if (signOutBtn) {
+            signOutBtn.addEventListener("click", async () => {
+                signOutBtn.disabled = true;
+                const redirectToSignIn = () => window.location.replace("../login/signin.html");
+                const redirectFallback = window.setTimeout(redirectToSignIn, 120);
+                try {
+                    await supabase.auth.signOut({ scope: "local" });
+                } finally {
+                    window.clearTimeout(redirectFallback);
+                    redirectToSignIn();
+                }
+            });
+        }
 
-		syncHeaderAuth();
-	</script>
+        profileLink?.addEventListener("click", (event) => {
+            event.preventDefault();
+            openProfileModal();
+        });
 
-	<script>
-		const siteHeader = document.querySelector(".site-header");
+        profileModalClose?.addEventListener("click", closeProfileModal);
+        profileModalBackdrop?.addEventListener("click", closeProfileModal);
 
-		window.addEventListener("scroll", () => {
-			if (!siteHeader) return;
-			if (window.scrollY > 50) {
-				siteHeader.classList.add("scrolled");
-			} else {
-				siteHeader.classList.remove("scrolled");
-			}
-		});
+        window.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") closeProfileModal();
+        });
 
-		const menuToggle = document.getElementById("menuToggle");
-		const mobileNav = document.getElementById("mobileNav");
+        window.addEventListener("message", (event) => {
+            if (!event.data || typeof event.data !== "object") return;
+            if (event.data.type === "close-profile-drawer" || event.data.type === "close-profile-modal") {
+                closeProfileModal();
+            }
+            if (event.data.type === "profile-updated") {
+                syncHeaderAuth();
+            }
+        });
 
-		menuToggle.addEventListener("click", () => {
-			const isOpen = mobileNav.classList.toggle("is-open");
-			menuToggle.setAttribute("aria-expanded", String(isOpen));
-			menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
-			document.body.classList.toggle("menu-open", isOpen);
-		});
+        supabase.auth.onAuthStateChange(() => {
+            syncHeaderAuth();
+        });
 
-		mobileNav.querySelectorAll("a").forEach((link) => {
-			link.addEventListener("click", () => {
-				mobileNav.classList.remove("is-open");
-				menuToggle.setAttribute("aria-expanded", "false");
-				menuToggle.setAttribute("aria-label", "Open menu");
-				document.body.classList.remove("menu-open");
-			});
-		});
+        // ============================================
+        // UI HELPER FUNCTIONS
+        // ============================================
 
-		document.getElementById("year").textContent = new Date().getFullYear();
-	</script>
+        function showAdminMessage(message, type = 'info') {
+            if (adminMessage) {
+                adminMessage.textContent = message;
+                adminMessage.className = type;
+                setTimeout(() => {
+                    adminMessage.className = '';
+                    adminMessage.textContent = '';
+                }, 5000);
+            }
+        }
+
+        // ============================================
+        // LEADER CRUD FUNCTIONS
+        // ============================================
+
+        async function loadLeaders() {
+            try {
+                leadersGrid.innerHTML = `
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                `;
+
+                const { data, error } = await supabase
+                    .from('leaders')
+                    .select('*')
+                    .eq('status', 'published')
+                    .eq('is_deleted', false)
+                    .order('display_order', { ascending: true });
+
+                if (error) throw error;
+
+                leaders = data || [];
+
+                if (leaders.length === 0) {
+                    leadersGrid.innerHTML = `
+                        <div style="text-align: center; padding: 40px 20px; grid-column: 1/-1; background: #fff; border-radius: 22px; border: 1px solid var(--line);">
+                            <p style="color: var(--muted);">No leaders added yet.</p>
+                            ${isAdmin ? '<p style="color: var(--gold-dark); margin-top: 10px;">🔑 Admin: Click "Add Leader" to add your team members.</p>' : ''}
+                        </div>
+                    `;
+                    return;
+                }
+
+                renderLeaders();
+
+            } catch (error) {
+                console.error('Error loading leaders:', error);
+                leadersGrid.innerHTML = `
+                    <div style="text-align: center; padding: 40px 20px; grid-column: 1/-1; background: #fff; border-radius: 22px; border: 1px solid var(--line);">
+                        <p style="color: var(--muted);">Error loading leaders: ${escapeHtml(error.message)}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderLeaders() {
+            leadersGrid.innerHTML = leaders.map(leader => {
+                const hasPhoto = leader.photo_url && leader.photo_url.trim() !== '';
+                const initial = (leader.name || 'L').charAt(0).toUpperCase();
+
+                return `
+                    <div class="leader-card" data-leader-id="${leader.id}">
+                        ${isAdmin ? `
+                            <div class="leader-admin-actions">
+                                <button class="edit-leader-btn" data-id="${leader.id}" title="Edit leader">✏️</button>
+                                <button class="delete-leader-btn" data-id="${leader.id}" title="Delete leader">✕</button>
+                            </div>
+                        ` : ''}
+                        <div class="leader-photo">
+                            ${hasPhoto ? 
+                                `<img src="${leader.photo_url}" alt="${escapeHtml(leader.name)}" loading="lazy" />` :
+                                `<span class="placeholder">${initial}</span>`
+                            }
+                        </div>
+                        <h4>${escapeHtml(leader.name)}</h4>
+                        <span class="role">${escapeHtml(leader.role || 'Leader')}</span>
+                        ${leader.bio ? `<p class="bio">${escapeHtml(leader.bio)}</p>` : ''}
+                    </div>
+                `;
+            }).join('');
+
+            // Attach event listeners for admin actions
+            if (isAdmin) {
+                document.querySelectorAll('.edit-leader-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const id = btn.dataset.id;
+                        const leader = leaders.find(l => l.id === id);
+                        if (leader) openEditModal(leader);
+                    });
+                });
+
+                document.querySelectorAll('.delete-leader-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const id = btn.dataset.id;
+                        handleDeleteLeader(id);
+                    });
+                });
+            }
+        }
+
+        // ============================================
+        // ADD LEADER
+        // ============================================
+
+        async function handleAddLeader(event) {
+            event.preventDefault();
+            
+            if (!isAdmin) {
+                alert('Only admins can add leaders.');
+                return;
+            }
+
+            const name = nameInput.value.trim();
+            const role = roleInput.value;
+            const bio = bioInput.value.trim();
+            const file = photoInput.files[0];
+            const submitBtn = modalSubmitBtn;
+
+            if (!name || !role) {
+                showAdminMessage('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Saving...';
+
+            try {
+                let photoUrl = null;
+
+                // Upload photo if provided
+                if (file) {
+                    const fileExt = file.name.split('.').pop();
+                    const fileName = `${Date.now()}.${fileExt}`;
+                    const filePath = `leaders/${fileName}`;
+
+                    const { error: uploadError } = await supabase.storage
+                        .from('leaders')
+                        .upload(filePath, file, { cacheControl: '3600', upsert: false });
+
+                    if (uploadError) throw uploadError;
+
+                    const { data: publicUrlData } = supabase.storage
+                        .from('leaders')
+                        .getPublicUrl(filePath);
+
+                    photoUrl = publicUrlData.publicUrl;
+                }
+
+                // Create leader in database
+                const leaderData = {
+                    name,
+                    role,
+                    bio: bio || null,
+                    photo_url: photoUrl,
+                    status: 'published',
+                    is_deleted: false,
+                    display_order: leaders.length + 1
+                };
+
+                const { data, error } = await supabase
+                    .from('leaders')
+                    .insert(leaderData)
+                    .select();
+
+                if (error) throw error;
+
+                showAdminMessage('Leader added successfully!', 'success');
+                closeModal();
+                await loadLeaders();
+
+            } catch (error) {
+                console.error('Error adding leader:', error);
+                showAdminMessage('Error adding leader: ' + error.message, 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Save Leader';
+            }
+        }
+
+        // ============================================
+        // UPDATE LEADER
+        // ============================================
+
+        async function handleUpdateLeader(event) {
+            event.preventDefault();
+            
+            if (!isAdmin) return;
+
+            const id = leaderIdInput.value;
+            const name = nameInput.value.trim();
+            const role = roleInput.value;
+            const bio = bioInput.value.trim();
+            const file = photoInput.files[0];
+            const submitBtn = modalSubmitBtn;
+
+            if (!name || !role) {
+                showAdminMessage('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Saving...';
+
+            try {
+                const updateData = {
+                    name,
+                    role,
+                    bio: bio || null,
+                    updated_at: new Date().toISOString()
+                };
+
+                // Upload new photo if provided
+                if (file) {
+                    // Delete old photo first
+                    const { data: oldLeader } = await supabase
+                        .from('leaders')
+                        .select('photo_url')
+                        .eq('id', id)
+                        .single();
+
+                    if (oldLeader?.photo_url) {
+                        const oldPath = oldLeader.photo_url.split('/').pop();
+                        await supabase.storage.from('leaders').remove([`leaders/${oldPath}`]);
+                    }
+
+                    const fileExt = file.name.split('.').pop();
+                    const fileName = `${Date.now()}.${fileExt}`;
+                    const filePath = `leaders/${fileName}`;
+
+                    const { error: uploadError } = await supabase.storage
+                        .from('leaders')
+                        .upload(filePath, file, { cacheControl: '3600', upsert: false });
+
+                    if (uploadError) throw uploadError;
+
+                    const { data: publicUrlData } = supabase.storage
+                        .from('leaders')
+                        .getPublicUrl(filePath);
+
+                    updateData.photo_url = publicUrlData.publicUrl;
+                }
+
+                const { error } = await supabase
+                    .from('leaders')
+                    .update(updateData)
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                showAdminMessage('Leader updated successfully!', 'success');
+                closeModal();
+                await loadLeaders();
+
+            } catch (error) {
+                console.error('Error updating leader:', error);
+                showAdminMessage('Error updating leader: ' + error.message, 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Save Leader';
+            }
+        }
+
+        // ============================================
+        // DELETE LEADER
+        // ============================================
+
+        async function handleDeleteLeader(id) {
+            if (!isAdmin) return;
+
+            const confirmDelete = confirm('Are you sure you want to delete this leader? This action cannot be undone.');
+
+            if (!confirmDelete) return;
+
+            try {
+                // Get leader data to delete photo
+                const { data: leader, error: fetchError } = await supabase
+                    .from('leaders')
+                    .select('photo_url')
+                    .eq('id', id)
+                    .single();
+
+                if (fetchError) throw fetchError;
+
+                // Soft delete
+                const { error } = await supabase
+                    .from('leaders')
+                    .update({
+                        is_deleted: true,
+                        status: 'deleted',
+                        deleted_at: new Date().toISOString(),
+                        deleted_by: currentUser.id
+                    })
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                // Delete photo from storage if exists
+                if (leader?.photo_url) {
+                    const oldPath = leader.photo_url.split('/').pop();
+                    await supabase.storage.from('leaders').remove([`leaders/${oldPath}`]);
+                }
+
+                // Remove from UI with animation
+                const card = document.querySelector(`.leader-card[data-leader-id="${id}"]`);
+                if (card) {
+                    card.classList.add('deleting');
+                    setTimeout(() => {
+                        card.remove();
+                        leaders = leaders.filter(l => l.id !== id);
+                    }, 300);
+                }
+
+                showAdminMessage('Leader deleted successfully!', 'success');
+
+            } catch (error) {
+                console.error('Error deleting leader:', error);
+                showAdminMessage('Error deleting leader: ' + error.message, 'error');
+            }
+        }
+
+        // ============================================
+        // MODAL FUNCTIONS
+        // ============================================
+
+        function openAddModal() {
+            editingLeaderId = null;
+            leaderIdInput.value = '';
+            modalTitle.textContent = 'Add New Leader';
+            modalSubmitBtn.textContent = 'Add Leader';
+            leaderForm.reset();
+            currentPhotoDisplay.style.display = 'none';
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            leaderForm.removeEventListener('submit', handleUpdateLeader);
+            leaderForm.removeEventListener('submit', handleAddLeader);
+            leaderForm.addEventListener('submit', handleAddLeader);
+        }
+
+        function openEditModal(leader) {
+            editingLeaderId = leader.id;
+            leaderIdInput.value = leader.id;
+            modalTitle.textContent = 'Edit Leader';
+            modalSubmitBtn.textContent = 'Update Leader';
+            nameInput.value = leader.name || '';
+            roleInput.value = leader.role || '';
+            bioInput.value = leader.bio || '';
+            photoInput.value = '';
+            
+            if (leader.photo_url) {
+                currentPhotoDisplay.style.display = 'flex';
+                currentPhotoImg.src = leader.photo_url;
+            } else {
+                currentPhotoDisplay.style.display = 'none';
+            }
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            leaderForm.removeEventListener('submit', handleAddLeader);
+            leaderForm.removeEventListener('submit', handleUpdateLeader);
+            leaderForm.addEventListener('submit', handleUpdateLeader);
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            leaderForm.reset();
+            editingLeaderId = null;
+            leaderIdInput.value = '';
+            currentPhotoDisplay.style.display = 'none';
+        }
+
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+
+        if (addLeaderBtn) {
+            addLeaderBtn.addEventListener('click', openAddModal);
+        }
+
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', closeModal);
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', async () => {
+                if (adminStatus) {
+                    adminStatus.textContent = '🔄 Refreshing...';
+                    adminStatus.style.color = '#17a2b8';
+                }
+                await loadLeaders();
+                if (adminStatus) {
+                    adminStatus.textContent = '✓ Refreshed!';
+                    adminStatus.style.color = '#28a745';
+                    setTimeout(() => {
+                        adminStatus.textContent = '✓ Admin access enabled';
+                        adminStatus.style.color = '';
+                    }, 2000);
+                }
+            });
+        }
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+
+        async function init() {
+            await syncHeaderAuth();
+            await loadLeaders();
+        }
+
+        init();
+    </script>
+
+    <script>
+        const siteHeader = document.querySelector(".site-header");
+
+        window.addEventListener("scroll", () => {
+            if (!siteHeader) return;
+            if (window.scrollY > 50) {
+                siteHeader.classList.add("scrolled");
+            } else {
+                siteHeader.classList.remove("scrolled");
+            }
+        });
+
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileNav = document.getElementById("mobileNav");
+
+        menuToggle.addEventListener("click", () => {
+            const isOpen = mobileNav.classList.toggle("is-open");
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+            menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+            document.body.classList.toggle("menu-open", isOpen);
+        });
+
+        mobileNav.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                mobileNav.classList.remove("is-open");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Open menu");
+                document.body.classList.remove("menu-open");
+            });
+        });
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
