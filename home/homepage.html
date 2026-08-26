@@ -939,81 +939,101 @@
        FOOTER
     ========================================================= */
 
-    footer {
-      padding: 80px 0 30px;
+    	footer {
+  padding: 24px 16px 40px; /* space around the card so it "floats" */
+}
 
-      background: var(--black-soft);
+.footer-card {
+  background: #0d0d0d; /* original black */
+  color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.25);
+  padding: 40px clamp(20px, 5vw, 56px) 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
 
-      color: white;
-    }
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 32px;
+}
 
-    .footer-top {
-      display: flex;
+.footer-about {
+  flex: 1 1 260px;
+  max-width: 360px;
+}
 
-      justify-content: space-between;
+.footer-about p {
+  color: rgba(255, 255, 255, 0.7);
+}
 
-      gap: 50px;
+/* This wrapper is what pulls Explore & Connect close together */
+.footer-links {
+  display: flex;
+  gap: 40px; /* distance between the two columns — shrink this to bring them closer */
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
 
-      padding-bottom: 70px;
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 120px;
+}
 
-      border-bottom: 1px solid rgba(255,255,255,.12);
-    }
+.footer-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
 
-    .footer-brand {
-      font-family: var(--serif);
+.footer-col a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 0.2s ease;
+}
 
-      font-size: 2rem;
-    }
+.footer-col a:hover {
+  color: #ffffff;
+}
 
-    .footer-brand span {
-      color: var(--gold-light);
-    }
+.footer-bottom {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
 
-    .footer-links {
-      display: flex;
+@media (max-width: 640px) {
+  .footer-grid {
+    flex-direction: column;
+  }
+  .footer-links {
+    justify-content: flex-start;
+    gap: 32px;
+  }
+}
 
-      gap: 70px;
-    }
-
-    .footer-column h4 {
-      margin-bottom: 18px;
-
-      color: var(--gold-light);
-
-      font-size: 11px;
-
-      letter-spacing: .15em;
-
-      text-transform: uppercase;
-    }
-
-    .footer-column a {
-      display: block;
-
-      margin-bottom: 9px;
-
-      color: rgba(255,255,255,.6);
-
-      font-size: 13px;
-
-      transition: .2s;
-    }
-
-    .footer-column a:hover {
-      color: white;
-    }
-
-    .footer-bottom {
-      padding-top: 25px;
-
-      display: flex;
-
-      justify-content: space-between;
-
-      color: rgba(255,255,255,.35);
-
-      font-size: 11px;
-    }
+@media (max-width: 640px) {
+  .footer-grid {
+    flex-direction: column;
+  }
+  .footer-links {
+    justify-content: flex-start;
+    gap: 32px;
+  }
+}
 
 
     /* =========================================================
@@ -1736,111 +1756,41 @@
      FOOTER
 ========================================================= -->
 
-<footer>
-
-  <div class="container">
-
-
-    <div class="footer-top">
-
-
-      <div>
-
-        <div class="footer-brand">
-
-          CTY <span>Ministries</span>
-
-        </div>
-
-        <p style="
-          max-width:330px;
-          margin-top:20px;
-          color:rgba(255,255,255,.45);
-          font-size:13px;
-        ">
-
-          Children · Teens · Youth.
-          A Christ-centered community
-          growing together and shining for Jesus.
-
-        </p>
-
+  <footer>
+  <div class="container footer-card">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="brand" href="../home/homepage.html">
+          <span class="brand-mark" aria-hidden="true">✝</span>
+          <span>CTY <em>Ministries</em></span>
+        </a>
+        <p>Children · Teens · Youth — a Christ-centered community growing together and shining for Jesus.</p>
       </div>
-
 
       <div class="footer-links">
-
-
-        <div class="footer-column">
-
-          <h4>
-            Explore
-          </h4>
-
-          <a href="../About/about.html">
-            About
-          </a>
-
-          <a href="../post/post.html">
-            Messages
-          </a>
-
-          <a href="../communityevents/community.html">
-            Events
-          </a>
-
-          <a href="../contacts/contacts.html">
-            Contact
-          </a>
-
+        <div class="footer-col">
+          <p class="footer-title">Explore</p>
+          <a href="../About/about2.html">About CTY</a>
+          <a href="post.html">Messages</a>
+          <a href="../communityevents/community.html">Events</a>
+          <a href="../contacts/contacts.html">Contact</a>
         </div>
 
-
-        <div class="footer-column">
-
-          <h4>
-            Connect
-          </h4>
-
-          <a href="#">
-            Instagram
-          </a>
-
-          <a href="#">
-            Facebook
-          </a>
-
-          <a href="#">
-            TikTok
-          </a>
-
-          <a href="#">
-            YouTube
-          </a>
-
+        <div class="footer-col">
+          <p class="footer-title">Connect</p>
+          <a href="#" aria-label="CTY on Instagram">Instagram</a>
+          <a href="#" aria-label="CTY on Facebook">Facebook</a>
+          <a href="#" aria-label="CTY on TikTok">TikTok</a>
+          <a href="#" aria-label="CTY on YouTube">YouTube</a>
         </div>
-
-
       </div>
-
     </div>
-
 
     <div class="footer-bottom">
-
-      <span>
-        © <span id="year"></span>
-        CTY Ministries
-      </span>
-
-      <span>
-        Built to serve the next generation.
-      </span>
-
+      <span>© <span id="year"></span> CTY Ministries. All rights reserved.</span>
+      <span>Built to serve the next generation.</span>
     </div>
-
   </div>
-
 </footer>
 
 
