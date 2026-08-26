@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Real stories of life change, healing, freedom, and faith from the CTY community." />
+    <meta name="theme-color" content="#11100e" />
+    <title>Testimonies | CTY Ministries</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="../Logo%20Design%20in%20Canva.png" />
+
+    <style>
+        :root {
+            --ink: #11100e;
+            --ink-2: #1b1916;
+            --paper: #fbf8f0;
+            --paper-2: #f3ecdd;
+            --white: #fff;
+            --gold: #d2a238;
+            --gold-dark: #9a741e;
+            --gold-soft: #ead8a9;
+            --muted: #716c61;
+            --line: rgba(17, 16, 14, .11);
+            --shadow: 0 24px 70px rgba(17, 16, 14, .13);
+            --shadow-sm: 0 10px 28px rgba(17, 16, 14, .08);
+            --serif: "Playfair Display", Georgia, serif;
+            --sans: "DM Sans", system-ui, sans-serif;
+            --radius: 24px;
+            --container: 1180px;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--paper);
+            font-family: var(--sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        body.menu-open { overflow: hidden; }
+        body.modal-open { overflow: hidden; }
+
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+        button { font: inherit; cursor: pointer; }
+        :focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+
+        .container {
+            width: min(var(--container), calc(100% - 40px));
+            margin-inline: auto;
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(17,16,14,.94);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+        .header-inner {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            color: #fffaf0;
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .brand em { color: var(--gold-soft); font-style: normal; font-weight: 500; }
+        .brand-mark {
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: linear-gradient(135deg, var(--gold), #8c6618);
+            box-shadow: 0 12px 28px rgba(210,162,56,.28);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 27px;
+            color: rgba(255,250,240,.72);
+            font-size: .9rem;
+            font-weight: 600;
+        }
+        .nav a {
+            padding: 7px 0;
+            border-bottom: 2px solid transparent;
+            transition: .2s ease;
+        }
+        .nav a:hover,
+        .nav a.active {
+            color: #fff;
+            border-color: var(--gold);
+        }
+
+        .header-actions { display: flex; align-items: center; gap: 10px; }
+        .member-chip {
+            padding: 10px 14px;
+            border-radius: 999px;
+            color: #fffaf0;
+            border: 1px solid rgba(255,255,255,.20);
+            background: rgba(255,255,255,.08);
+            font-size: .8rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .button {
+            min-height: 46px;
+            padding: 0 19px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .88rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+        }
+        .button:hover { transform: translateY(-2px); }
+        .button-primary {
+            color: var(--ink);
+            background: linear-gradient(135deg, #e2b957, var(--gold));
+            box-shadow: 0 13px 30px rgba(210,162,56,.22);
+        }
+        .button-success {
+            color: #fff;
+            background: #28a745;
+            border: 1px solid #28a745;
+        }
+        .button-success:hover {
+            background: #218838;
+            border-color: #218838;
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255,255,255,.16);
+            border-radius: 12px;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+        }
+        .mobile-nav {
+            display: none;
+            padding: 0 20px 20px;
+        }
+        .mobile-nav a {
+            display: block;
+            padding: 13px 0;
+            color: #fffaf0;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            font-weight: 600;
+        }
+
+        /* ============================================
+           HERO
+           ============================================ */
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 86px 0 78px;
+            color: #fffaf0;
+            background:
+                radial-gradient(circle at 78% 12%, rgba(210,162,56,.22), transparent 27%),
+                radial-gradient(circle at 5% 85%, rgba(113,132,92,.15), transparent 30%),
+                var(--ink);
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(210,162,56,.7), transparent);
+        }
+        .hero-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1.08fr .92fr;
+            gap: 58px;
+            align-items: center;
+        }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--gold-soft);
+            font-size: .74rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+        .eyebrow::before {
+            content: "";
+            width: 26px;
+            height: 1px;
+            background: var(--gold);
+        }
+        h1, h2, h3, h4 {
+            font-family: var(--serif);
+            line-height: 1.1;
+        }
+        h1 {
+            margin: 20px 0 18px;
+            font-size: clamp(2.8rem, 6vw, 5.1rem);
+            letter-spacing: -.045em;
+            font-weight: 600;
+        }
+        .hero-copy p {
+            margin: 0;
+            color: rgba(255,250,240,.72);
+            font-size: 1.03rem;
+            line-height: 1.8;
+        }
+        .hero-card {
+            padding: 28px;
+            border: 1px solid rgba(255,255,255,.14);
+            border-radius: 26px;
+            background: rgba(255,255,255,.05);
+            box-shadow: var(--shadow);
+        }
+        .hero-card p {
+            margin: 0;
+            color: rgba(255,250,240,.74);
+            font-size: .95rem;
+            line-height: 1.8;
+        }
+
+        /* ============================================
+           TESTIMONIES SECTION
+           ============================================ */
+
+        .section { padding: 84px 0; }
+        .section.alt { background: var(--paper-2); }
+        .section-head {
+            max-width: 760px;
+            margin-bottom: 50px;
+        }
+        .section-kicker {
+            margin: 0 0 10px;
+            color: var(--gold-dark);
+            font-size: .74rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+        .section h2 {
+            margin: 0 0 14px;
+            font-size: clamp(2.05rem, 3.8vw, 3.2rem);
+            letter-spacing: -.035em;
+        }
+        .section-head p { margin: 0; color: var(--muted); }
+
+        .testimonies-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .testimony-card {
+            background: var(--white);
+            border-radius: 20px;
+            border: 1px solid var(--line);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .testimony-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow);
+        }
+
+        .testimony-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background: var(--paper-2);
+            position: relative;
+        }
+        .testimony-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .testimony-image .placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--muted);
+            background: var(--paper-2);
+            font-family: var(--serif);
+        }
+
+        .testimony-badge {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            padding: 4px 14px;
+            border-radius: 999px;
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            background: rgba(17,16,14,.8);
+            color: #fff;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .testimony-info {
+            padding: 18px 20px 20px;
+        }
+        .testimony-info h3 {
+            margin: 0 0 4px;
+            font-size: 1.15rem;
+        }
+        .testimony-info .location {
+            margin: 0 0 8px;
+            color: var(--muted);
+            font-size: .82rem;
+        }
+        .testimony-info .theme-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .testimony-info .theme-tag {
+            padding: 2px 10px;
+            border-radius: 999px;
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            background: var(--gold-soft);
+            color: var(--gold-dark);
+        }
+        .testimony-info .theme-tag.love { background: #f8d7da; color: #721c24; }
+        .testimony-info .theme-tag.freedom { background: #d4edda; color: #155724; }
+        .testimony-info .theme-tag.healing { background: #d1ecf1; color: #0c5460; }
+        .testimony-info .theme-tag.doubt { background: #fff3cd; color: #856404; }
+        .testimony-info .theme-tag.finding { background: #e8daef; color: #6c3483; }
+        .testimony-info .theme-tag.newlife { background: #d6d8db; color: #1b1e21; }
+        .testimony-info .theme-tag.proclaiming { background: #fce4ec; color: #880e4f; }
+
+        .testimony-info .watch-btn {
+            margin-top: 12px;
+            padding: 6px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--gold);
+            background: transparent;
+            color: var(--gold-dark);
+            font-size: .78rem;
+            font-weight: 700;
+            transition: all .2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .testimony-info .watch-btn:hover {
+            background: var(--gold);
+            color: #fff;
+        }
+
+        /* ============================================
+           TESTIMONY MODAL
+           ============================================ */
+
+        .testimony-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .testimony-modal.active {
+            display: flex;
+        }
+
+        .testimony-modal-content {
+            background: #fff;
+            border-radius: 24px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 36px 90px rgba(0,0,0,0.4);
+            animation: modalFadeIn 0.3s ease;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-header {
+            padding: 20px 24px 16px;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        .modal-close-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            background: var(--paper);
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background .2s ease;
+        }
+        .modal-close-btn:hover {
+            background: var(--paper-2);
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .modal-testimony-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .modal-testimony-meta .avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--paper-2);
+            flex-shrink: 0;
+        }
+        .modal-testimony-meta .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .modal-testimony-meta .avatar .placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--muted);
+        }
+        .modal-testimony-meta .meta-info h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .modal-testimony-meta .meta-info .location {
+            margin: 0;
+            color: var(--muted);
+            font-size: .85rem;
+        }
+
+        .modal-testimony-meta .theme-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .modal-video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            background: #000;
+        }
+        .modal-video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .modal-video-wrapper .video-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            background: var(--ink-2);
+            flex-direction: column;
+            gap: 12px;
+        }
+        .modal-video-wrapper .video-placeholder svg {
+            opacity: 0.6;
+        }
+
+        .modal-description {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #3a352e;
+            font-size: .95rem;
+        }
+
+        .modal-share {
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+        }
+        .modal-share p {
+            margin: 0 0 10px;
+            font-weight: 600;
+            font-size: .85rem;
+            color: var(--muted);
+        }
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .share-btn {
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: none;
+            font-size: .82rem;
+            font-weight: 700;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform .2s ease, opacity .2s ease;
+        }
+        .share-btn:hover {
+            transform: scale(1.04);
+            opacity: 0.9;
+        }
+        .share-btn.facebook { background: #1877f2; }
+        .share-btn.twitter { background: #000; }
+        .share-btn.whatsapp { background: #25d366; }
+        .share-btn.email { background: #ea4335; }
+        .share-btn.link { background: var(--muted); }
+
+        /* ============================================
+           ADMIN PANEL
+           ============================================ */
+
+        #admin-panel {
+            margin-bottom: 40px;
+            padding: 24px;
+            background: #fff;
+            border: 2px solid var(--gold);
+            border-radius: 18px;
+            display: none;
+        }
+        #admin-panel h3 {
+            font-family: var(--serif);
+            margin: 0 0 12px;
+            font-size: 1.3rem;
+        }
+        .admin-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        #admin-status {
+            font-size: 0.8rem;
+            color: var(--muted);
+            align-self: center;
+        }
+        #admin-message {
+            margin-top: 10px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            display: none;
+        }
+        #admin-message.success { display: block; color: #155724; background: #d4edda; }
+        #admin-message.error { display: block; color: #721c24; background: #f8d7da; }
+        #admin-message.info { display: block; color: #0c5460; background: #d1ecf1; }
+
+        /* Admin buttons on cards */
+        .testimony-admin-actions {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            display: flex;
+            gap: 5px;
+            z-index: 5;
+        }
+        .testimony-admin-actions button {
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            background: rgba(255,255,255,0.95);
+        }
+        .testimony-admin-actions button:hover {
+            transform: scale(1.1);
+        }
+        .edit-testimony-btn { color: var(--gold-dark); }
+        .edit-testimony-btn:hover { background: var(--gold-soft); }
+        .delete-testimony-btn { color: #dc3545; }
+        .delete-testimony-btn:hover { background: #dc3545; color: #fff; }
+
+        .testimony-card {
+            position: relative;
+        }
+        .testimony-card.deleting {
+            opacity: 0.4;
+            pointer-events: none;
+            transform: scale(0.95);
+        }
+
+        /* ============================================
+           ADD TESTIMONY MODAL
+           ============================================ */
+
+        .add-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 4000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .add-modal-overlay.active {
+            display: flex;
+        }
+        .add-modal-content {
+            background: #fff;
+            border-radius: 24px;
+            padding: 30px;
+            max-width: 560px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+        }
+        .add-modal-content h2 {
+            font-family: var(--serif);
+            margin: 0 0 20px;
+        }
+        .add-modal-content .form-group {
+            margin-bottom: 16px;
+        }
+        .add-modal-content .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        .add-modal-content .form-group input,
+        .add-modal-content .form-group textarea,
+        .add-modal-content .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            font: inherit;
+        }
+        .add-modal-content .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        .add-modal-content .form-group input[type="file"] {
+            padding: 8px;
+        }
+        .add-modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        /* ============================================
+           CTA & FOOTER
+           ============================================ */
+
+        .cta {
+            padding: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            border-radius: 30px;
+            color: #fffaf0;
+            background:
+                radial-gradient(circle at 85% 10%, rgba(210,162,56,.24), transparent 28%),
+                var(--ink);
+            box-shadow: var(--shadow);
+        }
+        .cta .section-kicker { color: var(--gold-soft); }
+        .cta h2 { margin: 0 0 10px; }
+        .cta p { max-width: 600px; margin: 0; color: rgba(255,250,240,.62); }
+
+        footer {
+            margin-top: 92px;
+            padding: 65px 0 25px;
+            color: rgba(255,250,240,.72);
+            background: var(--ink-2);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 42px;
+            border-bottom: 1px solid rgba(255,255,255,.09);
+        }
+        .footer-about p {
+            max-width: 330px;
+            color: rgba(255,250,240,.48);
+            font-size: .85rem;
+        }
+        .footer-title {
+            margin: 0 0 15px;
+            color: var(--gold-soft);
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+        .footer-col { display: grid; align-content: start; gap: 9px; }
+        .footer-col a { font-size: .84rem; transition: color .2s ease; }
+        .footer-col a:hover { color: #fff; }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding-top: 22px;
+            color: rgba(255,250,240,.38);
+            font-size: .74rem;
+        }
+
+        .skeleton-card {
+            min-height: 340px;
+            border-radius: 20px;
+            background: linear-gradient(100deg, var(--paper-2) 30%, #fff 50%, var(--paper-2) 70%);
+            background-size: 200% 100%;
+            animation: shimmer 1.4s infinite;
+        }
+        @keyframes shimmer {
+            from { background-position: 200% 0; }
+            to { background-position: -200% 0; }
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+
+        @media (max-width: 980px) {
+            .nav { display: none; }
+            .menu-toggle { display: block; }
+            .mobile-nav.is-open { display: block; }
+            .hero-grid { grid-template-columns: 1fr; }
+            .testimonies-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+            .footer-about { grid-column: 1 / -1; }
+        }
+
+        @media (max-width: 700px) {
+            .container { width: min(var(--container), calc(100% - 28px)); }
+            .header-inner { min-height: 68px; }
+            h1 { font-size: clamp(2.45rem, 13vw, 3.75rem); }
+            .testimonies-grid { grid-template-columns: 1fr; }
+            .admin-toolbar { flex-direction: column; }
+            .modal-testimony-meta { flex-direction: column; align-items: flex-start; }
+            .cta { align-items: flex-start; flex-direction: column; padding: 32px 24px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-about { grid-column: 1 / -1; }
+            .footer-bottom { flex-direction: column; }
+            .share-buttons { flex-wrap: wrap; }
+            .share-btn { flex: 1; min-width: 100px; justify-content: center; }
+            .testimony-modal-content { max-height: 95vh; }
+            .modal-body { padding: 16px; }
+        }
+
+        @media (max-width: 480px) {
+            .testimonies-grid { grid-template-columns: 1fr; }
+            .share-btn { min-width: 80px; font-size: .7rem; padding: 6px 12px; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ============================================
+         HEADER
+         ============================================ -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="../home/homepage.html" aria-label="CTY Ministries home">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 200 200" width="21" height="21">
+                        <g stroke="#FBF8F0" stroke-width="7" stroke-linecap="round">
+                            <line x1="100" y1="34" x2="100" y2="4"/>
+                            <line x1="151" y1="64" x2="176" y2="47"/>
+                            <line x1="159" y1="93" x2="188" y2="93"/>
+                            <line x1="151" y1="122" x2="176" y2="139"/>
+                            <line x1="49" y1="122" x2="24" y2="139"/>
+                            <line x1="41" y1="93" x2="12" y2="93"/>
+                            <line x1="49" y1="64" x2="24" y2="47"/>
+                        </g>
+                        <rect x="91" y="55" width="18" height="84" fill="#FBF8F0"/>
+                        <rect x="69" y="83" width="62" height="18" fill="#FBF8F0"/>
+                    </svg>
+                </span>
+                <span>CTY <em>Ministries</em></span>
+            </a>
+
+            <nav class="nav" aria-label="Main navigation">
+                <a href="../home/homepage.html">Home</a>
+                <a href="../About/about2.html">About</a>
+                <a href="../post/post.html">Posts</a>
+                <a class="active" href="testimonies.html">Testimonies</a>
+                <a href="../communityevents/community.html">Events</a>
+                <a href="../contacts/contacts.html">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <span class="member-chip" id="member-chip" hidden>Signed in</span>
+                <button class="button button-primary" id="signout-btn" type="button" hidden>Sign out</button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
+            </div>
+        </div>
+
+        <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+            <a href="../home/homepage.html">Home</a>
+            <a href="../About/about2.html">About</a>
+            <a href="../post/post.html">Posts</a>
+            <a href="testimonies.html">Testimonies</a>
+            <a href="../communityevents/community.html">Events</a>
+            <a href="../contacts/contacts.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ============================================
+             HERO
+             ============================================ -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <span class="eyebrow">Real Stories</span>
+                    <h1>Testimonies of Life Change</h1>
+                    <p>
+                        Hear from people whose lives have been transformed by the love of Jesus.
+                        These are real stories of finding freedom, healing, love, and purpose in Christ.
+                    </p>
+                </div>
+                <aside class="hero-card" aria-label="Testimonies info">
+                    <p>
+                        Every testimony is a reminder that God is still at work today.
+                        Click on any story to watch the full video, read their journey,
+                        and share their story with someone who needs to hear it.
+                    </p>
+                </aside>
+            </div>
+        </section>
+
+        <!-- ============================================
+             TESTIMONIES SECTION
+             ============================================ -->
+        <section class="section alt" id="testimonies">
+            <div class="container">
+                <!-- Admin Panel -->
+                <div id="admin-panel">
+                    <h3>🔑 Admin - Manage Testimonies</h3>
+                    <div class="admin-toolbar">
+                        <button id="add-testimony-btn" class="button button-success">+ Add Testimony</button>
+                        <button id="refresh-testimonies-btn" class="button" style="border: 1px solid var(--line);">🔄 Refresh</button>
+                        <span id="admin-status">✓ Admin access enabled</span>
+                    </div>
+                    <div id="admin-message"></div>
+                </div>
+
+                <div class="section-head">
+                    <p class="section-kicker">Stories of Hope</p>
+                    <h2>Finding Freedom. Finding Life.</h2>
+                    <p>Click any testimony to watch the full story and be encouraged.</p>
+                </div>
+
+                <div class="testimonies-grid" id="testimonies-grid">
+                    <!-- Testimonies loaded from Supabase -->
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             TESTIMONY DETAIL MODAL
+             ============================================ -->
+        <div class="testimony-modal" id="testimony-modal">
+            <div class="testimony-modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Testimony</h2>
+                    <button class="modal-close-btn" id="modal-close-btn">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-testimony-meta" id="modal-meta">
+                        <div class="avatar" id="modal-avatar">
+                            <span class="placeholder">👤</span>
+                        </div>
+                        <div class="meta-info">
+                            <h3 id="modal-name">Name</h3>
+                            <p class="location" id="modal-location">Location</p>
+                            <div class="theme-tags" id="modal-themes"></div>
+                        </div>
+                    </div>
+
+                    <div class="modal-video-wrapper" id="modal-video-wrapper">
+                        <div class="video-placeholder" id="video-placeholder">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10" stroke="white" fill="none"/>
+                                <polygon points="10,8 16,12 10,16" fill="white"/>
+                            </svg>
+                            <span>Loading video...</span>
+                        </div>
+                        <iframe id="modal-video" src="" allowfullscreen allow="autoplay; encrypted-media" style="display:none;"></iframe>
+                    </div>
+
+                    <p class="modal-description" id="modal-description">
+                        Description of the testimony.
+                    </p>
+
+                    <div class="modal-share">
+                        <p>Share this testimony</p>
+                        <div class="share-buttons" id="share-buttons">
+                            <button class="share-btn facebook" data-share="facebook">📘 Facebook</button>
+                            <button class="share-btn twitter" data-share="twitter">🐦 Twitter</button>
+                            <button class="share-btn whatsapp" data-share="whatsapp">💬 WhatsApp</button>
+                            <button class="share-btn email" data-share="email">✉️ Email</button>
+                            <button class="share-btn link" data-share="link">🔗 Copy Link</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             ADD/EDIT TESTIMONY MODAL
+             ============================================ -->
+        <div class="add-modal-overlay" id="add-testimony-modal">
+            <div class="add-modal-content">
+                <h2 id="add-modal-title">Add New Testimony</h2>
+                <form id="add-testimony-form">
+                    <input type="hidden" id="testimony-id" value="">
+                    <div class="form-group">
+                        <label for="testimony-name">Full Name *</label>
+                        <input type="text" id="testimony-name" required placeholder="e.g., Kia">
+                    </div>
+                    <div class="form-group">
+                        <label for="testimony-location">Location</label>
+                        <input type="text" id="testimony-location" placeholder="e.g., Iran">
+                    </div>
+                    <div class="form-group">
+                        <label for="testimony-theme">Theme *</label>
+                        <select id="testimony-theme" required>
+                            <option value="">Select a theme...</option>
+                            <option value="finding">Finding</option>
+                            <option value="freedom">Freedom</option>
+                            <option value="healing">Healing</option>
+                            <option value="love">Love</option>
+                            <option value="doubt">Doubt</option>
+                            <option value="newlife">New Life</option>
+                            <option value="proclaiming">Proclaiming</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="testimony-description">Short Description *</label>
+                        <textarea id="testimony-description" required placeholder="Brief description of their story..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="testimony-video">YouTube Video URL *</label>
+                        <input type="url" id="testimony-video" required placeholder="https://www.youtube.com/watch?v=...">
+                        <small style="color: var(--muted);">Paste the full YouTube video URL</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="testimony-photo">Profile Photo</label>
+                        <input type="file" id="testimony-photo" accept="image/*">
+                        <small style="color: var(--muted);">JPG, PNG, WEBP up to 5MB. Leave empty to keep current photo.</small>
+                        <div id="current-photo-display" class="current-photo" style="display:none; margin-top:8px; padding:10px; background:var(--paper-2); border-radius:10px; display:none;">
+                            <img id="current-photo-img" src="" alt="Current photo" style="width:50px; height:50px; border-radius:50%; object-fit:cover;">
+                            <span style="font-size:0.85rem; color:var(--muted);">Current photo</span>
+                        </div>
+                    </div>
+                    <div class="add-modal-actions">
+                        <button type="submit" class="button button-success" id="add-modal-submit-btn">Save Testimony</button>
+                        <button type="button" class="button" id="close-add-modal-btn" style="border: 1px solid var(--line);">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- ============================================
+             CTA
+             ============================================ -->
+        <section class="container" aria-label="Call to action">
+            <div class="cta">
+                <div>
+                    <p class="section-kicker">Your Story Matters</p>
+                    <h2>Share Your Testimony</h2>
+                    <p>God is still writing stories of redemption and hope. We'd love to hear how He's working in your life.</p>
+                </div>
+                <a class="button button-primary" href="../contacts/contacts.html">Share Your Story</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a class="brand" href="../home/homepage.html">
+                        <span class="brand-mark" aria-hidden="true">✝</span>
+                        <span>CTY <em>Ministries</em></span>
+                    </a>
+                    <p>Children · Teens · Youth — a Christ-centered community growing together and shining for Jesus.</p>
+                </div>
+
+                <div class="footer-col">
+                    <p class="footer-title">Explore</p>
+                    <a href="../About/about2.html">About CTY</a>
+                    <a href="../post/post.html">Messages</a>
+                    <a href="../communityevents/community.html">Events</a>
+                    <a href="../contacts/contacts.html">Contact</a>
+                </div>
+
+                <div class="footer-col">
+                    <p class="footer-title">Get involved</p>
+                    <a href="../communityevents/community.html">Join a Group</a>
+                    <a href="../communityevents/community.html">Volunteer</a>
+                    <a href="../communityevents/community.html">Serve</a>
+                    <a href="../contacts/contacts.html">Plan Your Visit</a>
+                </div>
+
+                <div class="footer-col">
+                    <p class="footer-title">Connect</p>
+                    <a href="#" aria-label="CTY on Instagram">Instagram</a>
+                    <a href="#" aria-label="CTY on Facebook">Facebook</a>
+                    <a href="#" aria-label="CTY on TikTok">TikTok</a>
+                    <a href="#" aria-label="CTY on YouTube">YouTube</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© <span id="year"></span> CTY Ministries. All rights reserved.</span>
+                <span>Built to serve the next generation.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileNav = document.getElementById("mobileNav");
+
+        menuToggle.addEventListener("click", () => {
+            const isOpen = mobileNav.classList.toggle("is-open");
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+            menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+            document.body.classList.toggle("menu-open", isOpen);
+        });
+
+        mobileNav.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                mobileNav.classList.remove("is-open");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Open menu");
+                document.body.classList.remove("menu-open");
+            });
+        });
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+    <script type="module">
+        import { supabase } from "../Javascript files/supabaseclient.js";
+
+        // DOM Elements
+        const grid = document.getElementById('testimonies-grid');
+        const adminPanel = document.getElementById('admin-panel');
+        const adminStatus = document.getElementById('admin-status');
+        const adminMessage = document.getElementById('admin-message');
+        const addBtn = document.getElementById('add-testimony-btn');
+        const refreshBtn = document.getElementById('refresh-testimonies-btn');
+        const modal = document.getElementById('testimony-modal');
+        const modalClose = document.getElementById('modal-close-btn');
+        const modalTitle = document.getElementById('modal-title');
+        const modalName = document.getElementById('modal-name');
+        const modalLocation = document.getElementById('modal-location');
+        const modalThemes = document.getElementById('modal-themes');
+        const modalAvatar = document.getElementById('modal-avatar');
+        const modalDescription = document.getElementById('modal-description');
+        const modalVideo = document.getElementById('modal-video');
+        const videoPlaceholder = document.getElementById('video-placeholder');
+        const addModal = document.getElementById('add-testimony-modal');
+        const closeAddModal = document.getElementById('close-add-modal-btn');
+        const addForm = document.getElementById('add-testimony-form');
+        const addModalTitle = document.getElementById('add-modal-title');
+        const addSubmitBtn = document.getElementById('add-modal-submit-btn');
+        const testimonyIdInput = document.getElementById('testimony-id');
+        const nameInput = document.getElementById('testimony-name');
+        const locationInput = document.getElementById('testimony-location');
+        const themeInput = document.getElementById('testimony-theme');
+        const descriptionInput = document.getElementById('testimony-description');
+        const videoInput = document.getElementById('testimony-video');
+        const photoInput = document.getElementById('testimony-photo');
+        const currentPhotoDisplay = document.getElementById('current-photo-display');
+        const currentPhotoImg = document.getElementById('current-photo-img');
+        const memberChip = document.getElementById("member-chip");
+        const signOutBtn = document.getElementById("signout-btn");
+
+        let currentUser = null;
+        let isAdmin = false;
+        let testimonies = [];
+        let editingId = null;
+
+        // ============================================
+        // AUTH
+        // ============================================
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str || '';
+            return div.innerHTML;
+        }
+
+        async function syncHeaderAuth() {
+            const { data: { session } } = await supabase.auth.getSession();
+
+            if (!session) {
+                memberChip.hidden = true;
+                signOutBtn.hidden = true;
+                return;
+            }
+
+            const { data: profile } = await supabase
+                .from("profiles")
+                .select("full_name, is_admin, role")
+                .eq("id", session.user.id)
+                .maybeSingle();
+
+            const fullName = profile?.full_name ||
+                session.user.user_metadata?.full_name ||
+                session.user.email?.split("@")[0] ||
+                "Member";
+
+            memberChip.textContent = `Hi, ${fullName.split(" ")[0]}`;
+            memberChip.hidden = false;
+            signOutBtn.hidden = false;
+
+            isAdmin = profile?.is_admin === true || profile?.role === 'admin';
+            currentUser = session.user;
+
+            if (adminPanel) {
+                adminPanel.style.display = isAdmin ? 'block' : 'none';
+            }
+
+            return { session, profile };
+        }
+
+        signOutBtn.addEventListener("click", async () => {
+            signOutBtn.disabled = true;
+
+            const redirectToSignIn = () => window.location.replace("../login/signin.html");
+            const redirectFallback = window.setTimeout(redirectToSignIn, 120);
+
+            try {
+                await supabase.auth.signOut({ scope: "local" });
+            } finally {
+                window.clearTimeout(redirectFallback);
+                redirectToSignIn();
+            }
+        });
+
+        supabase.auth.onAuthStateChange(() => {
+            syncHeaderAuth();
+        });
+
+        // ============================================
+        // THEME COLORS
+        // ============================================
+
+        const themeColors = {
+            finding: 'finding',
+            freedom: 'freedom',
+            healing: 'healing',
+            love: 'love',
+            doubt: 'doubt',
+            newlife: 'newlife',
+            proclaiming: 'proclaiming'
+        };
+
+        function getThemeClass(theme) {
+            return themeColors[String(theme || '').toLowerCase()] || '';
+        }
+
+        function ensureAdminAction() {
+            if (!isAdmin) {
+                showAdminMessage('Only admins can perform this action.', 'error');
+                return false;
+            }
+            return true;
+        }
+
+        // ============================================
+        // LOAD TESTIMONIES
+        // ============================================
+
+        async function loadTestimonies() {
+            try {
+                grid.innerHTML = `
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                `;
+
+                const { data, error } = await supabase
+                    .from('testimonies')
+                    .select('*')
+                    .eq('status', 'published')
+                    .eq('is_deleted', false)
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                testimonies = data || [];
+
+                if (testimonies.length === 0) {
+                    grid.innerHTML = `
+                        <div style="text-align: center; padding: 40px 20px; grid-column: 1/-1; background: #fff; border-radius: 22px; border: 1px solid var(--line);">
+                            <p style="color: var(--muted);">No testimonies yet. Check back soon!</p>
+                            ${isAdmin ? '<p style="color: var(--gold-dark); margin-top: 10px;">🔑 Admin: Click "Add Testimony" to share a story.</p>' : ''}
+                        </div>
+                    `;
+                    return;
+                }
+
+                renderTestimonies();
+
+            } catch (error) {
+                console.error('Error loading testimonies:', error);
+                grid.innerHTML = `
+                    <div style="text-align: center; padding: 40px 20px; grid-column: 1/-1; background: #fff; border-radius: 22px; border: 1px solid var(--line);">
+                        <p style="color: var(--muted);">Error loading testimonies: ${escapeHtml(error.message)}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderTestimonies() {
+            grid.innerHTML = testimonies.map(testimony => {
+                const hasPhoto = testimony.photo_url && testimony.photo_url.trim() !== '';
+                const initial = (testimony.name || 'T').charAt(0).toUpperCase();
+                const themeClass = getThemeClass(testimony.theme);
+
+                return `
+                    <div class="testimony-card" data-testimony-id="${testimony.id}">
+                        ${isAdmin ? `
+                            <div class="testimony-admin-actions">
+                                <button class="edit-testimony-btn" data-id="${testimony.id}" title="Edit testimony">✏️</button>
+                                <button class="delete-testimony-btn" data-id="${testimony.id}" title="Delete testimony">✕</button>
+                            </div>
+                        ` : ''}
+                        <div class="testimony-image" onclick="window.openTestimonyModal('${testimony.id}')">
+                            ${hasPhoto ? 
+                                `<img src="${testimony.photo_url}" alt="${escapeHtml(testimony.name)}" loading="lazy" />` :
+                                `<span class="placeholder">${initial}</span>`
+                            }
+                            <span class="testimony-badge">${escapeHtml(testimony.theme || 'Story')}</span>
+                        </div>
+                        <div class="testimony-info">
+                            <h3>${escapeHtml(testimony.name)}</h3>
+                            ${testimony.location ? `<p class="location">${escapeHtml(testimony.location)}</p>` : ''}
+                            <div class="theme-tags">
+                                <span class="theme-tag ${themeClass}">${escapeHtml(testimony.theme || 'Story')}</span>
+                            </div>
+                            <button class="watch-btn" onclick="window.openTestimonyModal('${testimony.id}')">
+                                ▶ Watch Video
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Attach admin events
+            if (isAdmin) {
+                document.querySelectorAll('.edit-testimony-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const id = btn.dataset.id;
+                        const testimony = testimonies.find(t => t.id === id);
+                        if (testimony) openEditModal(testimony);
+                    });
+                });
+
+                document.querySelectorAll('.delete-testimony-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const id = btn.dataset.id;
+                        handleDeleteTestimony(id);
+                    });
+                });
+            }
+        }
+
+        // ============================================
+        // MODAL FUNCTIONS
+        // ============================================
+
+        window.openTestimonyModal = function(id) {
+            const testimony = testimonies.find(t => t.id === id);
+            if (!testimony) return;
+
+            modalTitle.textContent = testimony.name + "'s Story";
+            modalName.textContent = testimony.name;
+            modalLocation.textContent = testimony.location || 'Unknown Location';
+            modalDescription.textContent = testimony.description || '';
+
+            // Avatar
+            if (testimony.photo_url) {
+                modalAvatar.innerHTML = `<img src="${testimony.photo_url}" alt="${escapeHtml(testimony.name)}" />`;
+            } else {
+                modalAvatar.innerHTML = `<span class="placeholder">${escapeHtml(testimony.name.charAt(0).toUpperCase())}</span>`;
+            }
+
+            // Themes
+            modalThemes.innerHTML = `
+                <span class="theme-tag ${getThemeClass(testimony.theme)}">${escapeHtml(testimony.theme || 'Story')}</span>
+            `;
+
+            // Video
+            const videoUrl = testimony.video_url;
+            if (videoUrl) {
+                const embedUrl = videoUrl.includes('youtube.com/watch') 
+                    ? videoUrl.replace('watch?v=', 'embed/').split('&')[0]
+                    : videoUrl.includes('youtu.be') 
+                        ? videoUrl.replace('youtu.be/', 'youtube.com/embed/')
+                        : videoUrl;
+                
+                videoPlaceholder.style.display = 'none';
+                modalVideo.style.display = 'block';
+                modalVideo.src = embedUrl + '?autoplay=1&rel=0';
+            } else {
+                videoPlaceholder.style.display = 'flex';
+                modalVideo.style.display = 'none';
+                videoPlaceholder.innerHTML = `
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10" stroke="#999" fill="none"/>
+                        <polygon points="10,8 16,12 10,16" fill="#999"/>
+                    </svg>
+                    <span style="color:#999;">No video available</span>
+                `;
+            }
+
+            // Share buttons
+            const shareButtons = document.querySelectorAll('.share-btn');
+            const shareData = {
+                title: `${testimony.name}'s Testimony - CTY Ministries`,
+                text: `Watch ${testimony.name}'s story of ${testimony.theme || 'faith'} on CTY Ministries:`,
+                url: window.location.href
+            };
+
+            shareButtons.forEach(btn => {
+                btn.onclick = () => handleShare(btn.dataset.share, shareData, testimony);
+            });
+
+            modal.classList.add('active');
+            document.body.classList.add('modal-open');
+        };
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+            modalVideo.src = '';
+            modalVideo.style.display = 'none';
+            videoPlaceholder.style.display = 'flex';
+            videoPlaceholder.innerHTML = `
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="10" stroke="white" fill="none"/>
+                    <polygon points="10,8 16,12 10,16" fill="white"/>
+                </svg>
+                <span>Loading video...</span>
+            `;
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // ============================================
+        // SHARE FUNCTION
+        // ============================================
+
+        function handleShare(platform, data, testimony) {
+            const url = data.url;
+            const text = `${data.text}\n\n${testimony.name}: ${testimony.description || ''}`;
+            const fullUrl = url;
+
+            let shareUrl = '';
+            switch (platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fullUrl)}&quote=${encodeURIComponent(text)}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(fullUrl)}`;
+                    break;
+                case 'whatsapp':
+                    shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + fullUrl)}`;
+                    break;
+                case 'email':
+                    shareUrl = `mailto:?subject=${encodeURIComponent(data.title)}&body=${encodeURIComponent(text + '\n\n' + fullUrl)}`;
+                    break;
+                case 'link':
+                    navigator.clipboard.writeText(fullUrl).then(() => {
+                        alert('Link copied to clipboard!');
+                    }).catch(() => {
+                        prompt('Copy this link:', fullUrl);
+                    });
+                    return;
+                default:
+                    return;
+            }
+
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=500');
+            }
+        }
+
+        // ============================================
+        // ADD/EDIT TESTIMONY
+        // ============================================
+
+        function showAdminMessage(message, type = 'info') {
+            if (adminMessage) {
+                adminMessage.textContent = message;
+                adminMessage.className = type;
+                setTimeout(() => {
+                    adminMessage.className = '';
+                    adminMessage.textContent = '';
+                }, 5000);
+            }
+        }
+
+        function openAddModal() {
+            if (!ensureAdminAction()) return;
+            editingId = null;
+            testimonyIdInput.value = '';
+            addModalTitle.textContent = 'Add New Testimony';
+            addSubmitBtn.textContent = 'Add Testimony';
+            addForm.reset();
+            currentPhotoDisplay.style.display = 'none';
+            addModal.classList.add('active');
+            document.body.classList.add('modal-open');
+        }
+
+        function openEditModal(testimony) {
+            if (!ensureAdminAction()) return;
+            editingId = testimony.id;
+            testimonyIdInput.value = testimony.id;
+            addModalTitle.textContent = 'Edit Testimony';
+            addSubmitBtn.textContent = 'Update Testimony';
+            nameInput.value = testimony.name || '';
+            locationInput.value = testimony.location || '';
+            themeInput.value = testimony.theme || '';
+            descriptionInput.value = testimony.description || '';
+            videoInput.value = testimony.video_url || '';
+            photoInput.value = '';
+
+            if (testimony.photo_url) {
+                currentPhotoDisplay.style.display = 'flex';
+                currentPhotoImg.src = testimony.photo_url;
+            } else {
+                currentPhotoDisplay.style.display = 'none';
+            }
+
+            addModal.classList.add('active');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeAddModal() {
+            addModal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+            addForm.reset();
+            editingId = null;
+            testimonyIdInput.value = '';
+            currentPhotoDisplay.style.display = 'none';
+        }
+
+        closeAddModal.addEventListener('click', closeAddModal);
+        addModal.addEventListener('click', (e) => {
+            if (e.target === addModal) closeAddModal();
+        });
+
+        addBtn.addEventListener('click', openAddModal);
+
+        // ============================================
+        // SAVE TESTIMONY
+        // ============================================
+
+        addForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (!ensureAdminAction()) return;
+
+            const name = nameInput.value.trim();
+            const location = locationInput.value.trim();
+            const theme = themeInput.value;
+            const description = descriptionInput.value.trim();
+            const videoUrl = videoInput.value.trim();
+            const file = photoInput.files[0];
+            const id = testimonyIdInput.value;
+            const submitBtn = addSubmitBtn;
+
+            if (!name || !theme || !description || !videoUrl) {
+                showAdminMessage('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Saving...';
+
+            try {
+                let photoUrl = null;
+
+                if (file) {
+                    const fileExt = file.name.split('.').pop();
+                    const fileName = `${Date.now()}.${fileExt}`;
+                    const filePath = `testimonies/${fileName}`;
+
+                    const { error: uploadError } = await supabase.storage
+                        .from('testimonies')
+                        .upload(filePath, file, { cacheControl: '3600', upsert: false });
+
+                    if (uploadError) throw uploadError;
+
+                    const { data: publicUrlData } = supabase.storage
+                        .from('testimonies')
+                        .getPublicUrl(filePath);
+
+                    photoUrl = publicUrlData.publicUrl;
+                }
+
+                const data = {
+                    name,
+                    location: location || null,
+                    theme,
+                    description,
+                    video_url: videoUrl,
+                    status: 'published',
+                    is_deleted: false
+                };
+
+                if (photoUrl) data.photo_url = photoUrl;
+
+                let result;
+                if (id) {
+                    // Update
+                    result = await supabase
+                        .from('testimonies')
+                        .update({ ...data, updated_at: new Date().toISOString() })
+                        .eq('id', id);
+                } else {
+                    // Insert
+                    result = await supabase
+                        .from('testimonies')
+                        .insert(data);
+                }
+
+                if (result.error) throw result.error;
+
+                showAdminMessage(id ? 'Testimony updated successfully!' : 'Testimony added successfully!', 'success');
+                closeAddModal();
+                await loadTestimonies();
+
+            } catch (error) {
+                console.error('Error saving testimony:', error);
+                showAdminMessage('Error saving testimony: ' + error.message, 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = id ? 'Update Testimony' : 'Add Testimony';
+            }
+        });
+
+        // ============================================
+        // DELETE TESTIMONY
+        // ============================================
+
+        async function handleDeleteTestimony(id) {
+            if (!ensureAdminAction()) return;
+
+            const confirmDelete = confirm('Are you sure you want to delete this testimony? This action cannot be undone.');
+
+            if (!confirmDelete) return;
+
+            try {
+                if (!currentUser?.id) {
+                    throw new Error('Admin session expired. Please sign in again.');
+                }
+
+                const { data: testimony, error: fetchError } = await supabase
+                    .from('testimonies')
+                    .select('photo_url')
+                    .eq('id', id)
+                    .single();
+
+                if (fetchError) throw fetchError;
+
+                const { error } = await supabase
+                    .from('testimonies')
+                    .update({
+                        is_deleted: true,
+                        status: 'deleted',
+                        deleted_at: new Date().toISOString(),
+                        deleted_by: currentUser.id
+                    })
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                if (testimony?.photo_url) {
+                    const oldPath = testimony.photo_url.split('/').pop();
+                    await supabase.storage.from('testimonies').remove([`testimonies/${oldPath}`]);
+                }
+
+                const card = document.querySelector(`.testimony-card[data-testimony-id="${id}"]`);
+                if (card) {
+                    card.classList.add('deleting');
+                    setTimeout(() => {
+                        card.remove();
+                        testimonies = testimonies.filter(t => t.id !== id);
+                    }, 300);
+                }
+
+                showAdminMessage('Testimony deleted successfully!', 'success');
+
+            } catch (error) {
+                console.error('Error deleting testimony:', error);
+                showAdminMessage('Error deleting testimony: ' + error.message, 'error');
+            }
+        }
+
+        // ============================================
+        // REFRESH
+        // ============================================
+
+        refreshBtn.addEventListener('click', async () => {
+            if (adminStatus) {
+                adminStatus.textContent = '🔄 Refreshing...';
+                adminStatus.style.color = '#17a2b8';
+            }
+            await loadTestimonies();
+            if (adminStatus) {
+                adminStatus.textContent = '✓ Refreshed!';
+                adminStatus.style.color = '#28a745';
+                setTimeout(() => {
+                    adminStatus.textContent = '✓ Admin access enabled';
+                    adminStatus.style.color = '';
+                }, 2000);
+            }
+        });
+
+        // ============================================
+        // INIT
+        // ============================================
+
+        async function init() {
+            await syncHeaderAuth();
+            await loadTestimonies();
+        }
+
+        init();
+    </script>
+</body>
+</html>

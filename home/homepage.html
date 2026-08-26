@@ -17,6 +17,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+    <link rel="icon" type="image/png" href="../Logo%20Design%20in%20Canva.png" />
 
 
   <style>
@@ -1274,6 +1275,19 @@
     class="hero-image">
 
   <div class="hero-overlay"></div>
+  <!-- Add this section to homepage.html, after the hero section -->
+<section class="admin-panel" id="admin-panel" style="display: none; padding: 30px 0; background: var(--paper-2);">
+  <div class="container">
+    <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding: 20px; background: white; border-radius: 18px; border: 2px solid var(--gold);">
+      <h3 style="font-family: var(--serif); margin: 0;">Admin Panel</h3>
+      <button id="manage-photos-btn" class="button" style="border: 1px solid var(--line);">Manage Photos</button>
+      <button id="manage-videos-btn" class="button" style="border: 1px solid var(--line);">Manage Videos</button>
+      <button id="refresh-home-btn" class="button" style="border: 1px solid var(--line);">🔄 Refresh</button>
+      <span id="admin-status" style="font-size: 0.8rem; color: var(--muted);"></span>
+    </div>
+    <div id="admin-panel-content" style="margin-top: 20px;"></div>
+  </div>
+</section>
 
 
   <div class="container hero-content">
@@ -1727,6 +1741,55 @@
       Join the CTY Family →
 
     </a>
+
+  </div>
+
+</section>
+
+
+<section class="intro" id="all-pages">
+
+  <div class="container intro-grid">
+
+    <div>
+
+      <span class="intro-label">
+        Site Directory
+      </span>
+
+    </div>
+
+
+    <div class="intro-text">
+
+      <h2>
+        Access every page from here.
+      </h2>
+
+
+      <p>
+        Use these quick links to open any HTML page in the CTY website.
+      </p>
+
+
+      <p>
+        <a href="homepage.html">Homepage</a> ·
+        <a href="home.html">Home (Alt)</a> ·
+        <a href="../About/about2.html">About</a> ·
+        <a href="../About/about.html">About (Alt)</a> ·
+        <a href="../post/post.html">Posts</a> ·
+        <a href="../communityevents/community.html">Community Events</a> ·
+        <a href="../contacts/contacts.html">Contacts</a> ·
+        <a href="../contacts/contacts1.html">Contacts (Alt)</a> ·
+        <a href="../home/profile.html">Profile</a> ·
+        <a href="../login/signin.html">Sign In</a> ·
+        <a href="../login/signup.html">Sign Up</a> ·
+        <a href="../login/forgotpassword.html">Forgot Password</a> ·
+        <a href="../Admin/setup-admin.html">Admin Setup</a> ·
+        <a href="../photos/IKM_logo_animation.html">Logo Animation</a>
+      </p>
+
+    </div>
 
   </div>
 

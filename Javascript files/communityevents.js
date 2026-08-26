@@ -1,125 +1,182 @@
-import { supabase } from "./supabaseclient.js";
-import { isAdmin, deleteEvent } from "./admin-tools.js";
+import { supabase } from './supabaseclient.js';
+import { isUserAdmin, deletePost, logAdminAction } from './adminUtils.js';
 
-const list = document.getElementById("events-list");
-let admin = false;
+let currentUser = null;
+let isAdmin = false;
+let events = [];
 
-function escapeHtml(str) {
-  const div = document.createElement("div");
-  div.textContent = str;
-  return div.innerHTML;
+// Check admin status and show/hide admin controls
+async function checkAdminStatus() {
+  isAdmin = await isUserAdmin();
+  const adminControls = document.getElementById('admin-controls');
+  if (adminControls) {
+    adminControls.style.display = isAdmin ? 'block' : 'none';
+  }
+  return isAdmin;
 }
 
-function eventCardHTML(ev) {
-  const date = new Date(ev.starts_at);
-  const day = date.getDate();
-  const month = date.toLocaleDateString(undefined, { month: "short" });
-  const timeStr = date.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
-  const dateStr = date.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
+// Load events from Supabase
+async function loadEvents() {
+  try {
+    // Only load non-deleted events
+    const { data, error } = await supabase
+      .from('events') // Assuming you have an events table
+      .select('*')
+      .eq('is_deleted', false)
+      .eq('status', 'published')
+      .order('event_date', { ascending: true });
+    
+    if (error) throw error;
+    
+    events = data || [];
+    renderEvents(events);
+  } catch (error) {
+    console.error('Error loading events:', error);
+    document.getElementById('events-list').innerHTML = 
+      '<p class="events-empty">Unable to load events. Please try again later.</p>';
+  }
+}
 
-  const adminBar = admin
-    ? `<button class="admin-btn admin-btn--danger" data-action="delete" data-id="${ev.id}">Delete</button>`
-    : `<a href="#" class="event-rsvp">RSVP →</a>`;
-
-  return `
-    <article class="event-card" data-event-id="${ev.id}">
+// Render events with admin controls if admin
+function renderEvents(events) {
+  const container = document.getElementById('events-list');
+  
+  if (!events || events.length === 0) {
+    container.innerHTML = `<p class="events-empty">No upcoming events. Check back soon!</p>`;
+    return;
+  }
+  
+  container.innerHTML = events.map(event => `
+    <div class="event-card" data-event-id="${event.id}">
       <div class="event-date-badge">
-        <span class="day">${day}</span>
-        <span class="mon">${month}</span>
+        <span class="day">${new Date(event.event_date).getDate()}</span>
+        <span class="mon">${new Date(event.event_date).toLocaleString('default', { month: 'short' })}</span>
       </div>
       <div class="event-info">
-        <p class="event-meta">${dateStr} · ${timeStr}${ev.location ? " · " + escapeHtml(ev.location) : ""}</p>
-        <h3>${escapeHtml(ev.title)}</h3>
-        <p>${escapeHtml(ev.description || "")}</p>
+        <span class="event-meta">${event.category || 'General'}</span>
+        <h3>${event.title}</h3>
+        <p>${event.description || ''}</p>
       </div>
-      ${adminBar}
-    </article>
-  `;
-}
-
-function adminFormHTML() {
-  return `
-    <form id="add-event-form" class="admin-add-form">
-      <h3>Add an event</h3>
-      <div class="admin-add-grid">
-        <input type="text" name="title" placeholder="Event title" required />
-        <input type="text" name="location" placeholder="Location" />
-        <input type="datetime-local" name="starts_at" required />
-        <input type="text" name="description" placeholder="Short description" />
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="event-rsvp">${event.rsvp_count || 0} going</span>
+        ${isAdmin ? `
+          <button class="admin-btn delete-event-btn" data-id="${event.id}" style="background: #dc3545; color: white; border: none;">
+            🗑️ Delete
+          </button>
+        ` : ''}
       </div>
-      <button type="submit" class="btn-primary">Publish event</button>
-      <p class="error" id="add-event-error" role="alert"></p>
-    </form>
-  `;
-}
-
-async function loadEvents() {
-  const { data, error } = await supabase
-    .from("events")
-    .select("id, title, description, location, starts_at")
-    .gte("starts_at", new Date().toISOString())
-    .order("starts_at", { ascending: true });
-
-  const events = error ? [] : (data || []);
-
-  const formHTML = admin ? adminFormHTML() : "";
-  const eventsHTML = events.length
-    ? events.map(eventCardHTML).join("")
-    : `<p class="events-empty">No upcoming events right now — check back soon.</p>`;
-
-  list.innerHTML = formHTML + eventsHTML;
-
-  if (admin) {
-    document.getElementById("add-event-form").addEventListener("submit", handleAddEvent);
+    </div>
+  `).join('');
+  
+  // Add delete event listeners
+  if (isAdmin) {
+    document.querySelectorAll('.delete-event-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        if (confirm('Are you sure you want to delete this event?')) {
+          await deleteEvent(btn.dataset.id);
+        }
+      });
+    });
   }
 }
 
-async function handleAddEvent(e) {
-  e.preventDefault();
-  const form = e.target;
-  const errorEl = document.getElementById("add-event-error");
-  errorEl.textContent = "";
-
-  const title = form.title.value.trim();
-  const location = form.location.value.trim();
-  const description = form.description.value.trim();
-  const startsAt = form.starts_at.value;
-
-  if (!title || !startsAt) {
-    errorEl.textContent = "Title and date/time are required.";
-    return;
-  }
-
-  const { error } = await supabase.from("events").insert({
-    title,
-    location: location || null,
-    description: description || null,
-    starts_at: new Date(startsAt).toISOString(),
-  });
-
-  if (error) {
-    errorEl.textContent = error.message;
-    return;
-  }
-
-  form.reset();
-  loadEvents();
-}
-
-list.addEventListener("click", async (e) => {
-  const btn = e.target.closest('[data-action="delete"]');
-  if (!btn) return;
-  if (!confirm("Delete this event?")) return;
-
+// Delete event
+async function deleteEvent(eventId) {
   try {
-    await deleteEvent(btn.dataset.id);
-    btn.closest(".event-card").remove();
-  } catch (err) {
-    alert(err.message || "Couldn't delete this event.");
+    const { error } = await supabase
+      .from('events')
+      .update({ 
+        is_deleted: true, 
+        status: 'deleted',
+        deleted_at: new Date().toISOString()
+      })
+      .eq('id', eventId);
+    
+    if (error) throw error;
+    
+    await logAdminAction('delete', 'event', eventId);
+    showAdminMessage('Event deleted successfully!', 'success');
+    await loadEvents();
+  } catch (error) {
+    showAdminMessage('Error deleting event: ' + error.message, 'error');
   }
-});
+}
 
-(async () => {
-  admin = await isAdmin();
-  loadEvents();
-})();
+// Add new event (admin only)
+async function addEvent(eventData) {
+  if (!isAdmin) return;
+  
+  try {
+    const { data, error } = await supabase
+      .from('events')
+      .insert({
+        ...eventData,
+        created_by: (await supabase.auth.getSession()).data.session.user.id
+      })
+      .select();
+    
+    if (error) throw error;
+    
+    await logAdminAction('create', 'event', data[0].id);
+    showAdminMessage('Event added successfully!', 'success');
+    await loadEvents();
+  } catch (error) {
+    showAdminMessage('Error adding event: ' + error.message, 'error');
+  }
+}
+
+// Show admin messages
+function showAdminMessage(message, type = 'info') {
+  const msgEl = document.getElementById('admin-message');
+  if (msgEl) {
+    msgEl.textContent = message;
+    msgEl.style.color = type === 'error' ? '#dc3545' : '#2e7d32';
+    setTimeout(() => {
+      msgEl.textContent = '';
+    }, 5000);
+  }
+}
+
+// Initialize
+async function init() {
+  await checkAdminStatus();
+  await loadEvents();
+  
+  // Set up event listeners for admin
+  if (isAdmin) {
+    const addEventBtn = document.getElementById('add-event-btn');
+    if (addEventBtn) {
+      addEventBtn.addEventListener('click', () => {
+        // Show add event modal
+        showAddEventModal();
+      });
+    }
+    
+    const refreshBtn = document.getElementById('refresh-events-btn');
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', loadEvents);
+    }
+  }
+}
+
+// Add event modal (admin only)
+function showAddEventModal() {
+  // Simple prompt-based add for demo
+  const title = prompt('Event Title:');
+  if (!title) return;
+  
+  const description = prompt('Description:');
+  const date = prompt('Date (YYYY-MM-DD):');
+  const category = prompt('Category (optional):');
+  
+  addEvent({
+    title,
+    description: description || '',
+    event_date: date || new Date().toISOString().split('T')[0],
+    category: category || 'General',
+    status: 'published'
+  });
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', init);
