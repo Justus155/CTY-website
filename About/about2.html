@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="../Logo%20Design%20in%20Canva.png" />
 
     <style>
         :root {
@@ -1629,13 +1630,16 @@
         }
 
         // ============================================
-        // DELETE LEADER
+        // DELETE LEADER - HARD DELETE (Alternative)
         // ============================================
 
         async function handleDeleteLeader(id) {
-            if (!isAdmin) return;
+            if (!isAdmin) {
+                showAdminMessage('You do not have permission to delete leaders.', 'error');
+                return;
+            }
 
-            const confirmDelete = confirm('Are you sure you want to delete this leader? This action cannot be undone.');
+            const confirmDelete = confirm('⚠️ Are you sure you want to permanently delete this leader? This action cannot be undone and will remove all their data.');
 
             if (!confirmDelete) return;
 
@@ -1649,23 +1653,23 @@
 
                 if (fetchError) throw fetchError;
 
-                // Soft delete
-                const { error } = await supabase
+                // HARD DELETE - permanently remove from database
+                const { error: deleteError } = await supabase
                     .from('leaders')
-                    .update({
-                        is_deleted: true,
-                        status: 'deleted',
-                        deleted_at: new Date().toISOString(),
-                        deleted_by: currentUser.id
-                    })
+                    .delete()
                     .eq('id', id);
 
-                if (error) throw error;
+                if (deleteError) throw deleteError;
 
                 // Delete photo from storage if exists
                 if (leader?.photo_url) {
-                    const oldPath = leader.photo_url.split('/').pop();
-                    await supabase.storage.from('leaders').remove([`leaders/${oldPath}`]);
+                    try {
+                        const oldPath = leader.photo_url.split('/').pop();
+                        await supabase.storage.from('leaders').remove([`leaders/${oldPath}`]);
+                    } catch (storageError) {
+                        console.warn('Could not delete photo from storage:', storageError);
+                        // Continue even if photo deletion fails
+                    }
                 }
 
                 // Remove from UI with animation
@@ -1674,11 +1678,15 @@
                     card.classList.add('deleting');
                     setTimeout(() => {
                         card.remove();
+                        // Remove from leaders array
                         leaders = leaders.filter(l => l.id !== id);
                     }, 300);
+                } else {
+                    // If card not found, just remove from array
+                    leaders = leaders.filter(l => l.id !== id);
                 }
 
-                showAdminMessage('Leader deleted successfully!', 'success');
+                showAdminMessage('🗑️ Leader permanently deleted successfully!', 'success');
 
             } catch (error) {
                 console.error('Error deleting leader:', error);
