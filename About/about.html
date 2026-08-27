@@ -136,7 +136,8 @@
 
     <div class="header-actions">
       <a href="../login/signin.html" class="btn-ghost" id="signin-link">Sign in</a>
-      <a href="../login/signup.html" class="btn-primary">Sign up</a>
+      <a href="../login/signup.html" class="btn-primary" id="signup-link">Sign up</a>
+      <button type="button" class="btn-ghost" id="signout-btn" hidden>Sign out</button>
     </div>
 
     <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
@@ -284,11 +285,12 @@
     </div>
 
     <div class="footer-bottom">
-      <span>© <span id="year"></span> CTY Ministries. All rights reserved.</span>
-      <span>Built to serve the next generation.</span>
+      <p>© <span id="year"></span> CTY Ministries. All rights reserved.</p>
+      <p class="footer-bottom-links">
+        <a href="#">Privacy</a> · <a href="#">Terms</a>
+      </p>
     </div>
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>
