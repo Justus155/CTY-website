@@ -1824,27 +1824,6 @@
                 siteHeader.classList.remove("scrolled");
             }
         });
-
-        const menuToggle = document.getElementById("menuToggle");
-        const mobileNav = document.getElementById("mobileNav");
-
-        menuToggle.addEventListener("click", () => {
-            const isOpen = mobileNav.classList.toggle("is-open");
-            menuToggle.setAttribute("aria-expanded", String(isOpen));
-            menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
-            document.body.classList.toggle("menu-open", isOpen);
-        });
-
-        mobileNav.querySelectorAll("a").forEach((link) => {
-            link.addEventListener("click", () => {
-                mobileNav.classList.remove("is-open");
-                menuToggle.setAttribute("aria-expanded", "false");
-                menuToggle.setAttribute("aria-label", "Open menu");
-                document.body.classList.remove("menu-open");
-            });
-        });
-
-        document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
