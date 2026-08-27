@@ -1,0 +1,898 @@
+/* Fonts are loaded from the <head> of each page via preconnected
+   <link> tags rather than @import — @import forces the browser to
+   fetch and parse this file before it can even discover the font
+   request, adding a full extra round trip before text can render. */
+
+/* =========================================================
+   ROOT — same tokens as the homepage, so policy pages read
+   as part of the same site rather than a bolted-on template.
+========================================================= */
+
+:root {
+  --black: #111111;
+  --black-soft: #1a1a18;
+
+  --cream: #f5f1e8;
+  --cream-dark: #e8e2d5;
+
+  --white: #ffffff;
+
+  --gold: #c9a34b;
+  --gold-light: #e2ca8b;
+
+  --gray: #77736b;
+  --gray-light: #b8b3a8;
+
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "DM Sans", Arial, sans-serif;
+
+  --container: 1240px;
+  --shadow: 0 18px 50px rgba(17, 17, 17, .1);
+  --header-h: 78px;
+}
+
+@media (max-width: 640px) {
+  :root { --header-h: 68px; }
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+body {
+  background: var(--cream);
+  color: var(--black);
+  font-family: var(--sans);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+ul, ol { list-style: none; }
+
+button { font: inherit; cursor: pointer; }
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.container {
+  width: min(var(--container), calc(100% - 48px));
+  margin: auto;
+}
+
+/* Skip link — invisible until a keyboard user tabs to it */
+.skip-link {
+  position: fixed;
+  top: -60px;
+  left: 16px;
+  z-index: 2000;
+  background: var(--black);
+  color: var(--white);
+  padding: 12px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  border-radius: 0 0 8px 8px;
+  transition: top .2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 35px;
+  height: 1px;
+  background: var(--gold);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(17, 17, 17, .96);
+  color: var(--white);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.header-inner {
+  min-height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.logo-mark {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: var(--gold);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.logo span span { color: var(--gold-light); font-weight: 400; }
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.header-nav a:not(.home-button) {
+  position: relative;
+  opacity: .78;
+  padding: 6px 0;
+  transition: opacity .2s ease;
+}
+
+.header-nav a:not(.home-button)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold-light);
+  transition: width .25s ease;
+}
+
+.header-nav a:not(.home-button):hover,
+.header-nav a:not(.home-button)[aria-current="page"] {
+  opacity: 1;
+  color: var(--gold-light);
+}
+
+.header-nav a:not(.home-button):hover::after,
+.header-nav a:not(.home-button)[aria-current="page"]::after {
+  width: 100%;
+}
+
+.home-button {
+  padding: 11px 18px;
+  border: 1px solid rgba(255, 255, 255, .35);
+  transition: .25s ease;
+  white-space: nowrap;
+}
+
+.home-button:hover {
+  background: var(--white);
+  color: var(--black);
+}
+
+/* Mobile menu toggle — hidden on desktop */
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  background: transparent;
+  color: var(--white);
+  border-radius: 4px;
+}
+
+.menu-toggle svg { width: 20px; height: 20px; }
+
+.menu-toggle .icon-close { display: none; }
+
+.menu-toggle[aria-expanded="true"] .icon-open { display: none; }
+.menu-toggle[aria-expanded="true"] .icon-close { display: block; }
+
+/* Slide-down mobile nav panel */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: rgba(17, 17, 17, .98);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+  padding: 8px 0 28px;
+  transform: translateY(-8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.mobile-nav.is-open {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-nav a {
+  display: block;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.mobile-nav a:last-child { border-bottom: 0; }
+
+.mobile-nav a[aria-current="page"] { color: var(--gold-light); }
+
+.mobile-nav .home-button {
+  display: inline-block;
+  margin-top: 18px;
+  border-color: rgba(255, 255, 255, .35);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.policy-hero {
+  background: var(--black);
+  color: var(--white);
+  padding: 90px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.policy-hero::after {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  right: -180px;
+  top: -210px;
+  border: 1px solid rgba(201, 163, 75, .28);
+  border-radius: 50%;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, .5);
+}
+
+.breadcrumb a {
+  color: rgba(255, 255, 255, .75);
+  transition: color .2s ease;
+}
+
+.breadcrumb a:hover { color: var(--gold-light); }
+
+.policy-hero h1 {
+  max-width: 900px;
+  font-family: var(--serif);
+  font-size: clamp(2.9rem, 7vw, 6.4rem);
+  line-height: .96;
+  font-weight: 500;
+  letter-spacing: -.03em;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-top: 26px;
+  color: rgba(255, 255, 255, .55);
+  font-size: 13px;
+}
+
+.hero-meta .dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .4);
+}
+
+.last-updated {
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.policy-layout {
+  display: grid;
+  grid-template-columns: 235px minmax(0, 1fr);
+  gap: 64px;
+  padding: 76px 0 130px;
+  align-items: start;
+}
+
+.policy-sidebar {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+}
+
+.policy-sidebar-title {
+  color: var(--gray);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.policy-sidebar nav {
+  display: grid;
+  gap: 3px;
+}
+
+.policy-sidebar a {
+  padding: 9px 12px;
+  color: var(--gray);
+  font-size: 13px;
+  border-left: 1px solid var(--cream-dark);
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.policy-sidebar a:hover,
+.policy-sidebar a.active {
+  color: var(--black);
+  border-left-color: var(--gold);
+  background: rgba(201, 163, 75, .08);
+}
+
+.policy-content {
+  min-width: 0;
+  max-width: 850px;
+}
+
+.policy-intro {
+  padding: 0 0 36px;
+  margin-bottom: 42px;
+  border-bottom: 1px solid var(--cream-dark);
+  font-size: 18px;
+  color: #4d4a44;
+  max-width: 65ch;
+}
+
+.policy-section {
+  scroll-margin-top: calc(var(--header-h) + 20px);
+  padding: 0 0 48px;
+  margin-bottom: 45px;
+  border-bottom: 1px solid var(--cream-dark);
+}
+
+.policy-section:last-of-type { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+
+.policy-section h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.4vw, 2.7rem);
+  line-height: 1.12;
+  font-weight: 500;
+  letter-spacing: -.02em;
+  margin-bottom: 18px;
+  max-width: 26ch;
+}
+
+.policy-section h3 {
+  font-size: 15px;
+  margin: 28px 0 9px;
+  font-weight: 700;
+}
+
+.policy-section p,
+.policy-section li {
+  color: #57534c;
+  font-size: 15.5px;
+  max-width: 66ch;
+}
+
+.policy-section p + p { margin-top: 16px; }
+
+.policy-section ul,
+.policy-section ol {
+  padding-left: 4px;
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.policy-section ul li {
+  padding-left: 22px;
+  position: relative;
+}
+
+.policy-section ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+}
+
+.policy-section ol {
+  counter-reset: policy-step;
+}
+
+.policy-section ol li {
+  padding-left: 30px;
+  position: relative;
+  counter-increment: policy-step;
+}
+
+.policy-section ol li::before {
+  content: counter(policy-step);
+  position: absolute;
+  left: 0;
+  top: -1px;
+  color: var(--gold);
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.policy-section strong { color: var(--black); }
+
+.policy-note {
+  margin: 24px 0;
+  padding: 22px 24px;
+  border-left: 3px solid var(--gold);
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.policy-note p {
+  color: #4d4a44;
+  font-size: 14px;
+  max-width: none;
+}
+
+.policy-note.warn {
+  border-left-color: #b6432f;
+}
+
+/* A short scripture anchor — used sparingly to root a policy in
+   why CTY does this, not just what CTY does. */
+.policy-scripture {
+  margin: 24px 0;
+  padding: 4px 0 4px 22px;
+  border-left: 2px solid var(--gold-light);
+}
+
+.policy-scripture p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16.5px !important;
+  color: var(--black) !important;
+  max-width: 60ch;
+}
+
+.policy-scripture cite {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.policy-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.policy-card {
+  padding: 23px;
+  background: var(--white);
+  border: 1px solid rgba(17, 17, 17, .07);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.policy-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.policy-card .number {
+  display: block;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  margin-bottom: 18px;
+}
+
+.policy-card h3 { margin: 0 0 7px; font-size: 16px; }
+
+.policy-card p { font-size: 13px; max-width: none; }
+
+.policy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+  padding-top: 40px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 21px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: .25s ease;
+}
+
+.button-gold {
+  background: var(--gold);
+  color: var(--black);
+}
+
+.button-gold:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+}
+
+.button-dark {
+  background: var(--black);
+  color: var(--white);
+}
+
+.button-dark:hover {
+  background: var(--black-soft);
+  transform: translateY(-2px);
+}
+
+.button-outline {
+  border: 1px solid rgba(17, 17, 17, .3);
+  color: var(--black);
+}
+
+.button-outline:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+
+/* =========================================================
+   CROSS-POLICY LINK CARDS (used at end of some pages)
+========================================================= */
+
+.policy-crosslinks {
+  margin-top: 42px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.policy-crosslink {
+  display: block;
+  padding: 20px 22px;
+  background: var(--white);
+  border: 1px solid rgba(17, 17, 17, .08);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.policy-crosslink:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+  border-color: var(--gold);
+}
+
+.policy-crosslink .label {
+  display: block;
+  color: var(--gray);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.policy-crosslink .title {
+  font-family: var(--serif);
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+  padding: 24px 16px 40px;
+}
+
+.footer-card {
+  background: #0d0d0d;
+  color: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .35), 0 2px 8px rgba(0, 0, 0, .25);
+  padding: 40px clamp(20px, 5vw, 56px) 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.footer-about {
+  flex: 1 1 280px;
+  max-width: 420px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.brand-mark {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold);
+  color: var(--white);
+  border-radius: 50%;
+  font-family: var(--sans);
+  font-size: 14px;
+}
+
+.footer-about p {
+  color: rgba(255, 255, 255, .68);
+  font-size: 14px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 50px;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 125px;
+}
+
+.footer-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: rgba(255, 255, 255, .55);
+  text-transform: uppercase;
+  font-size: .75rem;
+  letter-spacing: .06em;
+}
+
+.footer-col a {
+  color: rgba(255, 255, 255, .84);
+  font-size: 13px;
+  transition: color .2s ease;
+}
+
+.footer-col a:hover { color: var(--gold-light); }
+
+.footer-bottom {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: .8rem;
+  color: rgba(255, 255, 255, .48);
+}
+
+.back-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  background: var(--gold);
+  color: var(--black);
+  border: 0;
+  border-radius: 50%;
+  font-weight: 700;
+  box-shadow: 0 10px 25px rgba(17, 17, 17, .2);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: .25s ease;
+  z-index: 800;
+}
+
+.back-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+
+/* =========================================================
+   PRINT — a person may print or save a policy as a PDF
+========================================================= */
+
+@media print {
+  .site-header, .mobile-nav, .policy-sidebar, .policy-actions,
+  .back-top, .skip-link, .policy-hero::after { display: none !important; }
+
+  .policy-hero { background: none; color: var(--black); padding: 0 0 24px; }
+  .policy-hero h1 { font-size: 2.2rem; }
+  .breadcrumb, .hero-meta { color: #444; }
+
+  .policy-layout { grid-template-columns: 1fr; padding: 0; gap: 0; }
+  .policy-content { max-width: none; }
+
+  .site-footer { margin-top: 24px; }
+  .footer-card { box-shadow: none; border: 1px solid #ddd; }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+  .header-nav a:not(.home-button) { display: none; }
+  .menu-toggle { display: inline-flex; }
+
+  .policy-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-top: 56px;
+  }
+
+  .policy-sidebar {
+    position: static;
+    background: var(--cream);
+  }
+
+  .policy-sidebar nav {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 2px 2px 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .policy-sidebar nav::-webkit-scrollbar { display: none; }
+
+  .policy-sidebar a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    border-left: 0;
+    border: 1px solid var(--cream-dark);
+    border-radius: 999px;
+    padding: 8px 16px;
+  }
+
+  .policy-sidebar a:hover,
+  .policy-sidebar a.active {
+    border-color: var(--gold);
+    background: rgba(201, 163, 75, .1);
+  }
+
+  .policy-card-grid { grid-template-columns: 1fr; }
+  .policy-crosslinks { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .container { width: min(var(--container), calc(100% - 30px)); }
+
+  .header-inner { min-height: 68px; }
+
+  .logo { font-size: 17px; }
+  .logo-mark { width: 34px; height: 34px; font-size: 14px; }
+
+  .policy-hero { padding: 44px 0 48px; }
+
+  .policy-hero h1 { font-size: clamp(2.3rem, 12vw, 3.4rem); letter-spacing: -.02em; }
+
+  .policy-layout { padding: 40px 0 72px; }
+
+  .policy-intro { font-size: 15.5px; padding-bottom: 28px; margin-bottom: 32px; }
+
+  .policy-section { padding-bottom: 36px; margin-bottom: 34px; }
+
+  .policy-section h2 { font-size: 1.7rem; }
+
+  .policy-section p,
+  .policy-section li { font-size: 14.5px; }
+
+  .policy-note { padding: 18px; }
+
+  .policy-actions { flex-direction: column; }
+  .policy-actions .button { width: 100%; }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    justify-content: flex-start;
+  }
+
+  .footer-bottom { flex-direction: column; gap: 8px; }
+
+  .back-top { right: 16px; bottom: 16px; width: 40px; height: 40px; }
+}

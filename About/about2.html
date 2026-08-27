@@ -95,6 +95,7 @@
             color: rgba(255,250,240,.72);
             font-size: .9rem;
             font-weight: 600;
+    
         }
         .nav a {
             padding: 7px 0;
@@ -911,7 +912,7 @@
                 <a href="../home/homepage.html">Home</a>
                 <a class="active" href="about2.html">About</a>
                 <a href="../post/post.html">Posts</a>
-                <a href="../post/post.html#testimonies">Testimonies</a>
+                <a href="../testimonies/testimonies.html">Testimonies</a>
                 <a href="../communityevents/community.html">Events</a>
                 <a href="../contacts/contacts.html">Contact</a>
             </nav>
@@ -929,7 +930,7 @@
             <a href="../home/homepage.html">Home</a>
             <a href="about2.html">About</a>
             <a href="../post/post.html">Posts</a>
-            <a href="../post/post.html#testimonies">Testimonies</a>
+            <a href="../testimonies/testimonies.html">Testimonies</a>
             <a href="../communityevents/community.html">Events</a>
             <a href="../contacts/contacts.html">Contact</a>
         </nav>
@@ -1824,27 +1825,6 @@
                 siteHeader.classList.remove("scrolled");
             }
         });
-
-        const menuToggle = document.getElementById("menuToggle");
-        const mobileNav = document.getElementById("mobileNav");
-
-        menuToggle.addEventListener("click", () => {
-            const isOpen = mobileNav.classList.toggle("is-open");
-            menuToggle.setAttribute("aria-expanded", String(isOpen));
-            menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
-            document.body.classList.toggle("menu-open", isOpen);
-        });
-
-        mobileNav.querySelectorAll("a").forEach((link) => {
-            link.addEventListener("click", () => {
-                mobileNav.classList.remove("is-open");
-                menuToggle.setAttribute("aria-expanded", "false");
-                menuToggle.setAttribute("aria-label", "Open menu");
-                document.body.classList.remove("menu-open");
-            });
-        });
-
-        document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 </body>
 </html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimony Review | CTY Ministries</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--dark:#11100e;--paper:#fbf8f0;--gold:#d2a238;--muted:#716c61;--line:#ddd6c8;--serif:"Playfair Display",Georgia,serif;--sans:"DM Sans",system-ui,sans-serif}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--dark);font-family:var(--sans)}
+    .container{width:min(1050px,calc(100% - 30px));margin:auto}.top{background:var(--dark);color:white;padding:24px 0}.top h1{font-family:var(--serif);margin:0}.top p{color:#bbb;margin:5px 0}
+    main{padding:45px 0}.message{padding:12px;border-radius:10px;margin-bottom:18px}.error{background:#fde8e8;color:#8a1c1c}.success{background:#e7f6ea;color:#17652a}
+    .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;margin-bottom:18px}.meta{color:var(--muted);font-size:.85rem}.story{white-space:pre-wrap;line-height:1.7;margin:18px 0}.buttons{display:flex;gap:10px;flex-wrap:wrap}
+    button{border:0;border-radius:999px;padding:11px 18px;font-weight:700;cursor:pointer}.approve{background:#22863a;color:#fff}.reject{background:#c62828;color:#fff}.refresh{background:var(--dark);color:#fff}
+    .empty{text-align:center;padding:50px;color:var(--muted);background:#fff;border-radius:18px}
+  </style>
+</head>
+<body>
+<header class="top">
+  <div class="container">
+    <h1>Testimony Review</h1>
+    <p>Only approved testimonies are shown publicly.</p>
+  </div>
+</header>
+<main class="container">
+  <div id="message"></div>
+  <button class="refresh" id="refresh">Refresh submissions</button>
+  <div id="pending" style="margin-top:20px"></div>
+</main>
+<script type="module" src="./admintestimonies.js"></script>
+</body>
+</html>

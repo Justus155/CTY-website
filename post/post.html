@@ -11,783 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="../Logo%20Design%20in%20Canva.png" />
-
-  <style>
-    :root {
-      --ink: #11100e;
-      --ink-2: #1b1916;
-      --paper: #fbf8f0;
-      --paper-2: #f3ecdd;
-      --white: #fff;
-      --gold: #d2a238;
-      --gold-dark: #9a741e;
-      --gold-soft: #ead8a9;
-      --muted: #716c61;
-      --line: rgba(17, 16, 14, .11);
-      --shadow: 0 24px 70px rgba(17, 16, 14, .13);
-      --shadow-sm: 0 10px 28px rgba(17, 16, 14, .08);
-      --serif: "Playfair Display", Georgia, serif;
-      --sans: "DM Sans", system-ui, sans-serif;
-      --radius: 24px;
-      --container: 1180px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--paper);
-      font-family: var(--sans);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    body.menu-open { overflow: hidden; }
-
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    button { font: inherit; }
-    :focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
-
-    .container {
-      width: min(var(--container), calc(100% - 40px));
-      margin-inline: auto;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(17,16,14,.94);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .header-inner {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 11px;
-      color: #fffaf0;
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-    .brand em { color: var(--gold-soft); font-style: normal; font-weight: 500; }
-    .brand-mark {
-      width: 40px;
-      height: 40px;
-      display: grid;
-      place-items: center;
-      border-radius: 13px;
-      background: linear-gradient(135deg, var(--gold), #8c6618);
-      box-shadow: 0 12px 28px rgba(210,162,56,.28);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 27px;
-      color: rgba(255,250,240,.72);
-      font-size: .9rem;
-      font-weight: 600;
-    }
-    .nav a {
-      padding: 7px 0;
-      border-bottom: 2px solid transparent;
-      transition: .2s ease;
-    }
-    .nav a:hover,
-    .nav a.active {
-      color: #fff;
-      border-color: var(--gold);
-    }
-
-    .header-actions { display: flex; align-items: center; gap: 10px; }
-    .member-chip {
-      padding: 10px 14px;
-      border-radius: 999px;
-      color: #fffaf0;
-      border: 1px solid rgba(255,255,255,.20);
-      background: rgba(255,255,255,.08);
-      font-size: .8rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-    .button {
-      min-height: 46px;
-      padding: 0 19px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: .88rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
-    }
-    .button:hover { transform: translateY(-2px); }
-    .button-primary {
-      color: var(--ink);
-      background: linear-gradient(135deg, #e2b957, var(--gold));
-      box-shadow: 0 13px 30px rgba(210,162,56,.22);
-    }
-    .button-success {
-      color: #fff;
-      background: #28a745;
-      border: 1px solid #28a745;
-    }
-    .button-success:hover {
-      background: #218838;
-      border-color: #218838;
-    }
-    .button-danger {
-      color: #fff;
-      background: #dc3545;
-      border: 1px solid #dc3545;
-    }
-    .button-danger:hover {
-      background: #c82333;
-      border-color: #c82333;
-    }
-
-    .menu-toggle {
-      display: none;
-      width: 44px;
-      height: 44px;
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: 12px;
-      background: transparent;
-      color: #fff;
-      cursor: pointer;
-    }
-    .mobile-nav {
-      display: none;
-      padding: 0 20px 20px;
-    }
-    .mobile-nav a {
-      display: block;
-      padding: 13px 0;
-      color: #fffaf0;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      font-weight: 600;
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 86px 0 72px;
-      color: #fffaf0;
-      background:
-        radial-gradient(circle at 78% 12%, rgba(210,162,56,.22), transparent 27%),
-        radial-gradient(circle at 5% 85%, rgba(113,132,92,.15), transparent 30%),
-        var(--ink);
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(210,162,56,.7), transparent);
-    }
-    .hero-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1.08fr .92fr;
-      gap: 58px;
-      align-items: center;
-    }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      color: var(--gold-soft);
-      font-size: .74rem;
-      font-weight: 800;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-    .eyebrow::before {
-      content: "";
-      width: 26px;
-      height: 1px;
-      background: var(--gold);
-    }
-    h1, h2, h3 {
-      font-family: var(--serif);
-      line-height: 1.1;
-    }
-    h1 {
-      margin: 20px 0 18px;
-      font-size: clamp(2.8rem, 6vw, 5.1rem);
-      letter-spacing: -.045em;
-      font-weight: 600;
-    }
-    .hero-copy p {
-      margin: 0;
-      color: rgba(255,250,240,.72);
-      font-size: 1.03rem;
-      line-height: 1.8;
-    }
-    .hero-card {
-      padding: 28px;
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 26px;
-      background: rgba(255,255,255,.05);
-      box-shadow: var(--shadow);
-    }
-    .hero-card p {
-      margin: 0;
-      color: rgba(255,250,240,.74);
-      font-size: .95rem;
-      line-height: 1.8;
-    }
-
-    .section { padding: 80px 0; }
-    .section-head {
-      max-width: 760px;
-      margin: 0 auto 26px;
-      text-align: center;
-    }
-    .section-kicker {
-      margin: 0 0 10px;
-      color: var(--gold-dark);
-      font-size: .74rem;
-      font-weight: 800;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-    .section h2 {
-      margin: 0 0 12px;
-      font-size: clamp(2rem, 3.6vw, 3rem);
-      letter-spacing: -.035em;
-    }
-    .section-head p { margin: 0; color: var(--muted); }
-
-    /* Admin Panel */
-    #admin-panel {
-      max-width: 620px;
-      margin: 0 auto 30px;
-      padding: 20px;
-      background: #fff;
-      border: 2px solid var(--gold);
-      border-radius: 18px;
-      display: none;
-    }
-    #admin-panel h3 {
-      font-family: var(--serif);
-      margin: 0 0 12px;
-      font-size: 1.2rem;
-    }
-    .admin-toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-    }
-    #admin-status {
-      font-size: 0.8rem;
-      color: var(--muted);
-      align-self: center;
-    }
-    #admin-message {
-      margin-top: 10px;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      display: none;
-    }
-    #admin-message.success { display: block; color: #155724; background: #d4edda; }
-    #admin-message.error { display: block; color: #721c24; background: #f8d7da; }
-    #admin-message.info { display: block; color: #0c5460; background: #d1ecf1; }
-
-    .ig-feed {
-      display: grid;
-      gap: 20px;
-      max-width: 620px;
-      margin: 0 auto;
-    }
-    .ig-card {
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: var(--white);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-      position: relative;
-    }
-    .ig-card.deleting {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-    .ig-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 16px;
-      border-bottom: 1px solid rgba(17,16,14,.08);
-    }
-    .ig-user {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #e7d4a8, #c8961f);
-      color: #2e2413;
-      display: grid;
-      place-items: center;
-      font-size: .76rem;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-    .ig-user strong {
-      display: block;
-      font-size: .9rem;
-      line-height: 1.2;
-    }
-    .ig-user span {
-      display: block;
-      color: var(--muted);
-      font-size: .75rem;
-      line-height: 1.2;
-    }
-    .ig-time {
-      color: var(--muted);
-      font-size: .74rem;
-      font-weight: 700;
-    }
-
-    .ig-photo {
-      position: relative;
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      background: var(--paper-2);
-    }
-    .ig-photo img,
-    .ig-photo video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .ig-photo video {
-      background: #000;
-    }
-
-    .post-logo {
-      position: absolute;
-      right: 12px;
-      bottom: 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 10px 6px 8px;
-      border-radius: 999px;
-      background: rgba(17,16,14,.64);
-      border: 1px solid rgba(255,255,255,.32);
-      color: #fff;
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-    }
-    .post-logo-mark {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #e7d4a8, #c8961f);
-      color: #2e2413;
-      display: grid;
-      place-items: center;
-      font-size: .72rem;
-      font-weight: 800;
-      line-height: 1;
-    }
-    .post-logo-text {
-      font-size: .67rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    /* Admin delete button on posts */
-    .admin-delete-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(220, 53, 69, 0.92);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      font-size: 18px;
-      cursor: pointer;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.2s ease, background 0.2s ease;
-      font-weight: 700;
-    }
-    .admin-delete-btn:hover {
-      transform: scale(1.1);
-      background: #c82333;
-    }
-
-    .post-logo {
-      position: absolute;
-      right: 12px;
-      bottom: 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 10px 6px 8px;
-      border-radius: 999px;
-      background: rgba(17,16,14,.64);
-      border: 1px solid rgba(255,255,255,.32);
-      color: #fff;
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-    }
-
-    .post-logo-mark {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #e7d4a8, #c8961f);
-      color: #2e2413;
-      display: grid;
-      place-items: center;
-      font-size: .72rem;
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    .post-logo-text {
-      font-size: .67rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .ig-body { padding: 14px 16px 16px; }
-    .ig-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    .ig-btn {
-      min-height: 34px;
-      padding: 0 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--ink-2);
-      background: var(--paper);
-      font-size: .8rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: .18s ease;
-    }
-    .ig-btn:hover { border-color: var(--gold-dark); }
-    .ig-btn.liked {
-      color: #fff;
-      background: var(--ink);
-      border-color: var(--ink);
-    }
-    .ig-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-    .ig-stats {
-      margin: 0 0 8px;
-      font-size: .84rem;
-      font-weight: 700;
-      color: #2f2b25;
-    }
-    .ig-caption {
-      margin: 0 0 10px;
-      color: #3a352e;
-      font-size: .88rem;
-      line-height: 1.65;
-    }
-
-    .ig-comments {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 6px;
-      margin-bottom: 10px;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-    .ig-comments li {
-      padding: 8px 10px;
-      border-radius: 10px;
-      background: var(--paper-2);
-      font-size: .8rem;
-      line-height: 1.45;
-      color: #3f372f;
-      word-break: break-word;
-    }
-    .ig-comments li strong { color: #1f1b17; }
-    .ig-comments .comment-meta {
-      display: block;
-      font-size: 0.65rem;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-    .ig-comments-empty {
-      padding: 8px 10px;
-      color: var(--muted);
-      font-size: 0.8rem;
-      font-style: italic;
-    }
-
-    .comment-form {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 8px;
-      align-items: center;
-    }
-    .comment-form input {
-      min-height: 38px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 0 12px;
-      font: inherit;
-      font-size: .84rem;
-      color: var(--ink);
-      background: #fff;
-    }
-    .comment-form input:disabled {
-      opacity: 0.6;
-    }
-    .comment-form button {
-      min-height: 38px;
-      border: none;
-      border-radius: 999px;
-      padding: 0 13px;
-      color: #fff;
-      background: var(--ink);
-      font-size: .78rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-    .comment-form button:hover {
-      background: var(--gold-dark);
-    }
-    .comment-form button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .skeleton-card {
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: var(--white);
-      overflow: hidden;
-      height: 400px;
-    }
-    .skeleton {
-      background: linear-gradient(100deg, var(--paper-2) 30%, #fff 50%, var(--paper-2) 70%);
-      background-size: 200% 100%;
-      animation: shimmer 1.4s infinite;
-    }
-    @keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
-
-    /* Modal Styles */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(4px);
-      z-index: 2000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-    }
-    .modal-overlay.active {
-      display: flex;
-    }
-    .modal-content {
-      background: #fff;
-      border-radius: 24px;
-      padding: 30px;
-      max-width: 560px;
-      width: 90%;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.3);
-    }
-    .modal-content h2 {
-      font-family: var(--serif);
-      margin: 0 0 20px;
-    }
-    .modal-content .form-group {
-      margin-bottom: 15px;
-    }
-    .modal-content .form-group label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 5px;
-      font-size: 0.9rem;
-    }
-    .modal-content .form-group input,
-    .modal-content .form-group textarea,
-    .modal-content .form-group select {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      font: inherit;
-    }
-    .modal-content .form-group textarea {
-      min-height: 80px;
-      resize: vertical;
-    }
-    .modal-content .form-group input[type="file"] {
-      padding: 8px;
-    }
-    .modal-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .cta {
-      margin-top: 80px;
-      padding: 55px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-      border-radius: 30px;
-      color: #fffaf0;
-      background:
-        radial-gradient(circle at 85% 10%, rgba(210,162,56,.24), transparent 28%),
-        var(--ink);
-      box-shadow: var(--shadow);
-    }
-    .cta .section-kicker { color: var(--gold-soft); }
-    .cta h2 { margin: 0 0 10px; }
-    .cta p { max-width: 600px; margin: 0; color: rgba(255,250,240,.62); }
-
-    footer {
-  padding: 24px 16px 40px; /* space around the card so it "floats" */
-}
-
-.footer-card {
-  background: #0d0d0d; /* original black */
-  color: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.25);
-  padding: 40px clamp(20px, 5vw, 56px) 24px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-<<<<<<< HEAD
-.footer-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 32px;
-}
-
-.footer-about {
-  flex: 1 1 260px;
-  max-width: 360px;
-}
-
-.footer-about p {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.footer-links {
-  display: flex;
-  gap: 40px;
-  flex: 1 1 auto;
-  justify-content: flex-end;
-}
-
-.footer-col {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-width: 120px;
-}
-
-.footer-title {
-  font-weight: 600;
-  margin-bottom: 4px;
-  color: rgba(255, 255, 255, 0.6);
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
-}
-
-.footer-col a {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.85);
-  transition: color 0.2s ease;
-}
-
-.footer-col a:hover {
-  color: #ffffff;
-}
-
-.footer-bottom {
-  margin-top: 32px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 8px;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-@media (max-width: 640px) {
-  .footer-grid {
-    flex-direction: column;
-  }
-  .footer-links {
-    justify-content: flex-start;
-    gap: 32px;
-  }
-}
-
-@media (max-width: 700px) {
-  .container { width: min(var(--container), calc(100% - 28px)); }
-  .header-inner { min-height: 68px; }
-  h1 { font-size: clamp(2.45rem, 13vw, 3.75rem); }
-  .ig-card { border-radius: 16px; }
-  .cta { align-items: flex-start; flex-direction: column; padding: 32px 24px; }
-  .footer-bottom { flex-direction: column; }
-  .admin-toolbar { flex-direction: column; }
-  .modal-content { padding: 20px; }
-}
->>>>>>> 836ab7d575b31476b87e92c4311d75ca768c39b0
-  </style>
-</head>
-
+ <link rel="stylesheet" href="post.css">
 <body>
   <header class="site-header">
     <div class="container header-inner">
@@ -814,7 +38,7 @@
         <a href="../home/homepage.html">Home</a>
         <a href="../About/about2.html">About</a>
         <a class="active" href="post.html">Posts</a>
-        <a href="post.html#testimonies">Testimonies</a>
+        <a href="../testimonies/testimonies.html">Testimonies</a>
         <a href="../communityevents/community.html">Events</a>
         <a href="../contacts/contacts.html">Contact</a>
       </nav>
@@ -876,153 +100,10 @@
         </div>
 
         <div class="ig-feed" id="ig-feed">
-<<<<<<< HEAD
           <!-- Posts loaded from Supabase -->
           <div class="skeleton-card skeleton"></div>
           <div class="skeleton-card skeleton"></div>
           <div class="skeleton-card skeleton"></div>
-=======
-          <article class="ig-card" data-post-id="p1">
-            <div class="ig-head">
-              <div class="ig-user">
-                <span class="avatar">CTY</span>
-                <div>
-                  <strong>cty.community</strong>
-                  <span>Youth Service</span>
-                </div>
-              </div>
-              <span class="ig-time">2h ago</span>
-            </div>
-            <div class="ig-photo">
-              <img src="../photos/IMG_7618.jpg" alt="Youth gathered during service" loading="lazy" />
-              <span class="post-logo" aria-hidden="true">
-                <span class="post-logo-mark">✝</span>
-                <span class="post-logo-text">CTY</span>
-              </span>
-            </div>
-            <div class="ig-body">
-              <div class="ig-actions">
-                <button type="button" class="ig-btn like-btn" data-likes="182">Like</button>
-                <button type="button" class="ig-btn comment-jump">Comment</button>
-              </div>
-              <p class="ig-stats"><span class="likes-count">182</span> likes • <span class="comments-count">2</span> comments</p>
-              <p class="ig-caption">Sunday Youth Service: worship, prayer, and honest conversations that bring us closer to Jesus.</p>
-              <ul class="ig-comments">
-                <li><strong>kevo.t</strong> This was powerful.</li>
-                <li><strong>mercy.a</strong> Loved the worship set tonight.</li>
-              </ul>
-              <form class="comment-form">
-                <input type="text" name="comment" maxlength="180" placeholder="Add a comment..." required />
-                <button type="submit">Post</button>
-              </form>
-            </div>
-          </article>
-
-          <article class="ig-card" data-post-id="p2">
-            <div class="ig-head">
-              <div class="ig-user">
-                <span class="avatar">CTY</span>
-                <div>
-                  <strong>cty.community</strong>
-                  <span>Small Group</span>
-                </div>
-              </div>
-              <span class="ig-time">6h ago</span>
-            </div>
-            <div class="ig-photo">
-              <img src="../photos/IMG_7672.jpg" alt="Small group discussion" loading="lazy" />
-              <span class="post-logo" aria-hidden="true">
-                <span class="post-logo-mark">✝</span>
-                <span class="post-logo-text">CTY</span>
-              </span>
-            </div>
-            <div class="ig-body">
-              <div class="ig-actions">
-                <button type="button" class="ig-btn like-btn" data-likes="143">Like</button>
-                <button type="button" class="ig-btn comment-jump">Comment</button>
-              </div>
-              <p class="ig-stats"><span class="likes-count">143</span> likes • <span class="comments-count">1</span> comments</p>
-              <p class="ig-caption">Small groups where everyone is seen, known, and encouraged. Bring your questions next week.</p>
-              <ul class="ig-comments">
-                <li><strong>amina.w</strong> Exactly what I needed this week.</li>
-              </ul>
-              <form class="comment-form">
-                <input type="text" name="comment" maxlength="180" placeholder="Add a comment..." required />
-                <button type="submit">Post</button>
-              </form>
-            </div>
-          </article>
-
-          <article class="ig-card" data-post-id="p3">
-            <div class="ig-head">
-              <div class="ig-user">
-                <span class="avatar">CTY</span>
-                <div>
-                  <strong>cty.community</strong>
-                  <span>Community Night</span>
-                </div>
-              </div>
-              <span class="ig-time">1d ago</span>
-            </div>
-            <div class="ig-photo">
-              <img src="../photos/IMG_7685.jpg" alt="Community night moment" loading="lazy" />
-              <span class="post-logo" aria-hidden="true">
-                <span class="post-logo-mark">✝</span>
-                <span class="post-logo-text">CTY</span>
-              </span>
-            </div>
-            <div class="ig-body">
-              <div class="ig-actions">
-                <button type="button" class="ig-btn like-btn" data-likes="227">Like</button>
-                <button type="button" class="ig-btn comment-jump">Comment</button>
-              </div>
-              <p class="ig-stats"><span class="likes-count">227</span> likes • <span class="comments-count">3</span> comments</p>
-              <p class="ig-caption">Community Night memories. Shared meals, testimonies, and joy across every generation.</p>
-              <ul class="ig-comments">
-                <li><strong>jay.n</strong> This felt like family.</li>
-                <li><strong>beth.k</strong> The testimonies were amazing.</li>
-                <li><strong>dani.m</strong> See you all next Friday.</li>
-              </ul>
-              <form class="comment-form">
-                <input type="text" name="comment" maxlength="180" placeholder="Add a comment..." required />
-                <button type="submit">Post</button>
-              </form>
-            </div>
-          </article>
-
-          <article class="ig-card" data-post-id="p4">
-            <div class="ig-head">
-              <div class="ig-user">
-                <span class="avatar">CTY</span>
-                <div>
-                  <strong>cty.community</strong>
-                  <span>Serving Together</span>
-                </div>
-              </div>
-              <span class="ig-time">2d ago</span>
-            </div>
-            <div class="ig-photo">
-              <img src="../photos/IMG_7735.jpg" alt="Youth serving moment" loading="lazy" />
-              <span class="post-logo" aria-hidden="true">
-                <span class="post-logo-mark">✝</span>
-                <span class="post-logo-text">CTY</span>
-              </span>
-            </div>
-            <div class="ig-body">
-              <div class="ig-actions">
-                <button type="button" class="ig-btn like-btn" data-likes="96">Like</button>
-                <button type="button" class="ig-btn comment-jump">Comment</button>
-              </div>
-              <p class="ig-stats"><span class="likes-count">96</span> likes • <span class="comments-count">0</span> comments</p>
-              <p class="ig-caption">Serving with joy. Every act of love points someone to Christ.</p>
-              <ul class="ig-comments"></ul>
-              <form class="comment-form">
-                <input type="text" name="comment" maxlength="180" placeholder="Add a comment..." required />
-                <button type="submit">Post</button>
-              </form>
-            </div>
-          </article>
->>>>>>> 6af702c (updates to homepage)
         </div>
 
         <div class="cta" aria-label="Call to action">
@@ -1067,41 +148,41 @@
   </div>
 
   <footer>
-  <div class="container footer-card">
-    <div class="footer-grid">
-      <div class="footer-about">
-        <a class="brand" href="../home/homepage.html">
-          <span class="brand-mark" aria-hidden="true">✝</span>
-          <span>CTY <em>Ministries</em></span>
-        </a>
-        <p>Children · Teens · Youth — a Christ-centered community growing together and shining for Jesus.</p>
-      </div>
-
-      <div class="footer-links">
-        <div class="footer-col">
-          <p class="footer-title">Explore</p>
-          <a href="../About/about2.html">About CTY</a>
-          <a href="post.html">Messages</a>
-          <a href="../communityevents/community.html">Events</a>
-          <a href="../contacts/contacts.html">Contact</a>
+    <div class="container footer-card">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="brand" href="../home/homepage.html">
+            <span class="brand-mark" aria-hidden="true">✝</span>
+            <span>CTY <em>Ministries</em></span>
+          </a>
+          <p>Children · Teens · Youth — a Christ-centered community growing together and shining for Jesus.</p>
         </div>
 
-        <div class="footer-col">
-          <p class="footer-title">Connect</p>
-          <a href="#" aria-label="CTY on Instagram">Instagram</a>
-          <a href="#" aria-label="CTY on Facebook">Facebook</a>
-          <a href="#" aria-label="CTY on TikTok">TikTok</a>
-          <a href="#" aria-label="CTY on YouTube">YouTube</a>
+        <div class="footer-links">
+          <div class="footer-col">
+            <p class="footer-title">Explore</p>
+            <a href="../About/about2.html">About CTY</a>
+            <a href="post.html">Messages</a>
+            <a href="../communityevents/community.html">Events</a>
+            <a href="../contacts/contacts.html">Contact</a>
+          </div>
+
+          <div class="footer-col">
+            <p class="footer-title">Connect</p>
+            <a href="#" aria-label="CTY on Instagram">Instagram</a>
+            <a href="#" aria-label="CTY on Facebook">Facebook</a>
+            <a href="#" aria-label="CTY on TikTok">TikTok</a>
+            <a href="#" aria-label="CTY on YouTube">YouTube</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> CTY Ministries. All rights reserved.</span>
-      <span>Built to serve the next generation.</span>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> CTY Ministries. All rights reserved.</span>
+        <span>Built to serve the next generation.</span>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
   <script>
     // Mobile menu toggle
@@ -1221,7 +302,7 @@
       const date = new Date(dateValue);
       const now = new Date();
       const diff = Math.floor((now - date) / (1000 * 60));
-      
+
       if (diff < 1) return 'Just now';
       if (diff < 60) return `${diff}m ago`;
       if (diff < 1440) return `${Math.floor(diff / 60)}h ago`;
@@ -1326,7 +407,7 @@
             likesCache[like.post_id] = [];
           }
           likesCache[like.post_id].push(like);
-          
+
           if (currentUser && like.user_id === currentUser.id) {
             userLikes.add(like.post_id);
           }
@@ -1345,8 +426,8 @@
           (post.author_name && String(post.author_name).trim()) ||
           'Community member';
         const avatarLabel = postOwnerName.charAt(0).toUpperCase();
-        const mediaHtml = post.media_url ? 
-          (mediaType === 'video' ? 
+        const mediaHtml = post.media_url ?
+          (mediaType === 'video' ?
             `<video src="${post.media_url}" controls playsinline preload="metadata"></video>` :
             `<img src="${post.media_url}" alt="${escapeHtml(post.caption || 'CTY post')}" loading="lazy" />`
           ) :
@@ -1384,7 +465,7 @@
                 </button>
               </div>
               <p class="ig-stats">
-                <span class="likes-count">${likes.length}</span> likes • 
+                <span class="likes-count">${likes.length}</span> likes •
                 <span class="comments-count">${comments.length}</span> comments
               </p>
               ${post.caption ? `<p class="ig-caption">${escapeHtml(post.caption)}</p>` : ''}
@@ -1443,7 +524,7 @@
     async function handleLike(event) {
       const btn = event.currentTarget;
       const postId = btn.dataset.postId;
-      
+
       if (!currentUser) {
         alert('Please sign in to like posts.');
         return;
@@ -1469,7 +550,7 @@
           btn.textContent = 'Like';
           likesCountEl.textContent = currentLikes - 1;
           userLikes.delete(postId);
-          
+
           if (likesCache[postId]) {
             likesCache[postId] = likesCache[postId].filter(l => l.user_id !== currentUser.id);
           }
@@ -1487,7 +568,7 @@
           btn.textContent = 'Liked';
           likesCountEl.textContent = currentLikes + 1;
           userLikes.add(postId);
-          
+
           if (!likesCache[postId]) {
             likesCache[postId] = [];
           }
@@ -1537,7 +618,7 @@
 
         const commentsList = document.getElementById(`comments-${postId}`);
         const commentsCount = form.closest('.ig-body').querySelector('.comments-count');
-        
+
         if (commentsList) {
           const newComment = document.createElement('li');
           newComment.innerHTML = `
@@ -1545,10 +626,10 @@
             ${escapeHtml(text)}
             <span class="comment-meta">Just now</span>
           `;
-          
+
           const emptyMsg = commentsList.querySelector('.ig-comments-empty');
           if (emptyMsg) emptyMsg.remove();
-          
+
           commentsList.insertBefore(newComment, commentsList.firstChild);
         }
 
@@ -1587,7 +668,7 @@
     async function handleDeletePost(event) {
       const btn = event.currentTarget;
       const postId = btn.dataset.id;
-      
+
       if (!isAdmin) {
         alert('You do not have permission to delete posts.');
         return;
@@ -1647,7 +728,7 @@
 
     async function handleAddPost(event) {
       event.preventDefault();
-      
+
       if (!isAdmin) {
         alert('Only admins can add posts.');
         return;
