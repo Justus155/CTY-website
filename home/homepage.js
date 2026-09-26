@@ -45,8 +45,8 @@ function renderFeed() {
       const mine = likedByMe.has(post.id);
       const media = post.media_url
         ? post.type === "video"
-          ? `<video src="${post.media_url}" controls playsinline preload="metadata"></video>`
-          : `<img src="${post.media_url}" alt="${escapeHtml(post.caption || "CTY post")}" loading="lazy" />`
+          ? `<video src="${escapeHtml(post.media_url)}" controls playsinline preload="metadata"></video>`
+          : `<img src="${escapeHtml(post.media_url)}" alt="${escapeHtml(post.caption || "CTY post")}" loading="lazy" />`
         : "";
 
       return `

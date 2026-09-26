@@ -1,16 +1,17 @@
-// ---------------------------------------------------------------
-// Shared Supabase client — used by signin.js, signup.js, forgot-password.js
-// ---------------------------------------------------------------
-// 1. Create a project at https://supabase.com
-// 2. Project Settings → API → copy your Project URL and anon public key
-// 3. Paste them below. This is the ONLY place you need to add them.
-// ---------------------------------------------------------------
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const SUPABASE_URL = "https://emaljtnwkxmhuhcawsud.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_F0xGhM7E4RpFXVcgu_px6w_JOPdVAe2";
 
-export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+try {
+  window.localStorage.removeItem(`sb-${new URL(SUPABASE_URL).hostname.split(".")[0]}-auth-token`);
+} catch {
+  // Storage may be blocked by the browser.
+}
+
+export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  auth: { storage: window.sessionStorage },
+});
 
 // ---------- Shared UI helpers, reused across pages ----------
 export function showToast(message) {

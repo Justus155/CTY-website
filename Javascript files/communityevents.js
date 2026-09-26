@@ -5,6 +5,12 @@ let currentUser = null;
 let isAdmin = false;
 let events = [];
 
+function escapeHtml(value) {
+  const element = document.createElement('div');
+  element.textContent = String(value ?? '');
+  return element.innerHTML;
+}
+
 // Check admin status and show/hide admin controls
 async function checkAdminStatus() {
   isAdmin = await isUserAdmin();
@@ -47,20 +53,20 @@ function renderEvents(events) {
   }
   
   container.innerHTML = events.map(event => `
-    <div class="event-card" data-event-id="${event.id}">
+    <div class="event-card" data-event-id="${escapeHtml(event.id)}">
       <div class="event-date-badge">
         <span class="day">${new Date(event.event_date).getDate()}</span>
         <span class="mon">${new Date(event.event_date).toLocaleString('default', { month: 'short' })}</span>
       </div>
       <div class="event-info">
-        <span class="event-meta">${event.category || 'General'}</span>
-        <h3>${event.title}</h3>
-        <p>${event.description || ''}</p>
+        <span class="event-meta">${escapeHtml(event.category || 'General')}</span>
+        <h3>${escapeHtml(event.title)}</h3>
+        <p>${escapeHtml(event.description || '')}</p>
       </div>
       <div style="display: flex; align-items: center; gap: 10px;">
-        <span class="event-rsvp">${event.rsvp_count || 0} going</span>
+        <span class="event-rsvp">${escapeHtml(event.rsvp_count || 0)} going</span>
         ${isAdmin ? `
-          <button class="admin-btn delete-event-btn" data-id="${event.id}" style="background: #dc3545; color: white; border: none;">
+          <button class="admin-btn delete-event-btn" data-id="${escapeHtml(event.id)}" style="background: #dc3545; color: white; border: none;">
             🗑️ Delete
           </button>
         ` : ''}

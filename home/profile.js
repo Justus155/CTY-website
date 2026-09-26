@@ -55,7 +55,11 @@ if (isEmbedded) {
 
 function renderAvatar(avatarUrl, fallbackName) {
   if (avatarUrl) {
-    avatarPreview.innerHTML = `<img src="${avatarUrl}" alt="${fallbackName}" />`;
+    avatarPreview.replaceChildren();
+    const image = document.createElement("img");
+    image.src = avatarUrl;
+    image.alt = fallbackName;
+    avatarPreview.append(image);
     return;
   }
   avatarPreview.textContent = (fallbackName || "U").trim().charAt(0).toUpperCase() || "U";
@@ -119,7 +123,7 @@ fileInput.addEventListener("change", () => {
   setError(errorEl, "");
 
   const localUrl = URL.createObjectURL(file);
-  avatarPreview.innerHTML = `<img src="${localUrl}" alt="Preview" />`;
+  renderAvatar(localUrl, "Preview");
 });
 
 form.addEventListener("submit", async (event) => {

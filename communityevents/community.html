@@ -1144,27 +1144,10 @@
 
         if (error) throw error;
 
-        // Update event RSVP count
-        const { data: eventData } = await supabase
-          .from('events')
-          .select('rsvp_count')
-          .eq('id', eventId)
-          .single();
-
-        const newCount = (eventData?.rsvp_count || 0) + 1;
-
-        await supabase
-          .from('events')
-          .update({ rsvp_count: newCount })
-          .eq('id', eventId);
-
         // Add to user's RSVP set
         userRsvps.add(eventId);
 
-        // Send Google Form email
-        await sendGoogleFormEmail(userEmail, eventId);
-
-        showToast('✅ You\'re registered! Check your email for the Google Form.', 'success');
+        showToast('You are registered for this event.', 'success');
         
         // Reload events to update counts
         await loadEvents();
@@ -1172,38 +1155,6 @@
       } catch (error) {
         console.error('Error with RSVP:', error);
         showToast('Error registering for event. Please try again.', 'error');
-      }
-    }
-
-    async function sendGoogleFormEmail(userEmail, eventId) {
-      try {
-        // Get event details
-        const { data: event } = await supabase
-          .from('events')
-          .select('title, event_date')
-          .eq('id', eventId)
-          .single();
-
-        // Google Form URL - Replace this with your actual Google Form URL
-        const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform';
-
-        // Call email service (using Supabase Edge Function or external service)
-        const { error } = await supabase.functions.invoke('send-rsvp-email', {
-          body: {
-            to: userEmail,
-            eventName: event?.title || 'CTY Event',
-            eventDate: event?.event_date || 'TBD',
-            googleFormUrl: GOOGLE_FORM_URL
-          }
-        });
-
-        if (error) {
-          console.error('Email sending failed:', error);
-          // Don't throw - email is a bonus feature
-        }
-      } catch (error) {
-        console.error('Error sending email:', error);
-        // Don't throw - email is a bonus feature
       }
     }
 
@@ -1416,7 +1367,8 @@
           showToast('⚠️ RSVP table not found. Please contact the administrator.', 'error');
         }
       } catch (error) {
-        console.log('RSVP table check failed:', error);
+        console.error('RSVP table check failed:', error);
+        showToast('RSVPs are unavailable right now.', 'error');
       }
     }
 

@@ -70,7 +70,7 @@ export async function applyHeaderAuthState() {
 
     if (profileAvatar) {
       if (profile?.avatar_url) {
-        profileAvatar.innerHTML = `<img src="${profile.avatar_url}" alt="${escapeHtml(firstName)}" />`;
+        profileAvatar.innerHTML = `<img src="${escapeHtml(profile.avatar_url)}" alt="${escapeHtml(firstName)}" />`;
       } else {
         profileAvatar.textContent = firstName.charAt(0).toUpperCase();
       }

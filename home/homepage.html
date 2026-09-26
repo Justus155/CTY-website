@@ -625,7 +625,6 @@
         <a href="../login/signin.html">Sign In</a> ·
         <a href="../login/signup.html">Sign Up</a> ·
         <a href="../login/forgotpassword.html">Forgot Password</a> ·
-        <a href="../Admin/setup-admin.html">Admin Setup</a> ·
         <a href="../photos/IKM_logo_animation.html">Logo Animation</a>
       </p>
 
@@ -762,7 +761,7 @@
 
     if (profileAvatar) {
       if (profile?.avatar_url) {
-        profileAvatar.innerHTML = `<img src="${profile.avatar_url}" alt="${escapeHtml(fullName)}" />`;
+        profileAvatar.innerHTML = `<img src="${escapeHtml(profile.avatar_url)}" alt="${escapeHtml(fullName)}" />`;
       } else {
         profileAvatar.textContent = fullName.charAt(0).toUpperCase();
       }

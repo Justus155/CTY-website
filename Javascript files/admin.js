@@ -9,7 +9,7 @@ const ACCESS_TIMEOUT_MS = 12000;
 function setGateMessage(message) {
   if (!gate) return;
   gate.dataset.status = "updated";
-  gate.innerHTML = `<p>${message}</p>`;
+  gate.textContent = message;
 }
 
 async function withTimeout(promise, label, timeoutMs = ACCESS_TIMEOUT_MS) {
@@ -28,16 +28,6 @@ async function withTimeout(promise, label, timeoutMs = ACCESS_TIMEOUT_MS) {
 }
 
 async function checkAccess() {
-  let forcedOpen = false;
-  const roleWatchdog = setTimeout(() => {
-    if (forcedOpen) return;
-    forcedOpen = true;
-    gate.hidden = true;
-    app.hidden = false;
-    loadRecent();
-    showToast("Role check is slow/unavailable. Admin UI opened; posting/deleting still depends on Supabase policies.");
-  }, 7000);
-
   try {
     setGateMessage("Checking session...");
 
@@ -48,7 +38,6 @@ async function checkAccess() {
     if (sessionError) throw sessionError;
 
     if (!session) {
-      clearTimeout(roleWatchdog);
       window.location.href = "../login/signin.html";
       return;
     }
@@ -58,17 +47,11 @@ async function checkAccess() {
     const { data: profile, error: profileError } = await withTimeout(
       supabase
         .from("profiles")
-        .select("role")
+        .select("role, is_admin")
         .eq("id", session.user.id)
         .maybeSingle(),
       "Profile check"
     );
-
-    clearTimeout(roleWatchdog);
-
-    if (forcedOpen) {
-      return;
-    }
 
     if (profileError) throw profileError;
 
@@ -77,7 +60,7 @@ async function checkAccess() {
       return;
     }
 
-    if (profile.role !== "admin") {
+    if (profile.role !== "admin" || profile.is_admin !== true) {
       setGateMessage("This page is for CTY admins only.");
       return;
     }
@@ -86,8 +69,6 @@ async function checkAccess() {
     app.hidden = false;
     loadRecent();
   } catch (err) {
-    clearTimeout(roleWatchdog);
-    if (forcedOpen) return;
     setGateMessage(`Access check failed: ${friendlyError(err)}`);
   }
 }
@@ -237,8 +218,8 @@ function recentItemHTML(post) {
   const date = new Date(post.created_at).toLocaleDateString(undefined, { month: "short", day: "numeric" });
   const thumb = post.media_url
     ? (post.type === "video"
-        ? `<video src="${post.media_url}" muted></video>`
-        : `<img src="${post.media_url}" alt="" />`)
+        ? `<video src="${escapeHtml(post.media_url)}" muted></video>`
+        : `<img src="${escapeHtml(post.media_url)}" alt="" />`)
     : "";
 
   return `

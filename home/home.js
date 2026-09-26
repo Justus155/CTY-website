@@ -68,9 +68,17 @@ async function loadLatestVideo() {
   noteEl.textContent = video.note;
 
   if (video.video_url) {
-    frame.innerHTML = video.video_url.includes("youtube") || video.video_url.includes("youtu.be")
-      ? `<iframe src="${video.video_url}" allowfullscreen loading="lazy"></iframe>`
-      : `<video src="${video.video_url}" controls playsinline></video>`;
+    const isYouTube = /^https:\/\/(?:www\.)?(?:youtube\.com|youtu\.be)\//i.test(video.video_url);
+    const media = document.createElement(isYouTube ? "iframe" : "video");
+    media.src = video.video_url;
+    if (isYouTube) {
+      media.allowFullscreen = true;
+      media.loading = "lazy";
+    } else {
+      media.controls = true;
+      media.playsInline = true;
+    }
+    frame.replaceChildren(media);
   }
 }
 
@@ -102,7 +110,7 @@ function photoCardHTML(photo) {
     ? new Date(photo.created_at).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })
     : "";
   const bg = photo.media_url
-    ? `<img src="${photo.media_url}" alt="${escapeHtml(photo.caption || "")}" loading="lazy" />`
+    ? `<img src="${escapeHtml(photo.media_url)}" alt="${escapeHtml(photo.caption || "")}" loading="lazy" />`
     : `<div class="photo-card skeleton" style="position:absolute;inset:0;"></div>`;
 
   return `

@@ -581,17 +581,17 @@
                 const initial = (leader.name || 'L').charAt(0).toUpperCase();
 
                 return `
-                    <div class="leader-card" data-leader-id="${leader.id}">
+                    <div class="leader-card" data-leader-id="${escapeHtml(leader.id)}">
                         ${isAdmin ? `
                             <div class="leader-admin-actions">
-                                <button class="edit-leader-btn" data-id="${leader.id}" title="Edit leader">✏️</button>
-                                <button class="delete-leader-btn" data-id="${leader.id}" title="Delete leader">✕</button>
+                                <button class="edit-leader-btn" data-id="${escapeHtml(leader.id)}" title="Edit leader">✏️</button>
+                                <button class="delete-leader-btn" data-id="${escapeHtml(leader.id)}" title="Delete leader">✕</button>
                             </div>
                         ` : ''}
                         <div class="leader-photo">
                             ${hasPhoto ? 
-                                `<img src="${leader.photo_url}" alt="${escapeHtml(leader.name)}" loading="lazy" />` :
-                                `<span class="placeholder">${initial}</span>`
+                                `<img src="${escapeHtml(leader.photo_url)}" alt="${escapeHtml(leader.name)}" loading="lazy" />` :
+                                `<span class="placeholder">${escapeHtml(initial)}</span>`
                             }
                         </div>
                         <h4>${escapeHtml(leader.name)}</h4>
