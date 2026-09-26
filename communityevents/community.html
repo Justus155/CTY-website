@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="../Logo%20Design%20in%20Canva.png" />
+  <link rel="stylesheet" href="../styles/hanging-card.css" />
 
   <style>
     :root {
@@ -995,6 +996,7 @@
 
   <script type="module">
     import { supabase } from "../Javascript files/supabaseclient.js";
+    import { HangingCard } from "../Javascript files/hanging-card.js";
 
     // DOM Elements
     const eventsList = document.getElementById('events-list');
@@ -1409,8 +1411,14 @@
         submitBtn.textContent = 'Creating...';
 
         try {
-          await addEvent({ title, description, date, category });
+          const createdEvent = await addEvent({ title, description, date, category });
           closeModal();
+          HangingCard.show({
+            type: 'event',
+            date: new Date(`${date}T12:00:00`).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
+            title: createdEvent.title,
+            subtitle: createdEvent.description || createdEvent.category || 'Upcoming CTY gathering'
+          });
         } catch (error) {
           // Error handled in addEvent function
         } finally {

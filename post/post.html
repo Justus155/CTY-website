@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="../Logo%20Design%20in%20Canva.png" />
  <link rel="stylesheet" href="post.css">
+ <link rel="stylesheet" href="../styles/hanging-card.css">
 </head>
 <body>
   <header class="site-header">
@@ -138,8 +139,8 @@
         </div>
         <div class="form-group">
           <label for="post-file">Upload File</label>
-          <input type="file" id="post-file" accept="image/*,video/*" required>
-          <small style="color: var(--muted);">Supported: JPG, PNG, WEBP (max 5MB) or MP4, WebM (max 20MB)</small>
+          <input type="file" id="post-file" accept="image/jpeg,image/png,image/webp" required>
+          <small style="color: var(--muted);">JPG, PNG, WEBP: max 10 MB. MP4, WebM: max 150 MB (roughly 2-4 minutes at 5-10 Mbps; compression varies).</small>
         </div>
         <div class="modal-actions">
           <button type="submit" class="button button-success">Upload Post</button>
@@ -211,7 +212,8 @@
   </script>
 
   <script type="module">
-    import { supabase } from "../Javascript files/supabaseclient.js";
+    import { supabase, SUPABASE_URL, SUPABASE_ANON_KEY } from "../Javascript files/supabaseclient.js";
+    import { HangingCard } from "../Javascript files/hanging-card.js";
 
     // DOM Elements
     const feed = document.getElementById('ig-feed');
@@ -741,8 +743,52 @@
     }
 
     // ============================================
-    // ADD POST HANDLER (Admin Only) - FIXED
+    // ADD POST HANDLER (Admin Only)
     // ============================================
+
+    async function uploadPostMedia(bucket, filePath, file, submitBtn) {
+      if (file.size <= 6 * 1024 * 1024) {
+        const { error } = await supabase.storage.from(bucket).upload(filePath, file, {
+          cacheControl: '3600',
+          upsert: false
+        });
+        if (error) throw error;
+        return;
+      }
+
+      const { Upload, isSupported } = await import('https://esm.sh/tus-js-client@4.3.1');
+      if (!isSupported) throw new Error('This browser does not support large uploads. Try another browser.');
+
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      if (sessionError || !session) throw sessionError || new Error('Sign in again before uploading.');
+
+      const projectId = new URL(SUPABASE_URL).hostname.split('.')[0];
+      await new Promise((resolve, reject) => {
+        const upload = new Upload(file, {
+          endpoint: `https://${projectId}.storage.supabase.co/storage/v1/upload/resumable`,
+          headers: {
+            authorization: `Bearer ${session.access_token}`,
+            apikey: SUPABASE_ANON_KEY
+          },
+          metadata: {
+            bucketName: bucket,
+            objectName: filePath,
+            contentType: file.type,
+            cacheControl: '3600'
+          },
+          chunkSize: 6 * 1024 * 1024,
+          retryDelays: [0, 3000, 5000, 10000, 20000],
+          uploadDataDuringCreation: true,
+          removeFingerprintOnSuccess: true,
+          onProgress: (uploaded, total) => {
+            submitBtn.textContent = `Uploading ${Math.round(uploaded / total * 100)}%`;
+          },
+          onError: reject,
+          onSuccess: resolve
+        });
+        upload.start();
+      });
+    }
 
     async function handleAddPost(event) {
       event.preventDefault();
@@ -765,9 +811,14 @@
 
       // Validate file
       const isVideo = type === 'video';
-      const maxSize = isVideo ? 20 * 1024 * 1024 : 5 * 1024 * 1024;
+      const allowedTypes = isVideo ? ['video/mp4', 'video/webm'] : ['image/jpeg', 'image/png', 'image/webp'];
+      if (!allowedTypes.includes(file.type)) {
+        showAdminMessage(`Select a ${isVideo ? 'MP4 or WebM video' : 'JPG, PNG, or WEBP photo'}.`, 'error');
+        return;
+      }
+      const maxSize = isVideo ? 150 * 1024 * 1024 : 10 * 1024 * 1024;
       if (file.size > maxSize) {
-        showAdminMessage(`File too large. Max ${isVideo ? '20MB' : '5MB'}.`, 'error');
+        showAdminMessage(`File too large. Max ${isVideo ? '150 MB' : '10 MB'}.`, 'error');
         return;
       }
 
@@ -781,14 +832,7 @@
         const fileName = `${Date.now()}.${fileExt}`;
         const filePath = `${currentUser.id}/${fileName}`;
 
-        const { error: uploadError } = await supabase.storage
-          .from(bucket)
-          .upload(filePath, file, {
-            cacheControl: '3600',
-            upsert: false
-          });
-
-        if (uploadError) throw uploadError;
+        await uploadPostMedia(bucket, filePath, file, submitBtn);
 
         // Get public URL
         const { data: publicUrlData } = supabase.storage
@@ -814,6 +858,12 @@
 
         showAdminMessage('Post uploaded successfully!', 'success');
         closeModal();
+        HangingCard.show({
+          type,
+          image: isVideo ? null : mediaUrl,
+          title: caption || `New ${type} posted`,
+          subtitle: 'Just added to the CTY feed'
+        });
         await loadPosts();
 
       } catch (error) {
@@ -843,6 +893,14 @@
     // ============================================
     // EVENT LISTENERS
     // ============================================
+
+    document.getElementById('post-type').addEventListener('change', (event) => {
+      const fileInput = document.getElementById('post-file');
+      fileInput.value = '';
+      fileInput.accept = event.target.value === 'video'
+        ? 'video/mp4,video/webm'
+        : 'image/jpeg,image/png,image/webp';
+    });
 
     // Add Post button
     if (addPostBtn) {

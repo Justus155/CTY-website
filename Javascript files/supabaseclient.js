@@ -1,7 +1,7 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-const SUPABASE_URL = "https://emaljtnwkxmhuhcawsud.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_F0xGhM7E4RpFXVcgu_px6w_JOPdVAe2";
+export const SUPABASE_URL = "https://emaljtnwkxmhuhcawsud.supabase.co";
+export const SUPABASE_ANON_KEY = "sb_publishable_F0xGhM7E4RpFXVcgu_px6w_JOPdVAe2";
 
 try {
   window.localStorage.removeItem(`sb-${new URL(SUPABASE_URL).hostname.split(".")[0]}-auth-token`);
