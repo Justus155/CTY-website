@@ -48,7 +48,7 @@
     </a>
 
 
-    <nav>
+    <nav class="nav" aria-label="Main Navigation">
 
       <a class="active" href="homepage.html">Home</a>
       <a href="../About/about2.html">About</a>
@@ -216,19 +216,34 @@
 
 <section class="wide-image">
 
-  <div class="container">
+  <div class="carousel" id="wide-carousel">
+  <div class="carousel-track" id="carousel-track">
 
-    <div class="image-card">
-      <img
-        src="../photos/IMG_8123.jpg"
-        alt="CTY community gathering"
-        width="1800"
-        height="800"
-        loading="lazy"
-        decoding="async">
+    <div class="carousel-card">
+      <img src="../photos/IMG_7672.jpg" alt="Small group time" loading="lazy" decoding="async">
+      <p class="carousel-caption">Small groups digging into God's Word together.</p>
+    </div>
+
+    <div class="carousel-card">
+      <img src="../home/images/IMG_8030.jpg" alt="CTY community moment" loading="lazy" decoding="async">
+      <p class="carousel-caption">Friendships that grow beyond Sunday.</p>
+    </div>
+
+    <div class="carousel-card">
+      <img src="../home/images/IMG_8234.jpg" alt="CTY youth gathering" loading="lazy" decoding="async">
+      <p class="carousel-caption">Worshipping together as one family.</p>
+    </div>
+
+    <div class="carousel-card">
+      <img src="../photos/IMG_7740.jpg" alt="CTY event moment" loading="lazy" decoding="async">
+      <p class="carousel-caption">Serving and celebrating life together.</p>
     </div>
 
   </div>
+
+  <div class="carousel-dots" id="carousel-dots"></div>
+</div>
+  
 
 </section>
 
@@ -697,6 +712,7 @@
   const profileModal = document.getElementById("profile-modal");
   const profileModalBackdrop = document.getElementById("profile-modal-backdrop");
   const profileModalClose = document.getElementById("profile-modal-close");
+ 
 
   function escapeHtml(str) {
     const div = document.createElement("div");
@@ -809,6 +825,7 @@
 </script>
 
 <script>
+  
 
   const header =
     document.getElementById("header");
@@ -839,12 +856,34 @@
 
 
   menuButton.addEventListener("click", () => {
+  const isOpen = nav.classList.toggle("open");
+  document.body.classList.toggle("nav-open", isOpen);
+  menuButton.setAttribute("aria-expanded", String(isOpen));
+  menuButton.textContent = isOpen ? "✕" : "☰";
+});
 
-    alert(
-      "Mobile navigation: connect this button to your mobile menu."
-    );
+const track = document.getElementById("carousel-track");
+const dotsWrap = document.getElementById("carousel-dots");
+const slides = track.children;
+let current = 0;
 
-  });
+for (let i = 0; i < slides.length; i++) {
+  const dot = document.createElement("button");
+  if (i === 0) dot.classList.add("active");
+  dot.addEventListener("click", () => goTo(i));
+  dotsWrap.appendChild(dot);
+}
+
+function goTo(index) {
+  current = index;
+  track.style.transform = `translateX(-${current * 100}%)`;
+  [...dotsWrap.children].forEach((d, i) => d.classList.toggle("active", i === current));
+}
+
+setInterval(() => {
+  goTo((current + 1) % slides.length);
+}, 5000);
+
 
 </script>
 

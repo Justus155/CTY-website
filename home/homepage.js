@@ -286,3 +286,13 @@ feedGrid?.addEventListener("submit", async (event) => {
   if (!ok) return;
   await refreshFeed();
 })();
+const menuButton = document.getElementById("menuButton");
+const nav = document.querySelector("header nav");
+menuButton.setAttribute("aria-expanded", "false");
+
+menuButton.addEventListener("click", () => {
+  const isOpen = nav.classList.toggle("open");
+  document.body.classList.toggle("nav-open", isOpen);
+  menuButton.setAttribute("aria-expanded", String(isOpen));
+  menuButton.textContent = isOpen ? "✕" : "☰";
+});
