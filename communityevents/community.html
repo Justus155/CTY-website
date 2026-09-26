@@ -1015,6 +1015,7 @@
     let isAdmin = false;
     let userRsvps = new Set();
     let events = [];
+    let knownEventIds = null;
 
     // ============================================
     // TOAST NOTIFICATION
@@ -1085,7 +1086,7 @@
     });
 
     supabase.auth.onAuthStateChange(() => {
-      syncHeaderAuth();
+      window.setTimeout(syncHeaderAuth, 0);
     });
 
     // ============================================
@@ -1175,10 +1176,19 @@
       }
     }
 
-    async function loadEvents() {
+    function showEventCard(event) {
+      HangingCard.show({
+        type: 'event',
+        date: new Date(`${event.event_date}T12:00:00`).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
+        title: event.title,
+        subtitle: event.description || event.category || 'Upcoming CTY gathering'
+      });
+    }
+
+    async function loadEvents({ silent = false } = {}) {
       try {
         // Show loading state
-        eventsList.innerHTML = `
+        if (!silent) eventsList.innerHTML = `
           <div class="event-card skeleton" style="height:96px;"></div>
           <div class="event-card skeleton" style="height:96px;"></div>
           <div class="event-card skeleton" style="height:96px;"></div>
@@ -1194,7 +1204,11 @@
 
         if (error) throw error;
 
+        const newEvents = knownEventIds === null ? [] : (eventsData || []).filter(event => !knownEventIds.has(event.id));
+        knownEventIds = new Set((eventsData || []).map(event => event.id));
         events = eventsData || [];
+
+        if (newEvents.length) showEventCard(newEvents[newEvents.length - 1]);
 
         if (events.length === 0) {
           eventsList.innerHTML = `
@@ -1214,6 +1228,7 @@
 
       } catch (error) {
         console.error('Error loading events:', error);
+        if (silent) return;
         eventsList.innerHTML = `
           <div class="events-empty">
             <p>Unable to load events. Please refresh the page.</p>
@@ -1318,6 +1333,7 @@
 
         if (error) throw error;
 
+        if (knownEventIds !== null) knownEventIds.add(data[0].id);
         showAdminMessage('Event added successfully!', 'success');
         await loadEvents();
         return data[0];
@@ -1351,27 +1367,6 @@
       modal.classList.remove('active');
       document.body.style.overflow = '';
       addEventForm.reset();
-    }
-
-    // ============================================
-    // CREATE EVENT RSVPS TABLE (if needed)
-    // ============================================
-
-    async function ensureRsvpTable() {
-      try {
-        const { error } = await supabase
-          .from('event_rsvps')
-          .select('id')
-          .limit(1);
-        
-        if (error && error.message.includes('relation "event_rsvps" does not exist')) {
-          console.warn('event_rsvps table not found. Please create it in Supabase.');
-          showToast('⚠️ RSVP table not found. Please contact the administrator.', 'error');
-        }
-      } catch (error) {
-        console.error('RSVP table check failed:', error);
-        showToast('RSVPs are unavailable right now.', 'error');
-      }
     }
 
     // ============================================
@@ -1413,12 +1408,7 @@
         try {
           const createdEvent = await addEvent({ title, description, date, category });
           closeModal();
-          HangingCard.show({
-            type: 'event',
-            date: new Date(`${date}T12:00:00`).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
-            title: createdEvent.title,
-            subtitle: createdEvent.description || createdEvent.category || 'Upcoming CTY gathering'
-          });
+          showEventCard(createdEvent);
         } catch (error) {
           // Error handled in addEvent function
         } finally {
@@ -1441,8 +1431,10 @@
 
     async function init() {
       await syncHeaderAuth();
-      await ensureRsvpTable();
       await loadEvents();
+      window.setInterval(() => {
+        if (document.visibilityState === 'visible') loadEvents({ silent: true });
+      }, 20000);
     }
 
     init();

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hanging Card Demo</title>
+<link rel="stylesheet" href="hangingcard.css" />
+<style>
+  body{ font-family: -apple-system, sans-serif; background:#f7f1e4; padding:40px; }
+  button{ background:#111; color:#fff; border:none; padding:12px 20px; border-radius:8px; font-size:14px; cursor:pointer; }
+</style>
+</head>
+<body>
+  <h1>Hanging Card Demo</h1>
+  <p>Click the button to simulate a new post being published.</p>
+  <button id="trigger-btn">Simulate new post</button>
+
+  <script type="module">
+    import { HangingCard } from "./hangingcard.js";
+    HangingCard.mount();
+
+    document.getElementById("trigger-btn").addEventListener("click", () => {
+      HangingCard.show({
+        type: "Photo",
+        image: "../photos/IMG_7618.jpg",
+        title: "New photo posted",
+        subtitle: "Youth choir leading Sunday worship — just now.",
+      });
+    });
+  </script>
+</body>
+</html>
