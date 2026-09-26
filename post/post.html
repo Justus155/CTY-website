@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="../Logo%20Design%20in%20Canva.png" />
  <link rel="stylesheet" href="post.css">
+</head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
@@ -37,24 +38,25 @@
       <nav class="nav" aria-label="Main navigation">
         <a href="../home/homepage.html">Home</a>
         <a href="../About/about2.html">About</a>
-        <a class="active" href="post.html">Posts</a>
+        <a class="active" href="post.html" aria-current="page">Posts</a>
         <a href="../testimonies/testimonies.html">Testimonies</a>
         <a href="../communityevents/community.html">Events</a>
         <a href="../contacts/contacts.html">Contact</a>
       </nav>
 
       <div class="header-actions">
-        <span class="member-chip" id="member-chip" hidden>Signed in</span>
-        <button class="button button-primary" id="signout-btn" type="button" hidden>Sign out</button>
-        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
+        <a class="header-link" id="signin-link" href="../login/signin.html">Sign in</a>
+        <a class="profile-pill" id="profile-link" href="../home/profile.html" hidden aria-label="Profile"><span class="profile-avatar" id="profile-avatar">U</span></a>
+        <button class="header-link" id="signout-btn" type="button" hidden>Sign out</button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
       </div>
     </div>
 
     <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
       <a href="../home/homepage.html">Home</a>
       <a href="../About/about2.html">About</a>
-      <a href="post.html">Posts</a>
-      <a href="post.html#testimonies">Testimonies</a>
+      <a href="post.html" aria-current="page">Posts</a>
+      <a href="../testimonies/testimonies.html">Testimonies</a>
       <a href="../communityevents/community.html">Events</a>
       <a href="../contacts/contacts.html">Contact</a>
     </nav>
@@ -221,7 +223,9 @@
     const modal = document.getElementById('add-post-modal');
     const closeModalBtn = document.getElementById('close-modal-btn');
     const addPostForm = document.getElementById('add-post-form');
-    const memberChip = document.getElementById("member-chip");
+    const signInLink = document.getElementById("signin-link");
+    const profileLink = document.getElementById("profile-link");
+    const profileAvatar = document.getElementById("profile-avatar");
     const signOutBtn = document.getElementById("signout-btn");
 
     let currentUser = null;
@@ -239,14 +243,18 @@
       const { data: { session } } = await supabase.auth.getSession();
 
       if (!session) {
-        memberChip.hidden = true;
+        signInLink.hidden = false;
+        profileLink.hidden = true;
         signOutBtn.hidden = true;
+        isAdmin = false;
+        currentUser = null;
+        if (adminPanel) adminPanel.style.display = 'none';
         return;
       }
 
       const { data: profile } = await supabase
         .from("profiles")
-        .select("full_name, is_admin")
+        .select("full_name, avatar_url, is_admin")
         .eq("id", session.user.id)
         .maybeSingle();
 
@@ -255,8 +263,18 @@
         session.user.email?.split("@")[0] ||
         "Member";
 
-      memberChip.textContent = `Hi, ${fullName.split(" ")[0]}`;
-      memberChip.hidden = false;
+      if (profile?.avatar_url) {
+        const image = document.createElement('img');
+        image.src = profile.avatar_url;
+        image.alt = fullName;
+        profileAvatar.replaceChildren(image);
+      } else {
+        profileAvatar.textContent = fullName.trim().charAt(0).toUpperCase() || 'U';
+      }
+      profileLink.title = fullName;
+      profileLink.setAttribute('aria-label', `${fullName} profile`);
+      profileLink.hidden = false;
+      signInLink.hidden = true;
       signOutBtn.hidden = false;
 
       isAdmin = profile?.is_admin === true;
