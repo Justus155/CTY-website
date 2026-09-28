@@ -1,0 +1,9 @@
+[build]
+  publish = "."
+
+# Send the bare domain to the welcome page. 302 (not a rewrite) so the
+# browser URL becomes /home/home.html and relative links keep working.
+[[redirects]]
+  from = "/"
+  to = "/login/signin.html"
+  status = 302
