@@ -44,7 +44,7 @@
         <p class="tagline">Children · Teens · Youth</p>
 
         <div class="brand-quote">
-          <p>“One community, facing every season together, and shining a little brighter for it.”</p>
+          <p>"One community, facing every season together, and shining a little brighter for it."</p>
         </div>
       </div>
 
@@ -60,6 +60,7 @@
           <a href="signup.html" class="tab is-active">Join CTY</a>
         </nav>
 
+        <!-- STEP 1: SIGNUP FORM -->
         <form id="form-signup" class="auth-form is-active" novalidate>
           <h2>Join CTY Ministries</h2>
           <p class="sub">Create an account to connect, share, and grow with the community.</p>
@@ -122,7 +123,43 @@
           </button>
         </form>
 
-        <p class="switch-line">
+        <!-- STEP 2: OTP VERIFICATION FORM -->
+        <form id="form-verify" class="auth-form" novalidate>
+          <h2>Verify your email</h2>
+          <p class="sub">
+            We sent a 6-digit code to <strong id="verify-email-display">your email</strong>.
+            Enter it below to finish signing up.
+          </p>
+
+          <fieldset class="code-fieldset">
+            <legend class="sr-only">Verification code</legend>
+            <div class="code-grid" id="code-grid">
+              <input class="code-digit" type="text" inputmode="numeric" maxlength="1" data-index="0" aria-label="Digit 1" />
+              <input class="code-digit" type="text" inputmode="numeric" maxlength="1" data-index="1" aria-label="Digit 2" />
+              <input class="code-digit" type="text" inputmode="numeric" maxlength="1" data-index="2" aria-label="Digit 3" />
+              <input class="code-digit" type="text" inputmode="numeric" maxlength="1" data-index="3" aria-label="Digit 4" />
+              <input class="code-digit" type="text" inputmode="numeric" maxlength="1" data-index="4" aria-label="Digit 5" />
+              <input class="code-digit" type="text" inputmode="numeric" maxlength="1" data-index="5" aria-label="Digit 6" />
+            </div>
+          </fieldset>
+
+          <p class="error" id="verify-error" role="alert"></p>
+
+          <button type="submit" class="btn-primary">
+            <span class="btn-label">Verify &amp; continue</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+
+          <button type="button" class="btn-ghost-inline" id="resend-code-btn">
+            Didn't get a code? Resend
+          </button>
+
+          <button type="button" class="btn-ghost-inline" id="back-to-signup-btn">
+            ← Back to signup
+          </button>
+        </form>
+
+        <p class="switch-line" id="switch-line">
           Already have an account? <a href="signin.html">Sign in</a>
         </p>
 
