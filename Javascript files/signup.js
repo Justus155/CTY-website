@@ -30,6 +30,19 @@ const PASSWORD_RULE = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
 // ============================================
 let pendingEmail = null; // email we're currently verifying
 
+const emailRedirectTo = /^https?:$/.test(window.location.protocol)
+  ? new URL("../home/homepage.html", window.location.href).href
+  : null;
+
+const signupOptions = {
+  data: {
+    full_name: "",
+    date_of_birth: "",
+    ministry_group: "",
+  },
+};
+if (emailRedirectTo) signupOptions.emailRedirectTo = emailRedirectTo;
+
 // ============================================
 // VALIDATION
 // ============================================
@@ -102,7 +115,9 @@ signupForm.addEventListener("submit", async (e) => {
       email,
       password,
       options: {
+        ...signupOptions,
         data: {
+          ...signupOptions.data,
           full_name: fullName,
           date_of_birth: dateOfBirth,
           ministry_group: ministryGroup,
@@ -238,10 +253,9 @@ resendBtn.addEventListener("click", async () => {
   resendBtn.textContent = "Sending…";
 
   try {
-    const { error } = await supabase.auth.resend({
-      type: "signup",
-      email: pendingEmail,
-    });
+    const resendOptions = { type: "signup", email: pendingEmail };
+    if (emailRedirectTo) resendOptions.options = { emailRedirectTo };
+    const { error } = await supabase.auth.resend(resendOptions);
     if (error) throw error;
     showToast("New code sent! Check your email.");
   } catch (err) {

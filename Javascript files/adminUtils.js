@@ -12,7 +12,7 @@ export async function isUserAdmin() {
       .eq('id', session.user.id)
       .single();
     
-    return profile?.is_admin === true || profile?.role === 'admin';
+    return profile?.is_admin === true && profile?.role === 'admin';
   } catch (error) {
     console.error('Error checking admin status:', error);
     return false;

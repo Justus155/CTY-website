@@ -13,6 +13,7 @@
   <link rel="icon" type="image/png" href="../Logo%20Design%20in%20Canva.png" />
  <link rel="stylesheet" href="post.css">
  <link rel="stylesheet" href="../styles/hanging-card.css">
+ <link rel="stylesheet" href="../styles/motion.css">
 </head>
 <body>
   <header class="site-header">
@@ -43,6 +44,7 @@
         <a href="../testimonies/testimonies.html">Testimonies</a>
         <a href="../communityevents/community.html">Events</a>
         <a href="../contacts/contacts.html">Contact</a>
+        <a href="../Admin/admin.html" id="admin-link" hidden>Admin</a>
       </nav>
 
       <div class="header-actions">
@@ -214,6 +216,7 @@
   <script type="module">
     import { supabase, SUPABASE_URL, SUPABASE_ANON_KEY } from "../Javascript files/supabaseclient.js";
     import { HangingCard } from "../Javascript files/hanging-card.js";
+    import { CTY } from "../styles/motion.js";
 
     // DOM Elements
     const feed = document.getElementById('ig-feed');
@@ -229,6 +232,7 @@
     const profileLink = document.getElementById("profile-link");
     const profileAvatar = document.getElementById("profile-avatar");
     const signOutBtn = document.getElementById("signout-btn");
+    const adminLink = document.getElementById("admin-link");
 
     let currentUser = null;
     let isAdmin = false;
@@ -248,6 +252,7 @@
         signInLink.hidden = false;
         profileLink.hidden = true;
         signOutBtn.hidden = true;
+        if (adminLink) adminLink.hidden = true;
         isAdmin = false;
         currentUser = null;
         if (adminPanel) adminPanel.style.display = 'none';
@@ -256,7 +261,7 @@
 
       const { data: profile } = await supabase
         .from("profiles")
-        .select("full_name, avatar_url, is_admin")
+        .select("full_name, avatar_url, role, is_admin")
         .eq("id", session.user.id)
         .maybeSingle();
 
@@ -279,12 +284,14 @@
       signInLink.hidden = true;
       signOutBtn.hidden = false;
 
-      isAdmin = profile?.is_admin === true;
+      isAdmin = profile?.is_admin === true && profile?.role === "admin";
       currentUser = session.user;
 
       if (adminPanel) {
         adminPanel.style.display = isAdmin ? 'block' : 'none';
       }
+
+      if (adminLink) adminLink.hidden = !isAdmin;
 
       return { session, profile };
     }
@@ -546,9 +553,13 @@
       const postId = btn.dataset.postId;
 
       if (!currentUser) {
-        alert('Please sign in to like posts.');
+        CTY.showToast('Please sign in to like posts.', 'error');
         return;
       }
+
+      // Small pop animation on the button while the request is in flight
+      btn.style.transform = 'scale(1.12)';
+      setTimeout(() => (btn.style.transform = ''), 180);
 
       btn.disabled = true;
 
@@ -596,7 +607,7 @@
         }
       } catch (error) {
         console.error('Error toggling like:', error);
-        alert('Error updating like. Please try again.');
+        CTY.showToast('Could not update your like — please try again.', 'error');
       } finally {
         btn.disabled = false;
       }
@@ -616,7 +627,7 @@
 
       if (!text) return;
       if (!currentUser) {
-        alert('Please sign in to comment.');
+        CTY.showToast('Please sign in to comment.', 'error');
         return;
       }
 
@@ -673,7 +684,7 @@
 
       } catch (error) {
         console.error('Error posting comment:', error);
-        alert('Error posting comment. Please try again.');
+        CTY.showToast('Could not post your comment — please try again.', 'error');
       } finally {
         submitBtn.disabled = false;
         input.disabled = false;
@@ -690,7 +701,7 @@
       const postId = btn.dataset.id;
 
       if (!isAdmin) {
-        alert('You do not have permission to delete posts.');
+        CTY.showToast('You do not have permission to delete posts.', 'error');
         return;
       }
 
@@ -734,7 +745,7 @@
           }, 300);
         }
 
-        showAdminMessage('Post deleted successfully!', 'success');
+        CTY.showToast('Post deleted.', 'success');
 
       } catch (error) {
         console.error('Error deleting post:', error);
@@ -794,7 +805,7 @@
       event.preventDefault();
 
       if (!isAdmin) {
-        alert('Only admins can add posts.');
+        CTY.showToast('Only admins can add posts.', 'error');
         return;
       }
 
@@ -856,7 +867,7 @@
 
         if (postError) throw postError;
 
-        showAdminMessage('Post uploaded successfully!', 'success');
+        CTY.showToast('Post uploaded — it is live on the feed.', 'success');
         closeModal();
         HangingCard.show({
           type,

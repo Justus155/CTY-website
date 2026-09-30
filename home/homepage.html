@@ -19,6 +19,7 @@
         rel="stylesheet">
     <link rel="icon" type="image/png" href="../Logo%20Design%20in%20Canva.png" />
     <link rel="stylesheet" href="homepage.css" />
+    <link rel="stylesheet" href="../styles/motion.css" />
 
 
 </head>
@@ -56,6 +57,7 @@
       <a href="../testimonies/testimonies.html">Testimonies</a>
       <a href="../communityevents/community.html">Events</a>
       <a href="../contacts/contacts.html">Contact</a>
+      <a href="../Admin/admin.html" id="admin-link" hidden>Admin</a>
 
     </nav>
 
@@ -216,30 +218,33 @@
 
 <section class="wide-image">
 
-  <div class="carousel" id="wide-carousel">
+  <div class="carousel cty-carousel" id="wide-carousel" aria-roledescription="carousel" aria-label="Life at CTY photo carousel">
   <div class="carousel-track" id="carousel-track">
 
-    <div class="carousel-card">
+    <div class="carousel-card cty-photo" role="group" aria-label="Slide 1 of 4">
       <img src="../photos/IMG_7672.jpg" alt="Small group time" loading="lazy" decoding="async">
       <p class="carousel-caption">Small groups digging into God's Word together.</p>
     </div>
 
-    <div class="carousel-card">
+    <div class="carousel-card cty-photo" role="group" aria-label="Slide 2 of 4">
       <img src="../home/images/IMG_8030.jpg" alt="CTY community moment" loading="lazy" decoding="async">
       <p class="carousel-caption">Friendships that grow beyond Sunday.</p>
     </div>
 
-    <div class="carousel-card">
+    <div class="carousel-card cty-photo" role="group" aria-label="Slide 3 of 4">
       <img src="../home/images/IMG_8234.jpg" alt="CTY youth gathering" loading="lazy" decoding="async">
       <p class="carousel-caption">Worshipping together as one family.</p>
     </div>
 
-    <div class="carousel-card">
+    <div class="carousel-card cty-photo" role="group" aria-label="Slide 4 of 4">
       <img src="../photos/IMG_7740.jpg" alt="CTY event moment" loading="lazy" decoding="async">
       <p class="carousel-caption">Serving and celebrating life together.</p>
     </div>
 
   </div>
+
+  <button class="cty-carousel-nav cty-carousel-nav--prev" id="carousel-prev" type="button" aria-label="Previous slide">‹</button>
+  <button class="cty-carousel-nav cty-carousel-nav--next" id="carousel-next" type="button" aria-label="Next slide">›</button>
 
   <div class="carousel-dots" id="carousel-dots"></div>
 </div>
@@ -515,35 +520,55 @@
     <div class="gallery">
 
 
-      <div class="gallery-card gallery-main">
+      <figure class="gallery-card gallery-main cty-photo">
         <img
           src="../photos/IMG_7618.jpg"
           alt="Youth worship service"
           loading="lazy"
           decoding="async">
-      </div>
+        <figcaption class="gallery-caption">Worship nights — the whole family, one room.</figcaption>
+      </figure>
 
 
       <div class="gallery-column">
 
-        <div class="gallery-card">
+        <figure class="gallery-card cty-photo">
           <img
             src="../photos/IMG_7672.jpg"
             alt="Small group"
             loading="lazy"
             decoding="async">
-        </div>
+          <figcaption class="gallery-caption">Small groups, real conversations.</figcaption>
+        </figure>
 
-        <div class="gallery-card">
+        <figure class="gallery-card cty-photo">
           <img
             src="../photos/IMG_7724.jpg"
             alt="Children at CTY"
             loading="lazy"
             decoding="async">
-        </div>
+          <figcaption class="gallery-caption">The youngest members of the family.</figcaption>
+        </figure>
 
       </div>
 
+      <figure class="gallery-card cty-photo">
+        <img
+          src="../photos/IMG_7838.jpg"
+          alt="CTY members celebrating together"
+          loading="lazy"
+          decoding="async">
+        <figcaption class="gallery-caption">Celebrations worth gathering for.</figcaption>
+      </figure>
+
+      <figure class="gallery-card cty-photo">
+        <img
+          src="../photos/IMG_8123.jpg"
+          alt="CTY youth serving together"
+          loading="lazy"
+          decoding="async">
+        <figcaption class="gallery-caption">Serving together, growing together.</figcaption>
+      </figure>
 
     </div>
 
@@ -581,54 +606,6 @@
       Join the CTY Family →
 
     </a>
-
-  </div>
-
-</section>
-
-
-<section class="intro" id="all-pages">
-
-  <div class="container intro-grid">
-
-    <div>
-
-      <span class="intro-label">
-        Site Directory
-      </span>
-
-    </div>
-
-
-    <div class="intro-text">
-
-      <h2>
-        Access every page from here.
-      </h2>
-
-
-      <p>
-        Use these quick links to open any HTML page in the CTY website.
-      </p>
-
-
-      <p>
-        <a href="homepage.html">Homepage</a> ·
-        <a href="home.html">Home (Alt)</a> ·
-        <a href="../About/about2.html">About</a> ·
-        <a href="../About/about.html">About (Alt)</a> ·
-        <a href="../post/post.html">Posts</a> ·
-        <a href="../communityevents/community.html">Community Events</a> ·
-        <a href="../contacts/contacts.html">Contacts</a> ·
-        <a href="../contacts/contacts1.html">Contacts (Alt)</a> ·
-        <a href="../home/profile.html">Profile</a> ·
-        <a href="../login/signin.html">Sign In</a> ·
-        <a href="../login/signup.html">Sign Up</a> ·
-        <a href="../login/forgotpassword.html">Forgot Password</a> ·
-        <a href="../photos/IKM_logo_animation.html">Logo Animation</a>
-      </p>
-
-    </div>
 
   </div>
 
@@ -673,7 +650,7 @@
         <div class="footer-col">
           <p class="footer-title">Explore</p>
           <a href="../About/about2.html">About CTY</a>
-          <a href="post.html">Messages</a>
+          <a href="../post/post.html">Messages</a>
           <a href="../communityevents/community.html">Events</a>
           <a href="../contacts/contacts.html">Contact</a>
         </div>
@@ -698,6 +675,11 @@
 
 
 <!-- =========================================================
+     MOTION LAYER (scroll progress, reveals, lightbox, toasts)
+========================================================= -->
+<script type="module" src="../styles/motion.js"></script>
+
+<!-- =========================================================
      JAVASCRIPT
 ========================================================= -->
 
@@ -708,10 +690,11 @@
   const profileLink = document.getElementById("profile-link");
   const profileAvatar = document.getElementById("profile-avatar");
   const signOutBtn = document.getElementById("signout-btn");
+  const adminLink = document.getElementById("admin-link");
   const profileModal = document.getElementById("profile-modal");
   const profileModalBackdrop = document.getElementById("profile-modal-backdrop");
   const profileModalClose = document.getElementById("profile-modal-close");
- 
+
 
   function escapeHtml(str) {
     const div = document.createElement("div");
@@ -743,13 +726,14 @@
     if (!session) {
       if (profileLink) profileLink.hidden = true;
       if (signOutBtn) signOutBtn.hidden = true;
+      if (adminLink) adminLink.hidden = true;
       if (signInLink) signInLink.hidden = false;
       return;
     }
 
     const { data: profile } = await supabase
       .from("profiles")
-      .select("full_name, avatar_url")
+      .select("full_name, avatar_url, role, is_admin")
       .eq("id", session.user.id)
       .maybeSingle();
 
@@ -776,6 +760,7 @@
 
     if (signOutBtn) signOutBtn.hidden = false;
     if (signInLink) signInLink.hidden = true;
+    if (adminLink) adminLink.hidden = !(profile?.role === "admin" && profile?.is_admin === true);
   }
 
   if (signOutBtn) {
@@ -818,70 +803,135 @@
 
   supabase.auth.onAuthStateChange(() => {
     syncHeaderAuth();
-  });
-
-  syncHeaderAuth();
+  });  syncHeaderAuth();
 </script>
 
-<script>
-  
+<script type="module">
+  const header = document.getElementById("header");
 
-  const header =
-    document.getElementById("header");
-
-
+  // Header condenses after a small scroll (passive + rAF — no jank)
+  let headerTicking = false;
   window.addEventListener("scroll", () => {
+    if (headerTicking) return;
+    headerTicking = true;
+    requestAnimationFrame(() => {
+      headerTicking = false;
+      header.classList.toggle("scrolled", window.scrollY > 50);
+    });
+  }, { passive: true });
 
-    if (window.scrollY > 50) {
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-      header.classList.add("scrolled");
+  // ------------------------------
+  // Mobile nav — fixed (previously referenced an undefined `nav` variable,
+  // so the hamburger did nothing and threw a ReferenceError on click)
+  // ------------------------------
+  const menuButton = document.getElementById("menuButton");
+  const mainNav = document.querySelector("#header nav.nav");
+  const NAV_ICONS = { open: "✕", closed: "☰" };
 
-    } else {
+  if (menuButton && mainNav) {
+    mainNav.id = "header-nav";
+    menuButton.setAttribute("aria-controls", "header-nav");
+    menuButton.setAttribute("aria-expanded", "false");
 
-      header.classList.remove("scrolled");
+    const setNavState = (isOpen) => {
+      mainNav.classList.toggle("open", isOpen);
+      document.body.classList.toggle("nav-open", isOpen);
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+      menuButton.textContent = isOpen ? NAV_ICONS.open : NAV_ICONS.closed;
+    };
 
+    menuButton.addEventListener("click", () => setNavState(!mainNav.classList.contains("open")));
+
+    // Close the drawer when a link is chosen
+    mainNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setNavState(false));
+    });
+  }
+
+  // ------------------------------
+  // Carousel — swipeable, pausable, keyboard-friendly
+  // (previously a bare setInterval that kept running forever)
+  // ------------------------------
+  const track = document.getElementById("carousel-track");
+  const dotsWrap = document.getElementById("carousel-dots");
+  const prevBtn = document.getElementById("carousel-prev");
+  const nextBtn = document.getElementById("carousel-next");
+  const carousel = document.getElementById("wide-carousel");
+
+  if (track && dotsWrap) {
+    const slides = Array.from(track.children);
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let current = 0;
+    let timer = null;
+    let pointerStartX = null;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.setAttribute("aria-label", `Go to slide ${i + 1}`);
+      if (i === 0) dot.classList.add("active");
+      dot.addEventListener("click", () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+
+    function goTo(index) {
+      current = (index + slides.length) % slides.length;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      [...dotsWrap.children].forEach((d, i) => d.classList.toggle("active", i === current));
     }
 
-  });
+    function startAutoplay() {
+      if (reducedMotion.matches) return; // respect reduced-motion — no auto-advance
+      stopAutoplay();
+      timer = window.setInterval(() => goTo(current + 1), 6000);
+    }
 
+    function stopAutoplay() {
+      if (timer) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+    }
 
-  document
-    .getElementById("year")
-    .textContent = new Date().getFullYear();
+    prevBtn?.addEventListener("click", () => { goTo(current - 1); startAutoplay(); });
+    nextBtn?.addEventListener("click", () => { goTo(current + 1); startAutoplay(); });
 
+    // Pause while the visitor is reading or interacting
+    carousel?.addEventListener("mouseenter", stopAutoplay);
+    carousel?.addEventListener("mouseleave", startAutoplay);
+    carousel?.addEventListener("focusin", stopAutoplay);
+    carousel?.addEventListener("focusout", startAutoplay);
 
-  const menuButton =
-    document.getElementById("menuButton");
+    // Touch swipe
+    track.addEventListener("pointerdown", (e) => {
+      pointerStartX = e.clientX;
+      stopAutoplay();
+    });
+    track.addEventListener("pointerup", (e) => {
+      if (pointerStartX === null) return;
+      const dx = e.clientX - pointerStartX;
+      pointerStartX = null;
+      if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+      startAutoplay();
+    });
 
+    // Keyboard support
+    carousel?.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") goTo(current - 1);
+      if (e.key === "ArrowRight") goTo(current + 1);
+    });
 
-  menuButton.addEventListener("click", () => {
-  const isOpen = nav.classList.toggle("open");
-  document.body.classList.toggle("nav-open", isOpen);
-  menuButton.setAttribute("aria-expanded", String(isOpen));
-  menuButton.textContent = isOpen ? "✕" : "☰";
-});
+    // Stop autoplay when the tab is hidden (battery + no surprise jumps)
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stopAutoplay(); else startAutoplay();
+    });
 
-const track = document.getElementById("carousel-track");
-const dotsWrap = document.getElementById("carousel-dots");
-const slides = track.children;
-let current = 0;
-
-for (let i = 0; i < slides.length; i++) {
-  const dot = document.createElement("button");
-  if (i === 0) dot.classList.add("active");
-  dot.addEventListener("click", () => goTo(i));
-  dotsWrap.appendChild(dot);
-}
-
-function goTo(index) {
-  current = index;
-  track.style.transform = `translateX(-${current * 100}%)`;
-  [...dotsWrap.children].forEach((d, i) => d.classList.toggle("active", i === current));
-}
-
-setInterval(() => {
-  goTo((current + 1) % slides.length);
-}, 5000);
+    startAutoplay();
+  }
+</script>
 
 
 </script>

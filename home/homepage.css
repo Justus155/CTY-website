@@ -1144,38 +1144,126 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-@media (max-width: 640px) {
-  .footer-grid {
-    flex-direction: column;
+/* =========================================================
+   MOTION-LAYER ADDONS (homepage specifics)
+   ========================================================= */
+
+/* Gallery: extended 2x2 mosaic under the main card */
+.gallery {
+  grid-template-columns: 1.2fr .8fr;
+}
+
+.gallery > .gallery-card {
+  position: relative;
+}
+
+.gallery-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 40px 18px 16px;
+  background: linear-gradient(to top, rgba(17,17,17,.72), transparent);
+  color: rgba(255,255,255,.92);
+  font-family: var(--sans);
+  font-size: .85rem;
+  letter-spacing: .02em;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .35s ease, transform .35s ease;
+  pointer-events: none;
+}
+
+.gallery-card:hover .gallery-caption,
+.gallery-card:focus-within .gallery-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (hover: none) {
+  .gallery-caption { opacity: 1; transform: none; }
+}
+
+/* New mosaic rows sit under the main + column pair */
+@media (min-width: 901px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 300px;
   }
-  .footer-links {
-    justify-content: flex-start;
-    gap: 32px;
+
+  .gallery-main {
+    grid-row: span 2;
+    min-height: 0;
+    height: 100%;
+  }
+
+  .gallery .gallery-column {
+    grid-column: 2;
+  }
+
+  .gallery .gallery-card:not(.gallery-main):not(.gallery-column) {
+    min-height: 0;
+    height: 100%;
   }
 }
 
+@media (max-width: 900px) {
+  .gallery {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 280px;
+  }
 
-    /* =========================================================
-       MOBILE
-    ========================================================= */
+  .gallery-main { grid-row: auto; min-height: 0; height: 100%; }
+  .gallery .gallery-column { grid-column: auto; }
+}
+
+/* Carousel: pill dots + grab cursor */
+.carousel {
+  position: relative;
+}
+
+.carousel-card {
+  cursor: grab;
+}
+
+.carousel-card:active {
+  cursor: grabbing;
+}
+
+.carousel-dots button {
+  width: 22px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(17,17,17,.25);
+  transition: background .25s ease, width .25s ease;
+}
+
+.carousel-dots button.active {
+  width: 34px;
+  background: var(--gold);
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
     @media(max-width: 900px) {
 
       nav {
-       position: fixed;
-       top: 0;
-       right: 0;
-       height: 100vh;
-       width: min(78vw, 320px);
-       background: #111111;
-       display: flex;
-       flex-direction: column;
-       gap: 1.5rem;
-       padding: 6rem 2rem 2rem;
-       transform: translateX(100%);
-       transition: transform 0.3s ease;
-       z-index: 60;
-      } 
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: min(78vw, 320px);
+        background: #111111;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 6rem 2rem 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 1200; /* above the fixed header (z-index 1000) — previously hidden behind it */
+      }
 
       nav.open {
         transform: translateX(0);

@@ -1,0 +1,283 @@
+/* =========================================================
+   CTY Ministries — shared motion & feedback layer
+   Loaded by every page. Never changes brand colors —
+   it reuses whatever tokens the host page defines
+   (--gold / --black / --paper) or safe fallbacks.
+   ========================================================= */
+
+/* ---------- 1. Scroll progress bar ---------- */
+#cty-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--gold, #c9a34b), var(--gold-light, #e2ca8b));
+  z-index: 3000;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ---------- 2. Reveal on scroll (staggered) ---------- */
+.cty-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity .7s cubic-bezier(.22, 1, .36, 1),
+    transform .7s cubic-bezier(.22, 1, .36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.cty-reveal--left  { transform: translateX(-30px); }
+.cty-reveal--right { transform: translateX(30px); }
+.cty-reveal--scale { transform: scale(.94); }
+
+.cty-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- 3. Button press feedback + ripple ---------- */
+.cty-press {
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .16s cubic-bezier(.22, 1, .36, 1), box-shadow .25s ease;
+}
+
+.cty-press:active {
+  transform: scale(.965);
+}
+
+.cty-ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: cty-ripple .55s ease-out forwards;
+  background: currentColor;
+  opacity: .22;
+  pointer-events: none;
+}
+
+@keyframes cty-ripple {
+  to { transform: scale(2.6); opacity: 0; }
+}
+
+/* ---------- 4. Lightbox ---------- */
+.cty-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 4000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: rgba(10, 10, 10, .88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .28s ease;
+}
+
+.cty-lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cty-lightbox img {
+  max-width: min(1100px, 94vw);
+  max-height: 86vh;
+  width: auto;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, .55);
+  transform: scale(.94);
+  transition: transform .32s cubic-bezier(.22, 1, .36, 1);
+}
+
+.cty-lightbox.is-open img {
+  transform: scale(1);
+}
+
+.cty-lightbox-caption {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 82vw;
+  color: rgba(255, 255, 255, .82);
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: .85rem;
+  text-align: center;
+}
+
+.cty-lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.cty-lightbox-close:hover {
+  background: rgba(255, 255, 255, .18);
+  transform: rotate(90deg);
+}
+
+body.cty-lightbox-open { overflow: hidden; }
+
+/* ---------- 5. Shared toast ---------- */
+.cty-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 30px;
+  transform: translate(-50%, 20px) scale(.96);
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: min(420px, 88vw);
+  padding: 13px 20px;
+  border-radius: 999px;
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: .88rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(17, 17, 17, .94);
+  border: 1px solid rgba(255, 255, 255, .14);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease, transform .3s cubic-bezier(.22, 1, .36, 1);
+}
+
+.cty-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.cty-toast::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold, #c9a34b);
+}
+
+.cty-toast--success::before { background: #3ecf6e; }
+.cty-toast--error::before   { background: #ff5d5d; }
+
+/* ---------- 6. Photo cards (hover zoom + tilt light) ---------- */
+.cty-photo {
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: zoom-in;
+}
+
+.cty-photo img {
+  transition: transform .6s cubic-bezier(.22, 1, .36, 1), filter .4s ease;
+  will-change: transform;
+}
+
+.cty-photo:hover img {
+  transform: scale(1.055);
+}
+
+.cty-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08);
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
+}
+
+.cty-photo:hover::after { opacity: 1; }
+
+/* Shimmer used while media loads */
+.cty-media-loading {
+  background: linear-gradient(100deg, var(--cream-dark, #e8e2d5) 30%, #ffffff 50%, var(--cream-dark, #e8e2d5) 70%);
+  background-size: 200% 100%;
+  animation: cty-shimmer 1.3s infinite;
+}
+
+@keyframes cty-shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* ---------- 7. Carousel chrome (upgraded by motion.js) ---------- */
+.cty-carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) scale(1);
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 50%;
+  background: rgba(17, 17, 17, .55);
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 5;
+  opacity: 0;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: opacity .25s ease, background .2s ease, transform .2s ease;
+}
+
+.cty-carousel-nav:hover {
+  background: rgba(17, 17, 17, .85);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.cty-carousel-nav--prev { left: 14px; }
+.cty-carousel-nav--next { right: 14px; }
+
+.cty-carousel:hover .cty-carousel-nav,
+.cty-carousel:focus-within .cty-carousel-nav {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .cty-carousel-nav { opacity: 1; }
+}
+
+/* ---------- 8. Reduced motion: respect user preference ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .cty-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .cty-press,
+  .cty-press:active { transform: none; }
+
+  .cty-ripple { display: none; }
+
+  .cty-photo:hover img { transform: none; }
+
+  .cty-media-loading { animation: none; }
+
+  .cty-toast,
+  .cty-lightbox,
+  .cty-lightbox img { transition-duration: .01s !important; }
+}

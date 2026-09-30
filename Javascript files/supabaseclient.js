@@ -50,6 +50,8 @@ export function friendlyError(err) {
     return "Please confirm your email before signing in — check your inbox for the link.";
   if (/rate limit|too many requests/i.test(msg))
     return "Too many attempts — please wait a minute before trying again.";
+  if (/error sending confirmation email|failed to send confirmation email/i.test(msg))
+    return "We couldn't send the confirmation email. Check that the address is correct, then try again later or contact the site administrator.";
   if (/password.*(least|weak|short)/i.test(msg))
     return "Password must be at least 8 characters, with uppercase, lowercase, a number, and a special character.";
   if (/invalid email/i.test(msg))

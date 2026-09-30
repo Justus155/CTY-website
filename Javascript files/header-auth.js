@@ -57,7 +57,7 @@ export async function applyHeaderAuthState() {
 
     const { data: profile } = await supabase
       .from("profiles")
-      .select("full_name, avatar_url, role")
+      .select("full_name, avatar_url, role, is_admin")
       .eq("id", session.user.id)
       .maybeSingle();
 
@@ -86,8 +86,8 @@ export async function applyHeaderAuthState() {
     }
 
     if (adminLink) {
-      adminLink.hidden = profile?.role !== "admin";
-      adminLink.href = "../admin/admin.html";
+      adminLink.hidden = !(profile?.role === "admin" && profile?.is_admin === true);
+      adminLink.href = "../Admin/admin.html";
     }
 
     if (signInLink) signInLink.hidden = true;

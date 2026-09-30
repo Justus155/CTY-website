@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="CTY Ministries admin — manage posts, events and testimonies." />
+  <meta name="theme-color" content="#11100e" />
+  <title>Admin | CTY Ministries</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="../Logo%20Design%20in%20Canva.png" />
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="../styles/motion.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../home/homepage.html" aria-label="CTY Ministries home">
+        <span class="brand-mark" aria-hidden="true">✝</span>
+        <span>CTY <em>Ministries</em></span>
+      </a>
+      <span class="admin-chip">Admin dashboard</span>
+      <a class="back-link" href="../home/homepage.html">← Back to site</a>
+    </div>
+  </header>
+
+  <!-- Access gate: only members with the admin role get past this -->
+  <div class="gate" id="gate">Checking your access…</div>
+
+  <main class="admin-app" id="admin-app" hidden>
+
+    <!-- ============================= STATS ============================= -->
+    <section class="stats" aria-label="Overview">
+      <div class="stat">
+        <span class="stat-num" id="stat-posts">—</span>
+        <span class="stat-label">Published posts</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="stat-events">—</span>
+        <span class="stat-label">Upcoming events</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="stat-testimonies">—</span>
+        <span class="stat-label">Testimonies to review</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="stat-rsvps">—</span>
+        <span class="stat-label">Total RSVPs</span>
+      </div>
+    </section>
+
+    <!-- ============================= TABS ============================= -->
+    <nav class="tabs" role="tablist" aria-label="Admin sections">
+      <button class="tab is-active" role="tab" aria-selected="true" data-tab="posts">Posts</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="events">Events</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="testimonies">Testimonies</button>
+    </nav>
+
+    <!-- ============================= POSTS ============================= -->
+    <section class="panel is-active" data-panel="posts" role="tabpanel">
+
+      <div class="panel-head">
+        <div>
+          <h2>Posts</h2>
+          <p>Upload photos or videos, edit captions, and remove anything that no longer belongs.</p>
+        </div>
+      </div>
+
+      <form class="card upload-card" id="upload-form">
+        <h3>Upload a post</h3>
+
+        <div class="type-toggle" id="type-toggle">
+          <button type="button" class="type-btn is-active" data-type="photo">Photo</button>
+          <button type="button" class="type-btn" data-type="video">Video</button>
+        </div>
+
+        <label class="field">
+          <span>Caption</span>
+          <input type="text" id="caption-input" maxlength="200" placeholder="What is this moment about?" />
+        </label>
+
+        <label class="field" id="file-field">
+          <span>File</span>
+          <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" />
+          <small class="field-hint" id="file-hint">JPG, PNG or WEBP · up to 10 MB</small>
+        </label>
+
+        <div class="preview" id="preview" hidden></div>
+
+        <label class="checkbox-field">
+          <input type="checkbox" id="featured-input" />
+          <span>Feature this post on the homepage</span>
+        </label>
+
+        <p class="upload-error" id="upload-error" role="alert"></p>
+
+        <div class="upload-progress" id="upload-progress" hidden>Uploading…</div>
+
+        <div class="row-actions">
+          <button type="submit" class="btn btn-primary" id="upload-btn">
+            <span class="btn-label">Publish post</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+        </div>
+      </form>
+
+      <div class="list-head">
+        <h3>Recent posts</h3>
+        <button class="btn btn-ghost" id="refresh-posts-btn" type="button">↻ Refresh</button>
+      </div>
+      <div class="list" id="posts-list" aria-live="polite"></div>
+    </section>
+
+    <!-- ============================= EVENTS ============================= -->
+    <section class="panel" data-panel="events" role="tabpanel" hidden>
+
+      <div class="panel-head">
+        <div>
+          <h2>Events</h2>
+          <p>Create gatherings, correct details, and take down past or cancelled events.</p>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="new-event-btn" type="button">+ New event</button>
+
+      <div class="list-head">
+        <h3>All events</h3>
+        <button class="btn btn-ghost" id="refresh-events-btn" type="button">↻ Refresh</button>
+      </div>
+      <div class="list" id="events-list" aria-live="polite"></div>
+    </section>
+
+    <!-- ============================= TESTIMONIES ============================= -->
+    <section class="panel" data-panel="testimonies" role="tabpanel" hidden>
+
+      <div class="panel-head">
+        <div>
+          <h2>Testimonies</h2>
+          <p>Review submissions, then publish or decline them. Nothing goes live without approval.</p>
+        </div>
+      </div>
+
+      <div class="list-head">
+        <h3>Pending review</h3>
+        <button class="btn btn-ghost" id="refresh-testimonies-btn" type="button">↻ Refresh</button>
+      </div>
+      <div class="list" id="testimonies-list" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <!-- ============================= EVENT MODAL ============================= -->
+  <div class="modal-overlay" id="event-modal">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="event-modal-title">
+      <h2 id="event-modal-title">New event</h2>
+      <form id="event-form">
+        <input type="hidden" id="event-id" />
+        <label class="field">
+          <span>Title *</span>
+          <input type="text" id="event-title" required placeholder="e.g., Sunday Youth Service" />
+        </label>
+        <label class="field">
+          <span>Description</span>
+          <textarea id="event-description" rows="3" placeholder="What is this gathering about?"></textarea>
+        </label>
+        <label class="field">
+          <span>Date *</span>
+          <input type="date" id="event-date" required />
+        </label>
+        <label class="field">
+          <span>Category</span>
+          <input type="text" id="event-category" placeholder="e.g., Youth, Worship, Community" />
+        </label>
+        <p class="upload-error" id="event-error" role="alert"></p>
+        <div class="row-actions">
+          <button type="submit" class="btn btn-primary" id="event-submit-btn">
+            <span class="btn-label">Create event</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="btn btn-ghost" id="event-cancel-btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Caption edit dialog -->
+  <dialog id="caption-dialog">
+    <form method="dialog" id="caption-form">
+      <h3>Edit caption</h3>
+      <input type="text" id="caption-dialog-input" maxlength="200" />
+      <div class="row-actions">
+        <button type="submit" value="save" class="btn btn-primary">Save</button>
+        <button type="submit" value="cancel" class="btn btn-ghost" formnovalidate>Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="cty-toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

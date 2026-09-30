@@ -44,6 +44,7 @@
                 <a href="../testimonies/testimonies.html">Testimonies</a>
                 <a href="../communityevents/community.html">Events</a>
                 <a href="../contacts/contacts.html">Contact</a>
+                <a href="../Admin/admin.html" id="admin-link" hidden>Admin</a>
             </nav>
 
             <div class="header-actions">
@@ -62,6 +63,7 @@
             <a href="../testimonies/testimonies.html">Testimonies</a>
             <a href="../communityevents/community.html">Events</a>
             <a href="../contacts/contacts.html">Contact</a>
+            <a href="../Admin/admin.html" id="admin-link-mobile" hidden>Admin</a>
         </nav>
     </header>
 
@@ -390,6 +392,7 @@
         const profileLink = document.getElementById("profile-link");
         const profileAvatar = document.getElementById("profile-avatar");
         const signOutBtn = document.getElementById("signout-btn");
+        const adminLink = document.getElementById("admin-link");
         const profileModal = document.getElementById("profile-modal");
         const profileModalBackdrop = document.getElementById("profile-modal-backdrop");
         const profileModalClose = document.getElementById("profile-modal-close");
@@ -438,7 +441,7 @@
 
             const { data: profile } = await supabase
                 .from("profiles")
-                .select("full_name, avatar_url, is_admin")
+                .select("full_name, avatar_url, role, is_admin")
                 .eq("id", session.user.id)
                 .maybeSingle();
 
@@ -463,8 +466,11 @@
             }
 
             if (signOutBtn) signOutBtn.hidden = false;
+            if (adminLink) adminLink.hidden = !(profile?.is_admin === true && profile?.role === "admin");
+            const adminLinkMobile = document.getElementById("admin-link-mobile");
+            if (adminLinkMobile) adminLinkMobile.hidden = adminLink.hidden;
 
-            isAdmin = profile?.is_admin === true;
+            isAdmin = profile?.is_admin === true && profile?.role === "admin";
             currentUser = session.user;
 
             if (adminPanel) {
