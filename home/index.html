@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CTY Ministries — The Bridge Between Generations</title>
+
+  <!-- Google Fonts: Fraunces & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#14110F',
+            ivory: '#F7F1E4',
+            gold: '#C9971E',
+            softGold: '#E7D2A0',
+            linen: '#F4ECE0',
+          },
+          fontFamily: {
+            serif: ['Fraunces', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="../zip2/ezgif-frame-240.jpg" type="image/jpeg">
+</head>
+
+<body class="bg-ivory text-ink font-sans antialiased selection:bg-gold selection:text-white overflow-x-hidden">
+
+  <!-- Top Global Progress Track -->
+  <div id="scroll-progress-line" class="scroll-progress-line" aria-hidden="true"></div>
+
+  <!-- Site Header -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-ink/80 backdrop-blur-md border-b border-gold/20 text-ivory">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between gap-6">
+      <a href="index.html" class="font-serif text-lg tracking-wider uppercase font-semibold">CTY <em class="text-gold not-italic">Ministries</em></a>
+
+      <div class="flex items-center gap-3 text-xs uppercase tracking-widest">
+        <a href="../login/signin.html" id="signin-link" class="px-4 py-2 rounded-full border border-ivory/30 hover:border-gold transition-colors">Sign in</a>
+        <a href="../login/signup.html" id="signup-link" class="px-4 py-2 rounded-full bg-gold hover:bg-[#b08115] text-white transition-colors">Sign up</a>
+        <button type="button" id="signout-btn" class="px-4 py-2 rounded-full border border-ivory/30 hover:border-gold transition-colors uppercase tracking-widest" hidden>Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       SCROLL ANIMATION SECTION (PINNED 240-FRAME LOGO ASSEMBLY)
+       ========================================================================= -->
+  <section class="scroll-track" id="scroll-track" aria-label="CTY Ministries 3D Scroll Animation">
+    <div class="sticky-viewport" id="sticky-viewport">
+      <canvas id="animation-canvas"></canvas>
+
+      <!-- Heading & Subheading Overlay (Fades away by 30% scroll) -->
+      <div class="hero-header-overlay" id="hero-header-overlay">
+        <h1 class="hero-title">CTY Ministries</h1>
+        <p class="hero-subtitle">The Gap btwn Generations</p>
+      </div>
+
+      <!-- Discreet Loading Status Indicator -->
+      <div class="status-indicator" id="status-indicator">
+        <span class="status-dot"></span>
+        <span id="status-text">Loading 3D frames...</span>
+      </div>
+
+      <!-- Minimal Scroll Cue -->
+      <div class="scroll-cue" id="scroll-cue">
+        <span>Scroll to explore</span>
+        <div class="scroll-cue-arrow">&#8595;</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       MAIN CONTENT: ALL SECTIONS TRANSFERRED FROM CODE.HTML BELOW SCROLL ANIMATION
+       ========================================================================= -->
+
+  <!-- Latest Video -->
+  <section id="latest-video" class="py-24 px-6 md:px-12 bg-ink text-ivory">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+      <div class="md:col-span-7 rounded-2xl overflow-hidden border border-gold/25 shadow-2xl bg-black">
+        <video src="images/mataifa%20yote.mp4" controls playsinline preload="metadata" class="w-full h-full"></video>
+      </div>
+      <div class="md:col-span-5 reveal-on-scroll">
+        <span class="text-xs uppercase tracking-[0.25em] font-semibold text-gold block mb-3">This week at CTY</span>
+        <h2 class="font-serif text-4xl md:text-5xl font-normal mb-5">Mataifa Yote</h2>
+        <p class="text-sm md:text-base text-ivory/70 font-light leading-relaxed mb-8">
+          A featured community worship moment from CTY Ministries — what happened, who it was for, and why it mattered.
+        </p>
+        <a href="../post/post.html" class="text-xs uppercase tracking-widest text-gold hover:text-softGold transition-colors">See all posts &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Collage: Asymmetric Masonry -->
+  <section id="collage" class="py-24 px-6 md:px-12 bg-ivory relative border-t border-gold/20">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div>
+          <span class="text-xs uppercase tracking-[0.25em] font-semibold text-gold block mb-2">Fresh from the community</span>
+          <h2 class="font-serif text-4xl md:text-6xl text-ink font-normal tracking-tight">Latest Photos</h2>
+        </div>
+        <a href="../post/post.html" class="text-xs uppercase tracking-widest text-gold hover:text-ink transition-colors">View all photos &rarr;</a>
+      </div>
+
+      <!-- Asymmetric Grid with 3D Tilt and Parallax Effect on Scroll -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
+
+        <!-- Large Wide Worship Image (Span 7) -->
+        <div class="md:col-span-7 reveal-on-scroll group relative overflow-hidden rounded-2xl bg-ink shadow-xl">
+          <div class="aspect-[16/10] overflow-hidden">
+            <img
+              src="images/IMG_7732.jpg"
+              alt="CTY worship team singing"
+              class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-95 group-hover:brightness-100" />
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity">
+          </div>
+          <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+            <div>
+              <span class="text-[11px] font-semibold tracking-widest uppercase text-softGold">Worship</span>
+              <p class="font-serif text-xl md:text-2xl text-ivory font-light italic">Worship team in action</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Portrait Outdoor Youth Camp Image (Span 5) -->
+        <div class="md:col-span-5 reveal-on-scroll group relative overflow-hidden rounded-2xl bg-ink shadow-xl"
+          style="transition-delay: 150ms;">
+          <div class="aspect-[4/5] overflow-hidden">
+            <img
+              src="images/IMG_8797.jpg"
+              alt="Two young members smiling together"
+              class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent opacity-70 group-hover:opacity-85 transition-opacity">
+          </div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <span class="text-[11px] font-semibold tracking-widest uppercase text-softGold">Friends of CTY</span>
+            <p class="font-serif text-xl text-ivory font-light italic">A joyful CTY memory</p>
+          </div>
+        </div>
+
+        <!-- Diverse Teen Fellowship Image (Span 6) -->
+        <div class="md:col-span-6 reveal-on-scroll group relative overflow-hidden rounded-2xl bg-ink shadow-xl"
+          style="transition-delay: 250ms;">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img
+              src="images/IMG_8565.jpg"
+              alt="Young girl singing on stage"
+              class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/15 to-transparent opacity-75 group-hover:opacity-90 transition-opacity">
+          </div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <span class="text-[11px] font-semibold tracking-widest uppercase text-softGold">Youth Gathering</span>
+            <p class="font-serif text-xl text-ivory font-light italic">Every voice heard</p>
+          </div>
+        </div>
+
+        <!-- Children Circle Time Image (Span 6) -->
+        <div class="md:col-span-6 reveal-on-scroll group relative overflow-hidden rounded-2xl bg-ink shadow-xl"
+          style="transition-delay: 350ms;">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img
+              src="images/IMG_8248.jpg"
+              alt="Leaders sharing cake with children"
+              class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/15 to-transparent opacity-75 group-hover:opacity-90 transition-opacity">
+          </div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <span class="text-[11px] font-semibold tracking-widest uppercase text-softGold">Fellowship</span>
+            <p class="font-serif text-xl text-ivory font-light italic">Cake after service</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Strip -->
+  <section id="about" class="py-24 px-6 md:px-12 bg-linen-subtle border-y border-gold/25 relative overflow-hidden">
+    <div class="max-w-5xl mx-auto text-center reveal-on-scroll">
+      <span
+        class="inline-block text-xs uppercase tracking-[0.3em] font-semibold text-gold mb-6 border-b border-gold/40 pb-1">Our
+        Story</span>
+
+      <p class="font-serif text-3xl sm:text-4xl md:text-5xl text-ink font-normal leading-[1.18] tracking-tight">
+        “No generation should walk their faith journey alone.”
+      </p>
+
+      <p class="mt-8 text-base md:text-lg text-ink/75 font-light leading-relaxed max-w-3xl mx-auto">
+        CTY stands for Children, Teens, and Youth — a ministry built to give every generation, from the youngest child
+        to the young adult stepping into leadership, a place to belong. Through fellowship, shared testimonies, and
+        honest conversation, we exist to build one community that faces life's challenges together and motivates each
+        generation to carry the faith forward.
+      </p>
+
+      <a href="../About/about2.html" class="inline-block mt-8 text-xs uppercase tracking-widest text-gold hover:text-ink transition-colors">Read our story &rarr;</a>
+
+      <div class="mt-8 flex justify-center items-center gap-3">
+        <span class="h-px w-12 bg-gold/50"></span>
+        <span class="text-gold text-lg">✦</span>
+        <span class="h-px w-12 bg-gold/50"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three Pillars Section (Children · Teens · Youth) -->
+  <section id="pillars" class="py-28 px-6 md:px-12 bg-ivory relative">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="text-center max-w-2xl mx-auto mb-20">
+        <span class="text-xs uppercase tracking-[0.25em] font-semibold text-gold block mb-3">Our Pillars</span>
+        <h2 class="font-serif text-4xl md:text-5xl font-normal text-ink">Community. Testimony. Motivation.</h2>
+        <p class="text-sm text-ink/70 mt-4 font-light">The values that shape how we gather, lead, and serve across every
+          age group.</p>
+      </div>
+
+      <!-- 3 Pillars Columns -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+
+        <!-- Pillar 01: Children -->
+        <div
+          class="reveal-on-scroll group relative bg-white/70 backdrop-blur-sm p-8 md:p-10 rounded-3xl border border-gold/25 hover:border-gold transition-all duration-500 hover:shadow-[0_20px_40px_rgba(20,17,15,0.06)] hover:-translate-y-2">
+          <div class="flex items-baseline justify-between mb-8">
+            <span
+              class="font-serif text-6xl md:text-7xl font-light text-softGold group-hover:text-gold transition-colors duration-300">01</span>
+          </div>
+          <h3 class="font-serif text-3xl text-ink mb-3 font-semibold">Community</h3>
+          <p class="text-sm text-ink/75 leading-relaxed font-light">
+            One family across Children, Teens, and Youth — no one ministry stands apart from the others.
+          </p>
+        </div>
+
+        <!-- Pillar 02: Teens -->
+        <div
+          class="reveal-on-scroll group relative bg-white/70 backdrop-blur-sm p-8 md:p-10 rounded-3xl border border-gold/25 hover:border-gold transition-all duration-500 hover:shadow-[0_20px_40px_rgba(20,17,15,0.06)] hover:-translate-y-2"
+          style="transition-delay: 150ms;">
+          <div class="flex items-baseline justify-between mb-8">
+            <span
+              class="font-serif text-6xl md:text-7xl font-light text-softGold group-hover:text-gold transition-colors duration-300">02</span>
+          </div>
+          <h3 class="font-serif text-3xl text-ink mb-3 font-semibold">Testimony</h3>
+          <p class="text-sm text-ink/75 leading-relaxed font-light">
+            Real stories that build real faith. We believe in the power of a life changed, spoken out loud.
+          </p>
+        </div>
+
+        <!-- Pillar 03: Youth -->
+        <div
+          class="reveal-on-scroll group relative bg-white/70 backdrop-blur-sm p-8 md:p-10 rounded-3xl border border-gold/25 hover:border-gold transition-all duration-500 hover:shadow-[0_20px_40px_rgba(20,17,15,0.06)] hover:-translate-y-2"
+          style="transition-delay: 300ms;">
+          <div class="flex items-baseline justify-between mb-8">
+            <span
+              class="font-serif text-6xl md:text-7xl font-light text-softGold group-hover:text-gold transition-colors duration-300">03</span>
+          </div>
+          <h3 class="font-serif text-3xl text-ink mb-3 font-semibold">Motivation</h3>
+          <p class="text-sm text-ink/75 leading-relaxed font-light">
+            Each generation lifting the next — mentorship is not a program here, it is the culture.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Full-Bleed Testimony Block -->
+  <section id="testimony"
+    class="relative py-32 md:py-44 px-6 md:px-12 bg-ink text-ivory overflow-hidden flex items-center justify-center">
+    <!-- Darkened Full Bleed Worship Background -->
+    <div class="absolute inset-0 -z-0">
+      <img
+        src="images/IMG_8030.jpg"
+        alt="Worship leader with children on stage"
+        class="w-full h-full object-cover filter brightness-[0.28] contrast-125 scale-105" />
+      <div class="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/70 to-ink/95"></div>
+      <!-- Subtle Golden Light Flare -->
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gold/15 rounded-full filter blur-3xl pointer-events-none">
+      </div>
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto text-center reveal-on-scroll">
+      <span class="text-xs uppercase tracking-[0.3em] font-semibold text-gold mb-8 block">Friends of CTY</span>
+
+      <p class="font-serif italic text-2xl sm:text-3xl md:text-5xl font-light text-ivory leading-tight md:leading-snug">
+        “One community, facing every season together, and shining a little brighter for it.”
+      </p>
+
+      <a href="../testimonies/testimonies.html"
+        class="inline-block mt-10 text-xs uppercase tracking-widest text-gold hover:text-softGold transition-colors">Read testimonies &rarr;</a>
+    </div>
+  </section>
+
+  <!-- Closing CTA Section -->
+  <section class="py-28 md:py-36 px-6 md:px-12 bg-ivory text-center relative overflow-hidden">
+    <div class="max-w-4xl mx-auto reveal-on-scroll flex flex-col items-center">
+
+      <span class="text-xs uppercase tracking-[0.3em] font-semibold text-gold mb-4">Your next step</span>
+
+      <!-- Huge Outlined Serif Header -->
+      <h2 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-tight leading-none mb-6">
+        <span class="block text-stroke-ink hover:text-ink transition-colors duration-300">Come as you are.</span>
+        <span class="block text-ink mt-2">Grow from here.</span>
+      </h2>
+
+      <p class="text-base md:text-lg text-ink/75 max-w-xl font-light mb-10">
+        You do not have to figure out your faith journey alone. Find a gathering, meet the family and take your next step.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center gap-4">
+        <a href="../login/signup.html"
+          class="px-9 py-4 bg-gold hover:bg-[#b08115] text-white font-medium text-sm uppercase tracking-widest rounded-full transition-all duration-300 shadow-[0_10px_25px_rgba(201,151,30,0.35)] hover:shadow-[0_14px_32px_rgba(201,151,30,0.5)] hover:scale-105">
+          Join CTY
+        </a>
+        <a href="../communityevents/community.html"
+          class="px-8 py-4 bg-white/70 border border-gold/30 hover:border-gold text-ink font-medium text-sm uppercase tracking-widest rounded-full transition-all duration-300 hover:bg-gold/10">
+          See upcoming events
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Floating Footer Inside Cream Padding -->
+  <footer class="p-6 md:p-12 bg-ivory">
+    <div
+      class="max-w-7xl mx-auto bg-ink text-ivory rounded-3xl p-8 md:p-16 border border-gold/20 shadow-2xl relative overflow-hidden">
+
+      <!-- Subtle Gold Backlight -->
+      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-gold/10 rounded-full filter blur-3xl pointer-events-none">
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+
+        <!-- Left: Logo & Wordmark -->
+        <div class="md:col-span-5 space-y-6">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-white/10 p-2 border border-gold/30 flex items-center justify-center">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCH-GKn9CyNcyIH1xkHNKf6zhfngBzJvCrBfMTion-DAceLYpn1mK9XICCEQDU10yjyGyAKnj1fakH95goHtajlboe6Srt3qM2t2k8BEja0DG7dGzDyvBPdkrLQxC5LS-FpgSW3dscX2VLK5b1_uCzpsZF_A6wpvfHen9iSmT7R4RzIGCYlnVzONJMfs3k5kYpihvnk_7WnsistVRPHRNUfOjluhvfIlV9Bjm5IlfytYLc4YP4TMbR8tLHa30vuEdBhHa0"
+                alt="CTY Logo" class="w-full h-full object-contain filter brightness-110" />
+            </div>
+            <div>
+              <span class="font-serif text-xl tracking-wider uppercase font-semibold text-ivory block">CTY
+                Ministries</span>
+              <span class="text-xs uppercase tracking-widest text-gold">Friends of CTY</span>
+            </div>
+          </div>
+          <p class="text-sm text-ivory/70 font-light leading-relaxed max-w-sm">
+            Children · Teens · Youth — a Christ-centered community growing together and shining for Jesus.
+          </p>
+          <div class="flex items-center gap-3 text-xs tracking-wider uppercase text-softGold">
+            <span class="w-2 h-2 rounded-full bg-gold"></span>
+            <span>Shine for Jesus</span>
+          </div>
+        </div>
+
+        <!-- Middle: Links -->
+        <div class="md:col-span-4 grid grid-cols-2 gap-8 text-xs uppercase tracking-widest">
+          <div>
+            <h5 class="text-gold font-semibold mb-4">Quick Links</h5>
+            <ul class="space-y-3 font-normal text-ivory/75">
+              <li><a href="../About/about2.html" class="hover:text-gold transition-colors">About CTY</a></li>
+              <li><a href="../communityevents/community.html" class="hover:text-gold transition-colors">Events</a></li>
+              <li><a href="../post/post.html" class="hover:text-gold transition-colors">Posts</a></li>
+              <li><a href="../testimonies/testimonies.html" class="hover:text-gold transition-colors">Testimonies</a></li>
+              <li><a href="../About/about2.html#leaders" class="hover:text-gold transition-colors">Our Leaders</a></li>
+              <li><a href="../contacts/contacts.html" class="hover:text-gold transition-colors">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5 class="text-gold font-semibold mb-4">Connect</h5>
+            <ul class="space-y-3 font-normal text-ivory/75">
+              <li><a href="#" aria-label="CTY on Instagram" class="hover:text-gold transition-colors">Instagram</a></li>
+              <li><a href="#" aria-label="CTY on Facebook" class="hover:text-gold transition-colors">Facebook</a></li>
+              <li><a href="#" aria-label="CTY on TikTok" class="hover:text-gold transition-colors">TikTok</a></li>
+              <li><a href="#" aria-label="CTY on YouTube" class="hover:text-gold transition-colors">YouTube</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right: Newsletter or Scripture note -->
+        <div class="md:col-span-3 space-y-4">
+          <h5 class="text-gold text-xs uppercase tracking-widest font-semibold">Stay In Fellowship</h5>
+          <p class="text-xs text-ivory/60 leading-relaxed">
+            Receive monthly encouragement, event dates, and community stories.
+          </p>
+          <div class="flex items-center rounded-full bg-white/10 border border-white/20 p-1">
+            <input type="email" placeholder="Your email address"
+              class="bg-transparent text-xs px-3 py-1.5 focus:outline-none text-ivory placeholder-ivory/40 w-full" />
+            <button type="button"
+              class="bg-gold hover:bg-[#b08115] text-white text-[10px] font-semibold uppercase tracking-wider px-3.5 py-1.5 rounded-full transition-colors">
+              Join
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Copyright strip -->
+      <div
+        class="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-ivory/50">
+        <p>© <span id="year"></span> CTY Ministries. All rights reserved.</p>
+        <p class="mt-2 sm:mt-0 font-serif italic text-softGold/70">Built to serve the next generation.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Application Logic & Image Sequence Controller -->
+  <script src="app.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  <script type="module" src="../Javascript files/header-auth.js"></script>
+</body>
+
+</html>
