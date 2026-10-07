@@ -19,6 +19,7 @@
   const scrollCue = document.getElementById('scroll-cue');
   const progressLine = document.getElementById('scroll-progress-line');
   const heroHeaderOverlay = document.getElementById('hero-header-overlay');
+  const siteHeader = document.getElementById('site-header');
 
   // Image Storage & State
   const images = new Array(TOTAL_FRAMES + 1);
@@ -175,6 +176,13 @@
     }
 
     targetFrame = 1 + Math.round(heroProgress * (TOTAL_FRAMES - 1));
+
+    if (siteHeader) {
+      const showHeader = heroProgress >= 1;
+      siteHeader.classList.toggle('-translate-y-full', !showHeader);
+      siteHeader.classList.toggle('opacity-0', !showHeader);
+      siteHeader.classList.toggle('pointer-events-none', !showHeader);
+    }
 
     // Top progress line over entire page
     const totalDocHeight = document.documentElement.scrollHeight - viewportHeight;

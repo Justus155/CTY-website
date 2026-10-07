@@ -46,7 +46,7 @@
   <div id="scroll-progress-line" class="scroll-progress-line" aria-hidden="true"></div>
 
   <!-- Site Header -->
-  <header class="fixed top-0 inset-x-0 z-50 bg-ink/80 backdrop-blur-md border-b border-gold/20 text-ivory">
+  <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-ink/80 backdrop-blur-md border-b border-gold/20 text-ivory transition-all duration-500 -translate-y-full opacity-0 pointer-events-none">
     <div class="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between gap-6">
       <a href="index.html" class="font-serif text-lg tracking-wider uppercase font-semibold">CTY <em class="text-gold not-italic">Ministries</em></a>
 
@@ -93,15 +93,17 @@
   <section id="latest-video" class="py-24 px-6 md:px-12 bg-ink text-ivory">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
       <div class="md:col-span-7 rounded-2xl overflow-hidden border border-gold/25 shadow-2xl bg-black">
-        <video src="images/we%20are%20Innkeepers%20.mp4" controls playsinline preload="metadata" class="w-full h-full"></video>
+        <img src="images/faith-launch.jpg" alt="Unveiling of the FAITH: A Wholistic Teenager banner as confetti falls" class="w-full h-full object-cover" />
       </div>
       <div class="md:col-span-5 reveal-on-scroll">
         <span class="text-xs uppercase tracking-[0.25em] font-semibold text-gold block mb-3">This week at CTY</span>
-        <h2 class="font-serif text-4xl md:text-5xl font-normal mb-5">We Are Innkeepers</h2>
-        <p class="text-sm md:text-base text-ivory/70 font-light leading-relaxed mb-8">
-          A featured community worship moment from CTY Ministries — what happened, who it was for, and why it mattered.
+        <p class="text-sm md:text-base text-ivory/70 font-light leading-relaxed mb-5">
+          We unveiled this season's teen theme with confetti and celebration — Faith, Action, Integrity, Talk and Heart.
         </p>
-        <a href="../post/post.html" class="text-xs uppercase tracking-widest text-gold hover:text-softGold transition-colors">See all posts &rarr;</a>
+        <p class="font-serif italic text-softGold/90 leading-relaxed mb-8">
+          “Let no one despise you for your youth, but set the believers an example in speech, in conduct, in love, in faith, in purity.”
+          <span class="block not-italic text-xs uppercase tracking-widest text-gold mt-2">1 Timothy 4:12 (ESV)</span>
+        </p>
       </div>
     </div>
   </section>
@@ -115,7 +117,6 @@
           <span class="text-xs uppercase tracking-[0.25em] font-semibold text-gold block mb-2">Fresh from the community</span>
           <h2 class="font-serif text-4xl md:text-6xl text-ink font-normal tracking-tight">Latest Photos</h2>
         </div>
-        <a href="../post/post.html" class="text-xs uppercase tracking-widest text-gold hover:text-ink transition-colors">View all photos &rarr;</a>
       </div>
 
       <!-- Asymmetric Grid with 3D Tilt and Parallax Effect on Scroll -->
@@ -210,13 +211,11 @@
       </p>
 
       <p class="mt-8 text-base md:text-lg text-ink/75 font-light leading-relaxed max-w-3xl mx-auto">
-        CTY stands for Children, Teens, and Youth — a ministry built to give every generation, from the youngest child
+        CTY stands for Children, Teens, and Youth: a ministry built to give every generation, from the youngest child
         to the young adult stepping into leadership, a place to belong. Through fellowship, shared testimonies, and
         honest conversation, we exist to build one community that faces life's challenges together and motivates each
         generation to carry the faith forward.
       </p>
-
-      <a href="../About/about2.html" class="inline-block mt-8 text-xs uppercase tracking-widest text-gold hover:text-ink transition-colors">Read our story &rarr;</a>
 
       <div class="mt-8 flex justify-center items-center gap-3">
         <span class="h-px w-12 bg-gold/50"></span>
@@ -308,9 +307,6 @@
       <p class="font-serif italic text-2xl sm:text-3xl md:text-5xl font-light text-ivory leading-tight md:leading-snug">
         “One community, facing every season together, and shining a little brighter for it.”
       </p>
-
-      <a href="../testimonies/testimonies.html"
-        class="inline-block mt-10 text-xs uppercase tracking-widest text-gold hover:text-softGold transition-colors">Read testimonies &rarr;</a>
     </div>
   </section>
 
@@ -394,10 +390,9 @@
           <div>
             <h5 class="text-gold font-semibold mb-4">Connect</h5>
             <ul class="space-y-3 font-normal text-ivory/75">
-              <li><a href="#" aria-label="CTY on Instagram" class="hover:text-gold transition-colors">Instagram</a></li>
-              <li><a href="#" aria-label="CTY on Facebook" class="hover:text-gold transition-colors">Facebook</a></li>
-              <li><a href="#" aria-label="CTY on TikTok" class="hover:text-gold transition-colors">TikTok</a></li>
-              <li><a href="#" aria-label="CTY on YouTube" class="hover:text-gold transition-colors">YouTube</a></li>
+              <li><a href="https://www.instagram.com/c.t.y.ministry?stkn=MXdtODVvODl5MHhrdw==" aria-label="CTY on Instagram" class="hover:text-gold transition-colors">Instagram</a></li>
+              <li><a href="https://www.tiktok.com/@ctymicwcmiw?_r=1&_t=ZS-9A84Q3mS7Zn" aria-label="CTY on TikTok" class="hover:text-gold transition-colors">TikTok</a></li>
+              <li><a href="http://www.youtube.com/@CTYministry" aria-label="CTY on YouTube" class="hover:text-gold transition-colors">YouTube</a></li>
             </ul>
           </div>
         </div>
