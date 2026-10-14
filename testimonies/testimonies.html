@@ -10,10 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../Logo%20Design%20in%20Canva.png">
-  <link rel="stylesheet" href="../testimonies/testimonies.css">
-  
-  <script>document.documentElement.style.visibility = "hidden";</script>
-  <script type="module" src="../Javascript files/auth-guard.js"></script>
+  <link rel="stylesheet" href="testimonies.css">
 </head>
 <body>
 <header class="site-header">
@@ -99,42 +96,40 @@
 </main>
 
 <footer>
-    <div class="container footer-card">
-      <div class="footer-grid">
-        <div class="footer-about">
-          <a class="brand" href="../home/homepage.html">
-            <span class="brand-mark" aria-hidden="true">✝</span>
-            <span>CTY <em>Ministries</em></span>
-          </a>
-          <p>Children · Teens · Youth — a Christ-centered community growing together and shining for Jesus.</p>
-        </div>
-
-        <div class="footer-links">
-          <div class="footer-col">
-            <p class="footer-title">Explore</p>
-            <a href="../About/about2.html">About CTY</a>
-            <a href="../post/post.html">Messages</a>
-            <a href="../communityevents/community.html">Events</a>
-            <a href="../contacts/contacts.html">Contact</a>
-          </div>
-
-          <div class="footer-col">
-            <p class="footer-title">Connect</p>
-            <a href="#" aria-label="CTY on Instagram">Instagram</a>
-            <a href="#" aria-label="CTY on Facebook">Facebook</a>
-            <a href="#" aria-label="CTY on TikTok">TikTok</a>
-            <a href="#" aria-label="CTY on YouTube">YouTube</a>
-          </div>
-        </div>
+  <div class="container footer-card">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="brand" href="../home/homepage.html">
+          <span class="brand-mark" aria-hidden="true">✝</span>
+          <span>CTY <em>Ministries</em></span>
+        </a>
+        <p>Children · Teens · Youth — a Christ-centered community growing together and shining for Jesus.</p>
       </div>
-
-      <div class="footer-bottom">
-        <span>© <span id="year"></span> CTY Ministries. All rights reserved.</span>
-        <span>Built to serve the next generation.</span>
+      <div class="footer-links">
+        <div class="footer-col">
+          <p class="footer-title">Explore</p>
+          <a href="../About/about2.html">About CTY</a>
+          <a href="../post/post.html">Messages</a>
+          <a href="../communityevents/community.html">Events</a>
+          <a href="../contacts/contacts.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-title">Connect</p>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">TikTok</a>
+          <a href="#">YouTube</a>
+        </div>
       </div>
     </div>
-  </footer>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> CTY Ministries. All rights reserved.</span>
+      <span>Built to serve the next generation.</span>
+    </div>
+  </div>
+</footer>
 
+<!-- ===================== SUBMIT TESTIMONY MODAL ===================== -->
 <div class="overlay" id="form-overlay">
   <div class="modal">
     <div class="modal-head">
@@ -180,9 +175,16 @@
       </div>
 
       <div class="field">
+        <label for="video">Video link (optional)</label>
+        <input id="video" type="url" maxlength="300"
+          placeholder="https://www.youtube.com/watch?v=...">
+        <div class="hint">Paste a YouTube link if you have video of your story. It will play inside the page.</div>
+      </div>
+
+      <div class="field">
         <label for="photo">Photo (optional)</label>
         <input id="photo" type="file" accept="image/jpeg,image/png,image/webp">
-        <div class="hint">Maximum 5 MB. Do not upload a photo of another person without permission.</div>
+        <div class="hint">Maximum 5 MB. We'll use your profile picture if you don't upload one.</div>
       </div>
 
       <button class="button primary" id="submit-button" type="submit">Send for Review</button>
@@ -191,6 +193,6 @@
 </div>
 
 <script type="module" src="../Javascript files/header-auth.js"></script>
-<script type="module" src="./testimonies.js"></script>
+<script type="module" src="testimonies.js"></script>
 </body>
 </html>
