@@ -35,10 +35,25 @@ function escapeHtml(value = "") {
   }[char]));
 }
 
+// Universal extraction
 function getYouTubeId(url) {
   if (!url) return null;
-  const m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/);
-  return m ? m[1] : null;
+  
+  if (url.includes('<iframe')) {
+    const srcMatch = url.match(/src="([^"]+)"/);
+    if (srcMatch) url = srcMatch[1];
+  }
+
+  const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
+  const match = url.match(regExp);
+  
+  return (match && match[1]) ? match[1] : null;
+}
+
+// CLEAN embed URL (No nocookie, no extra parameters)
+function getEmbedUrl(videoId) {
+  if (!videoId) return null;
+  return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
 }
 
 function showMessage(text, type) {
@@ -104,7 +119,6 @@ async function loadTestimonies() {
     `;
   }).join("");
 
-  // Wire up "Watch story" buttons
   list.querySelectorAll("[data-watch]").forEach(btn => {
     btn.addEventListener("click", () => {
       const id = btn.dataset.watch;
@@ -120,31 +134,46 @@ async function loadTestimonies() {
 
 function openVideoModal(story) {
   const ytId = getYouTubeId(story.video_url);
-  if (!ytId) return;
+  if (!ytId) {
+    alert("We couldn't read the YouTube link for this video.");
+    return;
+  }
+
+  const embedUrl = getEmbedUrl(ytId);
 
   const videoOverlay = document.createElement("div");
   videoOverlay.className = "overlay show";
+  
   videoOverlay.innerHTML = `
-    <div class="modal" style="max-width:820px">
-      <div class="modal-head">
+    <div class="modal" style="max-width:950px; width: 95%; padding: 0; background: transparent; box-shadow: none;">
+      
+      <div style="display: flex; justify-content: space-between; align-items: center; color: white; margin-bottom: 10px; padding: 0 10px;">
         <div>
-          <div class="eyebrow">${escapeHtml(story.theme)}</div>
-          <h2 style="margin:5px 0 0">${escapeHtml(story.name)}'s story</h2>
+          <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); font-weight: 700;">${escapeHtml(story.theme)}</div>
+          <h2 style="margin: 2px 0 0; font-family: var(--serif); font-size: 1.5rem;">${escapeHtml(story.name)}'s story</h2>
         </div>
-        <button class="close" type="button" aria-label="Close video">×</button>
+        <button class="close" type="button" aria-label="Close video" style="background: rgba(255,255,255,0.1); border: none; color: white; font-size: 24px; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;">×</button>
       </div>
-      <div class="video-wrap">
+
+      <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.6); background: #000;">
         <iframe
-          src="https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0"
+          src="${embedUrl}"
           title="${escapeHtml(story.name)}'s testimony"
-          allow="autoplay; encrypted-media; picture-in-picture"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen
+          style="width: 100%; aspect-ratio: 16/9; border: none; display: block;"
         ></iframe>
       </div>
-      <p class="hint" style="margin-top:14px">${escapeHtml(story.location || "")}</p>
-      <p class="story" style="margin-top:10px">${escapeHtml(story.description)}</p>
+
+      <div style="background: white; padding: 20px 25px; border-radius: 12px; margin-top: 15px;">
+        <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 8px;">${escapeHtml(story.location || "")}</p>
+        <p style="font-family: var(--serif); font-style: italic; font-size: 1.1rem; line-height: 1.6;">“${escapeHtml(story.description)}”</p>
+      </div>
+
     </div>
   `;
+  
   document.body.appendChild(videoOverlay);
   document.body.classList.add("locked");
 
@@ -152,10 +181,12 @@ function openVideoModal(story) {
     videoOverlay.remove();
     document.body.classList.remove("locked");
   };
+  
   videoOverlay.querySelector(".close").addEventListener("click", close);
   videoOverlay.addEventListener("click", (e) => {
     if (e.target === videoOverlay) close();
   });
+  
   document.addEventListener("keydown", function esc(e) {
     if (e.key === "Escape") { close(); document.removeEventListener("keydown", esc); }
   });
@@ -193,7 +224,9 @@ form.addEventListener("submit", async (event) => {
   const location = document.getElementById("location").value.trim();
   const theme = document.getElementById("theme").value;
   const story = document.getElementById("story").value.trim();
-  const video = document.getElementById("video").value.trim();
+  
+  const videoInput = document.getElementById("video");
+  const video = videoInput ? videoInput.value.trim() : "";
   const photo = document.getElementById("photo").files[0];
 
   if (story.length < 30) {
@@ -228,16 +261,15 @@ form.addEventListener("submit", async (event) => {
       photoUrl = publicUrl.publicUrl;
     }
 
-    // NOTE: submitted_by — matches the schema column
     const { error } = await supabase
       .from("testimonies")
       .insert({
-        submitted_by: session.user.id,
+        submitted_by: session.user.id, 
         name,
         location: location || null,
         theme,
         description: story,
-        video_url: video || null,
+        video_url: video || null, 
         photo_url: photoUrl,
         status: "pending",
         is_deleted: false,
@@ -251,12 +283,7 @@ form.addEventListener("submit", async (event) => {
 
   } catch (error) {
     console.error("Testimony submission error:", error);
-    showFormMessage(
-      error?.message?.includes("submitted_by")
-        ? "Your account can't submit yet — please make sure you're signed in with a full profile."
-        : "We could not submit your testimony. Please try again.",
-      "error"
-    );
+    showFormMessage("We could not submit your testimony. Please try again.", "error");
   } finally {
     submitButton.disabled = false;
     submitButton.textContent = "Send for Review";

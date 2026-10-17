@@ -172,8 +172,9 @@
       </div>
 
       <div class="list-head">
-        <h3>Pending review</h3>
+        <h3 id="testimony-list-title">Pending review</h3>
         <div class="list-head-actions">
+          <button class="btn btn-ghost btn-sm" id="toggle-published-testimonies-btn" type="button">Show Published</button>
           <button class="btn btn-ghost btn-sm" id="refresh-testimonies-btn" type="button">↻ Refresh</button>
         </div>
       </div>
@@ -265,6 +266,59 @@
     <div class="modal-content modal-content--wide" role="dialog" aria-modal="true" aria-labelledby="testimony-modal-title">
       <h2 id="testimony-modal-title">Testimony</h2>
       <div id="testimony-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ============================= EDIT TESTIMONY MODAL ============================= -->
+  <div class="modal-overlay" id="edit-testimony-modal">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="edit-testimony-title">
+      <h2 id="edit-testimony-title">Edit Testimony</h2>
+      <form id="edit-testimony-form">
+        <input type="hidden" id="edit-testimony-id" />
+        
+        <label class="field">
+          <span>Name *</span>
+          <input type="text" id="edit-testimony-name" required />
+        </label>
+        
+        <label class="field">
+          <span>Location</span>
+          <input type="text" id="edit-testimony-location" />
+        </label>
+        
+        <label class="field">
+          <span>Theme *</span>
+          <select id="edit-testimony-theme" required>
+            <option value="Finding Faith">Finding Faith</option>
+            <option value="Freedom">Freedom</option>
+            <option value="Healing">Healing</option>
+            <option value="Answered Prayer">Answered Prayer</option>
+            <option value="New Life">New Life</option>
+            <option value="Hope">Hope</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Story *</span>
+          <textarea id="edit-testimony-description" rows="4" required></textarea>
+        </label>
+
+        <label class="field">
+          <span>YouTube Video URL</span>
+          <input type="url" id="edit-testimony-video" placeholder="https://www.youtube.com/watch?v=..." />
+        </label>
+
+        <p class="upload-error" id="edit-testimony-error" role="alert"></p>
+        
+        <div class="row-actions">
+          <button type="submit" class="btn btn-primary" id="edit-testimony-submit-btn">
+            <span class="btn-label">Save Changes</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="btn btn-ghost" id="edit-testimony-cancel-btn">Cancel</button>
+        </div>
+      </form>
     </div>
   </div>
 
