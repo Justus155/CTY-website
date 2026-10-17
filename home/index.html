@@ -86,7 +86,7 @@
   </section>
 
   <!-- =========================================================================
-       MAIN CONTENT: ALL SECTIONS TRANSFERRED FROM CODE.HTML BELOW SCROLL ANIMATION
+       MAIN CONTENT
        ========================================================================= -->
 
   <!-- Latest Video -->
@@ -225,63 +225,95 @@
     </div>
   </section>
 
-  <!-- Three Pillars Section (Children · Teens · Youth) -->
-  <section id="pillars" class="py-28 px-6 md:px-12 bg-ivory relative">
+  <!-- =========================================================
+       UPDATED THREE PILLARS SECTION WITH BACKGROUND IMAGES
+       ========================================================= -->
+    <section id="pillars" class="py-28 px-6 md:px-12 bg-ivory relative">
     <div class="max-w-7xl mx-auto">
 
       <div class="text-center max-w-2xl mx-auto mb-20">
         <span class="text-xs uppercase tracking-[0.25em] font-semibold text-gold block mb-3">Our Pillars</span>
         <h2 class="font-serif text-4xl md:text-5xl font-normal text-ink">Community. Testimony. Motivation.</h2>
-        <p class="text-sm text-ink/70 mt-4 font-light">The values that shape how we gather, lead, and serve across every
-          age group.</p>
+        <p class="text-sm text-ink/70 mt-4 font-light">The values that shape how we gather, lead, and serve across every age group.</p>
       </div>
 
       <!-- 3 Pillars Columns -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
 
-        <!-- Pillar 01: Children -->
+        <!-- Pillar 01: Community -->
         <div
-          class="reveal-on-scroll group relative bg-white/70 backdrop-blur-sm p-8 md:p-10 rounded-3xl border border-gold/25 hover:border-gold transition-all duration-500 hover:shadow-[0_20px_40px_rgba(20,17,15,0.06)] hover:-translate-y-2">
-          <div class="flex items-baseline justify-between mb-8">
-            <span
-              class="font-serif text-6xl md:text-7xl font-light text-softGold group-hover:text-gold transition-colors duration-300">01</span>
+          class="reveal-on-scroll group relative bg-ink overflow-hidden rounded-3xl border border-gold/25 hover:border-gold transition-all duration-500 hover:shadow-[0_20px_40px_rgba(20,17,15,0.3)] hover:-translate-y-2">
+          
+          <!-- Background Image with Strong Dark Overlay -->
+          <div class="absolute inset-0 z-0">
+            <img src="../photos/community.jpg" alt="Community at CTY" 
+                 class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110 opacity-70" />
+            <!-- Stronger gradient fading to solid ink at the bottom -->
+            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-transparent opacity-95 group-hover:opacity-90 transition-opacity duration-500"></div>
           </div>
-          <h3 class="font-serif text-3xl text-ink mb-3 font-semibold">Community</h3>
-          <p class="text-sm text-ink/75 leading-relaxed font-light">
-            One family across Children, Teens, and Youth — no one ministry stands apart from the others.
-          </p>
+
+          <!-- Content -->
+          <div class="relative z-10 p-8 md:p-10 h-full flex flex-col justify-end min-h-[380px]">
+            <div class="flex items-baseline justify-between mb-4">
+              <span class="font-serif text-6xl md:text-7xl font-light text-gold drop-shadow-md">01</span>
+            </div>
+            <h3 class="font-serif text-3xl text-ivory mb-3 font-semibold drop-shadow-sm">Community</h3>
+            <p class="text-sm text-ivory/90 leading-relaxed font-light drop-shadow-sm">
+              One family across Children, Teens, and Youth:no one ministry stands apart from the others.
+            </p>
+          </div>
         </div>
 
-        <!-- Pillar 02: Teens -->
+        <!-- Pillar 02: Testimony -->
         <div
-          class="reveal-on-scroll group relative bg-white/70 backdrop-blur-sm p-8 md:p-10 rounded-3xl border border-gold/25 hover:border-gold transition-all duration-500 hover:shadow-[0_20px_40px_rgba(20,17,15,0.06)] hover:-translate-y-2"
+          class="reveal-on-scroll group relative bg-ink overflow-hidden rounded-3xl border border-gold/25 hover:border-gold transition-all duration-500 hover:shadow-[0_20px_40px_rgba(20,17,15,0.3)] hover:-translate-y-2"
           style="transition-delay: 150ms;">
-          <div class="flex items-baseline justify-between mb-8">
-            <span
-              class="font-serif text-6xl md:text-7xl font-light text-softGold group-hover:text-gold transition-colors duration-300">02</span>
+          
+          <!-- Background Image with Strong Dark Overlay -->
+          <div class="absolute inset-0 z-0">
+            <!-- object-top keeps the singer's face in frame -->
+            <img src="../photos/testimony.JPG" alt="Testimony at CTY" 
+                 class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110 opacity-70" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-transparent opacity-95 group-hover:opacity-90 transition-opacity duration-500"></div>
           </div>
-          <h3 class="font-serif text-3xl text-ink mb-3 font-semibold">Testimony</h3>
-          <p class="text-sm text-ink/75 leading-relaxed font-light">
-            Real stories that build real faith. We believe in the power of a life changed, spoken out loud.
-          </p>
+
+          <!-- Content -->
+          <div class="relative z-10 p-8 md:p-10 h-full flex flex-col justify-end min-h-[380px]">
+            <div class="flex items-baseline justify-between mb-4">
+              <span class="font-serif text-6xl md:text-7xl font-light text-gold drop-shadow-md">02</span>
+            </div>
+            <h3 class="font-serif text-3xl text-ivory mb-3 font-semibold drop-shadow-sm">Testimony</h3>
+            <p class="text-sm text-ivory/90 leading-relaxed font-light drop-shadow-sm">
+              Real stories that build real faith. We believe in the power of a life changed, spoken out loud.
+            </p>
+          </div>
         </div>
 
-        <!-- Pillar 03: Youth -->
+        <!-- Pillar 03: Motivation -->
         <div
-          class="reveal-on-scroll group relative bg-white/70 backdrop-blur-sm p-8 md:p-10 rounded-3xl border border-gold/25 hover:border-gold transition-all duration-500 hover:shadow-[0_20px_40px_rgba(20,17,15,0.06)] hover:-translate-y-2"
+          class="reveal-on-scroll group relative bg-ink overflow-hidden rounded-3xl border border-gold/25 hover:border-gold transition-all duration-500 hover:shadow-[0_20px_40px_rgba(20,17,15,0.3)] hover:-translate-y-2"
           style="transition-delay: 300ms;">
-          <div class="flex items-baseline justify-between mb-8">
-            <span
-              class="font-serif text-6xl md:text-7xl font-light text-softGold group-hover:text-gold transition-colors duration-300">03</span>
+          
+          <!-- Background Image with Strong Dark Overlay -->
+          <div class="absolute inset-0 z-0">
+            <img src="../photos/motivation.jpeg" alt="Motivation at CTY" 
+                 class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110 opacity-70" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-transparent opacity-95 group-hover:opacity-90 transition-opacity duration-500"></div>
           </div>
-          <h3 class="font-serif text-3xl text-ink mb-3 font-semibold">Motivation</h3>
-          <p class="text-sm text-ink/75 leading-relaxed font-light">
-            Each generation lifting the next — mentorship is not a program here, it is the culture.
-          </p>
+
+          <!-- Content -->
+          <div class="relative z-10 p-8 md:p-10 h-full flex flex-col justify-end min-h-[380px]">
+            <div class="flex items-baseline justify-between mb-4">
+              <span class="font-serif text-6xl md:text-7xl font-light text-gold drop-shadow-md">03</span>
+            </div>
+            <h3 class="font-serif text-3xl text-ivory mb-3 font-semibold drop-shadow-sm">Motivation</h3>
+            <p class="text-sm text-ivory/90 leading-relaxed font-light drop-shadow-sm">
+              Each generation lifting the next mentorship is not a program here, it is the culture.
+            </p>
+          </div>
         </div>
 
       </div>
-
     </div>
   </section>
 
