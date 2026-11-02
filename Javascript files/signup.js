@@ -30,19 +30,6 @@ const PASSWORD_RULE = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
 // ============================================
 let pendingEmail = null; // email we're currently verifying
 
-const emailRedirectTo = /^https?:$/.test(window.location.protocol)
-  ? new URL("../home/homepage.html", window.location.href).href
-  : null;
-
-const signupOptions = {
-  data: {
-    full_name: "",
-    date_of_birth: "",
-    ministry_group: "",
-  },
-};
-if (emailRedirectTo) signupOptions.emailRedirectTo = emailRedirectTo;
-
 // ============================================
 // VALIDATION
 // ============================================
@@ -115,9 +102,7 @@ signupForm.addEventListener("submit", async (e) => {
       email,
       password,
       options: {
-        ...signupOptions,
         data: {
-          ...signupOptions.data,
           full_name: fullName,
           date_of_birth: dateOfBirth,
           ministry_group: ministryGroup,
@@ -207,14 +192,16 @@ verifyForm.addEventListener("submit", async (e) => {
   setLoading(btn, true);
 
   try {
+    // UPDATED BLOCK:
     const { data, error } = await supabase.auth.verifyOtp({
       email: pendingEmail,
-      token,
-      type: "signup",
+      token: token,
+      type: "email", 
     });
+    
     if (error) throw error;
 
-    // Optional: ensure a profile row exists now that we have a user.
+    // Ensure a profile row exists now that we have a user.
     if (data.user) {
       const meta = data.user.user_metadata || {};
       const { error: profileError } = await supabase.from("profiles").upsert({
@@ -253,9 +240,10 @@ resendBtn.addEventListener("click", async () => {
   resendBtn.textContent = "Sending…";
 
   try {
-    const resendOptions = { type: "signup", email: pendingEmail };
-    if (emailRedirectTo) resendOptions.options = { emailRedirectTo };
-    const { error } = await supabase.auth.resend(resendOptions);
+    const { error } = await supabase.auth.resend({
+      type: "signup",
+      email: pendingEmail,
+    });
     if (error) throw error;
     showToast("New code sent! Check your email.");
   } catch (err) {
